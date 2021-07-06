@@ -37,7 +37,7 @@ public class SecureSocketFactoryProvider
    *
    * @param sslParameterSet The SSL parameters to be used for creating socket factories.
    */
-  @Inject
+
   public SecureSocketFactoryProvider(SslParameterSet sslParameterSet) {
     requireNonNull(sslParameterSet, "sslParameterSet");
     this.secureSslContextFactory = new SecureSslContextFactory(sslParameterSet);

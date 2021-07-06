@@ -52,7 +52,7 @@ public class FullDispatchTask
    */
   private boolean initialized;
 
-  @Inject
+
   public FullDispatchTask(CheckNewOrdersPhase checkNewOrdersPhase,
                           FinishWithdrawalsPhase finishWithdrawalsPhase,
                           AssignNextDriveOrdersPhase assignNextDriveOrdersPhase,

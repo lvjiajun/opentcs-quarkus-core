@@ -7,16 +7,17 @@
  */
 package org.youbai.opentcs.strategies.basic.dispatching;
 
-import java.util.List;
+import io.smallrye.config.ConfigMapping;
 import org.youbai.opentcs.configuration.ConfigurationEntry;
-import org.youbai.opentcs.configuration.ConfigurationPrefix;
+
+import java.util.List;
 
 /**
  * Provides methods to configure the {@link DefaultDispatcher}
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ConfigurationPrefix(DefaultDispatcherConfiguration.PREFIX)
+
 public interface DefaultDispatcherConfiguration {
 
   /**

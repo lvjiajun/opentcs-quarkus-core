@@ -37,7 +37,7 @@ public class PrioritizedReparkPhase
   private final CompositeReparkVehicleSelectionFilter vehicleSelectionFilter;
   private final ParkingPositionPriorityComparator priorityComparator;
 
-  @Inject
+
   public PrioritizedReparkPhase(
       InternalTransportOrderService orderService,
       PrioritizedParkingPositionSupplier parkingPosSupplier,

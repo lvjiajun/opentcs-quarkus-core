@@ -35,7 +35,7 @@ public class TransportOrderComparatorDeadlineAtRiskFirst
    */
   private final long deadlineAtRiskPeriod;
 
-  @Inject
+
   public TransportOrderComparatorDeadlineAtRiskFirst(DefaultDispatcherConfiguration configuration) {
     requireNonNull(configuration, "configuration");
 

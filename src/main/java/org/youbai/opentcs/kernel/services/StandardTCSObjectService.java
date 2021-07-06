@@ -45,7 +45,7 @@ public class StandardTCSObjectService
    * @param globalSyncObject The kernel threads' global synchronization object.
    * @param globalObjectPool The object pool to be used.
    */
-  @Inject
+
   public StandardTCSObjectService(@GlobalSyncObject Object globalSyncObject,
                                   TCSObjectPool globalObjectPool) {
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");

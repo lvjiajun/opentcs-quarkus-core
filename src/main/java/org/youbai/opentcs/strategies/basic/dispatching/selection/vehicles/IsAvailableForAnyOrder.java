@@ -51,7 +51,7 @@ public class IsAvailableForAnyOrder
    * @param orderReservationPool Stores reservations of orders for vehicles.
    * @param configuration The default dispatcher configuration.
    */
-  @Inject
+
   public IsAvailableForAnyOrder(TCSObjectService objectService,
                                 OrderReservationPool orderReservationPool,
                                 DefaultDispatcherConfiguration configuration) {

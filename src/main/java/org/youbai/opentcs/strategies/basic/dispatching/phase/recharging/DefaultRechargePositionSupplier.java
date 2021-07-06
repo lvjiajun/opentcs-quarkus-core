@@ -57,7 +57,7 @@ public class DefaultRechargePositionSupplier
    * @param plantModelService The plant model service.
    * @param router The router to use.
    */
-  @Inject
+
   public DefaultRechargePositionSupplier(InternalPlantModelService plantModelService,
                                          Router router) {
     this.plantModelService = requireNonNull(plantModelService, "plantModelService");

@@ -32,7 +32,7 @@ public class CompositeOrderComparator
    */
   private final Comparator<TransportOrder> compositeComparator;
 
-  @Inject
+
   public CompositeOrderComparator(DefaultDispatcherConfiguration configuration,
                                   Map<String, Comparator<TransportOrder>> availableComparators) {
     // At the end, if all other comparators failed to see a difference, compare by age.

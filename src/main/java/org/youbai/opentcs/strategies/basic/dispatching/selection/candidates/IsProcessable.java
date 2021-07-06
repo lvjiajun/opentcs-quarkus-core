@@ -52,7 +52,7 @@ public class IsProcessable
    *
    * @param vehicleControllerPool The controller pool to be worked with.
    */
-  @Inject
+
   public IsProcessable(VehicleControllerPool vehicleControllerPool) {
     this.vehicleControllerPool = requireNonNull(vehicleControllerPool, "vehicleControllerPool");
   }

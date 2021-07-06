@@ -42,7 +42,7 @@ public class ReleasePeripheralsPhase
    */
   private boolean initialized;
 
-  @Inject
+
   public ReleasePeripheralsPhase(InternalPeripheralService peripheralService,
                                  PeripheralReleaseStrategy releaseStrategy) {
     this.peripheralService = requireNonNull(peripheralService, "peripheralService");

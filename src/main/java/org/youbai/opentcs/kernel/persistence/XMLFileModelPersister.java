@@ -62,7 +62,7 @@ public class XMLFileModelPersister
    * @param directory The application's home directory.
    * @param modelParser Reads and writes into the xml file.
    */
-  @Inject
+
   public XMLFileModelPersister(@ApplicationHome File directory,
                                ModelParser modelParser) {
     this.modelParser = requireNonNull(modelParser, "modelParser");

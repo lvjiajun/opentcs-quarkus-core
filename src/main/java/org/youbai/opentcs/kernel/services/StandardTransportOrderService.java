@@ -62,7 +62,7 @@ public class StandardTransportOrderService
    * @param orderPool The oder pool to be used.
    * @param model The model to be used.
    */
-  @Inject
+
   public StandardTransportOrderService(TCSObjectService objectService,
                                        @GlobalSyncObject Object globalSyncObject,
                                        TCSObjectPool globalObjectPool,

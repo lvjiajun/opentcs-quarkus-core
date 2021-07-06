@@ -35,7 +35,7 @@ public class LoopbackCommunicationAdapterFactory
    *
    * @param componentsFactory The adapter components factory.
    */
-  @Inject
+
   public LoopbackCommunicationAdapterFactory(LoopbackAdapterComponentsFactory componentsFactory) {
     this.adapterFactory = requireNonNull(componentsFactory, "componentsFactory");
   }

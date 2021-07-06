@@ -60,7 +60,7 @@ public class AssignFreePeripheralsPhase
    */
   private boolean initialized;
 
-  @Inject
+
   public AssignFreePeripheralsPhase(TCSObjectService objectService,
                                     JobSelectionStrategy jobSelectionStrategy,
                                     PeripheralControllerPool peripheralControllerPool,

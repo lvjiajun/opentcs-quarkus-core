@@ -28,7 +28,7 @@ public class CompositeRechargeVehicleSelectionFilter
    */
   private final Set<RechargeVehicleSelectionFilter> filters;
   
-  @Inject
+
   public CompositeRechargeVehicleSelectionFilter(Set<RechargeVehicleSelectionFilter> filters) {
     this.filters = requireNonNull(filters, "filters");
   }

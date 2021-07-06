@@ -49,7 +49,7 @@ public class PeripheralJobUtil {
    */
   private final PeripheralJobCallback peripheralJobCallback;
 
-  @Inject
+
   public PeripheralJobUtil(InternalPeripheralService peripheralService,
                            InternalPeripheralJobService peripheralJobService,
                            PeripheralControllerPool peripheralControllerPool,

@@ -46,7 +46,7 @@ public class StandardDispatcherService
    * @param globalObjectPool The object pool to be used.
    * @param dispatcher The dispatcher.
    */
-  @Inject
+
   public StandardDispatcherService(@GlobalSyncObject Object globalSyncObject,
                                    TCSObjectPool globalObjectPool,
                                    Dispatcher dispatcher) {

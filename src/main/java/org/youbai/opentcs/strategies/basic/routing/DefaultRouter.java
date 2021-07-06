@@ -84,7 +84,7 @@ public class DefaultRouter
    * @param routingGroupMapper Used to map vehicles to their routing groups.
    * @param configuration This class's configuration.
    */
-  @Inject
+
   public DefaultRouter(TCSObjectService objectService,
                        PointRouterFactory pointRouterFactory,
                        GroupMapper routingGroupMapper,

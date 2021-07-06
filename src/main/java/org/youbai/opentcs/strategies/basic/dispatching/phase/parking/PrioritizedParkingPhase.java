@@ -37,7 +37,7 @@ public class PrioritizedParkingPhase
    */
   private final CompositeParkVehicleSelectionFilter vehicleSelectionFilter;
 
-  @Inject
+
   public PrioritizedParkingPhase(
       InternalTransportOrderService orderService,
       PrioritizedParkingPositionSupplier parkingPosSupplier,

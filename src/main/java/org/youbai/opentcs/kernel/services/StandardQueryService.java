@@ -41,7 +41,7 @@ public class StandardQueryService
    *
    * @param globalSyncObject The kernel threads' global synchronization object.
    */
-  @Inject
+
   public StandardQueryService(@GlobalSyncObject Object globalSyncObject) {
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");
   }

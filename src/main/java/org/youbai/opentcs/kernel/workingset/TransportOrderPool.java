@@ -68,7 +68,7 @@ public class TransportOrderPool {
    * @param objectPool The object pool serving as the container for this order pool's data.
    * @param orderNameProvider Provides names for transport orders.
    */
-  @Inject
+
   public TransportOrderPool(TCSObjectPool objectPool,
                             ObjectNameProvider orderNameProvider) {
     this.objectPool = requireNonNull(objectPool, "objectPool");

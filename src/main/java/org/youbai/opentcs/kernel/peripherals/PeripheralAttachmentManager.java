@@ -80,7 +80,7 @@ public class PeripheralAttachmentManager
    * @param eventHandler The handler to send events to.
    * @param configuration This class's configuration.
    */
-  @Inject
+
   public PeripheralAttachmentManager(@Nonnull InternalPeripheralService peripheralService,
                                      @Nonnull LocalPeripheralControllerPool controllerPool,
                                      @Nonnull PeripheralCommAdapterRegistry commAdapterRegistry,

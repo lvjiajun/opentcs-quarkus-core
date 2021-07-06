@@ -60,7 +60,7 @@ public class AssignNextDriveOrdersPhase
    */
   private boolean initialized;
 
-  @Inject
+
   public AssignNextDriveOrdersPhase(InternalTransportOrderService transportOrderService,
                                     InternalVehicleService vehicleService,
                                     Router router,

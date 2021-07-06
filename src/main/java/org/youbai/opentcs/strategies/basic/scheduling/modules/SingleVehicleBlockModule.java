@@ -55,7 +55,7 @@ public class SingleVehicleBlockModule
    */
   private boolean initialized;
 
-  @Inject
+
   public SingleVehicleBlockModule(@Nonnull ReservationPool reservationPool,
                                   @Nonnull InternalPlantModelService plantModelService,
                                   @Nonnull @GlobalSyncObject Object globalSyncObject) {

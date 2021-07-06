@@ -37,7 +37,7 @@ public class StandardSchedulerService
    * @param globalSyncObject The kernel threads' global synchronization object.
    * @param scheduler The scheduler.
    */
-  @Inject
+
   public StandardSchedulerService(@GlobalSyncObject Object globalSyncObject,
                                   Scheduler scheduler) {
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");

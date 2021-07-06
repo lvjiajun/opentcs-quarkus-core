@@ -30,7 +30,7 @@ public class ParkingPositionPriorityComparator
    *
    * @param priorityFunction A function computing the priority of a parking position.
    */
-  @Inject
+
   public ParkingPositionPriorityComparator(ParkingPositionToPriorityFunction priorityFunction) {
     this.priorityFunction = requireNonNull(priorityFunction, "priorityFunction");
   }

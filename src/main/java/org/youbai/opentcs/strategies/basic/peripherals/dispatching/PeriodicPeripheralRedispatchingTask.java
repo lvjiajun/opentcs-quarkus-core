@@ -39,7 +39,7 @@ public class PeriodicPeripheralRedispatchingTask
    * @param dispatcherService The dispatcher service used to dispatch peripheral devices.
    * @param objectService The object service.
    */
-  @Inject
+
   public PeriodicPeripheralRedispatchingTask(PeripheralDispatcherService dispatcherService,
                                              TCSObjectService objectService) {
     this.dispatcherService = requireNonNull(dispatcherService, "dispatcherService");

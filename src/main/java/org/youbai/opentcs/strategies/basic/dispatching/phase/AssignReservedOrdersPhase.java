@@ -53,7 +53,7 @@ public class AssignReservedOrdersPhase
    */
   private boolean initialized;
 
-  @Inject
+
   public AssignReservedOrdersPhase(
       TCSObjectService objectService,
       Router router,

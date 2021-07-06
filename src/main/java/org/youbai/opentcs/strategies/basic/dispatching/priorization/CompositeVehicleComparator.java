@@ -32,7 +32,7 @@ public class CompositeVehicleComparator
    */
   private final Comparator<Vehicle> compositeComparator;
 
-  @Inject
+
   public CompositeVehicleComparator(DefaultDispatcherConfiguration configuration,
                                     Map<String, Comparator<Vehicle>> availableComparators) {
     // At the end, if all other comparators failed to see a difference, compare by energy level.

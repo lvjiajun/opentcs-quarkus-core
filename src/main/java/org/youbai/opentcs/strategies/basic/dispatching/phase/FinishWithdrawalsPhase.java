@@ -33,7 +33,7 @@ public class FinishWithdrawalsPhase
    */
   private boolean initialized;
 
-  @Inject
+
   public FinishWithdrawalsPhase(TCSObjectService objectService,
                                 TransportOrderUtil transportOrderUtil) {
     this.objectService = requireNonNull(objectService, "objectService");

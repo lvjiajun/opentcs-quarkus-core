@@ -35,7 +35,7 @@ public class CandidateComparatorDeadlineAtRiskFirst
    */
   private final Comparator<TransportOrder> delegate;
 
-  @Inject
+
   public CandidateComparatorDeadlineAtRiskFirst(
       TransportOrderComparatorDeadlineAtRiskFirst delegate) {
     this.delegate = requireNonNull(delegate, "delegate");

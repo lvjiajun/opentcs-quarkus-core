@@ -92,7 +92,7 @@ public class AttachmentManager
    * @param eventHandler The handler to send events to.
    * @param configuration This class's configuration.
    */
-  @Inject
+
   public AttachmentManager(@Nonnull TCSObjectService objectService,
                            @Nonnull LocalVehicleControllerPool controllerPool,
                            @Nonnull VehicleCommAdapterRegistry commAdapterRegistry,

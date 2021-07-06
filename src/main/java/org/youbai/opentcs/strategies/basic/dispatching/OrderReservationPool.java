@@ -34,7 +34,7 @@ public class OrderReservationPool {
   /**
    * Creates a new instance.
    */
-  @Inject
+
   public OrderReservationPool() {
   }
 

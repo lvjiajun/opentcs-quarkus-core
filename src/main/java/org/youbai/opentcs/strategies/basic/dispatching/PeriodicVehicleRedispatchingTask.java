@@ -43,7 +43,7 @@ public class PeriodicVehicleRedispatchingTask
    * @param dispatcherService The dispatcher service used to dispatch vehicles.
    * @param objectService The object service.
    */
-  @Inject
+
   public PeriodicVehicleRedispatchingTask(DispatcherService dispatcherService,
                                           TCSObjectService objectService) {
     this.dispatcherService = requireNonNull(dispatcherService, "dispatcherService");

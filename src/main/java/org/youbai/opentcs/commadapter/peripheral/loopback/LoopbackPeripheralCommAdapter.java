@@ -7,7 +7,7 @@
  */
 package org.youbai.opentcs.commadapter.peripheral.loopback;
 
-import com.google.inject.assistedinject.Assisted;
+
 import java.time.Duration;
 import java.util.LinkedList;
 import static java.util.Objects.requireNonNull;
@@ -70,8 +70,8 @@ public class LoopbackPeripheralCommAdapter
    * @param eventHandler The handler used to send events to.
    * @param kernelExecutor The kernel's executor.
    */
-  @Inject
-  public LoopbackPeripheralCommAdapter(@Assisted TCSResourceReference<Location> location,
+
+  public LoopbackPeripheralCommAdapter(TCSResourceReference<Location> location,
                                        @ApplicationEventBus EventHandler eventHandler,
                                        @KernelExecutor ScheduledExecutorService kernelExecutor) {
     super(new LoopbackPeripheralProcessModel(location), eventHandler);

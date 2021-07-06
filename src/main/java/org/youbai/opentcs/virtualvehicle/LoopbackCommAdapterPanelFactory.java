@@ -53,7 +53,7 @@ public class LoopbackCommAdapterPanelFactory
    * @param servicePortal The service portal.
    * @param componentsFactory The components factory.
    */
-  @Inject
+
   public LoopbackCommAdapterPanelFactory(KernelServicePortal servicePortal,
                                          AdapterPanelComponentsFactory componentsFactory) {
     this.servicePortal = requireNonNull(servicePortal, "servicePortal");

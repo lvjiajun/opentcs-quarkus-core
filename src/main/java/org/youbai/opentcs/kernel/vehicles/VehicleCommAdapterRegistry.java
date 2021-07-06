@@ -66,7 +66,7 @@ public class VehicleCommAdapterRegistry
    * @param kernel A reference to the local kernel.
    * @param factories The comm adapter factories.
    */
-  @Inject
+
   public VehicleCommAdapterRegistry(LocalKernel kernel, Set<VehicleCommAdapterFactory> factories) {
     requireNonNull(kernel, "kernel");
 

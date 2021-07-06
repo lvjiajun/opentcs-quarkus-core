@@ -8,7 +8,7 @@
 package org.youbai.opentcs.virtualvehicle;
 
 import com.google.common.util.concurrent.Uninterruptibles;
-import com.google.inject.assistedinject.Assisted;
+
 import java.beans.PropertyChangeEvent;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -109,10 +109,10 @@ public class LoopbackCommunicationAdapter
    * @param vehicle The vehicle this adapter is associated with.
    * @param kernelExecutor The kernel's executor.
    */
-  @Inject
+
   public LoopbackCommunicationAdapter(LoopbackAdapterComponentsFactory componentsFactory,
                                       VirtualVehicleConfiguration configuration,
-                                      @Assisted Vehicle vehicle,
+                                      Vehicle vehicle,
                                       @KernelExecutor ExecutorService kernelExecutor) {
     super(new LoopbackVehicleModel(vehicle),
           configuration.commandQueueCapacity(),

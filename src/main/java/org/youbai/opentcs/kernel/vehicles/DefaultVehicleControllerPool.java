@@ -56,7 +56,7 @@ public final class DefaultVehicleControllerPool
    * @param vehicleService The vehicle service.
    * @param vehicleManagerFactory A factory for vehicle managers.
    */
-  @Inject
+
   public DefaultVehicleControllerPool(InternalVehicleService vehicleService,
                                       VehicleControllerFactory vehicleManagerFactory) {
     this.vehicleService = requireNonNull(vehicleService, "vehicleService");

@@ -7,7 +7,7 @@
  */
 package org.youbai.opentcs.kernel.peripherals;
 
-import com.google.inject.assistedinject.Assisted;
+
 import java.util.Objects;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
@@ -60,9 +60,9 @@ public class DefaultPeripheralController
    */
   private boolean initialized;
 
-  @Inject
-  public DefaultPeripheralController(@Assisted @Nonnull TCSResourceReference<Location> location,
-                                     @Assisted @Nonnull PeripheralCommAdapter commAdapter,
+
+  public DefaultPeripheralController(@Nonnull TCSResourceReference<Location> location,
+                                     @Nonnull PeripheralCommAdapter commAdapter,
                                      @Nonnull InternalPeripheralService peripheralService,
                                      @Nonnull @ApplicationEventBus EventBus eventBus) {
     this.location = requireNonNull(location, "location");

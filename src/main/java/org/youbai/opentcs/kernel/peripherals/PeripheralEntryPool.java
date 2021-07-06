@@ -51,7 +51,7 @@ public class PeripheralEntryPool
    *
    * @param objectService The object service.
    */
-  @Inject
+
   public PeripheralEntryPool(@Nonnull TCSObjectService objectService) {
     this.objectService = requireNonNull(objectService, "objectService");
   }

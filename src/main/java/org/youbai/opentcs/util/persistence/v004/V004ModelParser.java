@@ -8,7 +8,6 @@
 package org.youbai.opentcs.util.persistence.v004;
 
 import java.awt.Color;
-import org.opentcs.util.persistence.v003.*;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;

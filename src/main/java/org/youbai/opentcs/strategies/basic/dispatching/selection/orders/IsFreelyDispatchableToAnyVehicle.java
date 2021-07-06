@@ -45,7 +45,7 @@ public class IsFreelyDispatchableToAnyVehicle
    * @param objectService The order service.
    * @param orderReservationPool Stores reservations of orders for vehicles.
    */
-  @Inject
+
   public IsFreelyDispatchableToAnyVehicle(TCSObjectService objectService,
                                           OrderReservationPool orderReservationPool) {
     this.objectService = requireNonNull(objectService, "objectService");

@@ -65,7 +65,7 @@ public class RerouteUtil {
    * @param transportOrderService The object service.
    * @param configuration The configuration.
    */
-  @Inject
+
   public RerouteUtil(Router router,
                      VehicleControllerPool vehicleControllerPool,
                      InternalTransportOrderService transportOrderService,

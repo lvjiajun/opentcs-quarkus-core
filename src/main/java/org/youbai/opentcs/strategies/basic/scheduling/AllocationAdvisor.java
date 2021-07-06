@@ -43,7 +43,7 @@ public class AllocationAdvisor
    *
    * @param modules The submodules.
    */
-  @Inject
+
   public AllocationAdvisor(Set<Scheduler.Module> modules) {
     this.modules = requireNonNull(modules, "modules");
   }

@@ -64,7 +64,7 @@ public class StandardRouterService
    * @param model The model to be used.
    * @param configuration The kernel application's configuration.
    */
-  @Inject
+
   public StandardRouterService(@GlobalSyncObject Object globalSyncObject,
                                LocalKernel kernel,
                                Router router,

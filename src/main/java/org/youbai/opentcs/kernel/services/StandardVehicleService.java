@@ -92,7 +92,7 @@ public class StandardVehicleService
    * @param commAdapterRegistry The registry for all communication adapters.
    * @param model The model to be used.
    */
-  @Inject
+
   public StandardVehicleService(TCSObjectService objectService,
                                 @GlobalSyncObject Object globalSyncObject,
                                 TCSObjectPool globalObjectPool,

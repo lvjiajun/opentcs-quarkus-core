@@ -63,7 +63,7 @@ public class StandardPeripheralService
    * @param peripheralEntryPool The pool of peripheral entries.
    * @param model The model to be used.
    */
-  @Inject
+
   public StandardPeripheralService(TCSObjectService objectService,
                                    @GlobalSyncObject Object globalSyncObject,
                                    PeripheralAttachmentManager attachmentManager,

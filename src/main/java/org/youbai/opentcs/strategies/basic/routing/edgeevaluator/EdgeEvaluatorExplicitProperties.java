@@ -41,7 +41,7 @@ public class EdgeEvaluatorExplicitProperties
    */
   private final ExplicitPropertiesConfiguration configuration;
 
-  @Inject
+
   public EdgeEvaluatorExplicitProperties(ExplicitPropertiesConfiguration configuration) {
     this.configuration = requireNonNull(configuration, "configuration");
   }

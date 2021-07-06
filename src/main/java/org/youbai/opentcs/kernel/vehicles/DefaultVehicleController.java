@@ -7,7 +7,7 @@
  */
 package org.youbai.opentcs.kernel.vehicles;
 
-import com.google.inject.assistedinject.Assisted;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -164,9 +164,9 @@ public class DefaultVehicleController
    * @param eventBus The event bus this instance should register with and send events to.
    * @param componentsFactory A factory for various components related to a vehicle controller.
    */
-  @Inject
-  public DefaultVehicleController(@Assisted @Nonnull Vehicle vehicle,
-                                  @Assisted @Nonnull VehicleCommAdapter adapter,
+
+  public DefaultVehicleController(@Nonnull Vehicle vehicle,
+                                  @Nonnull VehicleCommAdapter adapter,
                                   @Nonnull InternalVehicleService vehicleService,
                                   @Nonnull NotificationService notificationService,
                                   @Nonnull DispatcherService dispatcherService,

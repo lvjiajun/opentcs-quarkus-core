@@ -81,7 +81,7 @@ public class DefaultPeripheralJobDispatcher
    * @param periodicDispatchTaskProvider A task to periodically trigger the job dispatcher.
    * @param configuration The peripheral job dispatcher's configuration.
    */
-  @Inject
+
   public DefaultPeripheralJobDispatcher(
       InternalPeripheralService peripheralService,
       InternalPeripheralJobService peripheralJobService,

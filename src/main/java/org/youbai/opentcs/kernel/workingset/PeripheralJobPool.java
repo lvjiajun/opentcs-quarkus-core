@@ -57,7 +57,7 @@ public class PeripheralJobPool {
    * @param objectPool The object pool serving as the container for this peripheral job pool's data.
    * @param orderNameProvider Provides names for peripheral jobs.
    */
-  @Inject
+
   public PeripheralJobPool(TCSObjectPool objectPool,
                            ObjectNameProvider orderNameProvider) {
     this.objectPool = requireNonNull(objectPool, "objectPool");

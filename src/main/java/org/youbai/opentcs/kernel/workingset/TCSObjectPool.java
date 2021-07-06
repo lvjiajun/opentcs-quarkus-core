@@ -63,7 +63,7 @@ public class TCSObjectPool {
    *
    * @param eventHandler The event handler to publish events to.
    */
-  @Inject
+
   public TCSObjectPool(@ApplicationEventBus EventHandler eventHandler) {
     this.eventHandler = requireNonNull(eventHandler, "eventHandler");
   }

@@ -53,7 +53,7 @@ public class PrioritizedParkingPositionSupplier
    * @param router A router for computing travel costs to parking positions.
    * @param priorityFunction A function computing the priority of a parking position.
    */
-  @Inject
+
   public PrioritizedParkingPositionSupplier(InternalPlantModelService plantModelService,
                                             Router router,
                                             ParkingPositionToPriorityFunction priorityFunction) {

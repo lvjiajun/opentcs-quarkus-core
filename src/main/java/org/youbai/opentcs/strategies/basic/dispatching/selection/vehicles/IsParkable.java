@@ -36,7 +36,7 @@ public class IsParkable
    *
    * @param objectService The object service.
    */
-  @Inject
+
   public IsParkable(TCSObjectService objectService) {
     this.objectService = requireNonNull(objectService, "objectService");
   }

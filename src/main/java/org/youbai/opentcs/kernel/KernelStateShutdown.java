@@ -33,7 +33,7 @@ final class KernelStateShutdown
    * @param objectPool The object pool to be used.
    * @param modelPersister The model persister to be used.
    */
-  @Inject
+
   public KernelStateShutdown(@GlobalSyncObject Object globalSyncObject,
                              TCSObjectPool objectPool,
                              Model model,

@@ -85,7 +85,7 @@ public class StandardPlantModelService
    * @param eventHandler Where this instance sends events to.
    * @param notificationService The notification service.
    */
-  @Inject
+
   public StandardPlantModelService(LocalKernel kernel,
                                    TCSObjectService objectService,
                                    @GlobalSyncObject Object globalSyncObject,

@@ -8,7 +8,7 @@
 package org.youbai.opentcs.kernel;
 
 import com.google.common.util.concurrent.Uninterruptibles;
-import com.google.inject.Provider;
+
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
@@ -18,6 +18,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
+import javax.inject.Provider;
 
 import org.youbai.opentcs.access.KernelStateTransitionEvent;
 import org.youbai.opentcs.access.LocalKernel;
@@ -97,7 +98,7 @@ final class StandardKernel
    * @param kernelExecutor An executor for this kernel's tasks.
    * @param stateProviders The state map to be used.
    */
-  @Inject
+
   StandardKernel(@ApplicationEventBus EventBus eventBus,
                  @KernelExecutor ScheduledExecutorService kernelExecutor,
                  Map<State, Provider<KernelState>> stateProviders,

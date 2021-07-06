@@ -50,7 +50,7 @@ public class VehicleEntryPool
    *
    * @param objectService The object service.
    */
-  @Inject
+
   public VehicleEntryPool(@Nonnull TCSObjectService objectService) {
     this.objectService = requireNonNull(objectService, "objectService");
   }

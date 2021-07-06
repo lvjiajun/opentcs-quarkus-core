@@ -70,7 +70,7 @@ public class RechargeIdleVehiclesPhase
    */
   private boolean initialized;
 
-  @Inject
+
   public RechargeIdleVehiclesPhase(
       InternalTransportOrderService orderService,
       RechargePositionSupplier rechargePosSupplier,

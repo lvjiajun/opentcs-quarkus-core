@@ -48,7 +48,7 @@ public class AssignSequenceSuccessorsPhase
    */
   private boolean initialized;
 
-  @Inject
+
   public AssignSequenceSuccessorsPhase(
       TCSObjectService objectService,
       Router router,

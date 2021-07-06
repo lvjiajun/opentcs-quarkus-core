@@ -45,7 +45,7 @@ public class StandardPeripheralDispatcherService
    * @param globalObjectPool The object pool to be used.
    * @param dispatcher The peripheral job dispatcher.
    */
-  @Inject
+
   public StandardPeripheralDispatcherService(@GlobalSyncObject Object globalSyncObject,
                                              TCSObjectPool globalObjectPool,
                                              PeripheralJobDispatcher dispatcher) {

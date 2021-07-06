@@ -37,7 +37,7 @@ public class LoopbackPeripheralCommAdapterPanelFactory
    */
   private boolean initialized;
 
-  @Inject
+
   public LoopbackPeripheralCommAdapterPanelFactory(
       LoopbackPeripheralAdapterPanelComponentsFactory panelComponentsFactory) {
     this.panelComponentsFactory = requireNonNull(panelComponentsFactory, "panelComponentsFactory");

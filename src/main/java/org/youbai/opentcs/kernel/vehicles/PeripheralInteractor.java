@@ -7,7 +7,7 @@
  */
 package org.youbai.opentcs.kernel.vehicles;
 
-import com.google.inject.assistedinject.Assisted;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -88,8 +88,8 @@ public class PeripheralInteractor
    * @param peripheralDispatcherService The peripheral dispatcher service to use.
    * @param eventSource The event source to register with.
    */
-  @Inject
-  public PeripheralInteractor(@Assisted @Nonnull TCSObjectReference<Vehicle> vehicleRef,
+
+  public PeripheralInteractor(@Nonnull TCSObjectReference<Vehicle> vehicleRef,
                               @Nonnull PeripheralJobService peripheralJobService,
                               @Nonnull PeripheralDispatcherService peripheralDispatcherService,
                               @Nonnull @ApplicationEventBus EventSource eventSource) {

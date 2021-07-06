@@ -71,7 +71,7 @@ public class DefaultPortalManager
    * @param eventHandler The handler to send events to.
    * @param connectionBookmarks The connection bookmarks to use.
    */
-  @Inject
+
   public DefaultPortalManager(KernelServicePortal servicePortal,
                               @ApplicationEventBus EventHandler eventHandler,
                               List<ConnectionParamSet> connectionBookmarks) {

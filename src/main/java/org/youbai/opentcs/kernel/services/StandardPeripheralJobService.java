@@ -46,7 +46,7 @@ public class StandardPeripheralJobService
    * @param globalSyncObject The kernel threads' global synchronization object.
    * @param jobPool The peripheral job pool to be used.
    */
-  @Inject
+
   public StandardPeripheralJobService(TCSObjectService objectService,
                                       @GlobalSyncObject Object globalSyncObject,
                                       PeripheralJobPool jobPool) {

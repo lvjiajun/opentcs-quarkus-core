@@ -90,7 +90,7 @@ public class DefaultDispatcher
    * @param eventSource Where this instance registers for application events.
    * @param kernelExecutor Executes dispatching tasks.
    */
-  @Inject
+
   public DefaultDispatcher(OrderReservationPool orderReservationPool,
                            TransportOrderUtil transportOrderUtil,
                            InternalTransportOrderService transportOrderService,

@@ -43,7 +43,7 @@ public class DefaultParkingPositionSupplier
    * @param plantModelService The plant model service.
    * @param router A router for computing travel costs to parking positions.
    */
-  @Inject
+
   public DefaultParkingPositionSupplier(InternalPlantModelService plantModelService,
                                         Router router) {
     super(plantModelService, router);

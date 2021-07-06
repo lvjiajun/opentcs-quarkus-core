@@ -31,7 +31,7 @@ public class LoopbackPeripheralCommAdapterFactory
    */
   private boolean initialized;
 
-  @Inject
+
   public LoopbackPeripheralCommAdapterFactory(
       LoopbackPeripheralAdapterComponentsFactory componentsFactory) {
     this.componentsFactory = requireNonNull(componentsFactory, "componentsFactory");

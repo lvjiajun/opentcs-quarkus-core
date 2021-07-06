@@ -43,7 +43,7 @@ public class EdgeEvaluatorComposite
    * @param configuration The configuration to use.
    * @param availableEvaluators The configured evaluators to use.
    */
-  @Inject
+
   public EdgeEvaluatorComposite(ShortestPathConfiguration configuration,
                                 Map<String, EdgeEvaluator> availableEvaluators) {
     if (availableEvaluators.isEmpty()) {

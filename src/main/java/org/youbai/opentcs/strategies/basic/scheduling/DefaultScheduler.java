@@ -90,7 +90,7 @@ public class DefaultScheduler
    * @param kernelExecutor Executes scheduling tasks.
    * @param globalSyncObject The kernel threads' global synchronization object.
    */
-  @Inject
+
   public DefaultScheduler(InternalPlantModelService plantModelService,
                           AllocationAdvisor allocationAdvisor,
                           ReservationPool reservationPool,

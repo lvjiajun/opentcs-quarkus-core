@@ -52,7 +52,7 @@ public class AssignReservedPeripheralsPhase
    */
   private boolean initialized;
 
-  @Inject
+
   public AssignReservedPeripheralsPhase(TCSObjectService objectService,
                                         PeripheralControllerPool peripheralControllerPool,
                                         PeripheralJobUtil peripheralJobUtil) {

@@ -7,7 +7,7 @@
  */
 package org.youbai.opentcs.commadapter.peripheral.loopback;
 
-import com.google.inject.assistedinject.Assisted;
+
 import java.awt.event.ItemEvent;
 import java.util.Arrays;
 import static java.util.Objects.requireNonNull;
@@ -53,8 +53,8 @@ public class LoopbackPeripheralCommAdapterPanel
    */
   private LoopbackPeripheralProcessModel processModel;
 
-  @Inject
-  public LoopbackPeripheralCommAdapterPanel(@Assisted LoopbackPeripheralProcessModel processModel,
+
+  public LoopbackPeripheralCommAdapterPanel(LoopbackPeripheralProcessModel processModel,
                                             KernelServicePortal servicePortal,
                                             @ServiceCallWrapper CallWrapper callWrapper) {
     this.processModel = requireNonNull(processModel, "processModel");

@@ -48,7 +48,7 @@ public class DefaultModelGraphMapper
    * @param edgeEvaluator Computes the weight of single edges in the graph.
    * @param configuration The configuration.
    */
-  @Inject
+
   public DefaultModelGraphMapper(@Nonnull EdgeEvaluatorComposite edgeEvaluator,
                                  @Nonnull ShortestPathConfiguration configuration) {
     this.edgeEvaluator = requireNonNull(edgeEvaluator, "edgeEvaluator");

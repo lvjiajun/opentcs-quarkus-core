@@ -7,7 +7,7 @@
  */
 package org.youbai.opentcs.virtualvehicle;
 
-import com.google.inject.assistedinject.Assisted;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -92,9 +92,9 @@ public class LoopbackCommAdapterPanel
    * @param vehicleService The vehicle service.
    * @param callWrapper The call wrapper to use for service calls.
    */
-  @Inject
-  public LoopbackCommAdapterPanel(@Assisted LoopbackVehicleModelTO processModel,
-                                  @Assisted VehicleService vehicleService,
+
+  public LoopbackCommAdapterPanel(LoopbackVehicleModelTO processModel,
+                                  VehicleService vehicleService,
                                   @ServiceCallWrapper CallWrapper callWrapper) {
 
     this.processModel = requireNonNull(processModel, "processModel");

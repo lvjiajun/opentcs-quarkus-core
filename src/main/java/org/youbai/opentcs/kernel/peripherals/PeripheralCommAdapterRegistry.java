@@ -52,7 +52,7 @@ public class PeripheralCommAdapterRegistry
    *
    * @param factories The peripheral comm adapter factories.
    */
-  @Inject
+
   public PeripheralCommAdapterRegistry(Set<PeripheralCommAdapterFactory> factories) {
     requireNonNull(factories, "factories");
     for (PeripheralCommAdapterFactory factory : factories) {

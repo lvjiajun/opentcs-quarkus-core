@@ -39,7 +39,7 @@ public class StandardNotificationService
    * @param globalSyncObject The kernel threads' global synchronization object.
    * @param notificationBuffer The notification buffer to be used.
    */
-  @Inject
+
   public StandardNotificationService(@GlobalSyncObject Object globalSyncObject,
                                      NotificationBuffer notificationBuffer) {
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");

@@ -57,7 +57,7 @@ public class StatisticsCollector
    * @param eventSource Where this instance registers for application events.
    * @param homeDir The kernel's home directory.
    */
-  @Inject
+
   public StatisticsCollector(@ApplicationEventBus EventSource eventSource,
                              @ApplicationHome File homeDir) {
     this.eventSource = requireNonNull(eventSource, "eventSource");

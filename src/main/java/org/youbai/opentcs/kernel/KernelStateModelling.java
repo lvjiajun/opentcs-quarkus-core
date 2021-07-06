@@ -48,7 +48,7 @@ class KernelStateModelling
    * @param modelPersister The model persister to be used.
    * @param configuration This class's configuration.
    */
-  @Inject
+
   KernelStateModelling(@GlobalSyncObject Object globalSyncObject,
                        TCSObjectPool objectPool,
                        Model model,

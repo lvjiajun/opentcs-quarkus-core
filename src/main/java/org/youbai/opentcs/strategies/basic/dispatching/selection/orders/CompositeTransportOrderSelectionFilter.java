@@ -28,7 +28,7 @@ public class CompositeTransportOrderSelectionFilter
    */
   private final Set<TransportOrderSelectionFilter> filters;
   
-  @Inject
+
   public CompositeTransportOrderSelectionFilter(Set<TransportOrderSelectionFilter> filters) {
     this.filters = requireNonNull(filters, "filters");
   }

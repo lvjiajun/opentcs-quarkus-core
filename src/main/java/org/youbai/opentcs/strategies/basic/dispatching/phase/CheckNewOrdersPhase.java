@@ -43,7 +43,7 @@ public class CheckNewOrdersPhase
    */
   private boolean initialized;
 
-  @Inject
+
   public CheckNewOrdersPhase(TCSObjectService objectService,
                              Router router,
                              TransportOrderUtil transportOrderUtil,

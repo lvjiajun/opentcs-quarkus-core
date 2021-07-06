@@ -37,7 +37,7 @@ public class ReservationPool {
   /**
    * Creates a new instance.
    */
-  @Inject
+
   public ReservationPool() {
   }
 

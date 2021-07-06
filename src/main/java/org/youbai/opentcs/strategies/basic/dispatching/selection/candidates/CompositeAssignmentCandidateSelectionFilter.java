@@ -28,7 +28,7 @@ public class CompositeAssignmentCandidateSelectionFilter
    */
   private final Set<AssignmentCandidateSelectionFilter> filters;
 
-  @Inject
+
   public CompositeAssignmentCandidateSelectionFilter(
       Set<AssignmentCandidateSelectionFilter> filters) {
     this.filters = requireNonNull(filters, "filters");

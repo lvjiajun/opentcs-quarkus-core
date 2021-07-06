@@ -30,7 +30,7 @@ public class DijkstraPointRouterFactory
    * @param objectService The object service providing model data.
    * @param mapper Maps the plant model to a graph.
    */
-  @Inject
+
   public DijkstraPointRouterFactory(@Nonnull TCSObjectService objectService,
                                     @Nonnull ModelGraphMapper mapper) {
     super(objectService, mapper);

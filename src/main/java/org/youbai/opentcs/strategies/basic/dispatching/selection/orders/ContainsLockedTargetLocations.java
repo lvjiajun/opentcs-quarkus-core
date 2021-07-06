@@ -32,7 +32,7 @@ public class ContainsLockedTargetLocations
    */
   private final TCSObjectService objectService;
 
-  @Inject
+
   public ContainsLockedTargetLocations(TCSObjectService objectService) {
     this.objectService = requireNonNull(objectService, "objectService");
   }

@@ -93,7 +93,7 @@ public class Model {
    * @param globalPool The object pool serving as the container for this model's
    * data.
    */
-  @Inject
+
   public Model(TCSObjectPool globalPool) {
     this.objectPool = Objects.requireNonNull(globalPool);
   }

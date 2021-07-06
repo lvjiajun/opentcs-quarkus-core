@@ -7,15 +7,15 @@
  */
 package org.youbai.opentcs.strategies.basic.routing;
 
+import io.smallrye.config.ConfigMapping;
 import org.youbai.opentcs.configuration.ConfigurationEntry;
-import org.youbai.opentcs.configuration.ConfigurationPrefix;
 
 /**
  * Provides methods to configure the {@link DefaultRouter}.
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ConfigurationPrefix(DefaultRouterConfiguration.PREFIX)
+@ConfigMapping(prefix =DefaultRouterConfiguration.PREFIX)
 public interface DefaultRouterConfiguration {
 
   /**

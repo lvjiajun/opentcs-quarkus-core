@@ -38,7 +38,7 @@ public class FullDispatchTask
    */
   private boolean initialized;
 
-  @Inject
+
   public FullDispatchTask(AssignReservedPeripheralsPhase assignReservedPeripheralsPhase,
                           ReleasePeripheralsPhase releasePeripheralsPhase,
                           AssignFreePeripheralsPhase assignFreePeripheralsPhase) {

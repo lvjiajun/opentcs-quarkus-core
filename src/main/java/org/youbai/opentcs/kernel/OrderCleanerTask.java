@@ -63,7 +63,7 @@ class OrderCleanerTask
    * @param kernel The kernel.
    * @param configuration This class's configuration.
    */
-  @Inject
+
   public OrderCleanerTask(@GlobalSyncObject Object globalSyncObject,
                           TransportOrderPool orderPool,
                           Set<TransportOrderCleanupApproval> orderCleanupApprovals,

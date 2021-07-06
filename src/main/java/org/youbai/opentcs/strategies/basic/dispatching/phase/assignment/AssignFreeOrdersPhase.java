@@ -111,7 +111,7 @@ public class AssignFreeOrdersPhase
    */
   private boolean initialized;
 
-  @Inject
+
   public AssignFreeOrdersPhase(
       TCSObjectService objectService,
       Router router,

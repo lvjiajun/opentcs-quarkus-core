@@ -32,7 +32,7 @@ public class CompositeVehicleCandidateComparator
    */
   private final Comparator<AssignmentCandidate> compositeComparator;
 
-  @Inject
+
   public CompositeVehicleCandidateComparator(
       DefaultDispatcherConfiguration configuration,
       Map<String, Comparator<AssignmentCandidate>> availableComparators) {

@@ -38,7 +38,7 @@ public class ParkIdleVehiclesPhase
    */
   private final CompositeParkVehicleSelectionFilter vehicleSelectionFilter;
 
-  @Inject
+
   public ParkIdleVehiclesPhase(
       InternalTransportOrderService orderService,
       ParkingPositionSupplier parkingPosSupplier,

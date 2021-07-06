@@ -65,7 +65,6 @@ public class SameDirectionBlockModule
    */
   private boolean initialized;
 
-  @Inject
   public SameDirectionBlockModule(@Nonnull ReservationPool reservationPool,
                                   @Nonnull InternalPlantModelService plantModelService,
                                   @GlobalSyncObject Object globalSyncObject) {

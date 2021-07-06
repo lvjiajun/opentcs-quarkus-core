@@ -22,7 +22,7 @@ import javax.inject.Inject;
 public class NullSocketFactoryProvider
     implements SocketFactoryProvider {
 
-  @Inject
+
   public NullSocketFactoryProvider() {
   }
 

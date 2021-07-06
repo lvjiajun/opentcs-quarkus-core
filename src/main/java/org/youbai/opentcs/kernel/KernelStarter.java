@@ -50,7 +50,7 @@ public class KernelStarter {
    * @param plantModelService The plant model service.
    * @param extensions The kernel extensions to be registered.
    */
-  @Inject
+
   protected KernelStarter(LocalKernel kernel,
                           InternalPlantModelService plantModelService,
                           @ActiveInAllModes Set<KernelExtension> extensions) {

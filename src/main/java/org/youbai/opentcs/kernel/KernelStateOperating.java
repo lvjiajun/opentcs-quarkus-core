@@ -126,7 +126,7 @@ class KernelStateOperating
    * @param configuration This class's configuration.
    * @param recoveryEvaluator The recovery evaluator to be used.
    */
-  @Inject
+
   KernelStateOperating(@GlobalSyncObject Object globalSyncObject,
                        TCSObjectPool objectPool,
                        Model model,

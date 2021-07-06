@@ -77,7 +77,7 @@ public class TransportOrderUtil
    */
   private boolean initialized;
 
-  @Inject
+
   public TransportOrderUtil(@Nonnull InternalTransportOrderService transportOrderService,
                             @Nonnull InternalVehicleService vehicleService,
                             @Nonnull DefaultDispatcherConfiguration configuration,
