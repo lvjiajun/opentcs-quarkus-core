@@ -65,7 +65,7 @@ public class StandardRouterService
    * @param configuration The kernel application's configuration.
    */
 
-  public StandardRouterService(@GlobalSyncObject Object globalSyncObject,
+  public StandardRouterService(Object globalSyncObject,
                                LocalKernel kernel,
                                Router router,
                                Dispatcher dispatcher,

@@ -95,7 +95,7 @@ public class DefaultScheduler
                           AllocationAdvisor allocationAdvisor,
                           ReservationPool reservationPool,
                           @KernelExecutor ScheduledExecutorService kernelExecutor,
-                          @GlobalSyncObject Object globalSyncObject) {
+                          Object globalSyncObject) {
     this.plantModelService = requireNonNull(plantModelService, "plantModelService");
     this.allocationAdvisor = requireNonNull(allocationAdvisor, "allocationAdvisor");
     this.reservationPool = requireNonNull(reservationPool, "reservationPool");

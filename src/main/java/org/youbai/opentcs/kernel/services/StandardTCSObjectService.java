@@ -14,12 +14,15 @@ import java.util.function.Predicate;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
-import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
 import org.youbai.opentcs.data.ObjectHistory;
 import org.youbai.opentcs.data.ObjectUnknownException;
 import org.youbai.opentcs.data.TCSObject;
 import org.youbai.opentcs.data.TCSObjectReference;
+import org.youbai.opentcs.kernel.GlobalSyncObject;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
 
 /**
@@ -27,6 +30,9 @@ import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+
+@Singleton
+@StandardTCSObjectAnnotations
 public class StandardTCSObjectService
     implements TCSObjectService {
 
@@ -45,8 +51,8 @@ public class StandardTCSObjectService
    * @param globalSyncObject The kernel threads' global synchronization object.
    * @param globalObjectPool The object pool to be used.
    */
-
-  public StandardTCSObjectService(@GlobalSyncObject Object globalSyncObject,
+  @Inject
+  public StandardTCSObjectService(GlobalSyncObject globalSyncObject,
                                   TCSObjectPool globalObjectPool) {
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");
     this.globalObjectPool = requireNonNull(globalObjectPool, "globalObjectPool");

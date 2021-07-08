@@ -7,16 +7,18 @@
  */
 package org.youbai.opentcs.strategies.basic.routing.jgrapht;
 
+import io.quarkus.arc.config.ConfigProperties;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+
 import java.util.List;
-import org.youbai.opentcs.configuration.ConfigurationEntry;
-import org.youbai.opentcs.configuration.ConfigurationPrefix;
+
 
 /**
  * Provides methods to configure the shortest path algorithm.
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@ConfigurationPrefix(ShortestPathConfiguration.PREFIX)
+@ConfigProperties(prefix =ShortestPathConfiguration.PREFIX)
 public interface ShortestPathConfiguration {
 
   /**
@@ -24,25 +26,10 @@ public interface ShortestPathConfiguration {
    */
   String PREFIX = "defaultrouter.shortestpath";
 
-  @ConfigurationEntry(
-      type = "String",
-      description = {
-        "The routing algorithm to be used. Valid values:",
-        "'DIJKSTRA': Routes are computed using Dijkstra's algorithm.",
-        "'BELLMAN_FORD': Routes are computed using the Bellman-Ford algorithm.",
-        "'FLOYD_WARSHALL': Routes are computed using the Floyd-Warshall algorithm."})
+  @ConfigProperty(name = "algorithm")
   Algorithm algorithm();
 
-  @ConfigurationEntry(
-      type = "Comma-separated list of strings",
-      description = {
-        "The types of route evaluators/cost factors to be used.",
-        "Results of multiple evaluators are added up. Valid values:",
-        "'DISTANCE': A route's cost is the sum of the lengths of its paths.",
-        "'TRAVELTIME': A route's cost is the vehicle's expected driving time to the destination.",
-        "'EXPLICIT_PROPERTIES': A route's cost is the sum of the explicitly given costs extracted "
-        + "from path properties."
-      })
+  @ConfigProperty(name = "edgeEvaluators")
   List<String> edgeEvaluators();
 
   enum Algorithm {

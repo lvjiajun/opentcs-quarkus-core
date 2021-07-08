@@ -58,7 +58,7 @@ public class SingleVehicleBlockModule
 
   public SingleVehicleBlockModule(@Nonnull ReservationPool reservationPool,
                                   @Nonnull InternalPlantModelService plantModelService,
-                                  @Nonnull @GlobalSyncObject Object globalSyncObject) {
+                                  @Nonnull Object globalSyncObject) {
     this.reservationPool = requireNonNull(reservationPool, "reservationPool");
     this.plantModelService = requireNonNull(plantModelService, "plantModelService");
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");

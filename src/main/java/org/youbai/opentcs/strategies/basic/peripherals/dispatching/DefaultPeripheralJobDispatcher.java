@@ -12,7 +12,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-import javax.inject.Inject;
 import javax.inject.Provider;
 import org.youbai.opentcs.components.kernel.PeripheralJobDispatcher;
 import org.youbai.opentcs.components.kernel.services.InternalPeripheralJobService;
@@ -30,6 +29,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+
 public class DefaultPeripheralJobDispatcher
     implements PeripheralJobDispatcher,
         PeripheralJobCallback {

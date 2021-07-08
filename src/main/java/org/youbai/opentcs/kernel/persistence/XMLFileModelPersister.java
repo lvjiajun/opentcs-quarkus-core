@@ -17,9 +17,13 @@ import static java.util.Objects.requireNonNull;
 import java.util.Optional;
 import static java.util.Optional.ofNullable;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.access.to.model.PlantModelCreationTO;
-import org.youbai.opentcs.customizations.ApplicationHome;
+
 import static org.youbai.opentcs.util.Assertions.checkState;
+
+import org.youbai.opentcs.kernel.annotations.XMLFileModelAnnotations;
 import org.youbai.opentcs.util.FileSystems;
 import org.youbai.opentcs.util.persistence.ModelParser;
 import org.slf4j.Logger;
@@ -32,6 +36,8 @@ import org.slf4j.LoggerFactory;
  * @author Stefan Walter (Fraunhofer IML)
  * @author Tobias Marquardt (Fraunhofer IML)
  */
+@Singleton
+@XMLFileModelAnnotations
 public class XMLFileModelPersister
     implements ModelPersister {
 
@@ -62,8 +68,8 @@ public class XMLFileModelPersister
    * @param directory The application's home directory.
    * @param modelParser Reads and writes into the xml file.
    */
-
-  public XMLFileModelPersister(@ApplicationHome File directory,
+  @Inject
+  public XMLFileModelPersister(File directory,
                                ModelParser modelParser) {
     this.modelParser = requireNonNull(modelParser, "modelParser");
     this.dataDirectory = new File(requireNonNull(directory, "directory"), "data");

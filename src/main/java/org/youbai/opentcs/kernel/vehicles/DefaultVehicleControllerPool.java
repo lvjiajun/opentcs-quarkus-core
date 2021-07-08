@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.services.InternalVehicleService;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapter;
@@ -25,6 +27,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
 public final class DefaultVehicleControllerPool
     implements LocalVehicleControllerPool {
 

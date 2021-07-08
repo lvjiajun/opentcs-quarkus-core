@@ -9,10 +9,11 @@ package org.youbai.opentcs.kernel.services;
 
 import static java.util.Objects.requireNonNull;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.services.InternalPeripheralService;
 import org.youbai.opentcs.components.kernel.services.PeripheralService;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
-import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
 import org.youbai.opentcs.data.ObjectUnknownException;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Location;
@@ -23,6 +24,7 @@ import org.youbai.opentcs.drivers.peripherals.PeripheralAdapterCommand;
 import org.youbai.opentcs.drivers.peripherals.PeripheralCommAdapterDescription;
 import org.youbai.opentcs.drivers.peripherals.PeripheralProcessModel;
 import org.youbai.opentcs.drivers.peripherals.management.PeripheralAttachmentInformation;
+import org.youbai.opentcs.kernel.GlobalSyncObject;
 import org.youbai.opentcs.kernel.peripherals.PeripheralAttachmentManager;
 import org.youbai.opentcs.kernel.peripherals.PeripheralEntry;
 import org.youbai.opentcs.kernel.peripherals.PeripheralEntryPool;
@@ -33,6 +35,7 @@ import org.youbai.opentcs.kernel.workingset.Model;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+
 public class StandardPeripheralService
     extends AbstractTCSObjectService
     implements InternalPeripheralService {
@@ -65,7 +68,7 @@ public class StandardPeripheralService
    */
 
   public StandardPeripheralService(TCSObjectService objectService,
-                                   @GlobalSyncObject Object globalSyncObject,
+                                   GlobalSyncObject globalSyncObject,
                                    PeripheralAttachmentManager attachmentManager,
                                    PeripheralEntryPool peripheralEntryPool,
                                    Model model) {

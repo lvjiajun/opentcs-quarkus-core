@@ -7,8 +7,8 @@
  */
 package org.youbai.opentcs.strategies.basic.dispatching;
 
-import io.smallrye.config.ConfigMapping;
-import org.youbai.opentcs.configuration.ConfigurationEntry;
+import io.quarkus.arc.config.ConfigProperties;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-
+@ConfigProperties(prefix = DefaultDispatcherConfiguration.PREFIX)
 public interface DefaultDispatcherConfiguration {
 
   /**
@@ -25,132 +25,63 @@ public interface DefaultDispatcherConfiguration {
    */
   String PREFIX = "defaultdispatcher";
 
-  @ConfigurationEntry(
-      type = "Comma-separated list of strings",
-      description = {"Keys by which to prioritize transport orders for assignment.",
-                     "Possible values:",
-                     "BY_AGE: Sort by age, oldest first.",
-                     "BY_DEADLINE: Sort by deadline, most urgent first.",
-                     "DEADLINE_AT_RISK_FIRST: Sort orders with deadlines at risk first.",
-                     "BY_NAME: Sort by name, lexicographically."},
-      orderKey = "0_assign")
+  @ConfigProperty(name = "orderPriorities")
   List<String> orderPriorities();
 
-  @ConfigurationEntry(
-      type = "Comma-separated list of strings",
-      description = {"Keys by which to prioritize vehicles for assignment.",
-                     "Possible values:",
-                     "BY_ENERGY_LEVEL: Sort by energy level, highest first.",
-                     "IDLE_FIRST: Sort vehicles with state IDLE first.",
-                     "BY_NAME: Sort by name, lexicographically."},
-      orderKey = "0_assign")
+
+  @ConfigProperty(name = "vehiclePriorities")
   List<String> vehiclePriorities();
 
-  @ConfigurationEntry(
-      type = "Comma-separated list of strings",
-      description = {"Keys by which to prioritize vehicle candidates for assignment.",
-                     "Possible values:",
-                     "BY_ENERGY_LEVEL: Sort by energy level of the vehicle, highest first.",
-                     "IDLE_FIRST: Sort vehicles with state IDLE first.",
-                     "BY_COMPLETE_ROUTING_COSTS: Sort by complete routing costs, lowest first.",
-                     "BY_INITIAL_ROUTING_COSTS: Sort by routing costs for the first destination.",
-                     "BY_VEHICLE_NAME: Sort by vehicle name, lexicographically."},
-      orderKey = "0_assign")
+
+  @ConfigProperty(name = "vehicleCandidatePriorities")
   List<String> vehicleCandidatePriorities();
 
-  @ConfigurationEntry(
-      type = "Comma-separated list of strings",
-      description = {"Keys by which to prioritize transport order candidates for assignment.",
-                     "Possible values:",
-                     "BY_AGE: Sort by transport order age, oldest first.",
-                     "BY_DEADLINE: Sort by transport order deadline, most urgent first.",
-                     "DEADLINE_AT_RISK_FIRST: Sort orders with deadlines at risk first.",
-                     "BY_COMPLETE_ROUTING_COSTS: Sort by complete routing costs, lowest first.",
-                     "BY_INITIAL_ROUTING_COSTS: Sort by routing costs for the first destination.",
-                     "BY_ORDER_NAME: Sort by transport order name, lexicographically."},
-      orderKey = "0_assign")
+
+  @ConfigProperty(name = "orderCandidatePriorities")
   List<String> orderCandidatePriorities();
 
-  @ConfigurationEntry(
-      type = "Integer",
-      description = "The time window (in ms) before its deadline in which an order becomes urgent.",
-      orderKey = "0_assign_special_0")
+
+  @ConfigProperty(name = "deadlineAtRiskPeriod")
   long deadlineAtRiskPeriod();
 
-  @ConfigurationEntry(
-      type = "Boolean",
-      description = "Whether orders to the current position with no operation should be assigned.",
-      orderKey = "1_orders_special_0")
+
+  @ConfigProperty(name = "assignRedundantOrders")
   boolean assignRedundantOrders();
 
-  @ConfigurationEntry(
-      type = "Boolean",
-      description = "Whether unroutable incoming transport orders should be marked as UNROUTABLE.",
-      orderKey = "1_orders_special_1")
+
+  @ConfigProperty(name = "dismissUnroutableTransportOrders")
   boolean dismissUnroutableTransportOrders();
 
-  @ConfigurationEntry(
-      type = "String",
-      description = {
-        "What triggers rerouting of vehicles.",
-        "Possible values:",
-        "NONE: Rerouting is disabled.",
-        "DRIVE_ORDER_FINISHED: Vehicles get rerouted as soon as they finish a drive order.",
-        "TOPOLOGY_CHANGE: Vehicles get rerouted immediately on topology changes."
-      },
-      orderKey = "1_orders_special_2")
+
+  @ConfigProperty(name = "rerouteTrigger")
   RerouteTrigger rerouteTrigger();
 
-  @ConfigurationEntry(
-      type = "String",
-      description = {
-        "The strategy to use when rerouting of a vehicle results in no route at all.",
-        "The vehicle then continues to use the previous route in the configured way.",
-        "Possible values:",
-        "IGNORE_PATH_LOCKS: Stick to the previous route, ignoring path locks.",
-        "PAUSE_IMMEDIATELY: Do not send further orders to the vehicle; wait for another rerouting "
-        + "opportunity.",
-        "PAUSE_AT_PATH_LOCK: Send further orders to the vehicle only until it reaches a locked "
-        + "path; then wait for another rerouting opportunity."
-      },
-      orderKey = "1_orders_special_3")
+
+  @ConfigProperty(name = "reroutingImpossibleStrategy")
   ReroutingImpossibleStrategy reroutingImpossibleStrategy();
 
-  @ConfigurationEntry(
-      type = "Boolean",
-      description = "Whether to automatically create parking orders for idle vehicles.",
-      orderKey = "2_park_0")
+
+  @ConfigProperty(name = "parkIdleVehicles")
   boolean parkIdleVehicles();
 
-  @ConfigurationEntry(
-      type = "Boolean",
-      description = "Whether to consider parking position priorities when creating parking orders.",
-      orderKey = "2_park_1")
+
+  @ConfigProperty(name = "considerParkingPositionPriorities")
   boolean considerParkingPositionPriorities();
 
-  @ConfigurationEntry(
-      type = "Boolean",
-      description = "Whether to repark vehicles to parking positions with higher priorities.",
-      orderKey = "2_park_2")
+
+  @ConfigProperty(name = "reparkVehiclesToHigherPriorityPositions")
   boolean reparkVehiclesToHigherPriorityPositions();
 
-  @ConfigurationEntry(
-      type = "Boolean",
-      description = "Whether to automatically create recharge orders for idle vehicles.",
-      orderKey = "3_recharge_0")
+
+  @ConfigProperty(name = "rechargeIdleVehicles")
   boolean rechargeIdleVehicles();
 
-  @ConfigurationEntry(
-      type = "Boolean",
-      description = {"Whether vehicles must be recharged until they are fully charged.",
-                     "If false, vehicle must only be recharged until sufficiently charged."},
-      orderKey = "3_recharge_1")
+
+  @ConfigProperty(name = "keepRechargingUntilFullyCharged")
   boolean keepRechargingUntilFullyCharged();
 
-  @ConfigurationEntry(
-      type = "Integer",
-      description = "The interval between redispatching of vehicles.",
-      orderKey = "9_misc")
+
+  @ConfigProperty(name = "idleVehicleRedispatchingInterval")
   long idleVehicleRedispatchingInterval();
 
   enum RerouteTrigger {

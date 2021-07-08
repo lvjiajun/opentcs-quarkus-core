@@ -13,11 +13,14 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Singleton;
+
 /**
  * A plain implementation of {@link EventBus}.
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
 public class SimpleEventBus
     implements EventBus {
 

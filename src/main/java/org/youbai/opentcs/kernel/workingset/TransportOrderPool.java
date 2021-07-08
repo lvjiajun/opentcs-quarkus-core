@@ -17,7 +17,8 @@ import java.util.Set;
 import java.util.regex.Pattern;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.access.to.order.DestinationCreationTO;
 import org.youbai.opentcs.access.to.order.OrderSequenceCreationTO;
 import org.youbai.opentcs.access.to.order.TransportOrderCreationTO;
@@ -36,6 +37,7 @@ import static org.youbai.opentcs.util.Assertions.checkArgument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.components.kernel.ObjectNameProvider;
+import org.youbai.opentcs.kernel.annotations.PrefixedUlidObjectNameAnnotations;
 
 /**
  * A {@code TransportOrderPool} keeps all {@code TransportOrder}s for an openTCS
@@ -47,6 +49,7 @@ import org.youbai.opentcs.components.kernel.ObjectNameProvider;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
 public class TransportOrderPool {
 
   /**
@@ -70,7 +73,7 @@ public class TransportOrderPool {
    */
 
   public TransportOrderPool(TCSObjectPool objectPool,
-                            ObjectNameProvider orderNameProvider) {
+                            @PrefixedUlidObjectNameAnnotations ObjectNameProvider orderNameProvider) {
     this.objectPool = requireNonNull(objectPool, "objectPool");
     this.objectNameProvider = requireNonNull(orderNameProvider, "orderNameProvider");
   }

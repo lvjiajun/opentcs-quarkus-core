@@ -67,7 +67,7 @@ class AllocatorTask
                        @Nonnull Queue<AllocatorCommand.Allocate> deferredAllocations,
                        @Nonnull Scheduler.Module allocationAdvisor,
                        @Nonnull ScheduledExecutorService kernelExecutor,
-                       @Nonnull @GlobalSyncObject Object globalSyncObject,
+                       @Nonnull Object globalSyncObject,
                        @Nonnull AllocatorCommand command) {
     this.plantModelService = requireNonNull(plantModelService, "plantModelService");
     this.reservationPool = requireNonNull(reservationPool, "reservationPool");

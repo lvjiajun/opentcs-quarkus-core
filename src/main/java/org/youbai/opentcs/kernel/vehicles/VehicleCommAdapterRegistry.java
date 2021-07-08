@@ -16,6 +16,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.access.LocalKernel;
 import org.youbai.opentcs.components.Lifecycle;
 import org.youbai.opentcs.data.model.Vehicle;
@@ -31,6 +33,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
 public class VehicleCommAdapterRegistry
     implements Lifecycle {
 

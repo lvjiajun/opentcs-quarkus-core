@@ -64,7 +64,7 @@ class OrderCleanerTask
    * @param configuration This class's configuration.
    */
 
-  public OrderCleanerTask(@GlobalSyncObject Object globalSyncObject,
+  public OrderCleanerTask(Object globalSyncObject,
                           TransportOrderPool orderPool,
                           Set<TransportOrderCleanupApproval> orderCleanupApprovals,
                           Set<OrderSequenceCleanupApproval> sequenceCleanupApprovals,

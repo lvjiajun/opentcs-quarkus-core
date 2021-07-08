@@ -10,6 +10,8 @@ package org.youbai.opentcs.kernel.workingset;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.access.to.peripherals.PeripheralJobCreationTO;
 import org.youbai.opentcs.access.to.peripherals.PeripheralOperationCreationTO;
 import org.youbai.opentcs.components.kernel.ObjectNameProvider;
@@ -25,6 +27,7 @@ import org.youbai.opentcs.data.peripherals.PeripheralJob;
 import org.youbai.opentcs.data.peripherals.PeripheralOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.PrefixedUlidObjectNameAnnotations;
 
 /**
  * A {@code PeripheralJobPool} keeps all {@code PeripheralJobs}s for an openTCS kernel and provides
@@ -36,6 +39,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class PeripheralJobPool {
 
   /**
@@ -57,9 +61,9 @@ public class PeripheralJobPool {
    * @param objectPool The object pool serving as the container for this peripheral job pool's data.
    * @param orderNameProvider Provides names for peripheral jobs.
    */
-
+  @Inject
   public PeripheralJobPool(TCSObjectPool objectPool,
-                           ObjectNameProvider orderNameProvider) {
+                           @PrefixedUlidObjectNameAnnotations ObjectNameProvider orderNameProvider) {
     this.objectPool = requireNonNull(objectPool, "objectPool");
     this.objectNameProvider = requireNonNull(orderNameProvider, "orderNameProvider");
   }

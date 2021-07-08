@@ -7,22 +7,19 @@
  */
 package org.youbai.opentcs.kernel.extensions.statistics;
 
-import org.youbai.opentcs.configuration.ConfigurationEntry;
-import org.youbai.opentcs.configuration.ConfigurationPrefix;
+import io.quarkus.arc.config.ConfigProperties;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 /**
  * Configuration entries for the statistics collector.
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@ConfigurationPrefix(StatisticsCollectorConfiguration.PREFIX)
+@ConfigProperties(prefix = StatisticsCollectorConfiguration.PREFIX)
 public interface StatisticsCollectorConfiguration {
 
   String PREFIX = "statisticscollector";
 
-  @ConfigurationEntry(
-      type = "Boolean",
-      description = "Whether to enable the statistics collector.",
-      orderKey = "0")
+  @ConfigProperty(name = "enable")
   boolean enable();
 }

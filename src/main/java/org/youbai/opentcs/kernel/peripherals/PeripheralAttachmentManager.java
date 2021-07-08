@@ -11,6 +11,8 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.Lifecycle;
 import org.youbai.opentcs.components.kernel.services.InternalPeripheralService;
 import org.youbai.opentcs.customizations.ApplicationEventBus;
@@ -34,6 +36,7 @@ import org.slf4j.LoggerFactory;
  * @author Stefan Walter (Fraunhofer IML)
  * @author Martin Grzenia (Fraunhofer IML)
  */
+
 public class PeripheralAttachmentManager
     implements Lifecycle {
 
@@ -85,7 +88,7 @@ public class PeripheralAttachmentManager
                                      @Nonnull LocalPeripheralControllerPool controllerPool,
                                      @Nonnull PeripheralCommAdapterRegistry commAdapterRegistry,
                                      @Nonnull PeripheralEntryPool peripheralEntryPool,
-                                     @Nonnull @ApplicationEventBus EventHandler eventHandler,
+                                     @Nonnull EventHandler eventHandler,
                                      @Nonnull KernelApplicationConfiguration configuration) {
     this.peripheralService = requireNonNull(peripheralService, "peripheralService");
     this.controllerPool = requireNonNull(controllerPool, "controllerPool");

@@ -7,15 +7,16 @@
  */
 package org.youbai.opentcs.strategies.basic.routing.edgeevaluator;
 
-import org.youbai.opentcs.configuration.ConfigurationEntry;
-import org.youbai.opentcs.configuration.ConfigurationPrefix;
+
+import io.quarkus.arc.config.ConfigProperties;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 /**
  * Provides methods to configure {@link EdgeEvaluatorExplicitProperties}.
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ConfigurationPrefix(ExplicitPropertiesConfiguration.PREFIX)
+@ConfigProperties(prefix =ExplicitPropertiesConfiguration.PREFIX)
 public interface ExplicitPropertiesConfiguration {
 
   /**
@@ -23,12 +24,6 @@ public interface ExplicitPropertiesConfiguration {
    */
   String PREFIX = "defaultrouter.edgeevaluator.explicitproperties";
 
-  @ConfigurationEntry(
-      type = "String",
-      description = {
-        "The default value used as the routing cost of an edge if no property is set on the "
-        + "corresponding path.",
-        "The value should be an integer. "
-        + "If it is not, the edge is excluded from routing."})
+  @ConfigProperty(name = "defaultValue")
   String defaultValue();
 }

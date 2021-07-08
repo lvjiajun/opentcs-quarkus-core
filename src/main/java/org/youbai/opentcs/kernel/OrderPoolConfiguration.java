@@ -7,15 +7,15 @@
  */
 package org.youbai.opentcs.kernel;
 
-import org.youbai.opentcs.configuration.ConfigurationEntry;
-import org.youbai.opentcs.configuration.ConfigurationPrefix;
+import io.quarkus.arc.config.ConfigProperties;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 /**
  * Provides methods to configure the {@link OrderCleanerTask}.
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ConfigurationPrefix(OrderPoolConfiguration.PREFIX)
+@ConfigProperties(prefix = OrderPoolConfiguration.PREFIX)
 public interface OrderPoolConfiguration {
 
   /**
@@ -23,13 +23,9 @@ public interface OrderPoolConfiguration {
    */
   String PREFIX = "orderpool";
 
-  @ConfigurationEntry(
-      type = "Long",
-      description = "The interval between sweeps (in ms).")
+  @ConfigProperty(name = "sweepInterval")
   long sweepInterval();
 
-  @ConfigurationEntry(
-      type = "Integer",
-      description = "The minimum age of orders to remove in a sweep (in ms).")
+  @ConfigProperty(name = "sweepAge")
   int sweepAge();
 }

@@ -64,7 +64,7 @@ public class StandardTransportOrderService
    */
 
   public StandardTransportOrderService(TCSObjectService objectService,
-                                       @GlobalSyncObject Object globalSyncObject,
+                                       Object globalSyncObject,
                                        TCSObjectPool globalObjectPool,
                                        TransportOrderPool orderPool,
                                        Model model) {

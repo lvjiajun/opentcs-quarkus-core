@@ -7,15 +7,15 @@
  */
 package org.youbai.opentcs.kernel;
 
-import org.youbai.opentcs.configuration.ConfigurationEntry;
-import org.youbai.opentcs.configuration.ConfigurationPrefix;
+import io.quarkus.arc.config.ConfigProperties;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 /**
  * Provides methods to configure the ssl connection.
  *
  * @author Mats Wilhelm (Fraunhofer IML)
  */
-@ConfigurationPrefix(SslConfiguration.PREFIX)
+@ConfigProperties(prefix = SslConfiguration.PREFIX)
 public interface SslConfiguration {
 
   /**
@@ -23,28 +23,20 @@ public interface SslConfiguration {
    */
   String PREFIX = "ssl";
 
-  @ConfigurationEntry(
-      type = "String",
-      description = {"The file url of the keystore."},
-      orderKey = "0_connection_0")
+
+  @ConfigProperty(name = "keystoreFile")
   String keystoreFile();
 
-  @ConfigurationEntry(
-      type = "String",
-      description = {"The password for the keystore."},
-      orderKey = "0_connection_1")
+
+  @ConfigProperty(name = "keystorePassword")
   String keystorePassword();
 
-  @ConfigurationEntry(
-      type = "String",
-      description = {"The file url of the truststore."},
-      orderKey = "0_connection_2")
+
+  @ConfigProperty(name = "truststoreFile")
   String truststoreFile();
 
-  @ConfigurationEntry(
-      type = "String",
-      description = {"The password for the truststore."},
-      orderKey = "0_connection_3")
+
+  @ConfigProperty(name = "truststorePassword")
   String truststorePassword();
 
 }

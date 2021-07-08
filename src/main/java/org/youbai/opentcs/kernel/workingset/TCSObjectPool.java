@@ -7,30 +7,28 @@
  */
 package org.youbai.opentcs.kernel.workingset;
 
+import io.vertx.core.eventbus.EventBus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.data.*;
+import org.youbai.opentcs.util.UniqueStringGenerator;
+import org.youbai.opentcs.util.event.EventHandler;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.inject.Inject;
-import org.youbai.opentcs.customizations.ApplicationEventBus;
-import org.youbai.opentcs.data.ObjectExistsException;
-import org.youbai.opentcs.data.ObjectHistory;
-import org.youbai.opentcs.data.ObjectUnknownException;
-import org.youbai.opentcs.data.TCSObject;
-import org.youbai.opentcs.data.TCSObjectEvent;
-import org.youbai.opentcs.data.TCSObjectReference;
+
+import static java.util.Objects.requireNonNull;
 import static org.youbai.opentcs.util.Assertions.checkArgument;
-import org.youbai.opentcs.util.UniqueStringGenerator;
-import org.youbai.opentcs.util.event.EventHandler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * A container for <code>TCSObject</code>s belonging together.
@@ -39,6 +37,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
 public class TCSObjectPool {
 
   /**
@@ -53,19 +52,23 @@ public class TCSObjectPool {
    * The generator providing unique names for objects in this pool.
    */
   private final UniqueStringGenerator<?> objectNameGenerator = new UniqueStringGenerator<>();
-  /**
-   * A handler we should emit object events to.
-   */
+
+
   private final EventHandler eventHandler;
+
+  private final EventBus eventBus;
 
   /**
    * Creates a new instance that uses the given event handler.
    *
-   * @param eventHandler The event handler to publish events to.
+   * @param eventHandler
+   * @param eventBus
    */
+  @Inject
+  public TCSObjectPool(EventHandler eventHandler, EventBus eventBus) {
 
-  public TCSObjectPool(@ApplicationEventBus EventHandler eventHandler) {
-    this.eventHandler = requireNonNull(eventHandler, "eventHandler");
+    this.eventHandler = eventHandler;
+    this.eventBus = eventBus;
   }
 
   /**
@@ -482,6 +485,7 @@ public class TCSObjectPool {
   public void emitObjectEvent(TCSObject<?> currentObjectState,
                               TCSObject<?> previousObjectState,
                               TCSObjectEvent.Type evtType) {
+
     eventHandler.onEvent(new TCSObjectEvent(currentObjectState, previousObjectState, evtType));
   }
 }

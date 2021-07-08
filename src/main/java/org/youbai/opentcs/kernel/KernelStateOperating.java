@@ -127,7 +127,7 @@ class KernelStateOperating
    * @param recoveryEvaluator The recovery evaluator to be used.
    */
 
-  KernelStateOperating(@GlobalSyncObject Object globalSyncObject,
+  KernelStateOperating(Object globalSyncObject,
                        TCSObjectPool objectPool,
                        Model model,
                        TransportOrderPool orderPool,

@@ -39,6 +39,7 @@ public class LoggingScheduledThreadPoolExecutor
    * @throws NullPointerException If {@code threadFactory} is null
    */
   public LoggingScheduledThreadPoolExecutor(int corePoolSize, ThreadFactory threadFactory) {
+
     super(corePoolSize, threadFactory);
   }
 

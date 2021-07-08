@@ -20,14 +20,14 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
+
 import org.youbai.opentcs.access.KernelStateTransitionEvent;
 import org.youbai.opentcs.access.LocalKernel;
 import org.youbai.opentcs.access.ModelTransitionEvent;
 import org.youbai.opentcs.components.kernel.KernelExtension;
 import org.youbai.opentcs.components.kernel.services.NotificationService;
-import org.youbai.opentcs.customizations.ApplicationEventBus;
-import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.notification.UserNotification;
+import org.youbai.opentcs.kernel.annotations.StandardKernelAnnotations;
 import org.youbai.opentcs.util.event.EventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +45,8 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+
+@StandardKernelAnnotations
 final class StandardKernel
     implements LocalKernel,
                Runnable {
@@ -98,9 +100,9 @@ final class StandardKernel
    * @param kernelExecutor An executor for this kernel's tasks.
    * @param stateProviders The state map to be used.
    */
-
-  StandardKernel(@ApplicationEventBus EventBus eventBus,
-                 @KernelExecutor ScheduledExecutorService kernelExecutor,
+  @Inject
+  StandardKernel(EventBus eventBus,
+                 ScheduledExecutorService kernelExecutor,
                  Map<State, Provider<KernelState>> stateProviders,
                  NotificationService notificationService) {
     this.eventBus = requireNonNull(eventBus, "eventBus");

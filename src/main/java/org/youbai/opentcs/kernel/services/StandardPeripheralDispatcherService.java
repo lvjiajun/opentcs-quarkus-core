@@ -9,12 +9,14 @@ package org.youbai.opentcs.kernel.services;
 
 import static java.util.Objects.requireNonNull;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.PeripheralJobDispatcher;
 import org.youbai.opentcs.components.kernel.services.PeripheralDispatcherService;
-import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
 import org.youbai.opentcs.data.ObjectUnknownException;
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.TCSResourceReference;
+import org.youbai.opentcs.kernel.GlobalSyncObject;
 import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
 
 /**
@@ -22,6 +24,7 @@ import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+
 public class StandardPeripheralDispatcherService
     implements PeripheralDispatcherService {
 
@@ -46,7 +49,7 @@ public class StandardPeripheralDispatcherService
    * @param dispatcher The peripheral job dispatcher.
    */
 
-  public StandardPeripheralDispatcherService(@GlobalSyncObject Object globalSyncObject,
+  public StandardPeripheralDispatcherService(GlobalSyncObject globalSyncObject,
                                              TCSObjectPool globalObjectPool,
                                              PeripheralJobDispatcher dispatcher) {
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");

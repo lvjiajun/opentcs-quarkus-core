@@ -7,15 +7,15 @@
  */
 package org.youbai.opentcs.commadapter.peripheral.loopback;
 
-import org.youbai.opentcs.configuration.ConfigurationEntry;
-import org.youbai.opentcs.configuration.ConfigurationPrefix;
+import io.quarkus.arc.config.ConfigProperties;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 /**
  * Provides methods to configure to {@link LoopbackPeripheralCommAdapter}.
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ConfigurationPrefix(VirtualPeripheralConfiguration.PREFIX)
+@ConfigProperties(prefix = VirtualPeripheralConfiguration.PREFIX)
 public interface VirtualPeripheralConfiguration {
 
   /**
@@ -23,9 +23,6 @@ public interface VirtualPeripheralConfiguration {
    */
   String PREFIX = "virtualperipheral";
 
-  @ConfigurationEntry(
-      type = "Boolean",
-      description = "Whether to enable to register/enable the peripheral loopback driver.",
-      orderKey = "0_enable")
+  @ConfigProperty(name = "enable")
   boolean enable();
 }

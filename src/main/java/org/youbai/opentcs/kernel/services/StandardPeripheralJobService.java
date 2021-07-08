@@ -9,16 +9,19 @@ package org.youbai.opentcs.kernel.services;
 
 import static java.util.Objects.requireNonNull;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.access.KernelRuntimeException;
 import org.youbai.opentcs.access.to.peripherals.PeripheralJobCreationTO;
 import org.youbai.opentcs.components.kernel.services.InternalPeripheralJobService;
 import org.youbai.opentcs.components.kernel.services.PeripheralJobService;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
-import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
 import org.youbai.opentcs.data.ObjectExistsException;
 import org.youbai.opentcs.data.ObjectUnknownException;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.peripherals.PeripheralJob;
+import org.youbai.opentcs.kernel.GlobalSyncObject;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.kernel.workingset.PeripheralJobPool;
 
 /**
@@ -26,6 +29,7 @@ import org.youbai.opentcs.kernel.workingset.PeripheralJobPool;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class StandardPeripheralJobService
     extends AbstractTCSObjectService
     implements InternalPeripheralJobService {
@@ -46,9 +50,9 @@ public class StandardPeripheralJobService
    * @param globalSyncObject The kernel threads' global synchronization object.
    * @param jobPool The peripheral job pool to be used.
    */
-
-  public StandardPeripheralJobService(TCSObjectService objectService,
-                                      @GlobalSyncObject Object globalSyncObject,
+  @Inject
+  public StandardPeripheralJobService(@StandardTCSObjectAnnotations TCSObjectService objectService,
+                                      GlobalSyncObject globalSyncObject,
                                       PeripheralJobPool jobPool) {
     super(objectService);
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");

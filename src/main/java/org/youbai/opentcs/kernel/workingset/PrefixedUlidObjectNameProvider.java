@@ -12,6 +12,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.Optional;
 import org.youbai.opentcs.access.to.CreationTO;
 import org.youbai.opentcs.components.kernel.ObjectNameProvider;
+import org.youbai.opentcs.kernel.annotations.PrefixedUlidObjectNameAnnotations;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * Provides names for objects based on ULIDs, prefixed with the name taken from a given
@@ -19,6 +23,8 @@ import org.youbai.opentcs.components.kernel.ObjectNameProvider;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
+@PrefixedUlidObjectNameAnnotations
 public class PrefixedUlidObjectNameProvider
     implements ObjectNameProvider {
 
@@ -34,6 +40,7 @@ public class PrefixedUlidObjectNameProvider
   /**
    * Creates a new instance.
    */
+  @Inject
   public PrefixedUlidObjectNameProvider() {
   }
 

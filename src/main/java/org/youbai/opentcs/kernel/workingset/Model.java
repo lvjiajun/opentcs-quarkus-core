@@ -21,6 +21,8 @@ import java.util.TreeSet;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.access.to.model.BlockCreationTO;
 import org.youbai.opentcs.access.to.model.*;
 import org.youbai.opentcs.access.to.model.PathCreationTO;
@@ -68,6 +70,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
 public class Model {
 
   /**
@@ -93,7 +96,7 @@ public class Model {
    * @param globalPool The object pool serving as the container for this model's
    * data.
    */
-
+  @Inject
   public Model(TCSObjectPool globalPool) {
     this.objectPool = Objects.requireNonNull(globalPool);
   }

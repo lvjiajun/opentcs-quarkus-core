@@ -10,6 +10,8 @@ package org.youbai.opentcs.kernel.vehicles;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapter;
 
+import javax.inject.Singleton;
+
 /**
  * A factory for <code>VehicleManager</code> instances.
  *

@@ -7,15 +7,15 @@
  */
 package org.youbai.opentcs.strategies.basic.routing;
 
-import io.smallrye.config.ConfigMapping;
-import org.youbai.opentcs.configuration.ConfigurationEntry;
+import io.quarkus.arc.config.ConfigProperties;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 /**
  * Provides methods to configure the {@link DefaultRouter}.
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ConfigMapping(prefix =DefaultRouterConfiguration.PREFIX)
+@ConfigProperties(prefix =DefaultRouterConfiguration.PREFIX)
 public interface DefaultRouterConfiguration {
 
   /**
@@ -23,9 +23,9 @@ public interface DefaultRouterConfiguration {
    */
   String PREFIX = "defaultrouter";
 
-  @ConfigurationEntry(
-      type = "Boolean",
-      description = "Whether to compute a route even if the vehicle is already at the destination.")
+
+      //"Whether to compute a route even if the vehicle is already at the destination."
+  @ConfigProperty(name = "routeToCurrentPosition")
   boolean routeToCurrentPosition();
 
 }

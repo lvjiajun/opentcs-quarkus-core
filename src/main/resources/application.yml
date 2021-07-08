@@ -1,3 +1,58 @@
 greeting:
   message: "hello"
+quarkus:
+  grpc:
+    server:
+      port: 9002
+  http:
+    port: 8081
 
+kernelapp:
+  autoEnableDriversOnStartup: false
+  autoEnablePeripheralDriversOnStartup: false
+  saveModelOnTerminateModelling: false
+  saveModelOnTerminateOperating: false
+  updateRoutingTopologyOnPathLockChange: false
+orderpool:
+  sweepInterval: 60000
+  sweepAge: 86400000
+ssl:
+  keystoreFile: ./config/keystore.p12
+  truststoreFile: ./config/truststore.p12
+  keystorePassword: password
+  truststorePassword: password
+defaultdispatcher:
+  dismissUnroutableTransportOrders: true
+  assignRedundantOrders: false
+  rerouteTrigger: NONE
+  reroutingImpossibleStrategy: IGNORE_PATH_LOCKS
+  parkIdleVehicles: false
+  considerParkingPositionPriorities: false
+  reparkVehiclesToHigherPriorityPositions: false
+  rechargeIdleVehicles: false
+  keepRechargingUntilFullyCharged: true
+  idleVehicleRedispatchingInterval: 10000
+  orderPriorities: BY_DEADLINE
+  orderCandidatePriorities: BY_DEADLINE
+  vehiclePriorities: IDLE_FIRST,BY_ENERGY_LEVEL
+  vehicleCandidatePriorities: IDLE_FIRST,BY_ENERGY_LEVEL
+  deadlineAtRiskPeriod: 60000
+defaultrouter:
+  routeToCurrentPosition: false
+  shortestpath:
+    algorithm: DIJKSTRA
+    edgeEvaluators: DISTANCE
+  edgeevaluator:
+    explicitproperties:
+      defaultValue: 1000000
+defaultperipheraljobdispatcher:
+  idlePeripheralRedispatchingInterval: 10000
+virtualvehicle:
+  enable: true
+  simulationTimeFactor: 1.0
+  commandQueueCapacity: 2
+  rechargeOperation: CHARGE
+virtualperipheral:
+  enable: true
+statisticscollector:
+  enable: true

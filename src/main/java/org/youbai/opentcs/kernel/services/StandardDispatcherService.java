@@ -7,22 +7,26 @@
  */
 package org.youbai.opentcs.kernel.services;
 
-import static java.util.Objects.requireNonNull;
-import javax.inject.Inject;
 import org.youbai.opentcs.components.kernel.Dispatcher;
 import org.youbai.opentcs.components.kernel.services.DispatcherService;
-import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
 import org.youbai.opentcs.data.ObjectUnknownException;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.TransportOrder;
+import org.youbai.opentcs.kernel.GlobalSyncObject;
 import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * This class is the standard implementation of the {@link DispatcherService} interface.
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+
 public class StandardDispatcherService
     implements DispatcherService {
 
@@ -47,7 +51,7 @@ public class StandardDispatcherService
    * @param dispatcher The dispatcher.
    */
 
-  public StandardDispatcherService(@GlobalSyncObject Object globalSyncObject,
+  public StandardDispatcherService(GlobalSyncObject globalSyncObject,
                                    TCSObjectPool globalObjectPool,
                                    Dispatcher dispatcher) {
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");

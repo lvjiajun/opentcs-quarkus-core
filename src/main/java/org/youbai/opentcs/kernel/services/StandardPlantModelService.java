@@ -88,10 +88,10 @@ public class StandardPlantModelService
 
   public StandardPlantModelService(LocalKernel kernel,
                                    TCSObjectService objectService,
-                                   @GlobalSyncObject Object globalSyncObject,
+                                   Object globalSyncObject,
                                    Model model,
                                    ModelPersister modelPersister,
-                                   @ApplicationEventBus EventHandler eventHandler,
+                                   EventHandler eventHandler,
                                    NotificationService notificationService) {
     super(objectService);
     this.kernel = requireNonNull(kernel, "kernel");

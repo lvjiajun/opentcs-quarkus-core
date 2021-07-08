@@ -11,9 +11,11 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 import java.util.function.Predicate;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.services.NotificationService;
-import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
 import org.youbai.opentcs.data.notification.UserNotification;
+import org.youbai.opentcs.kernel.GlobalSyncObject;
 import org.youbai.opentcs.kernel.workingset.NotificationBuffer;
 
 /**
@@ -21,6 +23,7 @@ import org.youbai.opentcs.kernel.workingset.NotificationBuffer;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class StandardNotificationService
     implements NotificationService {
 
@@ -39,8 +42,8 @@ public class StandardNotificationService
    * @param globalSyncObject The kernel threads' global synchronization object.
    * @param notificationBuffer The notification buffer to be used.
    */
-
-  public StandardNotificationService(@GlobalSyncObject Object globalSyncObject,
+  @Inject
+  public StandardNotificationService(GlobalSyncObject globalSyncObject,
                                      NotificationBuffer notificationBuffer) {
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");
     this.notificationBuffer = requireNonNull(notificationBuffer, "notificationBuffer");

@@ -34,7 +34,7 @@ final class KernelStateShutdown
    * @param modelPersister The model persister to be used.
    */
 
-  public KernelStateShutdown(@GlobalSyncObject Object globalSyncObject,
+  public KernelStateShutdown(Object globalSyncObject,
                              TCSObjectPool objectPool,
                              Model model,
                              ModelPersister modelPersister) {

@@ -38,7 +38,7 @@ public class StandardSchedulerService
    * @param scheduler The scheduler.
    */
 
-  public StandardSchedulerService(@GlobalSyncObject Object globalSyncObject,
+  public StandardSchedulerService(Object globalSyncObject,
                                   Scheduler scheduler) {
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");
     this.scheduler = requireNonNull(scheduler, "scheduler");

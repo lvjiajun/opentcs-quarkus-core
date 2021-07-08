@@ -67,7 +67,7 @@ public class SameDirectionBlockModule
 
   public SameDirectionBlockModule(@Nonnull ReservationPool reservationPool,
                                   @Nonnull InternalPlantModelService plantModelService,
-                                  @GlobalSyncObject Object globalSyncObject) {
+                                  Object globalSyncObject) {
     this.reservationPool = requireNonNull(reservationPool, "reservationPool");
     this.plantModelService = requireNonNull(plantModelService, "plantModelService");
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");

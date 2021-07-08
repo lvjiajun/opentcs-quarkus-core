@@ -49,7 +49,7 @@ class KernelStateModelling
    * @param configuration This class's configuration.
    */
 
-  KernelStateModelling(@GlobalSyncObject Object globalSyncObject,
+  KernelStateModelling(Object globalSyncObject,
                        TCSObjectPool objectPool,
                        Model model,
                        ModelPersister modelPersister,

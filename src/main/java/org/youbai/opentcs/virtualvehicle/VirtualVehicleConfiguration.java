@@ -7,15 +7,15 @@
  */
 package org.youbai.opentcs.virtualvehicle;
 
-import org.youbai.opentcs.configuration.ConfigurationEntry;
-import org.youbai.opentcs.configuration.ConfigurationPrefix;
+import io.quarkus.arc.config.ConfigProperties;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 /**
  * Provides methods to configure to {@link LoopbackCommunicationAdapter}.
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ConfigurationPrefix(VirtualVehicleConfiguration.PREFIX)
+@ConfigProperties(prefix = VirtualVehicleConfiguration.PREFIX)
 public interface VirtualVehicleConfiguration {
 
   /**
@@ -23,28 +23,15 @@ public interface VirtualVehicleConfiguration {
    */
   String PREFIX = "virtualvehicle";
 
-  @ConfigurationEntry(
-      type = "Boolean",
-      description = "Whether to enable to register/enable the loopback driver.",
-      orderKey = "0_enable")
+  @ConfigProperty(name = "enable")
   boolean enable();
 
-  @ConfigurationEntry(
-      type = "Integer",
-      description = "The adapter's command queue capacity.",
-      orderKey = "1_attributes_1")
+  @ConfigProperty(name = "commandQueueCapacity")
   int commandQueueCapacity();
 
-  @ConfigurationEntry(
-      type = "String",
-      description = "The string to be treated as a recharge operation.",
-      orderKey = "1_attributes_2")
+  @ConfigProperty(name = "rechargeOperation")
   String rechargeOperation();
 
-  @ConfigurationEntry(
-      type = "Double",
-      description = {"The simulation time factor.",
-                     "1.0 is real time, greater values speed up simulation."},
-      orderKey = "1_behaviour_3")
+  @ConfigProperty(name = "simulationTimeFactor")
   double simulationTimeFactor();
 }

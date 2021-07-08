@@ -7,15 +7,15 @@
  */
 package org.youbai.opentcs.kernel;
 
-import org.youbai.opentcs.configuration.ConfigurationEntry;
-import org.youbai.opentcs.configuration.ConfigurationPrefix;
+import io.quarkus.arc.config.ConfigProperties;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 /**
  * Provides common kernel configuration entries.
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ConfigurationPrefix(KernelApplicationConfiguration.PREFIX)
+@ConfigProperties(prefix = KernelApplicationConfiguration.PREFIX)
 public interface KernelApplicationConfiguration {
 
   /**
@@ -23,33 +23,23 @@ public interface KernelApplicationConfiguration {
    */
   String PREFIX = "kernelapp";
 
-  @ConfigurationEntry(
-      type = "Boolean",
-      description = "Whether to automatically enable drivers on startup.",
-      orderKey = "1_startup_0")
+
+  @ConfigProperty(name = "autoEnableDriversOnStartup")
   boolean autoEnableDriversOnStartup();
 
-  @ConfigurationEntry(
-      type = "Boolean",
-      description = "Whether to automatically enable peripheral drivers on startup.",
-      orderKey = "1_startup_1")
+
+  @ConfigProperty(name = "autoEnablePeripheralDriversOnStartup")
   boolean autoEnablePeripheralDriversOnStartup();
 
-  @ConfigurationEntry(
-      type = "Boolean",
-      description = "Whether to implicitly save the model when leaving modelling state.",
-      orderKey = "2_autosave")
+
+  @ConfigProperty(name = "saveModelOnTerminateModelling")
   boolean saveModelOnTerminateModelling();
 
-  @ConfigurationEntry(
-      type = "Boolean",
-      description = "Whether to implicitly save the model when leaving operating state.",
-      orderKey = "2_autosave")
+
+  @ConfigProperty(name = "saveModelOnTerminateOperating")
   boolean saveModelOnTerminateOperating();
 
-  @ConfigurationEntry(
-      type = "Boolean",
-      description = "Whether to implicitly update the router's topology when a path is (un)locked.",
-      orderKey = "3_topologyUpdate")
+
+  @ConfigProperty(name = "updateRoutingTopologyOnPathLockChange")
   boolean updateRoutingTopologyOnPathLockChange();
 }

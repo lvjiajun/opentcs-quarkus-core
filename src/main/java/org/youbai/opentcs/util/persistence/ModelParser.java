@@ -25,11 +25,14 @@ import org.youbai.opentcs.util.persistence.v004.V004TOMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Singleton;
+
 /**
  * Provides methods for parsing {@link PlantModelCreationTO}s from/to a file.
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class ModelParser {
 
   /**
@@ -40,6 +43,9 @@ public class ModelParser {
    * The charset to use for the reader/writer.
    */
   private static final Charset CHARSET = Charset.forName("UTF-8");
+
+  public ModelParser() {
+  }
 
   /**
    * Reads a model from the given file and parses it to a {@link PlantModelCreationTO} instance.

@@ -11,6 +11,8 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.access.KernelRuntimeException;
 import org.youbai.opentcs.components.kernel.services.InternalVehicleService;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
@@ -28,6 +30,7 @@ import org.youbai.opentcs.drivers.vehicle.LoadHandlingDevice;
 import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapterDescription;
 import org.youbai.opentcs.drivers.vehicle.management.AttachmentInformation;
 import org.youbai.opentcs.drivers.vehicle.management.VehicleProcessModelTO;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.kernel.extensions.controlcenter.vehicles.AttachmentManager;
 import org.youbai.opentcs.kernel.extensions.controlcenter.vehicles.VehicleEntry;
 import org.youbai.opentcs.kernel.extensions.controlcenter.vehicles.VehicleEntryPool;
@@ -43,6 +46,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class StandardVehicleService
     extends AbstractTCSObjectService
     implements InternalVehicleService {
@@ -92,9 +96,9 @@ public class StandardVehicleService
    * @param commAdapterRegistry The registry for all communication adapters.
    * @param model The model to be used.
    */
-
-  public StandardVehicleService(TCSObjectService objectService,
-                                @GlobalSyncObject Object globalSyncObject,
+  @Inject
+  public StandardVehicleService(@StandardTCSObjectAnnotations TCSObjectService objectService,
+                                Object globalSyncObject,
                                 TCSObjectPool globalObjectPool,
                                 LocalVehicleControllerPool vehicleControllerPool,
                                 VehicleEntryPool vehicleEntryPool,

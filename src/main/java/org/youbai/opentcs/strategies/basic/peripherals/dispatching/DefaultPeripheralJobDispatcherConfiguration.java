@@ -7,15 +7,15 @@
  */
 package org.youbai.opentcs.strategies.basic.peripherals.dispatching;
 
-import io.smallrye.config.ConfigMapping;
-import org.youbai.opentcs.configuration.ConfigurationEntry;
+import io.quarkus.arc.config.ConfigProperties;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 /**
  * Provides methods to configure the {@link DefaultPeripheralJobDispatcher}
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ConfigMapping(prefix =DefaultPeripheralJobDispatcherConfiguration.PREFIX)
+@ConfigProperties(prefix =DefaultPeripheralJobDispatcherConfiguration.PREFIX)
 public interface DefaultPeripheralJobDispatcherConfiguration {
 
   /**
@@ -23,9 +23,7 @@ public interface DefaultPeripheralJobDispatcherConfiguration {
    */
   String PREFIX = "defaultperipheraljobdispatcher";
 
-  @ConfigurationEntry(
-      type = "Integer",
-      description = "The interval between redispatching of peripheral devices.",
-      orderKey = "9_misc")
+
+  @ConfigProperty(name = "idlePeripheralRedispatchingInterval")
   long idlePeripheralRedispatchingInterval();
 }

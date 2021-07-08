@@ -12,6 +12,8 @@ import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.Lifecycle;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.data.model.Location;
@@ -26,6 +28,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class PeripheralEntryPool
     implements Lifecycle {
 
@@ -51,7 +54,6 @@ public class PeripheralEntryPool
    *
    * @param objectService The object service.
    */
-
   public PeripheralEntryPool(@Nonnull TCSObjectService objectService) {
     this.objectService = requireNonNull(objectService, "objectService");
   }

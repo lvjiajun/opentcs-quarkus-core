@@ -12,6 +12,8 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 import java.util.function.Predicate;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.access.NotificationPublicationEvent;
 import org.youbai.opentcs.customizations.ApplicationEventBus;
 import org.youbai.opentcs.data.notification.UserNotification;
@@ -41,6 +43,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
 public class NotificationBuffer {
 
   /**
@@ -70,8 +73,8 @@ public class NotificationBuffer {
    *
    * @param eventListener The event listener to be used.
    */
-
-  public NotificationBuffer(@ApplicationEventBus EventHandler eventListener) {
+  @Inject
+  public NotificationBuffer(EventHandler eventListener) {
     messageEventListener = requireNonNull(eventListener, "eventListener");
     cutBackCount = capacity;
   }
