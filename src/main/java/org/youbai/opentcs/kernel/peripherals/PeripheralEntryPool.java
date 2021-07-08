@@ -21,6 +21,7 @@ import org.youbai.opentcs.data.model.TCSResourceReference;
 import static org.youbai.opentcs.util.Assertions.checkArgument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 
 /**
  * Provides a pool of {@link PeripheralEntry}s with an entry for every {@link Location} object in
@@ -54,7 +55,7 @@ public class PeripheralEntryPool
    *
    * @param objectService The object service.
    */
-  public PeripheralEntryPool(@Nonnull TCSObjectService objectService) {
+  public PeripheralEntryPool(@Nonnull @StandardTCSObjectAnnotations TCSObjectService objectService) {
     this.objectService = requireNonNull(objectService, "objectService");
   }
 

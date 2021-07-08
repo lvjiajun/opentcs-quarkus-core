@@ -10,6 +10,8 @@ package org.youbai.opentcs.strategies.basic.peripherals.dispatching.phase;
 import java.util.Objects;
 import static java.util.Objects.requireNonNull;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.PeripheralInformation;
@@ -28,6 +30,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class AssignReservedPeripheralsPhase
     implements PeripheralDispatcherPhase {
 

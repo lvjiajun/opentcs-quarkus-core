@@ -18,7 +18,9 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Provider;
+import javax.inject.Singleton;
 
 
 import org.youbai.opentcs.access.KernelStateTransitionEvent;
@@ -27,7 +29,10 @@ import org.youbai.opentcs.access.ModelTransitionEvent;
 import org.youbai.opentcs.components.kernel.KernelExtension;
 import org.youbai.opentcs.components.kernel.services.NotificationService;
 import org.youbai.opentcs.data.notification.UserNotification;
+import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
 import org.youbai.opentcs.kernel.annotations.StandardKernelAnnotations;
+import org.youbai.opentcs.kernel.annotations.StandardNotificationServiceAnnotation;
+import org.youbai.opentcs.kernel.annotations.StateMapBinderProviderAnnotations;
 import org.youbai.opentcs.util.event.EventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +50,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-
+@Singleton
 @StandardKernelAnnotations
 final class StandardKernel
     implements LocalKernel,
@@ -63,7 +68,7 @@ final class StandardKernel
   /**
    * A map to state providers used when switching kernel states.
    */
-  private final Map<State, Provider<KernelState>> stateProviders;
+  private final Map<State, KernelState> stateProviders;
   /**
    * The application's event bus.
    */
@@ -96,15 +101,14 @@ final class StandardKernel
   /**
    * Creates a new kernel.
    *
-   * @param eventHub The central event hub to be used.
    * @param kernelExecutor An executor for this kernel's tasks.
    * @param stateProviders The state map to be used.
    */
   @Inject
-  StandardKernel(EventBus eventBus,
+  StandardKernel(@SimpleEventBusAnnotation EventBus eventBus,
                  ScheduledExecutorService kernelExecutor,
-                 Map<State, Provider<KernelState>> stateProviders,
-                 NotificationService notificationService) {
+                 @StateMapBinderProviderAnnotations Map<State, KernelState> stateProviders,
+                 @StandardNotificationServiceAnnotation NotificationService notificationService) {
     this.eventBus = requireNonNull(eventBus, "eventBus");
     this.kernelExecutor = requireNonNull(kernelExecutor, "kernelExecutor");
     this.stateProviders = requireNonNull(stateProviders, "stateProviders");
@@ -194,16 +198,16 @@ final class StandardKernel
     LOG.info("Switching kernel to state '{}'", newState.name());
     switch (newState) {
       case SHUTDOWN:
-        kernelState = stateProviders.get(State.SHUTDOWN).get();
+        kernelState = stateProviders.get(State.SHUTDOWN);
         kernelState.initialize();
         terminate();
         break;
       case MODELLING:
-        kernelState = stateProviders.get(State.MODELLING).get();
+        kernelState = stateProviders.get(State.MODELLING);
         kernelState.initialize();
         break;
       case OPERATING:
-        kernelState = stateProviders.get(State.OPERATING).get();
+        kernelState = stateProviders.get(State.OPERATING);
         kernelState.initialize();
         break;
       default:

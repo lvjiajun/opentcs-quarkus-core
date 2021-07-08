@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.Lifecycle;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.customizations.ApplicationEventBus;
@@ -29,6 +31,8 @@ import org.youbai.opentcs.drivers.vehicle.management.AttachmentInformation;
 import org.youbai.opentcs.drivers.vehicle.management.ProcessModelEvent;
 import org.youbai.opentcs.drivers.vehicle.management.VehicleProcessModelTO;
 import org.youbai.opentcs.kernel.KernelApplicationConfiguration;
+import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.kernel.vehicles.LocalVehicleControllerPool;
 import org.youbai.opentcs.kernel.vehicles.VehicleCommAdapterRegistry;
 import org.youbai.opentcs.util.Assertions;
@@ -42,6 +46,7 @@ import org.slf4j.LoggerFactory;
  * @author Stefan Walter (Fraunhofer IML)
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class AttachmentManager
     implements Lifecycle {
 
@@ -92,13 +97,13 @@ public class AttachmentManager
    * @param eventHandler The handler to send events to.
    * @param configuration This class's configuration.
    */
-
-  public AttachmentManager(@Nonnull TCSObjectService objectService,
+  @Inject
+  public AttachmentManager(@Nonnull @StandardTCSObjectAnnotations TCSObjectService objectService,
                            @Nonnull LocalVehicleControllerPool controllerPool,
                            @Nonnull VehicleCommAdapterRegistry commAdapterRegistry,
                            @Nonnull VehicleEntryPool vehicleEntryPool,
-                           @Nonnull @ApplicationEventBus EventHandler eventHandler,
-                           @Nonnull KernelApplicationConfiguration configuration) {
+                           @Nonnull @SimpleEventBusAnnotation EventHandler eventHandler,
+                           KernelApplicationConfiguration configuration) {
     this.objectService = requireNonNull(objectService, "objectService");
     this.controllerPool = requireNonNull(controllerPool, "controllerPool");
     this.commAdapterRegistry = requireNonNull(commAdapterRegistry, "commAdapterRegistry");

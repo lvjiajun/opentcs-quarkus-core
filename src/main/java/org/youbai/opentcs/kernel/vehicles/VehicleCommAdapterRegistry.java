@@ -24,6 +24,8 @@ import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapterDescription;
 import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapterFactory;
 import static org.youbai.opentcs.util.Assertions.checkArgument;
+
+import org.youbai.opentcs.kernel.annotations.StandardKernelAnnotations;
 import org.youbai.opentcs.virtualvehicle.LoopbackCommunicationAdapterDescription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,8 +71,9 @@ public class VehicleCommAdapterRegistry
    * @param kernel A reference to the local kernel.
    * @param factories The comm adapter factories.
    */
-
-  public VehicleCommAdapterRegistry(LocalKernel kernel, Set<VehicleCommAdapterFactory> factories) {
+  @Singleton
+  public VehicleCommAdapterRegistry(@StandardKernelAnnotations LocalKernel kernel,
+                                    Set<VehicleCommAdapterFactory> factories) {
     requireNonNull(kernel, "kernel");
 
     for (VehicleCommAdapterFactory factory : factories) {

@@ -19,7 +19,7 @@ import javax.inject.Qualifier;
  * @author Stefan Walter (Fraunhofer IML)
  */
 @Qualifier
-@Target({ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD})
+@Target({ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD,ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface KernelExecutor {
 }

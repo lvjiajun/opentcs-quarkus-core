@@ -19,6 +19,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.Router;
 import org.youbai.opentcs.components.kernel.routing.GroupMapper;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
@@ -34,12 +36,14 @@ import org.youbai.opentcs.data.order.TransportOrder;
 import static org.youbai.opentcs.strategies.basic.routing.PointRouter.INFINITE_COSTS;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 
 /**
  * A basic {@link Router} implementation.
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
 public class DefaultRouter
     implements Router {
 
@@ -85,7 +89,7 @@ public class DefaultRouter
    * @param configuration This class's configuration.
    */
 
-  public DefaultRouter(TCSObjectService objectService,
+  public DefaultRouter(@StandardTCSObjectAnnotations TCSObjectService objectService,
                        PointRouterFactory pointRouterFactory,
                        GroupMapper routingGroupMapper,
                        DefaultRouterConfiguration configuration) {

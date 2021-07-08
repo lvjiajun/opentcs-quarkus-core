@@ -8,7 +8,11 @@
 package org.youbai.opentcs.commadapter.peripheral.loopback;
 
 import static java.util.Objects.requireNonNull;
+
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.drivers.peripherals.PeripheralCommAdapter;
 import org.youbai.opentcs.drivers.peripherals.PeripheralCommAdapterDescription;
@@ -19,6 +23,7 @@ import org.youbai.opentcs.drivers.peripherals.PeripheralCommAdapterFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@ApplicationScoped
 public class LoopbackPeripheralCommAdapterFactory
     implements PeripheralCommAdapterFactory {
 
@@ -31,7 +36,7 @@ public class LoopbackPeripheralCommAdapterFactory
    */
   private boolean initialized;
 
-
+  @Inject
   public LoopbackPeripheralCommAdapterFactory(
       LoopbackPeripheralAdapterComponentsFactory componentsFactory) {
     this.componentsFactory = requireNonNull(componentsFactory, "componentsFactory");

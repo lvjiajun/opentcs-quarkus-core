@@ -10,10 +10,13 @@ package org.youbai.opentcs.kernel;
 import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.access.Kernel;
 import org.youbai.opentcs.components.kernel.KernelExtension;
 import org.youbai.opentcs.customizations.kernel.ActiveInModellingMode;
 import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
+import org.youbai.opentcs.kernel.annotations.XMLFileModelAnnotations;
 import org.youbai.opentcs.kernel.persistence.ModelPersister;
 import org.youbai.opentcs.kernel.workingset.Model;
 import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
@@ -25,6 +28,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
 class KernelStateModelling
     extends KernelStateOnline {
 
@@ -48,11 +52,11 @@ class KernelStateModelling
    * @param modelPersister The model persister to be used.
    * @param configuration This class's configuration.
    */
-
+  @Inject
   KernelStateModelling(Object globalSyncObject,
                        TCSObjectPool objectPool,
                        Model model,
-                       ModelPersister modelPersister,
+                       @XMLFileModelAnnotations ModelPersister modelPersister,
                        KernelApplicationConfiguration configuration,
                        @ActiveInModellingMode Set<KernelExtension> extensions) {
     super(globalSyncObject,

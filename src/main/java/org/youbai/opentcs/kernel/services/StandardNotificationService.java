@@ -16,6 +16,7 @@ import javax.inject.Singleton;
 import org.youbai.opentcs.components.kernel.services.NotificationService;
 import org.youbai.opentcs.data.notification.UserNotification;
 import org.youbai.opentcs.kernel.GlobalSyncObject;
+import org.youbai.opentcs.kernel.annotations.StandardNotificationServiceAnnotation;
 import org.youbai.opentcs.kernel.workingset.NotificationBuffer;
 
 /**
@@ -24,6 +25,7 @@ import org.youbai.opentcs.kernel.workingset.NotificationBuffer;
  * @author Martin Grzenia (Fraunhofer IML)
  */
 @Singleton
+@StandardNotificationServiceAnnotation
 public class StandardNotificationService
     implements NotificationService {
 

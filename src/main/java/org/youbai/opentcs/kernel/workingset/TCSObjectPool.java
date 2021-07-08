@@ -11,6 +11,7 @@ import io.vertx.core.eventbus.EventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.data.*;
+import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
 import org.youbai.opentcs.util.UniqueStringGenerator;
 import org.youbai.opentcs.util.event.EventHandler;
 
@@ -56,19 +57,16 @@ public class TCSObjectPool {
 
   private final EventHandler eventHandler;
 
-  private final EventBus eventBus;
+
 
   /**
    * Creates a new instance that uses the given event handler.
    *
    * @param eventHandler
-   * @param eventBus
    */
   @Inject
-  public TCSObjectPool(EventHandler eventHandler, EventBus eventBus) {
-
+  public TCSObjectPool(@SimpleEventBusAnnotation EventHandler eventHandler) {
     this.eventHandler = eventHandler;
-    this.eventBus = eventBus;
   }
 
   /**

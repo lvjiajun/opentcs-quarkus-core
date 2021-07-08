@@ -12,6 +12,7 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
 
 import javax.inject.Singleton;
 
@@ -21,6 +22,7 @@ import javax.inject.Singleton;
  * @author Stefan Walter (Fraunhofer IML)
  */
 @Singleton
+@SimpleEventBusAnnotation
 public class SimpleEventBus
     implements EventBus {
 

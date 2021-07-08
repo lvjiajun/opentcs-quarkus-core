@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.TCSResourceReference;
@@ -19,6 +21,7 @@ import org.youbai.opentcs.drivers.peripherals.PeripheralController;
 import static org.youbai.opentcs.util.Assertions.checkArgument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 
 /**
  * Maintains associations of {@link Location}, {@link PeripheralController} and
@@ -26,6 +29,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class DefaultPeripheralControllerPool
     implements LocalPeripheralControllerPool {
 
@@ -50,8 +54,8 @@ public class DefaultPeripheralControllerPool
    */
   private boolean initialized;
 
-
-  public DefaultPeripheralControllerPool(TCSObjectService objectService,
+  @Inject
+  public DefaultPeripheralControllerPool(@StandardTCSObjectAnnotations TCSObjectService objectService,
                                          PeripheralControllerFactory controllerFactory) {
     this.objectService = requireNonNull(objectService, "objectService");
     this.controllerFactory = requireNonNull(controllerFactory, "controllerFactory");

@@ -9,15 +9,20 @@ package org.youbai.opentcs.virtualvehicle;
 
 import static java.util.Objects.requireNonNull;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapterDescription;
 import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapterFactory;
+import org.youbai.opentcs.kernel.annotations.LoopbackCommunicationAdapterFactoryAnnotations;
 
 /**
  * A factory for loopback communication adapters (virtual vehicles).
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
+@LoopbackCommunicationAdapterFactoryAnnotations
 public class LoopbackCommunicationAdapterFactory
     implements VehicleCommAdapterFactory {
 
@@ -35,7 +40,7 @@ public class LoopbackCommunicationAdapterFactory
    *
    * @param componentsFactory The adapter components factory.
    */
-
+  @Inject
   public LoopbackCommunicationAdapterFactory(LoopbackAdapterComponentsFactory componentsFactory) {
     this.adapterFactory = requireNonNull(componentsFactory, "componentsFactory");
   }

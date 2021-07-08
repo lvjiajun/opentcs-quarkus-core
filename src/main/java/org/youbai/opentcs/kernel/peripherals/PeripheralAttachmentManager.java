@@ -26,6 +26,7 @@ import org.youbai.opentcs.drivers.peripherals.management.PeripheralAttachmentEve
 import org.youbai.opentcs.drivers.peripherals.management.PeripheralAttachmentInformation;
 import org.youbai.opentcs.drivers.peripherals.management.PeripheralProcessModelEvent;
 import org.youbai.opentcs.kernel.KernelApplicationConfiguration;
+import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
 import org.youbai.opentcs.util.event.EventHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +37,7 @@ import org.slf4j.LoggerFactory;
  * @author Stefan Walter (Fraunhofer IML)
  * @author Martin Grzenia (Fraunhofer IML)
  */
-
+@Singleton
 public class PeripheralAttachmentManager
     implements Lifecycle {
 
@@ -88,7 +89,7 @@ public class PeripheralAttachmentManager
                                      @Nonnull LocalPeripheralControllerPool controllerPool,
                                      @Nonnull PeripheralCommAdapterRegistry commAdapterRegistry,
                                      @Nonnull PeripheralEntryPool peripheralEntryPool,
-                                     @Nonnull EventHandler eventHandler,
+                                     @Nonnull @SimpleEventBusAnnotation EventHandler eventHandler,
                                      @Nonnull KernelApplicationConfiguration configuration) {
     this.peripheralService = requireNonNull(peripheralService, "peripheralService");
     this.controllerPool = requireNonNull(controllerPool, "controllerPool");

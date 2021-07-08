@@ -13,11 +13,14 @@ import java.util.TreeMap;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.Lifecycle;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 
 /**
  * Provides a pool of {@link VehicleEntry}s with an entry for every {@link Vehicle} object in the
@@ -25,6 +28,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class VehicleEntryPool
     implements Lifecycle {
 
@@ -51,7 +55,7 @@ public class VehicleEntryPool
    * @param objectService The object service.
    */
 
-  public VehicleEntryPool(@Nonnull TCSObjectService objectService) {
+  public VehicleEntryPool(@Nonnull @StandardTCSObjectAnnotations TCSObjectService objectService) {
     this.objectService = requireNonNull(objectService, "objectService");
   }
 

@@ -8,6 +8,8 @@
 package org.youbai.opentcs.strategies.basic.peripherals.dispatching;
 
 import static java.util.Objects.requireNonNull;
+
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.youbai.opentcs.components.Lifecycle;
 import org.youbai.opentcs.strategies.basic.peripherals.dispatching.phase.AssignFreePeripheralsPhase;
@@ -21,6 +23,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@ApplicationScoped
 public class FullDispatchTask
     implements Runnable,
         Lifecycle {
@@ -38,7 +41,7 @@ public class FullDispatchTask
    */
   private boolean initialized;
 
-
+  @Inject
   public FullDispatchTask(AssignReservedPeripheralsPhase assignReservedPeripheralsPhase,
                           ReleasePeripheralsPhase releasePeripheralsPhase,
                           AssignFreePeripheralsPhase assignFreePeripheralsPhase) {

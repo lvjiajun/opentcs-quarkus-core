@@ -14,6 +14,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.access.Kernel;
 import org.youbai.opentcs.components.kernel.Dispatcher;
 import org.youbai.opentcs.components.kernel.KernelExtension;
@@ -25,6 +27,7 @@ import org.youbai.opentcs.customizations.kernel.ActiveInOperatingMode;
 import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
 import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.model.Vehicle;
+import org.youbai.opentcs.kernel.annotations.XMLFileModelAnnotations;
 import org.youbai.opentcs.kernel.extensions.controlcenter.vehicles.AttachmentManager;
 import org.youbai.opentcs.kernel.peripherals.LocalPeripheralControllerPool;
 import org.youbai.opentcs.kernel.peripherals.PeripheralAttachmentManager;
@@ -42,6 +45,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
 class KernelStateOperating
     extends KernelStateOnline {
 
@@ -124,15 +128,14 @@ class KernelStateOperating
    * @param objectPool The object pool to be used.
    * @param modelPersister The model persister to be used.
    * @param configuration This class's configuration.
-   * @param recoveryEvaluator The recovery evaluator to be used.
    */
-
+  @Inject
   KernelStateOperating(Object globalSyncObject,
                        TCSObjectPool objectPool,
                        Model model,
                        TransportOrderPool orderPool,
                        PeripheralJobPool jobPool,
-                       ModelPersister modelPersister,
+                       @XMLFileModelAnnotations ModelPersister modelPersister,
                        KernelApplicationConfiguration configuration,
                        Router router,
                        Scheduler scheduler,
@@ -140,9 +143,9 @@ class KernelStateOperating
                        PeripheralJobDispatcher peripheralJobDispatcher,
                        LocalVehicleControllerPool controllerPool,
                        LocalPeripheralControllerPool peripheralControllerPool,
-                       @KernelExecutor ScheduledExecutorService kernelExecutor,
+                       ScheduledExecutorService kernelExecutor,
                        OrderCleanerTask orderCleanerTask,
-                       @ActiveInOperatingMode Set<KernelExtension> extensions,
+                       Set<KernelExtension> extensions,
                        AttachmentManager attachmentManager,
                        PeripheralAttachmentManager peripheralAttachmentManager,
                        InternalVehicleService vehicleService) {

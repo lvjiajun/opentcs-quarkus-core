@@ -7,20 +7,25 @@
  */
 package org.youbai.opentcs.strategies.basic.peripherals.dispatching;
 
-import static java.util.Objects.requireNonNull;
-import javax.inject.Inject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.components.kernel.services.PeripheralDispatcherService;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.PeripheralInformation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.StandardPeripheralDispatcherServiceAnnotations;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
+
+import javax.enterprise.context.ApplicationScoped;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Periodically checks for idle peripheral devices that could process a peripheral job.
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@ApplicationScoped
 public class PeriodicPeripheralRedispatchingTask
     implements Runnable {
 
@@ -40,8 +45,8 @@ public class PeriodicPeripheralRedispatchingTask
    * @param objectService The object service.
    */
 
-  public PeriodicPeripheralRedispatchingTask(PeripheralDispatcherService dispatcherService,
-                                             TCSObjectService objectService) {
+  public PeriodicPeripheralRedispatchingTask(@StandardPeripheralDispatcherServiceAnnotations PeripheralDispatcherService dispatcherService,
+                                             @StandardTCSObjectAnnotations TCSObjectService objectService) {
     this.dispatcherService = requireNonNull(dispatcherService, "dispatcherService");
     this.objectService = requireNonNull(objectService, "objectService");
   }

@@ -7,17 +7,12 @@
  */
 package org.youbai.opentcs.kernel.services;
 
-import java.util.List;
-import static java.util.Objects.requireNonNull;
-import java.util.Set;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.access.KernelRuntimeException;
 import org.youbai.opentcs.components.kernel.services.InternalVehicleService;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.components.kernel.services.VehicleService;
-import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
 import org.youbai.opentcs.data.ObjectUnknownException;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Point;
@@ -38,8 +33,13 @@ import org.youbai.opentcs.kernel.vehicles.LocalVehicleControllerPool;
 import org.youbai.opentcs.kernel.vehicles.VehicleCommAdapterRegistry;
 import org.youbai.opentcs.kernel.workingset.Model;
 import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.util.List;
+import java.util.Set;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * This class is the standard implementation of the {@link VehicleService} interface.

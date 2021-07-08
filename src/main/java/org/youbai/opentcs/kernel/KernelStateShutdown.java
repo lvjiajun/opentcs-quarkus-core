@@ -8,8 +8,10 @@
 package org.youbai.opentcs.kernel;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.access.Kernel;
-import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
+import org.youbai.opentcs.kernel.annotations.XMLFileModelAnnotations;
 import org.youbai.opentcs.kernel.persistence.ModelPersister;
 import org.youbai.opentcs.kernel.workingset.Model;
 import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
@@ -19,6 +21,7 @@ import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
 final class KernelStateShutdown
     extends KernelState {
 
@@ -33,11 +36,11 @@ final class KernelStateShutdown
    * @param objectPool The object pool to be used.
    * @param modelPersister The model persister to be used.
    */
-
-  public KernelStateShutdown(Object globalSyncObject,
+  @Inject
+  public KernelStateShutdown(GlobalSyncObject globalSyncObject,
                              TCSObjectPool objectPool,
                              Model model,
-                             ModelPersister modelPersister) {
+                             @XMLFileModelAnnotations ModelPersister modelPersister) {
     super(globalSyncObject,
           objectPool,
           model,

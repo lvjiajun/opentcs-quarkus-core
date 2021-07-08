@@ -12,7 +12,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+import javax.inject.Inject;
 import javax.inject.Provider;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.PeripheralJobDispatcher;
 import org.youbai.opentcs.components.kernel.services.InternalPeripheralJobService;
 import org.youbai.opentcs.components.kernel.services.InternalPeripheralService;
@@ -29,7 +32,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-
+@Singleton
 public class DefaultPeripheralJobDispatcher
     implements PeripheralJobDispatcher,
         PeripheralJobCallback {
@@ -57,7 +60,7 @@ public class DefaultPeripheralJobDispatcher
   /**
    * A task to periodically trigger the job dispatcher.
    */
-  private final Provider<PeriodicPeripheralRedispatchingTask> periodicDispatchTaskProvider;
+  private final PeriodicPeripheralRedispatchingTask periodicDispatchTaskProvider;
   /**
    * The peripheral job dispatcher's configuration.
    */
@@ -81,13 +84,13 @@ public class DefaultPeripheralJobDispatcher
    * @param periodicDispatchTaskProvider A task to periodically trigger the job dispatcher.
    * @param configuration The peripheral job dispatcher's configuration.
    */
-
+  @Inject
   public DefaultPeripheralJobDispatcher(
       InternalPeripheralService peripheralService,
       InternalPeripheralJobService peripheralJobService,
-      @KernelExecutor ScheduledExecutorService kernelExecutor,
+      ScheduledExecutorService kernelExecutor,
       FullDispatchTask fullDispatchTask,
-      Provider<PeriodicPeripheralRedispatchingTask> periodicDispatchTaskProvider,
+      PeriodicPeripheralRedispatchingTask periodicDispatchTaskProvider,
       DefaultPeripheralJobDispatcherConfiguration configuration) {
     this.peripheralService = requireNonNull(peripheralService, "peripheralService");
     this.peripheralJobService = requireNonNull(peripheralJobService, "peripheralJobService");
@@ -110,7 +113,7 @@ public class DefaultPeripheralJobDispatcher
     LOG.debug("Scheduling periodic peripheral job dispatch task with interval of {} ms...",
               configuration.idlePeripheralRedispatchingInterval());
     periodicDispatchTaskFuture = kernelExecutor.scheduleAtFixedRate(
-        periodicDispatchTaskProvider.get(),
+        periodicDispatchTaskProvider,
         configuration.idlePeripheralRedispatchingInterval(),
         configuration.idlePeripheralRedispatchingInterval(),
         TimeUnit.MILLISECONDS

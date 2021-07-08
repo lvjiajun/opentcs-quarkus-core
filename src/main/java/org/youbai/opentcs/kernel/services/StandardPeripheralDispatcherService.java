@@ -17,6 +17,7 @@ import org.youbai.opentcs.data.ObjectUnknownException;
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.TCSResourceReference;
 import org.youbai.opentcs.kernel.GlobalSyncObject;
+import org.youbai.opentcs.kernel.annotations.StandardPeripheralDispatcherServiceAnnotations;
 import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
 
 /**
@@ -24,7 +25,8 @@ import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-
+@Singleton
+@StandardPeripheralDispatcherServiceAnnotations
 public class StandardPeripheralDispatcherService
     implements PeripheralDispatcherService {
 

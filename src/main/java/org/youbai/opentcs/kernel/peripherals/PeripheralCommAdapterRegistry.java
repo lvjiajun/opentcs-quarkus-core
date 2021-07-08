@@ -16,6 +16,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.Lifecycle;
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.drivers.peripherals.PeripheralCommAdapterDescription;
@@ -30,6 +32,7 @@ import org.slf4j.LoggerFactory;
  * @author Leonard Schüngel (Fraunhofer IML)
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class PeripheralCommAdapterRegistry
     implements Lifecycle {
 
