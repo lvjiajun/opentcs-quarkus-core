@@ -21,6 +21,7 @@ import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.PeripheralInformation;
 import org.youbai.opentcs.data.peripherals.PeripheralJob;
 import org.youbai.opentcs.drivers.peripherals.PeripheralControllerPool;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.strategies.basic.peripherals.dispatching.JobSelectionStrategy;
 import org.youbai.opentcs.strategies.basic.peripherals.dispatching.PeripheralDispatcherPhase;
 import org.youbai.opentcs.strategies.basic.peripherals.dispatching.PeripheralJobUtil;
@@ -64,7 +65,7 @@ public class AssignFreePeripheralsPhase
   private boolean initialized;
 
 
-  public AssignFreePeripheralsPhase(TCSObjectService objectService,
+  public AssignFreePeripheralsPhase(@StandardTCSObjectAnnotations TCSObjectService objectService,
                                     JobSelectionStrategy jobSelectionStrategy,
                                     PeripheralControllerPool peripheralControllerPool,
                                     PeripheralJobUtil peripheralJobUtil) {

@@ -15,6 +15,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -56,7 +57,7 @@ public class PeripheralCommAdapterRegistry
    * @param factories The peripheral comm adapter factories.
    */
 
-  public PeripheralCommAdapterRegistry(Set<PeripheralCommAdapterFactory> factories) {
+  public PeripheralCommAdapterRegistry(Instance<PeripheralCommAdapterFactory> factories) {
     requireNonNull(factories, "factories");
     for (PeripheralCommAdapterFactory factory : factories) {
       LOG.info("Setting up peripheral communication adapter factory: {}",

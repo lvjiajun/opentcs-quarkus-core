@@ -16,6 +16,8 @@ import static org.youbai.opentcs.util.Assertions.checkArgument;
 import org.youbai.opentcs.util.Comparators;
 import org.youbai.opentcs.util.Assertions;
 
+import javax.inject.Singleton;
+
 /**
  * The default implementation of {@link JobSelectionStrategy}.
  * Selects a job by applying the following rules:
@@ -26,6 +28,7 @@ import org.youbai.opentcs.util.Assertions;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class DefaultJobSelectionStrategy
     implements JobSelectionStrategy {
 

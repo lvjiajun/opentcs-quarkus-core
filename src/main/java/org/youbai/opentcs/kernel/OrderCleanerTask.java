@@ -13,7 +13,10 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import java.util.function.Predicate;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.OrderSequenceCleanupApproval;
 import org.youbai.opentcs.components.kernel.TransportOrderCleanupApproval;
 import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
@@ -29,6 +32,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
 class OrderCleanerTask
     implements Runnable {
 
@@ -47,11 +51,11 @@ class OrderCleanerTask
   /**
    * Check whether transport orders may be removed.
    */
-  private final Set<TransportOrderCleanupApproval> orderCleanupApprovals;
+  private final Instance<TransportOrderCleanupApproval> orderCleanupApprovals;
   /**
    * Check whether order sequences may be removed.
    */
-  private final Set<OrderSequenceCleanupApproval> sequenceCleanupApprovals;
+  private final Instance<OrderSequenceCleanupApproval> sequenceCleanupApprovals;
   /**
    * This class's configuration.
    */
@@ -60,14 +64,13 @@ class OrderCleanerTask
   /**
    * Creates a new instance.
    *
-   * @param kernel The kernel.
    * @param configuration This class's configuration.
    */
-
+  @Inject
   public OrderCleanerTask(Object globalSyncObject,
                           TransportOrderPool orderPool,
-                          Set<TransportOrderCleanupApproval> orderCleanupApprovals,
-                          Set<OrderSequenceCleanupApproval> sequenceCleanupApprovals,
+                          Instance<TransportOrderCleanupApproval> orderCleanupApprovals,
+                          Instance<OrderSequenceCleanupApproval> sequenceCleanupApprovals,
                           OrderPoolConfiguration configuration) {
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");
     this.orderPool = requireNonNull(orderPool, "orderPool");

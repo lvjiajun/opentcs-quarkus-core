@@ -12,6 +12,8 @@ import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.access.Kernel;
 import org.youbai.opentcs.access.KernelRuntimeException;
 import org.youbai.opentcs.access.LocalKernel;
@@ -30,6 +32,7 @@ import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.TCSResource;
 import org.youbai.opentcs.data.model.TCSResourceReference;
 import org.youbai.opentcs.data.notification.UserNotification;
+import org.youbai.opentcs.kernel.annotations.*;
 import org.youbai.opentcs.kernel.persistence.ModelPersister;
 import org.youbai.opentcs.kernel.workingset.Model;
 import org.youbai.opentcs.util.event.EventHandler;
@@ -41,6 +44,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class StandardPlantModelService
     extends AbstractTCSObjectService
     implements InternalPlantModelService {
@@ -86,13 +90,13 @@ public class StandardPlantModelService
    * @param notificationService The notification service.
    */
 
-  public StandardPlantModelService(LocalKernel kernel,
-                                   TCSObjectService objectService,
+  public StandardPlantModelService(@StandardKernelAnnotations LocalKernel kernel,
+                                   @StandardTCSObjectAnnotations TCSObjectService objectService,
                                    Object globalSyncObject,
                                    Model model,
-                                   ModelPersister modelPersister,
-                                   EventHandler eventHandler,
-                                   NotificationService notificationService) {
+                                   @XMLFileModelAnnotations ModelPersister modelPersister,
+                                   @SimpleEventBusAnnotation EventHandler eventHandler,
+                                   @StandardNotificationServiceAnnotation NotificationService notificationService) {
     super(objectService);
     this.kernel = requireNonNull(kernel, "kernel");
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");

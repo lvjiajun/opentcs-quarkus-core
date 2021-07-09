@@ -9,6 +9,8 @@ package org.youbai.opentcs.strategies.basic.peripherals.dispatching;
 
 import static java.util.Objects.requireNonNull;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.services.InternalPeripheralJobService;
 import org.youbai.opentcs.components.kernel.services.InternalPeripheralService;
 import org.youbai.opentcs.data.TCSObjectReference;
@@ -26,6 +28,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class PeripheralJobUtil {
 
   /**
@@ -49,7 +52,7 @@ public class PeripheralJobUtil {
    */
   private final PeripheralJobCallback peripheralJobCallback;
 
-
+  @Inject
   public PeripheralJobUtil(InternalPeripheralService peripheralService,
                            InternalPeripheralJobService peripheralJobService,
                            PeripheralControllerPool peripheralControllerPool,

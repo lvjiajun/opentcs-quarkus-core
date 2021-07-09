@@ -12,6 +12,9 @@ import java.util.stream.Collectors;
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.PeripheralInformation;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 /**
  * The default implementation of {@link PeripheralReleaseStrategy}.
  * Selects peripherals to be released by applying the following rules:
@@ -23,8 +26,12 @@ import org.youbai.opentcs.data.model.PeripheralInformation;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class DefaultPeripheralReleaseStrategy
     implements PeripheralReleaseStrategy {
+
+  public DefaultPeripheralReleaseStrategy() {
+  }
 
   @Override
   public Collection<Location> selectPeripheralsToRelease(Collection<Location> locations) {

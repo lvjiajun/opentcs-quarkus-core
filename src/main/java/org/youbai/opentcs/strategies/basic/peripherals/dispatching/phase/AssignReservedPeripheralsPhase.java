@@ -9,6 +9,8 @@ package org.youbai.opentcs.strategies.basic.peripherals.dispatching.phase;
 
 import java.util.Objects;
 import static java.util.Objects.requireNonNull;
+
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -17,6 +19,7 @@ import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.PeripheralInformation;
 import org.youbai.opentcs.data.peripherals.PeripheralJob;
 import org.youbai.opentcs.drivers.peripherals.PeripheralControllerPool;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.strategies.basic.peripherals.dispatching.PeripheralDispatcherPhase;
 import org.youbai.opentcs.strategies.basic.peripherals.dispatching.PeripheralJobUtil;
 import org.youbai.opentcs.util.Comparators;
@@ -56,7 +59,7 @@ public class AssignReservedPeripheralsPhase
   private boolean initialized;
 
 
-  public AssignReservedPeripheralsPhase(TCSObjectService objectService,
+  public AssignReservedPeripheralsPhase(@StandardTCSObjectAnnotations TCSObjectService objectService,
                                         PeripheralControllerPool peripheralControllerPool,
                                         PeripheralJobUtil peripheralJobUtil) {
     this.objectService = requireNonNull(objectService, "objectService");

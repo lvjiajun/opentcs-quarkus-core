@@ -13,6 +13,7 @@ import java.util.Set;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -100,7 +101,7 @@ class KernelStateOperating
   /**
    * This kernel state's local extensions.
    */
-  private final Set<KernelExtension> extensions;
+  private final Instance<KernelExtension> extensions;
   /**
    * The kernel's attachment manager.
    */
@@ -145,7 +146,7 @@ class KernelStateOperating
                        LocalPeripheralControllerPool peripheralControllerPool,
                        ScheduledExecutorService kernelExecutor,
                        OrderCleanerTask orderCleanerTask,
-                       Set<KernelExtension> extensions,
+                       Instance<KernelExtension> extensions,
                        AttachmentManager attachmentManager,
                        PeripheralAttachmentManager peripheralAttachmentManager,
                        InternalVehicleService vehicleService) {
