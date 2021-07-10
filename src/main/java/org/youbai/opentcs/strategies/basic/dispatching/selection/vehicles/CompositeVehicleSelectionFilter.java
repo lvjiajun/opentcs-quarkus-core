@@ -11,6 +11,7 @@ import java.util.Collection;
 import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import java.util.stream.Collectors;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.strategies.basic.dispatching.selection.VehicleSelectionFilter;
@@ -20,6 +21,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.selection.VehicleSelectio
  * 
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@ApplicationScoped
 public class CompositeVehicleSelectionFilter
     implements VehicleSelectionFilter {
 

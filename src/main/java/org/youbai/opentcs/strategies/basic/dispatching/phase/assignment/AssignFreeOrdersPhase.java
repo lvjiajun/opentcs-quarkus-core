@@ -18,6 +18,7 @@ import java.util.Objects;
 import static java.util.Objects.requireNonNull;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import org.youbai.opentcs.components.kernel.Router;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
@@ -25,6 +26,7 @@ import org.youbai.opentcs.data.ObjectHistory;
 import org.youbai.opentcs.data.model.Point;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.TransportOrder;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
 import org.youbai.opentcs.strategies.basic.dispatching.OrderReservationPool;
 import org.youbai.opentcs.strategies.basic.dispatching.Phase;
@@ -52,6 +54,7 @@ import org.youbai.opentcs.data.order.TransportOrderHistoryCodes;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Dependent
 public class AssignFreeOrdersPhase
     implements Phase {
 
@@ -113,7 +116,7 @@ public class AssignFreeOrdersPhase
 
 
   public AssignFreeOrdersPhase(
-      TCSObjectService objectService,
+      @StandardTCSObjectAnnotations TCSObjectService objectService,
       Router router,
       OrderReservationPool orderReservationPool,
       CompositeVehicleComparator vehicleComparator,

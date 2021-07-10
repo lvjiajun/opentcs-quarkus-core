@@ -14,6 +14,7 @@ import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.TransportOrder;
 import org.youbai.opentcs.kernel.GlobalSyncObject;
+import org.youbai.opentcs.kernel.annotations.StandardDispatcherServiceAnnotations;
 import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
 
 import javax.inject.Inject;
@@ -26,7 +27,8 @@ import static java.util.Objects.requireNonNull;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-
+@StandardDispatcherServiceAnnotations
+@Singleton
 public class StandardDispatcherService
     implements DispatcherService {
 

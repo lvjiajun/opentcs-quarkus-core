@@ -11,11 +11,14 @@ import org.youbai.opentcs.components.kernel.routing.Edge;
 import org.youbai.opentcs.components.kernel.routing.EdgeEvaluator;
 import org.youbai.opentcs.data.model.Vehicle;
 
+import javax.enterprise.context.ApplicationScoped;
+
 /**
  * Uses a weight of 1 for every edge.
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class EdgeEvaluatorHops
     implements EdgeEvaluator {
 

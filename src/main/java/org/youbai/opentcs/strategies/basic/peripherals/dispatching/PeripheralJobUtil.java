@@ -22,6 +22,7 @@ import org.youbai.opentcs.drivers.peripherals.PeripheralControllerPool;
 import org.youbai.opentcs.drivers.peripherals.PeripheralJobCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.StandardPeripheralJobServiceAnnotations;
 
 /**
  * Provides service functions for working with peripheral jobs and their states.
@@ -54,7 +55,7 @@ public class PeripheralJobUtil {
 
   @Inject
   public PeripheralJobUtil(InternalPeripheralService peripheralService,
-                           InternalPeripheralJobService peripheralJobService,
+                           @StandardPeripheralJobServiceAnnotations InternalPeripheralJobService peripheralJobService,
                            PeripheralControllerPool peripheralControllerPool,
                            PeripheralJobCallback peripheralJobCallback) {
     this.peripheralService = requireNonNull(peripheralService, "peripheralService");

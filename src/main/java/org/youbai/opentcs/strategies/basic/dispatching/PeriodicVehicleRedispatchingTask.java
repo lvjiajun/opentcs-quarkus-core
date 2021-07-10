@@ -7,14 +7,18 @@
  */
 package org.youbai.opentcs.strategies.basic.dispatching;
 
-import static java.util.Objects.requireNonNull;
-import javax.inject.Inject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.components.kernel.services.DispatcherService;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.TransportOrder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.StandardDispatcherServiceAnnotations;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
+
+import javax.enterprise.context.Dependent;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Periodically checks for idle vehicles that could process a transport order.
@@ -25,6 +29,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Dependent
 public class PeriodicVehicleRedispatchingTask
     implements Runnable {
 
@@ -44,8 +49,8 @@ public class PeriodicVehicleRedispatchingTask
    * @param objectService The object service.
    */
 
-  public PeriodicVehicleRedispatchingTask(DispatcherService dispatcherService,
-                                          TCSObjectService objectService) {
+  public PeriodicVehicleRedispatchingTask(@StandardDispatcherServiceAnnotations DispatcherService dispatcherService,
+                                          @StandardTCSObjectAnnotations TCSObjectService objectService) {
     this.dispatcherService = requireNonNull(dispatcherService, "dispatcherService");
     this.objectService = requireNonNull(objectService, "objectService");
   }

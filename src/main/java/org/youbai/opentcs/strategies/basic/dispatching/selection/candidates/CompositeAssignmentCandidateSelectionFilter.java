@@ -11,6 +11,7 @@ import java.util.Collection;
 import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import java.util.stream.Collectors;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
 import org.youbai.opentcs.strategies.basic.dispatching.selection.AssignmentCandidateSelectionFilter;
@@ -20,6 +21,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.selection.AssignmentCandi
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class CompositeAssignmentCandidateSelectionFilter
     implements AssignmentCandidateSelectionFilter {
 

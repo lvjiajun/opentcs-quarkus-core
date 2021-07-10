@@ -8,6 +8,8 @@
 package org.youbai.opentcs.strategies.basic.routing.edgeevaluator;
 
 import static java.util.Objects.requireNonNull;
+
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import static org.youbai.opentcs.components.kernel.Router.PROPKEY_ROUTING_COST_FORWARD;
 import static org.youbai.opentcs.components.kernel.Router.PROPKEY_ROUTING_COST_REVERSE;
@@ -24,6 +26,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class EdgeEvaluatorExplicitProperties
     implements EdgeEvaluator {
 

@@ -12,6 +12,8 @@ import java.util.function.Function;
 import org.youbai.opentcs.components.kernel.Dispatcher;
 import org.youbai.opentcs.data.model.Point;
 
+import javax.inject.Singleton;
+
 /**
  * Returns the priority of a parking position, if it has any, or <code>null</code>.
  * <p>
@@ -23,6 +25,7 @@ import org.youbai.opentcs.data.model.Point;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
 public class ParkingPositionToPriorityFunction
     implements Function<Point, Integer> {
 

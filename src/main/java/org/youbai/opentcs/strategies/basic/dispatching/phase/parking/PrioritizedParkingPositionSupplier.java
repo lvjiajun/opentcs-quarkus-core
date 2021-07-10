@@ -15,6 +15,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.Router;
 import org.youbai.opentcs.components.kernel.services.InternalPlantModelService;
 import org.youbai.opentcs.data.model.Point;
@@ -33,6 +35,7 @@ import org.youbai.opentcs.util.Assertions;
  * @author Stefan Walter (Fraunhofer IML)
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class PrioritizedParkingPositionSupplier
     extends AbstractParkingPositionSupplier {
 

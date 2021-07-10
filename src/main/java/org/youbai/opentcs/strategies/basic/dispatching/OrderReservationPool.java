@@ -14,6 +14,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.TransportOrder;
@@ -23,6 +25,7 @@ import org.youbai.opentcs.data.order.TransportOrder;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
 public class OrderReservationPool {
 
   /**

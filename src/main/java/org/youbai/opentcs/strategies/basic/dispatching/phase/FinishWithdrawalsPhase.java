@@ -8,10 +8,13 @@
 package org.youbai.opentcs.strategies.basic.dispatching.phase;
 
 import static java.util.Objects.requireNonNull;
+
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.TransportOrder;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.strategies.basic.dispatching.Phase;
 import org.youbai.opentcs.strategies.basic.dispatching.TransportOrderUtil;
 
@@ -20,6 +23,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.TransportOrderUtil;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Dependent
 public class FinishWithdrawalsPhase
     implements Phase {
 
@@ -34,7 +38,7 @@ public class FinishWithdrawalsPhase
   private boolean initialized;
 
 
-  public FinishWithdrawalsPhase(TCSObjectService objectService,
+  public FinishWithdrawalsPhase(@StandardTCSObjectAnnotations TCSObjectService objectService,
                                 TransportOrderUtil transportOrderUtil) {
     this.objectService = requireNonNull(objectService, "objectService");
     this.transportOrderUtil = requireNonNull(transportOrderUtil, "transportOrderUtil");

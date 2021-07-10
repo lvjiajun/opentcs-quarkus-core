@@ -21,6 +21,8 @@ import org.youbai.opentcs.data.ObjectUnknownException;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.peripherals.PeripheralJob;
 import org.youbai.opentcs.kernel.GlobalSyncObject;
+import org.youbai.opentcs.kernel.annotations.StandardPeripheralDispatcherServiceAnnotations;
+import org.youbai.opentcs.kernel.annotations.StandardPeripheralJobServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.kernel.workingset.PeripheralJobPool;
 
@@ -30,6 +32,7 @@ import org.youbai.opentcs.kernel.workingset.PeripheralJobPool;
  * @author Martin Grzenia (Fraunhofer IML)
  */
 @Singleton
+@StandardPeripheralJobServiceAnnotations
 public class StandardPeripheralJobService
     extends AbstractTCSObjectService
     implements InternalPeripheralJobService {

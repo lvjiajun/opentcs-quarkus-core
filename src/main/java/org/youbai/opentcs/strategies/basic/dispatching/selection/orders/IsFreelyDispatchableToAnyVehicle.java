@@ -9,11 +9,13 @@ package org.youbai.opentcs.strategies.basic.dispatching.selection.orders;
 
 import static java.util.Objects.requireNonNull;
 import java.util.function.Predicate;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.data.ObjectHistory;
 import org.youbai.opentcs.data.order.OrderSequence;
 import org.youbai.opentcs.data.order.TransportOrder;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.strategies.basic.dispatching.OrderReservationPool;
 import org.youbai.opentcs.strategies.basic.dispatching.selection.TransportOrderSelectionFilter;
 
@@ -27,6 +29,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.selection.TransportOrderS
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@ApplicationScoped
 public class IsFreelyDispatchableToAnyVehicle
     implements Predicate<TransportOrder> {
 
@@ -46,7 +49,7 @@ public class IsFreelyDispatchableToAnyVehicle
    * @param orderReservationPool Stores reservations of orders for vehicles.
    */
 
-  public IsFreelyDispatchableToAnyVehicle(TCSObjectService objectService,
+  public IsFreelyDispatchableToAnyVehicle(@StandardTCSObjectAnnotations TCSObjectService objectService,
                                           OrderReservationPool orderReservationPool) {
     this.objectService = requireNonNull(objectService, "objectService");
     this.orderReservationPool = requireNonNull(orderReservationPool, "orderReservationPool");

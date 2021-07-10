@@ -76,7 +76,7 @@ public class ControlPanel
    * @param vehicleService The vehicle service
    * @param callWrapper The call wrapper to use for service calls
    */
-  @Inject
+
   public ControlPanel(ProcessModelTO processModel,
                       VehicleService vehicleService,
                       @ServiceCallWrapper CallWrapper callWrapper) {

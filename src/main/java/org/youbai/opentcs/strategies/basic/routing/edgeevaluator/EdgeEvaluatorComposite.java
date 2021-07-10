@@ -11,6 +11,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.routing.Edge;
 import org.youbai.opentcs.components.kernel.routing.EdgeEvaluator;
 import org.youbai.opentcs.data.model.Vehicle;
@@ -25,6 +27,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
 public class EdgeEvaluatorComposite
     implements EdgeEvaluator {
 

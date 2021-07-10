@@ -11,6 +11,8 @@ import java.util.Collection;
 import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import java.util.stream.Collectors;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import org.youbai.opentcs.data.order.TransportOrder;
 import org.youbai.opentcs.strategies.basic.dispatching.selection.TransportOrderSelectionFilter;
@@ -20,16 +22,17 @@ import org.youbai.opentcs.strategies.basic.dispatching.selection.TransportOrderS
  * 
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@ApplicationScoped
 public class CompositeTransportOrderSelectionFilter
     implements TransportOrderSelectionFilter {
 
   /**
    * The {@link TransportOrderSelectionFilter}s.
    */
-  private final Set<TransportOrderSelectionFilter> filters;
+  private final Instance<TransportOrderSelectionFilter> filters;
   
 
-  public CompositeTransportOrderSelectionFilter(Set<TransportOrderSelectionFilter> filters) {
+  public CompositeTransportOrderSelectionFilter(Instance<TransportOrderSelectionFilter> filters) {
     this.filters = requireNonNull(filters, "filters");
   }
 

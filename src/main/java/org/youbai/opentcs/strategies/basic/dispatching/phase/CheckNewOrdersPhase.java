@@ -8,10 +8,13 @@
 package org.youbai.opentcs.strategies.basic.dispatching.phase;
 
 import static java.util.Objects.requireNonNull;
+
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import org.youbai.opentcs.components.kernel.Router;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.data.order.TransportOrder;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.strategies.basic.dispatching.DefaultDispatcherConfiguration;
 import org.youbai.opentcs.strategies.basic.dispatching.Phase;
 import org.youbai.opentcs.strategies.basic.dispatching.TransportOrderUtil;
@@ -22,6 +25,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.TransportOrderUtil;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Dependent
 public class CheckNewOrdersPhase
     implements Phase {
 
@@ -43,8 +47,8 @@ public class CheckNewOrdersPhase
    */
   private boolean initialized;
 
-
-  public CheckNewOrdersPhase(TCSObjectService objectService,
+  @Inject
+  public CheckNewOrdersPhase(@StandardTCSObjectAnnotations TCSObjectService objectService,
                              Router router,
                              TransportOrderUtil transportOrderUtil,
                              DefaultDispatcherConfiguration configuration) {

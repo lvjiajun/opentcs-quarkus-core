@@ -24,6 +24,8 @@ import org.youbai.opentcs.data.order.OrderSequence;
 import org.youbai.opentcs.data.order.TransportOrder;
 import org.youbai.opentcs.drivers.vehicle.LoadHandlingDevice;
 
+import javax.enterprise.context.ApplicationScoped;
+
 import static org.youbai.opentcs.util.Assertions.checkArgument;
 import static org.youbai.opentcs.util.Assertions.checkInRange;
 

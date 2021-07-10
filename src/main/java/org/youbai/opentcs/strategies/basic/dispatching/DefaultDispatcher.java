@@ -14,6 +14,8 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import javax.inject.Provider;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.Dispatcher;
 import org.youbai.opentcs.components.kernel.services.InternalTransportOrderService;
 import org.youbai.opentcs.components.kernel.services.InternalVehicleService;
@@ -21,6 +23,7 @@ import org.youbai.opentcs.customizations.ApplicationEventBus;
 import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.TransportOrder;
+import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
 import org.youbai.opentcs.util.event.EventSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +33,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
 public class DefaultDispatcher
     implements Dispatcher {
 
@@ -64,7 +68,7 @@ public class DefaultDispatcher
 
   private final FullDispatchTask fullDispatchTask;
 
-  private final Provider<PeriodicVehicleRedispatchingTask> periodicDispatchTaskProvider;
+  private final PeriodicVehicleRedispatchingTask periodicDispatchTaskProvider;
 
   private final DefaultDispatcherConfiguration configuration;
 
@@ -95,10 +99,10 @@ public class DefaultDispatcher
                            TransportOrderUtil transportOrderUtil,
                            InternalTransportOrderService transportOrderService,
                            InternalVehicleService vehicleService,
-                           EventSource eventSource,
+                           @SimpleEventBusAnnotation EventSource eventSource,
                            ScheduledExecutorService kernelExecutor,
                            FullDispatchTask fullDispatchTask,
-                           Provider<PeriodicVehicleRedispatchingTask> periodicDispatchTaskProvider,
+                           PeriodicVehicleRedispatchingTask periodicDispatchTaskProvider,
                            DefaultDispatcherConfiguration configuration,
                            RerouteUtil rerouteUtil) {
     this.orderReservationPool = requireNonNull(orderReservationPool, "orderReservationPool");
@@ -133,7 +137,7 @@ public class DefaultDispatcher
     LOG.debug("Scheduling periodic dispatch task with interval of {} ms...",
               configuration.idleVehicleRedispatchingInterval());
     periodicDispatchTaskFuture = kernelExecutor.scheduleAtFixedRate(
-        periodicDispatchTaskProvider.get(),
+        periodicDispatchTaskProvider,
         configuration.idleVehicleRedispatchingInterval(),
         configuration.idleVehicleRedispatchingInterval(),
         TimeUnit.MILLISECONDS

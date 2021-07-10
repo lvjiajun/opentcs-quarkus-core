@@ -8,12 +8,14 @@
 package org.youbai.opentcs.strategies.basic.routing.jgrapht;
 
 import javax.annotation.Nonnull;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.jgrapht.Graph;
 import org.jgrapht.alg.interfaces.ShortestPathAlgorithm;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.youbai.opentcs.components.kernel.routing.Edge;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.strategies.basic.routing.PointRouter;
 
 /**
@@ -21,6 +23,7 @@ import org.youbai.opentcs.strategies.basic.routing.PointRouter;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class DijkstraPointRouterFactory
     extends AbstractPointRouterFactory {
 
@@ -31,7 +34,7 @@ public class DijkstraPointRouterFactory
    * @param mapper Maps the plant model to a graph.
    */
 
-  public DijkstraPointRouterFactory(@Nonnull TCSObjectService objectService,
+  public DijkstraPointRouterFactory(@Nonnull @StandardTCSObjectAnnotations TCSObjectService objectService,
                                     @Nonnull ModelGraphMapper mapper) {
     super(objectService, mapper);
   }

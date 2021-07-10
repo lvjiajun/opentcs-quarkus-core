@@ -8,17 +8,15 @@ import org.youbai.opentcs.drivers.adapter.exchange.ExampleCommAdapterDescription
 import static java.util.Objects.requireNonNull;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapter;
 import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapterDescription;
 import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapterFactory;
-
 import static org.youbai.opentcs.common.extend.dispatching.VehicleProperties.PROPKEY_VEHICLE_HOST;
 import static org.youbai.opentcs.common.extend.dispatching.VehicleProperties.PROPKEY_VEHICLE_PORT;
 import static org.youbai.opentcs.util.Assertions.checkInRange;
-@Singleton
+
 public class CommAdapterFactory
     implements VehicleCommAdapterFactory {
 
@@ -41,7 +39,7 @@ public class CommAdapterFactory
    *
    * @param componentsFactory The factory to create components specific to the comm adapter.
    */
-  @Inject
+
   public CommAdapterFactory(AdapterComponentsFactory componentsFactory) {
     this.componentsFactory = requireNonNull(componentsFactory, "componentsFactory");
   }

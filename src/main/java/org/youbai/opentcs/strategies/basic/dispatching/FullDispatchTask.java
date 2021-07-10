@@ -8,6 +8,8 @@
 package org.youbai.opentcs.strategies.basic.dispatching;
 
 import static java.util.Objects.requireNonNull;
+
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import org.youbai.opentcs.components.Lifecycle;
 import org.youbai.opentcs.strategies.basic.dispatching.phase.AssignReservedOrdersPhase;
@@ -28,6 +30,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Dependent
 public class FullDispatchTask
     implements Runnable,
         Lifecycle {

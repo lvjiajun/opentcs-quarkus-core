@@ -10,6 +10,8 @@ package org.youbai.opentcs.kernel.services;
 import java.util.List;
 import static java.util.Objects.requireNonNull;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.access.to.order.OrderSequenceCreationTO;
 import org.youbai.opentcs.access.to.order.TransportOrderCreationTO;
 import org.youbai.opentcs.components.kernel.services.InternalTransportOrderService;
@@ -23,6 +25,8 @@ import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.DriveOrder;
 import org.youbai.opentcs.data.order.OrderSequence;
 import org.youbai.opentcs.data.order.TransportOrder;
+import org.youbai.opentcs.kernel.annotations.StandardDispatcherServiceAnnotations;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.kernel.workingset.Model;
 import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
 import org.youbai.opentcs.kernel.workingset.TransportOrderPool;
@@ -32,6 +36,7 @@ import org.youbai.opentcs.kernel.workingset.TransportOrderPool;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class StandardTransportOrderService
     extends AbstractTCSObjectService
     implements InternalTransportOrderService {
@@ -63,7 +68,7 @@ public class StandardTransportOrderService
    * @param model The model to be used.
    */
 
-  public StandardTransportOrderService(TCSObjectService objectService,
+  public StandardTransportOrderService(@StandardTCSObjectAnnotations TCSObjectService objectService,
                                        Object globalSyncObject,
                                        TCSObjectPool globalObjectPool,
                                        TransportOrderPool orderPool,

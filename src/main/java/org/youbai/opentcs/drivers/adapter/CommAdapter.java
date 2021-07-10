@@ -7,14 +7,13 @@ import com.google.common.primitives.Ints;
 
 import org.youbai.opentcs.common.extend.LoadAction;
 import org.youbai.opentcs.common.extend.telegrams.*;
-import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.DriveOrder;
 import org.youbai.opentcs.drivers.adapter.comm.VehicleTelegramDecoder;
 import org.youbai.opentcs.drivers.adapter.comm.VehicleTelegramEncoder;
 import org.youbai.opentcs.drivers.adapter.exchange.ProcessModelTO;
-import org.youbai.opentcs.drivers.adapter.netty.unetty.ConnectionEventListener;
-import org.youbai.opentcs.drivers.adapter.netty.unetty.TcpClientChannelManager;
+import org.youbai.opentcs.drivers.adapter.netty.ConnectionEventListener;
+import org.youbai.opentcs.drivers.adapter.netty.TcpClientChannelManager;
 import org.youbai.opentcs.drivers.adapter.telegrams.OrderRequest;
 import org.youbai.opentcs.drivers.adapter.telegrams.OrderResponse;
 import org.youbai.opentcs.drivers.adapter.telegrams.StateRequest;
@@ -31,6 +30,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.drivers.vehicle.BasicVehicleCommAdapter;
@@ -46,6 +47,7 @@ import static org.youbai.opentcs.util.Assertions.checkInRange;
  *
  * @author Mats Wilhelm (Fraunhofer IML)
  */
+
 public class CommAdapter
         extends BasicVehicleCommAdapter
         implements ConnectionEventListener<Response>,
@@ -96,11 +98,11 @@ public class CommAdapter
    * @param componentsFactory The components factory.
    * @param kernelExecutor The kernel's executor service.
    */
-  @Inject
+
   public CommAdapter(Vehicle vehicle,
-                            OrderMapper orderMapper,
-                            AdapterComponentsFactory componentsFactory,
-                            @KernelExecutor ExecutorService kernelExecutor) {
+                     OrderMapper orderMapper,
+                     AdapterComponentsFactory componentsFactory,
+                     ExecutorService kernelExecutor) {
     super(new ProcessModel(vehicle), 3, 2, LoadAction.CHARGE, kernelExecutor);
     this.orderMapper = requireNonNull(orderMapper, "orderMapper");
     this.componentsFactory = requireNonNull(componentsFactory, "componentsFactory");

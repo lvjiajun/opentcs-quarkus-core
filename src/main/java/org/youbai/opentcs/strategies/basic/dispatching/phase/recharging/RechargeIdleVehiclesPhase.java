@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static java.util.Objects.requireNonNull;
 import java.util.Optional;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import org.youbai.opentcs.access.to.order.DestinationCreationTO;
 import org.youbai.opentcs.access.to.order.TransportOrderCreationTO;
@@ -34,6 +35,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Dependent
 public class RechargeIdleVehiclesPhase
     implements Phase {
 

@@ -1,11 +1,5 @@
-package org.youbai.opentcs.drivers.adapter.netty.spring;
+package org.youbai.opentcs.drivers.adapter.netty;
 
-
-/**
- * A user event triggered when a channel is being associated to a key.
- *
- * @author Martin Grzenia (Fraunhofer IML)
- */
 public class ConnectionAssociatedEvent {
 
     /**

@@ -15,6 +15,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.Lifecycle;
 import org.youbai.opentcs.components.kernel.Router;
 import org.youbai.opentcs.components.kernel.services.InternalTransportOrderService;
@@ -36,6 +38,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
 public class TransportOrderUtil
     implements Lifecycle {
 

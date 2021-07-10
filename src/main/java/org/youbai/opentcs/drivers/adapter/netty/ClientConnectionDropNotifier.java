@@ -1,4 +1,4 @@
-package org.youbai.opentcs.drivers.adapter.netty.unetty;
+package org.youbai.opentcs.drivers.adapter.netty;
 
 import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandlerContext;

@@ -7,19 +7,19 @@
  */
 package org.youbai.opentcs.kernel.vehicles;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import java.util.HashMap;
-import java.util.Map;
-import static java.util.Objects.requireNonNull;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.components.kernel.services.InternalVehicleService;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapter;
 import org.youbai.opentcs.drivers.vehicle.VehicleController;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import javax.inject.Singleton;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.google.common.base.Preconditions.checkArgument;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Maintains associations of {@link Vehicle}, {@link VehicleController} and
@@ -68,6 +68,7 @@ public final class DefaultVehicleControllerPool
 
   @Override
   public void initialize() {
+
     if (initialized) {
       LOG.debug("Already initialized, doing nothing.");
       return;

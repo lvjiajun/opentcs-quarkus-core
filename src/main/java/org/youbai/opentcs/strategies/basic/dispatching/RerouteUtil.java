@@ -15,7 +15,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.Router;
 import org.youbai.opentcs.components.kernel.services.InternalTransportOrderService;
 import org.youbai.opentcs.data.TCSObjectReference;
@@ -36,6 +39,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@ApplicationScoped
 public class RerouteUtil {
 
   /**
@@ -65,7 +69,6 @@ public class RerouteUtil {
    * @param transportOrderService The object service.
    * @param configuration The configuration.
    */
-
   public RerouteUtil(Router router,
                      VehicleControllerPool vehicleControllerPool,
                      InternalTransportOrderService transportOrderService,

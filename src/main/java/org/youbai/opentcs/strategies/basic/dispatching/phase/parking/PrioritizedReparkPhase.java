@@ -8,6 +8,8 @@
 package org.youbai.opentcs.strategies.basic.dispatching.phase.parking;
 
 import static java.util.Objects.requireNonNull;
+
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import org.youbai.opentcs.components.kernel.Router;
 import org.youbai.opentcs.components.kernel.services.InternalTransportOrderService;
@@ -26,6 +28,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Dependent
 public class PrioritizedReparkPhase
     extends AbstractParkingPhase {
 

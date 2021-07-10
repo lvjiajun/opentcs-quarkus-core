@@ -13,11 +13,16 @@ import java.util.Collection;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.strategies.basic.dispatching.selection.RechargeVehicleSelectionFilter;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
+import javax.inject.Singleton;
+
 /**
  * Filters vehicles that are idle and have a degraded energy level.
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@ApplicationScoped
 public class IsIdleAndDegraded
     implements RechargeVehicleSelectionFilter {
 

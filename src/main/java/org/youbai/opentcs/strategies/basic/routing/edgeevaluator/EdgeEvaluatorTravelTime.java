@@ -12,11 +12,14 @@ import org.youbai.opentcs.components.kernel.routing.EdgeEvaluator;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.strategies.basic.routing.PointRouter;
 
+import javax.enterprise.context.ApplicationScoped;
+
 /**
  * Uses the estimated travel time (length/maximum velocity) for an edge as its weight.
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class EdgeEvaluatorTravelTime
     implements EdgeEvaluator {
 

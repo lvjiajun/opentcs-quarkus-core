@@ -11,11 +11,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import static java.util.Objects.requireNonNull;
+
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Point;
 import org.youbai.opentcs.data.model.Vehicle;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.strategies.basic.dispatching.selection.ParkVehicleSelectionFilter;
 
 /**
@@ -23,6 +28,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.selection.ParkVehicleSele
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@ApplicationScoped
 public class IsParkable
     implements ParkVehicleSelectionFilter {
 
@@ -37,7 +43,7 @@ public class IsParkable
    * @param objectService The object service.
    */
 
-  public IsParkable(TCSObjectService objectService) {
+  public IsParkable(@StandardTCSObjectAnnotations TCSObjectService objectService) {
     this.objectService = requireNonNull(objectService, "objectService");
   }
 

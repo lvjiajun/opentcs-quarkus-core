@@ -11,7 +11,7 @@ import org.apache.commons.codec.binary.Hex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.common.extend.telegrams.Response;
-import org.youbai.opentcs.drivers.adapter.netty.unetty.ConnectionEventListener;
+import org.youbai.opentcs.drivers.adapter.netty.ConnectionEventListener;
 import org.youbai.opentcs.drivers.adapter.telegrams.OrderResponse;
 import org.youbai.opentcs.drivers.adapter.telegrams.StateResponse;
 

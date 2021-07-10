@@ -16,11 +16,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
-import javax.inject.Named;
-import javax.inject.Provider;
 import javax.inject.Singleton;
 
 
@@ -30,10 +27,7 @@ import org.youbai.opentcs.access.ModelTransitionEvent;
 import org.youbai.opentcs.components.kernel.KernelExtension;
 import org.youbai.opentcs.components.kernel.services.NotificationService;
 import org.youbai.opentcs.data.notification.UserNotification;
-import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
-import org.youbai.opentcs.kernel.annotations.StandardKernelAnnotations;
-import org.youbai.opentcs.kernel.annotations.StandardNotificationServiceAnnotation;
-import org.youbai.opentcs.kernel.annotations.StateMapBinderProviderAnnotations;
+import org.youbai.opentcs.kernel.annotations.*;
 import org.youbai.opentcs.util.event.EventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,10 +61,6 @@ final class StandardKernel
    */
   private static final String MSG_NO_USER_MANAGEMENT = "No user management in local kernel";
   /**
-   * A map to state providers used when switching kernel states.
-   */
-  private final Map<State, KernelState> stateProviders;
-  /**
    * The application's event bus.
    */
   private final EventBus eventBus;
@@ -99,21 +89,33 @@ final class StandardKernel
    */
   private KernelState kernelState;
 
+  private final KernelStateModelling kernelStateModelling;
+
+  private final KernelStateOperating kernelStateOperating;
+
+  private final KernelStateShutdown kernelStateShutdown;
+
   /**
    * Creates a new kernel.
-   *
    * @param kernelExecutor An executor for this kernel's tasks.
    * @param stateProviders The state map to be used.
+   * @param kernelStateModelling
+   * @param kernelStateOperating
+   * @param kernelStateShutdown
    */
   @Inject
   StandardKernel(@SimpleEventBusAnnotation EventBus eventBus,
                  ScheduledExecutorService kernelExecutor,
-                 @StateMapBinderProviderAnnotations Map<State, KernelState> stateProviders,
-                 @StandardNotificationServiceAnnotation NotificationService notificationService) {
+                 @StandardNotificationServiceAnnotation NotificationService notificationService,
+                 KernelStateModelling kernelStateModelling,
+                 KernelStateOperating kernelStateOperating,
+                 KernelStateShutdown kernelStateShutdown) {
     this.eventBus = requireNonNull(eventBus, "eventBus");
     this.kernelExecutor = requireNonNull(kernelExecutor, "kernelExecutor");
-    this.stateProviders = requireNonNull(stateProviders, "stateProviders");
     this.notificationService = requireNonNull(notificationService, "notificationService");
+    this.kernelStateModelling = kernelStateModelling;
+    this.kernelStateOperating = kernelStateOperating;
+    this.kernelStateShutdown = kernelStateShutdown;
   }
 
   @Override
@@ -199,16 +201,16 @@ final class StandardKernel
     LOG.info("Switching kernel to state '{}'", newState.name());
     switch (newState) {
       case SHUTDOWN:
-        kernelState = stateProviders.get(State.SHUTDOWN);
+        kernelState = kernelStateShutdown;
         kernelState.initialize();
         terminate();
         break;
       case MODELLING:
-        kernelState = stateProviders.get(State.MODELLING);
+        kernelState = kernelStateModelling;
         kernelState.initialize();
         break;
       case OPERATING:
-        kernelState = stateProviders.get(State.OPERATING);
+        kernelState = kernelStateOperating;
         kernelState.initialize();
         break;
       default:

@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+
 abstract class KernelStateOnline
     extends KernelState {
 

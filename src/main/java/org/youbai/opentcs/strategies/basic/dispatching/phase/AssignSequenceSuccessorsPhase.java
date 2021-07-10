@@ -9,6 +9,7 @@ package org.youbai.opentcs.strategies.basic.dispatching.phase;
 
 import static java.util.Objects.requireNonNull;
 import java.util.Optional;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import org.youbai.opentcs.components.kernel.Router;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
@@ -16,6 +17,7 @@ import org.youbai.opentcs.data.model.Point;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.OrderSequence;
 import org.youbai.opentcs.data.order.TransportOrder;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
 import org.youbai.opentcs.strategies.basic.dispatching.Phase;
 import org.youbai.opentcs.strategies.basic.dispatching.TransportOrderUtil;
@@ -26,6 +28,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.selection.candidates.Comp
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Dependent
 public class AssignSequenceSuccessorsPhase
     implements Phase {
 
@@ -50,7 +53,7 @@ public class AssignSequenceSuccessorsPhase
 
 
   public AssignSequenceSuccessorsPhase(
-      TCSObjectService objectService,
+      @StandardTCSObjectAnnotations TCSObjectService objectService,
       Router router,
       CompositeAssignmentCandidateSelectionFilter assignmentCandidateSelectionFilter,
       TransportOrderUtil transportOrderUtil) {

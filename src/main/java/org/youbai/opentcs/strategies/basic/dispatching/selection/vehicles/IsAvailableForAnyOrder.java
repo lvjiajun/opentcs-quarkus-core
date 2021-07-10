@@ -9,11 +9,13 @@ package org.youbai.opentcs.strategies.basic.dispatching.selection.vehicles;
 
 import static java.util.Objects.requireNonNull;
 import java.util.function.Predicate;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.data.ObjectHistory;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.TransportOrder;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.strategies.basic.dispatching.DefaultDispatcherConfiguration;
 import org.youbai.opentcs.strategies.basic.dispatching.OrderReservationPool;
 import org.youbai.opentcs.strategies.basic.dispatching.selection.VehicleSelectionFilter;
@@ -28,6 +30,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.selection.VehicleSelectio
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@ApplicationScoped
 public class IsAvailableForAnyOrder
     implements Predicate<Vehicle> {
 
@@ -52,7 +55,7 @@ public class IsAvailableForAnyOrder
    * @param configuration The default dispatcher configuration.
    */
 
-  public IsAvailableForAnyOrder(TCSObjectService objectService,
+  public IsAvailableForAnyOrder(@StandardTCSObjectAnnotations TCSObjectService objectService,
                                 OrderReservationPool orderReservationPool,
                                 DefaultDispatcherConfiguration configuration) {
     this.objectService = requireNonNull(objectService, "objectService");

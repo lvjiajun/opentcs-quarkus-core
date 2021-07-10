@@ -19,6 +19,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.youbai.opentcs.components.kernel.Router;
@@ -90,7 +91,7 @@ public class DefaultRouter
    */
 
   public DefaultRouter(@StandardTCSObjectAnnotations TCSObjectService objectService,
-                       PointRouterFactory pointRouterFactory,
+                       @Named("PointRouterFactory") PointRouterFactory pointRouterFactory,
                        GroupMapper routingGroupMapper,
                        DefaultRouterConfiguration configuration) {
     this.objectService = requireNonNull(objectService, "objectService");

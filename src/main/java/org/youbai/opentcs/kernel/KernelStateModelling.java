@@ -9,13 +9,13 @@ package org.youbai.opentcs.kernel;
 
 import static java.util.Objects.requireNonNull;
 import java.util.Set;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import org.youbai.opentcs.access.Kernel;
 import org.youbai.opentcs.components.kernel.KernelExtension;
 import org.youbai.opentcs.customizations.kernel.ActiveInModellingMode;
-import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
 import org.youbai.opentcs.kernel.annotations.XMLFileModelAnnotations;
 import org.youbai.opentcs.kernel.persistence.ModelPersister;
 import org.youbai.opentcs.kernel.workingset.Model;
@@ -39,7 +39,7 @@ class KernelStateModelling
   /**
    * This kernel state's local extensions.
    */
-  private final Set<KernelExtension> extensions;
+  private final Instance<KernelExtension> extensions;
   /**
    * This instance's <em>initialized</em> flag.
    */
@@ -58,7 +58,7 @@ class KernelStateModelling
                        Model model,
                        @XMLFileModelAnnotations ModelPersister modelPersister,
                        KernelApplicationConfiguration configuration,
-                       @ActiveInModellingMode Set<KernelExtension> extensions) {
+                       Instance<KernelExtension> extensions) {
     super(globalSyncObject,
           objectPool,
           model,

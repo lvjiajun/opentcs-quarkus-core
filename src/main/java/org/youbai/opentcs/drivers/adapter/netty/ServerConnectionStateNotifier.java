@@ -1,4 +1,4 @@
-package org.youbai.opentcs.drivers.adapter.netty.unetty;
+package org.youbai.opentcs.drivers.adapter.netty;
 
 import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -8,7 +8,6 @@ import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.youbai.opentcs.drivers.adapter.netty.spring.ConnectionAssociatedEvent;
 
 /**
  * Notifies a listener about connection state changes.

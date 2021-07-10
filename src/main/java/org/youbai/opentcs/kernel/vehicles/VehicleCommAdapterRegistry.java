@@ -15,6 +15,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -71,9 +72,9 @@ public class VehicleCommAdapterRegistry
    * @param kernel A reference to the local kernel.
    * @param factories The comm adapter factories.
    */
-  @Singleton
+
   public VehicleCommAdapterRegistry(@StandardKernelAnnotations LocalKernel kernel,
-                                    Set<VehicleCommAdapterFactory> factories) {
+                                    Instance<VehicleCommAdapterFactory> factories) {
     requireNonNull(kernel, "kernel");
 
     for (VehicleCommAdapterFactory factory : factories) {
@@ -81,7 +82,7 @@ public class VehicleCommAdapterRegistry
       this.factories.put(factory.getDescription(), factory);
     }
 
-    checkState(!factories.isEmpty(), "No adapter factories found.");
+    checkState(!factories.isUnsatisfied(), "No adapter factories found.");
   }
 
   @Override

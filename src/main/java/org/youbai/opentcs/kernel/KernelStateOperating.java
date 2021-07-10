@@ -9,7 +9,7 @@ package org.youbai.opentcs.kernel;
 
 import com.google.common.util.concurrent.Uninterruptibles;
 import static java.util.Objects.requireNonNull;
-import java.util.Set;
+
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
@@ -24,9 +24,6 @@ import org.youbai.opentcs.components.kernel.PeripheralJobDispatcher;
 import org.youbai.opentcs.components.kernel.Router;
 import org.youbai.opentcs.components.kernel.Scheduler;
 import org.youbai.opentcs.components.kernel.services.InternalVehicleService;
-import org.youbai.opentcs.customizations.kernel.ActiveInOperatingMode;
-import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
-import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.kernel.annotations.XMLFileModelAnnotations;
 import org.youbai.opentcs.kernel.extensions.controlcenter.vehicles.AttachmentManager;

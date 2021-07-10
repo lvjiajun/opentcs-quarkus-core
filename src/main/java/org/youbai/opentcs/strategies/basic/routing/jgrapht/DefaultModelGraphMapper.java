@@ -10,6 +10,7 @@ package org.youbai.opentcs.strategies.basic.routing.jgrapht;
 import java.util.Collection;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DirectedWeightedMultigraph;
@@ -26,6 +27,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class DefaultModelGraphMapper
     implements ModelGraphMapper {
 

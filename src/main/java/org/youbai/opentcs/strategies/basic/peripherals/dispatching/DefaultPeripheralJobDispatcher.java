@@ -26,6 +26,7 @@ import org.youbai.opentcs.data.peripherals.PeripheralJob;
 import org.youbai.opentcs.drivers.peripherals.PeripheralJobCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.StandardPeripheralJobServiceAnnotations;
 
 /**
  * Dispatches peripheral jobs and peripheral devices represented by locations.
@@ -87,7 +88,7 @@ public class DefaultPeripheralJobDispatcher
   @Inject
   public DefaultPeripheralJobDispatcher(
       InternalPeripheralService peripheralService,
-      InternalPeripheralJobService peripheralJobService,
+      @StandardPeripheralJobServiceAnnotations InternalPeripheralJobService peripheralJobService,
       ScheduledExecutorService kernelExecutor,
       FullDispatchTask fullDispatchTask,
       PeriodicPeripheralRedispatchingTask periodicDispatchTaskProvider,

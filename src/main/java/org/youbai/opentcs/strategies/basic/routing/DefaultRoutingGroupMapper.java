@@ -12,12 +12,15 @@ import static org.youbai.opentcs.components.kernel.Router.PROPKEY_ROUTING_GROUP;
 import org.youbai.opentcs.components.kernel.routing.GroupMapper;
 import org.youbai.opentcs.data.model.Vehicle;
 
+import javax.inject.Singleton;
+
 /**
  * Determines a vehicle's routing group by reading it's {@link Router#PROPKEY_ROUTING_GROUP}
  * property. Returns {@link #DEFAULT_ROUTING_GROUP} if the property does not exist or is invalid.
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class DefaultRoutingGroupMapper
     implements GroupMapper {
 
