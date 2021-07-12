@@ -10,12 +10,15 @@ package org.youbai.opentcs.strategies.basic.dispatching.priorization.vehicle;
 import java.util.Comparator;
 import org.youbai.opentcs.data.model.Vehicle;
 
+import javax.enterprise.context.ApplicationScoped;
+
 /**
  * Compares {@link Vehicle}s by energy level, sorting higher energy levels up.
  * Note: this comparator imposes orderings that are inconsistent with equals.
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class VehicleComparatorByEnergyLevel
     implements Comparator<Vehicle> {
 

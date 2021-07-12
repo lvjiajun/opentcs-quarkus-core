@@ -91,7 +91,7 @@ public class DefaultRouter
    */
 
   public DefaultRouter(@StandardTCSObjectAnnotations TCSObjectService objectService,
-                       @Named("PointRouterFactory") PointRouterFactory pointRouterFactory,
+                       @Named("pointRouterFactory")PointRouterFactory pointRouterFactory,
                        GroupMapper routingGroupMapper,
                        DefaultRouterConfiguration configuration) {
     this.objectService = requireNonNull(objectService, "objectService");

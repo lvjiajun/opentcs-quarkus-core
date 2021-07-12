@@ -11,9 +11,12 @@ import org.youbai.opentcs.kernel.annotations.StandardDispatcherServiceAnnotation
 import org.youbai.opentcs.kernel.annotations.StandardNotificationServiceAnnotation;
 import org.youbai.opentcs.util.event.EventBus;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
+import javax.inject.Named;
 
+@ApplicationScoped
 public class VehicleControllerFactoryImp {
 
 
@@ -23,7 +26,7 @@ public class VehicleControllerFactoryImp {
     NotificationService notificationService;
     @Inject @StandardDispatcherServiceAnnotations
     DispatcherService dispatcherService;
-    @Inject
+    @Inject@Named("bindScheduler")
     Scheduler scheduler;
     @Inject @SimpleEventBusAnnotation
     EventBus eventBus;

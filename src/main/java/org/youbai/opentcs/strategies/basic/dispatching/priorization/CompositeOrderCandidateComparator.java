@@ -12,6 +12,8 @@ import java.util.Comparator;
 import java.util.Map;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
+
 import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
 import org.youbai.opentcs.strategies.basic.dispatching.DefaultDispatcherConfiguration;
 import org.youbai.opentcs.strategies.basic.dispatching.priorization.candidate.CandidateComparatorByOrderAge;
@@ -37,7 +39,7 @@ public class CompositeOrderCandidateComparator
 
   public CompositeOrderCandidateComparator(
       DefaultDispatcherConfiguration configuration,
-      Map<String, Comparator<AssignmentCandidate>> availableComparators) {
+       Map<String, Comparator<AssignmentCandidate>> availableComparators) {
     // At the end, if all other comparators failed to see a difference, compare by age.
     // As the age of two distinct transport orders may still be the same, finally compare by name.
     // Add configured comparators before these two.

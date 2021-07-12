@@ -12,12 +12,15 @@ import org.youbai.opentcs.data.order.TransportOrder;
 import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
 import org.youbai.opentcs.strategies.basic.dispatching.priorization.transportorder.TransportOrderComparatorByDeadline;
 
+import javax.enterprise.context.ApplicationScoped;
+
 /**
  * Compares {@link AssignmentCandidate}s by deadline of the order.
  * Note: this comparator imposes orderings that are inconsistent with equals.
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class CandidateComparatorByDeadline
     implements Comparator<AssignmentCandidate> {
 

@@ -17,12 +17,15 @@ import java.util.concurrent.Executors;
 import org.youbai.opentcs.components.kernel.Scheduler;
 import org.youbai.opentcs.data.model.TCSResource;
 
+import javax.enterprise.context.ApplicationScoped;
+
 /**
  * A <code>Scheduler</code> implementation that does not really do any resource management - all
  * allocations are granted immediately without checking.
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class DummyScheduler
     implements Scheduler {
 

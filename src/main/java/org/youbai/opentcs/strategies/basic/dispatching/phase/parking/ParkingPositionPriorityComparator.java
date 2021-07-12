@@ -9,7 +9,11 @@ package org.youbai.opentcs.strategies.basic.dispatching.phase.parking;
 
 import java.util.Comparator;
 import static java.util.Objects.requireNonNull;
+
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.data.model.Point;
 
 /**
@@ -17,6 +21,7 @@ import org.youbai.opentcs.data.model.Point;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@ApplicationScoped
 public class ParkingPositionPriorityComparator
     implements Comparator<Point> {
 
@@ -30,7 +35,7 @@ public class ParkingPositionPriorityComparator
    *
    * @param priorityFunction A function computing the priority of a parking position.
    */
-
+  @Inject
   public ParkingPositionPriorityComparator(ParkingPositionToPriorityFunction priorityFunction) {
     this.priorityFunction = requireNonNull(priorityFunction, "priorityFunction");
   }

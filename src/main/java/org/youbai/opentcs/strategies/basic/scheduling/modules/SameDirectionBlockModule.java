@@ -18,6 +18,7 @@ import java.util.Queue;
 import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.youbai.opentcs.components.kernel.Scheduler;
 import static org.youbai.opentcs.components.kernel.Scheduler.PROPKEY_BLOCK_ENTRY_DIRECTION;
@@ -37,6 +38,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@ApplicationScoped
 public class SameDirectionBlockModule
     implements Scheduler.Module {
 

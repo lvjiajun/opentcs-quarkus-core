@@ -15,6 +15,7 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.youbai.opentcs.access.Kernel;
@@ -136,7 +137,7 @@ class KernelStateOperating
                        @XMLFileModelAnnotations ModelPersister modelPersister,
                        KernelApplicationConfiguration configuration,
                        Router router,
-                       Scheduler scheduler,
+                       @Named("bindScheduler") Scheduler scheduler,
                        Dispatcher dispatcher,
                        PeripheralJobDispatcher peripheralJobDispatcher,
                        LocalVehicleControllerPool controllerPool,

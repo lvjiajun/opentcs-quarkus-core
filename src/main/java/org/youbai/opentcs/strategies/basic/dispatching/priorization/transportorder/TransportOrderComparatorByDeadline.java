@@ -10,12 +10,15 @@ package org.youbai.opentcs.strategies.basic.dispatching.priorization.transportor
 import java.util.Comparator;
 import org.youbai.opentcs.data.order.TransportOrder;
 
+import javax.enterprise.context.ApplicationScoped;
+
 /**
  * Compares {@link TransportOrder}s by age.
  * Note: this comparator imposes orderings that are inconsistent with equals.
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class TransportOrderComparatorByDeadline
     implements Comparator<TransportOrder> {
 

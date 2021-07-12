@@ -24,7 +24,6 @@ import org.youbai.opentcs.components.kernel.services.NotificationService;
 import org.youbai.opentcs.components.kernel.services.PlantModelService;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.customizations.ApplicationEventBus;
-import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
 import org.youbai.opentcs.data.ObjectExistsException;
 import org.youbai.opentcs.data.ObjectUnknownException;
 import org.youbai.opentcs.data.TCSObjectReference;
@@ -32,6 +31,7 @@ import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.TCSResource;
 import org.youbai.opentcs.data.model.TCSResourceReference;
 import org.youbai.opentcs.data.notification.UserNotification;
+import org.youbai.opentcs.kernel.GlobalSyncObject;
 import org.youbai.opentcs.kernel.annotations.*;
 import org.youbai.opentcs.kernel.persistence.ModelPersister;
 import org.youbai.opentcs.kernel.workingset.Model;
@@ -92,7 +92,7 @@ public class StandardPlantModelService
 
   public StandardPlantModelService(@StandardKernelAnnotations LocalKernel kernel,
                                    @StandardTCSObjectAnnotations TCSObjectService objectService,
-                                   Object globalSyncObject,
+                                   GlobalSyncObject globalSyncObject,
                                    Model model,
                                    @XMLFileModelAnnotations ModelPersister modelPersister,
                                    @SimpleEventBusAnnotation EventHandler eventHandler,

@@ -9,6 +9,7 @@ package org.youbai.opentcs.strategies.basic.routing.jgrapht;
 
 import javax.annotation.Nonnull;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import org.jgrapht.Graph;
 import org.jgrapht.alg.interfaces.ShortestPathAlgorithm;
@@ -23,7 +24,7 @@ import org.youbai.opentcs.strategies.basic.routing.PointRouter;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@ApplicationScoped
+@Dependent
 public class BellmanFordPointRouterFactory
     extends AbstractPointRouterFactory {
 

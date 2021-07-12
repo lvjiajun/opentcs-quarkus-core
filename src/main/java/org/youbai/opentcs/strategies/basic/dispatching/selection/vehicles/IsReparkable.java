@@ -28,7 +28,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.selection.ReparkVehicleSe
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@ApplicationScoped
+@Singleton
 public class IsReparkable
     implements ReparkVehicleSelectionFilter {
 

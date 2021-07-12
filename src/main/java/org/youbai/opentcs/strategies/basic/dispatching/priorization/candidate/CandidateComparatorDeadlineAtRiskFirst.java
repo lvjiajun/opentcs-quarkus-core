@@ -9,6 +9,8 @@ package org.youbai.opentcs.strategies.basic.dispatching.priorization.candidate;
 
 import java.util.Comparator;
 import static java.util.Objects.requireNonNull;
+
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.youbai.opentcs.data.order.TransportOrder;
 import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
@@ -21,6 +23,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.priorization.transportord
  *
  * @author Mustafa Yalciner (Fraunhofer IML)
  */
+@ApplicationScoped
 public class CandidateComparatorDeadlineAtRiskFirst
     implements Comparator<AssignmentCandidate> {
 

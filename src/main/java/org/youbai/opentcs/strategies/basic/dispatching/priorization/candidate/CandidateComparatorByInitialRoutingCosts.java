@@ -10,6 +10,8 @@ package org.youbai.opentcs.strategies.basic.dispatching.priorization.candidate;
 import java.util.Comparator;
 import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
 
+import javax.enterprise.context.ApplicationScoped;
+
 /**
  * Compares {@link AssignmentCandidate}s by routing costs to the transport order's first
  * destination.
@@ -17,6 +19,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class CandidateComparatorByInitialRoutingCosts
     implements Comparator<AssignmentCandidate> {
 

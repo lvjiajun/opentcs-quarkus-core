@@ -14,6 +14,8 @@ import org.youbai.opentcs.data.order.DriveOrder;
 import org.youbai.opentcs.data.order.TransportOrder;
 import org.youbai.opentcs.util.Assertions;
 
+import javax.enterprise.context.ApplicationScoped;
+
 import static org.youbai.opentcs.util.Assertions.checkArgument;
 
 /**

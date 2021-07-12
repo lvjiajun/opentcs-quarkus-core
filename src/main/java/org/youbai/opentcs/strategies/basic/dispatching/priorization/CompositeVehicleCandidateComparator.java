@@ -10,6 +10,7 @@ package org.youbai.opentcs.strategies.basic.dispatching.priorization;
 import com.google.common.collect.Lists;
 import java.util.Comparator;
 import java.util.Map;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
@@ -25,7 +26,7 @@ import static org.youbai.opentcs.util.Assertions.checkArgument;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@Dependent
+@ApplicationScoped
 public class CompositeVehicleCandidateComparator
     implements Comparator<AssignmentCandidate> {
 

@@ -12,7 +12,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.strategies.basic.dispatching.selection.VehicleSelectionFilter;
 
@@ -21,17 +24,17 @@ import org.youbai.opentcs.strategies.basic.dispatching.selection.VehicleSelectio
  * 
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ApplicationScoped
+@Singleton
 public class CompositeVehicleSelectionFilter
     implements VehicleSelectionFilter {
 
   /**
    * The {@link VehicleSelectionFilter}s.
    */
-  private final Set<VehicleSelectionFilter> filters;
+  private final Instance<VehicleSelectionFilter> filters;
   
 
-  public CompositeVehicleSelectionFilter(Set<VehicleSelectionFilter> filters) {
+  public CompositeVehicleSelectionFilter(Instance<VehicleSelectionFilter> filters) {
     this.filters = requireNonNull(filters, "filters");
   }
 

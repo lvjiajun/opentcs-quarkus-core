@@ -20,13 +20,14 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.youbai.opentcs.components.kernel.ResourceAllocationException;
 import org.youbai.opentcs.components.kernel.Scheduler;
 import org.youbai.opentcs.components.kernel.services.InternalPlantModelService;
-import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
 import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.model.TCSResource;
+import org.youbai.opentcs.kernel.GlobalSyncObject;
 import org.youbai.opentcs.strategies.basic.scheduling.AllocatorCommand.Allocate;
 import org.youbai.opentcs.strategies.basic.scheduling.AllocatorCommand.AllocationsReleased;
 import org.youbai.opentcs.strategies.basic.scheduling.AllocatorCommand.CheckAllocationsPrepared;
@@ -41,6 +42,7 @@ import org.slf4j.LoggerFactory;
  * @author Iryna Felko (Fraunhofer IML)
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class DefaultScheduler
     implements Scheduler {
 
@@ -94,8 +96,8 @@ public class DefaultScheduler
   public DefaultScheduler(InternalPlantModelService plantModelService,
                           AllocationAdvisor allocationAdvisor,
                           ReservationPool reservationPool,
-                          @KernelExecutor ScheduledExecutorService kernelExecutor,
-                          Object globalSyncObject) {
+                          ScheduledExecutorService kernelExecutor,
+                          GlobalSyncObject globalSyncObject) {
     this.plantModelService = requireNonNull(plantModelService, "plantModelService");
     this.allocationAdvisor = requireNonNull(allocationAdvisor, "allocationAdvisor");
     this.reservationPool = requireNonNull(reservationPool, "reservationPool");

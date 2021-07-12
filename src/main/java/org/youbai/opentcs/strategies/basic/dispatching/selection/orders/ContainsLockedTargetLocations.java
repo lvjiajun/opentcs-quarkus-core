@@ -12,11 +12,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import static java.util.Objects.requireNonNull;
+
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.order.TransportOrder;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.strategies.basic.dispatching.selection.TransportOrderSelectionFilter;
 
 /**
@@ -24,6 +27,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.selection.TransportOrderS
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@ApplicationScoped
 public class ContainsLockedTargetLocations
     implements TransportOrderSelectionFilter {
 
@@ -33,7 +37,7 @@ public class ContainsLockedTargetLocations
   private final TCSObjectService objectService;
 
 
-  public ContainsLockedTargetLocations(TCSObjectService objectService) {
+  public ContainsLockedTargetLocations(@StandardTCSObjectAnnotations TCSObjectService objectService) {
     this.objectService = requireNonNull(objectService, "objectService");
   }
 

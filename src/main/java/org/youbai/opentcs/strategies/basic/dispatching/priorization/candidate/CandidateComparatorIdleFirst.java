@@ -12,12 +12,15 @@ import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
 import org.youbai.opentcs.strategies.basic.dispatching.priorization.vehicle.VehicleComparatorIdleFirst;
 
+import javax.enterprise.context.ApplicationScoped;
+
 /**
  * Compares {@link AssignmentCandidate}s by vehicles' states, ordering IDLE vehicles first.
  * Note: this comparator imposes orderings that are inconsistent with equals.
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class CandidateComparatorIdleFirst
     implements Comparator<AssignmentCandidate> {
 

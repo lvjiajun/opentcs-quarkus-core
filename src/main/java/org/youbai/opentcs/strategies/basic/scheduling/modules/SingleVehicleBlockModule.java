@@ -13,6 +13,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.youbai.opentcs.components.kernel.Scheduler;
 import org.youbai.opentcs.components.kernel.services.InternalPlantModelService;
@@ -31,6 +32,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@ApplicationScoped
 public class SingleVehicleBlockModule
     implements Scheduler.Module {
 

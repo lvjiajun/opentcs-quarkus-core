@@ -10,11 +10,14 @@ package org.youbai.opentcs.strategies.basic.dispatching.priorization.transportor
 import java.util.Comparator;
 import org.youbai.opentcs.data.order.TransportOrder;
 
+import javax.enterprise.context.ApplicationScoped;
+
 /**
  * Compares {@link TransportOrder}s by their names.
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class TransportOrderComparatorByName
     implements Comparator<TransportOrder> {
 

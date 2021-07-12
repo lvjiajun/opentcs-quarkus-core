@@ -12,6 +12,8 @@ import java.util.Comparator;
 import java.util.Map;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
+
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.strategies.basic.dispatching.DefaultDispatcherConfiguration;
 import org.youbai.opentcs.strategies.basic.dispatching.priorization.vehicle.VehicleComparatorByEnergyLevel;

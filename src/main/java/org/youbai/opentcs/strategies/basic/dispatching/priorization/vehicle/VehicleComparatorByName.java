@@ -10,11 +10,14 @@ package org.youbai.opentcs.strategies.basic.dispatching.priorization.vehicle;
 import java.util.Comparator;
 import org.youbai.opentcs.data.model.Vehicle;
 
+import javax.enterprise.context.ApplicationScoped;
+
 /**
  * Compares {@link Vehicle}s by their names.
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class VehicleComparatorByName
     implements Comparator<Vehicle> {
 

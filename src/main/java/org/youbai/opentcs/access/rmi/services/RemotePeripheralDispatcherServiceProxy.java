@@ -14,12 +14,15 @@ import org.youbai.opentcs.data.ObjectUnknownException;
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.TCSResourceReference;
 
+import javax.enterprise.context.ApplicationScoped;
+
 /**
  * The default implementation of the peripheral dispatcher service.
  * Delegates method invocations to the corresponding remote service.
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@ApplicationScoped
 class RemotePeripheralDispatcherServiceProxy
     extends AbstractRemoteServiceProxy<RemotePeripheralDispatcherService>
     implements PeripheralDispatcherService {

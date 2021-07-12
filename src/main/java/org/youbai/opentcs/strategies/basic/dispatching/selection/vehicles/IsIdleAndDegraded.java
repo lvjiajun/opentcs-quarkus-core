@@ -22,7 +22,7 @@ import javax.inject.Singleton;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ApplicationScoped
+@Singleton
 public class IsIdleAndDegraded
     implements RechargeVehicleSelectionFilter {
 

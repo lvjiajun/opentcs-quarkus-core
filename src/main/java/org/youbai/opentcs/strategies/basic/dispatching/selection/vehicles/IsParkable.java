@@ -28,7 +28,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.selection.ParkVehicleSele
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ApplicationScoped
+@Singleton
 public class IsParkable
     implements ParkVehicleSelectionFilter {
 

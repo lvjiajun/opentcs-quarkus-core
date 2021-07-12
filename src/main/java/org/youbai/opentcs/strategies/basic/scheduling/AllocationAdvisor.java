@@ -11,6 +11,8 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import javax.annotation.Nonnull;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import org.youbai.opentcs.components.kernel.Scheduler;
 import org.youbai.opentcs.data.model.TCSResource;
@@ -22,6 +24,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class AllocationAdvisor
     implements Scheduler.Module {
 
@@ -32,7 +35,7 @@ public class AllocationAdvisor
   /**
    * The submodules.
    */
-  private final Set<Scheduler.Module> modules;
+  private final Instance<Scheduler.Module> modules;
   /**
    * This instance's initialized flag.
    */
@@ -44,7 +47,7 @@ public class AllocationAdvisor
    * @param modules The submodules.
    */
 
-  public AllocationAdvisor(Set<Scheduler.Module> modules) {
+  public AllocationAdvisor(Instance<Scheduler.Module> modules) {
     this.modules = requireNonNull(modules, "modules");
   }
 

@@ -12,11 +12,14 @@ import org.youbai.opentcs.data.order.TransportOrder;
 import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
 import org.youbai.opentcs.strategies.basic.dispatching.priorization.transportorder.TransportOrderComparatorByName;
 
+import javax.enterprise.context.ApplicationScoped;
+
 /**
  * Compares {@link AssignmentCandidate}s by name of the order.
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class CandidateComparatorByOrderName
     implements Comparator<AssignmentCandidate> {
 

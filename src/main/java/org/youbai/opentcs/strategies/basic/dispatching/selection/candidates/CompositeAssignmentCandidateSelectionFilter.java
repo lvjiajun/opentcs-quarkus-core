@@ -12,6 +12,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
 import org.youbai.opentcs.strategies.basic.dispatching.selection.AssignmentCandidateSelectionFilter;
@@ -28,11 +29,11 @@ public class CompositeAssignmentCandidateSelectionFilter
   /**
    * The {@link AssignmentCandidateSelectionFilter}s.
    */
-  private final Set<AssignmentCandidateSelectionFilter> filters;
+  private final Instance<AssignmentCandidateSelectionFilter> filters;
 
 
   public CompositeAssignmentCandidateSelectionFilter(
-      Set<AssignmentCandidateSelectionFilter> filters) {
+          Instance<AssignmentCandidateSelectionFilter> filters) {
     this.filters = requireNonNull(filters, "filters");
   }
 

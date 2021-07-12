@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.List;
 import static java.util.Objects.requireNonNull;
 import java.util.stream.Collectors;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.OrderConstants;
@@ -30,6 +31,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class IsProcessable
     implements AssignmentCandidateSelectionFilter {
 

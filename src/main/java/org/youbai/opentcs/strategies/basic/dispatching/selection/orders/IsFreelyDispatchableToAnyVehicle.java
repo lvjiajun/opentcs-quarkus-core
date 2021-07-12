@@ -11,6 +11,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.function.Predicate;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.data.ObjectHistory;
 import org.youbai.opentcs.data.order.OrderSequence;

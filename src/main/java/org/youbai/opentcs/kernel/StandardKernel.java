@@ -21,6 +21,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 
+import org.youbai.opentcs.access.Kernel;
 import org.youbai.opentcs.access.KernelStateTransitionEvent;
 import org.youbai.opentcs.access.LocalKernel;
 import org.youbai.opentcs.access.ModelTransitionEvent;
@@ -88,34 +89,24 @@ final class StandardKernel
    * The kernel implementing the actual functionality for the current mode.
    */
   private KernelState kernelState;
-
-  private final KernelStateModelling kernelStateModelling;
-
-  private final KernelStateOperating kernelStateOperating;
-
-  private final KernelStateShutdown kernelStateShutdown;
-
+  /**
+   * A map to state providers used when switching kernel states.
+   */
+  private final Map<Kernel.State, KernelState> stateProviders;
   /**
    * Creates a new kernel.
    * @param kernelExecutor An executor for this kernel's tasks.
    * @param stateProviders The state map to be used.
-   * @param kernelStateModelling
-   * @param kernelStateOperating
-   * @param kernelStateShutdown
    */
   @Inject
   StandardKernel(@SimpleEventBusAnnotation EventBus eventBus,
                  ScheduledExecutorService kernelExecutor,
                  @StandardNotificationServiceAnnotation NotificationService notificationService,
-                 KernelStateModelling kernelStateModelling,
-                 KernelStateOperating kernelStateOperating,
-                 KernelStateShutdown kernelStateShutdown) {
+                 Map<Kernel.State, KernelState> stateProviders) {
     this.eventBus = requireNonNull(eventBus, "eventBus");
     this.kernelExecutor = requireNonNull(kernelExecutor, "kernelExecutor");
     this.notificationService = requireNonNull(notificationService, "notificationService");
-    this.kernelStateModelling = kernelStateModelling;
-    this.kernelStateOperating = kernelStateOperating;
-    this.kernelStateShutdown = kernelStateShutdown;
+    this.stateProviders = requireNonNull(stateProviders, "stateProviders");
   }
 
   @Override
@@ -201,16 +192,16 @@ final class StandardKernel
     LOG.info("Switching kernel to state '{}'", newState.name());
     switch (newState) {
       case SHUTDOWN:
-        kernelState = kernelStateShutdown;
+        kernelState = stateProviders.get(Kernel.State.SHUTDOWN);
         kernelState.initialize();
         terminate();
         break;
       case MODELLING:
-        kernelState = kernelStateModelling;
+        kernelState = stateProviders.get(Kernel.State.MODELLING);
         kernelState.initialize();
         break;
       case OPERATING:
-        kernelState = kernelStateOperating;
+        kernelState = stateProviders.get(Kernel.State.OPERATING);
         kernelState.initialize();
         break;
       default:

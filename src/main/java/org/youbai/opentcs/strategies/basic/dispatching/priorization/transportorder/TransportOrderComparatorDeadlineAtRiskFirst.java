@@ -10,6 +10,8 @@ package org.youbai.opentcs.strategies.basic.dispatching.priorization.transportor
 import java.time.Instant;
 import java.util.Comparator;
 import static java.util.Objects.requireNonNull;
+
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import org.youbai.opentcs.data.order.TransportOrder;
 import org.youbai.opentcs.strategies.basic.dispatching.DefaultDispatcherConfiguration;
@@ -21,6 +23,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.DefaultDispatcherConfigur
  *
  * @author Mustafa Yalciner (Fraunhofer IML)
  */
+@ApplicationScoped
 public class TransportOrderComparatorDeadlineAtRiskFirst
     implements Comparator<TransportOrder> {
 
