@@ -9,8 +9,11 @@ package org.youbai.opentcs.strategies.basic.dispatching;
 
 import static java.util.Objects.requireNonNull;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.Lifecycle;
 import org.youbai.opentcs.strategies.basic.dispatching.phase.AssignReservedOrdersPhase;
 import org.youbai.opentcs.strategies.basic.dispatching.phase.AssignSequenceSuccessorsPhase;
@@ -30,7 +33,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@Dependent
+@Singleton
 public class FullDispatchTask
     implements Runnable,
         Lifecycle {

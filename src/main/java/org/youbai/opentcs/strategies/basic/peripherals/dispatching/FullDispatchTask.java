@@ -10,6 +10,7 @@ package org.youbai.opentcs.strategies.basic.peripherals.dispatching;
 import static java.util.Objects.requireNonNull;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import org.youbai.opentcs.components.Lifecycle;
 import org.youbai.opentcs.strategies.basic.peripherals.dispatching.phase.AssignFreePeripheralsPhase;
@@ -45,12 +46,9 @@ public class FullDispatchTask
   public FullDispatchTask(AssignReservedPeripheralsPhase assignReservedPeripheralsPhase,
                           ReleasePeripheralsPhase releasePeripheralsPhase,
                           AssignFreePeripheralsPhase assignFreePeripheralsPhase) {
-    this.assignReservedPeripheralsPhase = requireNonNull(assignReservedPeripheralsPhase,
-                                                         "assignReservedPeripheralsPhase");
-    this.releasePeripheralsPhase = requireNonNull(releasePeripheralsPhase, 
-                                                  "releasePeripheralsPhase");
-    this.assignFreePeripheralsPhase = requireNonNull(assignFreePeripheralsPhase,
-                                                     "assignFreePeripheralsPhase");
+    this.assignReservedPeripheralsPhase = requireNonNull(assignReservedPeripheralsPhase, "assignReservedPeripheralsPhase");
+    this.releasePeripheralsPhase = requireNonNull(releasePeripheralsPhase, "releasePeripheralsPhase");
+    this.assignFreePeripheralsPhase = requireNonNull(assignFreePeripheralsPhase, "assignFreePeripheralsPhase");
   }
 
   @Override

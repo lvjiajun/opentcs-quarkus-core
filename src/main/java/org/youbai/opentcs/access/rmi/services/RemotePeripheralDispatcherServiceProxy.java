@@ -22,7 +22,7 @@ import javax.enterprise.context.ApplicationScoped;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ApplicationScoped
+
 class RemotePeripheralDispatcherServiceProxy
     extends AbstractRemoteServiceProxy<RemotePeripheralDispatcherService>
     implements PeripheralDispatcherService {

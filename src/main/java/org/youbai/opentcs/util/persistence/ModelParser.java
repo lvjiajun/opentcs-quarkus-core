@@ -25,6 +25,7 @@ import org.youbai.opentcs.util.persistence.v004.V004TOMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Singleton;
 
 /**
@@ -32,7 +33,7 @@ import javax.inject.Singleton;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@Singleton
+@ApplicationScoped
 public class ModelParser {
 
   /**

@@ -13,6 +13,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
 import org.youbai.opentcs.strategies.basic.dispatching.priorization.transportorder.TransportOrderComparatorByDeadline;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Singleton;
 
 /**
  * Compares {@link AssignmentCandidate}s by deadline of the order.

@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.data.order.TransportOrder;
 import org.youbai.opentcs.strategies.basic.dispatching.selection.TransportOrderSelectionFilter;
 
@@ -22,7 +24,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.selection.TransportOrderS
  * 
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ApplicationScoped
+@Singleton
 public class CompositeTransportOrderSelectionFilter
     implements TransportOrderSelectionFilter {
 

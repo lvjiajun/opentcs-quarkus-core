@@ -5,7 +5,7 @@ import io.smallrye.mutiny.Uni;
 
 import javax.enterprise.context.ApplicationScoped;
 
-@ApplicationScoped
+
 public class GreetingService {
 
     @ConsumeEvent("greeting")

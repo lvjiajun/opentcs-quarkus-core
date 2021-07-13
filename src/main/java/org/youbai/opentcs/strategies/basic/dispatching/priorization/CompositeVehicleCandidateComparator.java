@@ -13,6 +13,8 @@ import java.util.Map;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
 import org.youbai.opentcs.strategies.basic.dispatching.DefaultDispatcherConfiguration;
 import org.youbai.opentcs.strategies.basic.dispatching.priorization.candidate.CandidateComparatorByEnergyLevel;
@@ -26,7 +28,7 @@ import static org.youbai.opentcs.util.Assertions.checkArgument;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@ApplicationScoped
+@Singleton
 public class CompositeVehicleCandidateComparator
     implements Comparator<AssignmentCandidate> {
 

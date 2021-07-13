@@ -16,6 +16,7 @@ import static org.youbai.opentcs.util.Assertions.checkArgument;
 import org.youbai.opentcs.util.Comparators;
 import org.youbai.opentcs.util.Assertions;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Singleton;
 
 /**
@@ -28,7 +29,7 @@ import javax.inject.Singleton;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@Singleton
+@ApplicationScoped
 public class DefaultJobSelectionStrategy
     implements JobSelectionStrategy {
 

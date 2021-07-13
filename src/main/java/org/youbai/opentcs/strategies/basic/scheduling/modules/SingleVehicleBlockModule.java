@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ApplicationScoped
+
 public class SingleVehicleBlockModule
     implements Scheduler.Module {
 

@@ -9,6 +9,8 @@ package org.youbai.opentcs.strategies.basic.dispatching.phase.parking;
 
 import java.util.Optional;
 import javax.annotation.Nonnull;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.Lifecycle;
 import org.youbai.opentcs.data.model.Point;
 import org.youbai.opentcs.data.model.Vehicle;
@@ -18,6 +20,7 @@ import org.youbai.opentcs.data.model.Vehicle;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+
 public interface ParkingPositionSupplier
     extends Lifecycle {
 

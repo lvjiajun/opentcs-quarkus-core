@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.PeripheralInformation;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -26,7 +28,7 @@ import javax.inject.Singleton;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@Singleton
+@ApplicationScoped
 public class DefaultPeripheralReleaseStrategy
     implements PeripheralReleaseStrategy {
 

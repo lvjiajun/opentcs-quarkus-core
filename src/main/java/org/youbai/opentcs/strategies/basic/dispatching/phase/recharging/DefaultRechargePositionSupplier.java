@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import org.youbai.opentcs.components.kernel.Router;
 import org.youbai.opentcs.components.kernel.services.InternalPlantModelService;
@@ -36,7 +37,7 @@ import org.youbai.opentcs.components.kernel.Dispatcher;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@Dependent
+@Singleton
 public class DefaultRechargePositionSupplier
     implements RechargePositionSupplier {
 

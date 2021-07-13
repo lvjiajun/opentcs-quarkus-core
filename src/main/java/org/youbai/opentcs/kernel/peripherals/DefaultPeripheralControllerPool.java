@@ -54,7 +54,7 @@ public class DefaultPeripheralControllerPool
    */
   private boolean initialized;
 
-  @Inject
+
   public DefaultPeripheralControllerPool(@StandardTCSObjectAnnotations TCSObjectService objectService,
                                          PeripheralControllerFactory controllerFactory) {
     this.objectService = requireNonNull(objectService, "objectService");

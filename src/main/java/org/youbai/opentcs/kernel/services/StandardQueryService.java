@@ -12,6 +12,8 @@ import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.Query;
 import org.youbai.opentcs.components.kernel.QueryResponder;
 import org.youbai.opentcs.components.kernel.services.InternalQueryService;
@@ -23,6 +25,7 @@ import static org.youbai.opentcs.util.Assertions.checkArgument;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
 public class StandardQueryService
     implements InternalQueryService {
 

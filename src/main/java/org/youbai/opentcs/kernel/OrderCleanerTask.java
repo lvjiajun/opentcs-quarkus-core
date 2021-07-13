@@ -13,13 +13,13 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import java.util.function.Predicate;
+import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import org.youbai.opentcs.components.kernel.OrderSequenceCleanupApproval;
 import org.youbai.opentcs.components.kernel.TransportOrderCleanupApproval;
-import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.order.OrderSequence;
 import org.youbai.opentcs.data.order.TransportOrder;
@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@Singleton
+@Dependent
 class OrderCleanerTask
     implements Runnable {
 
@@ -66,8 +66,8 @@ class OrderCleanerTask
    *
    * @param configuration This class's configuration.
    */
-  @Inject
-  public OrderCleanerTask(Object globalSyncObject,
+
+  public OrderCleanerTask(GlobalSyncObject globalSyncObject,
                           TransportOrderPool orderPool,
                           Instance<TransportOrderCleanupApproval> orderCleanupApprovals,
                           Instance<OrderSequenceCleanupApproval> sequenceCleanupApprovals,

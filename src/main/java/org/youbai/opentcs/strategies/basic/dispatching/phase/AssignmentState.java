@@ -22,6 +22,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+
 public class AssignmentState {
 
   private final List<AssignmentCandidate> assignedCandidates = new ArrayList<>();

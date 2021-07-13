@@ -22,13 +22,13 @@ public class VehicleControllerFactoryImp {
 
     @Inject
     InternalVehicleService vehicleService;
-    @Inject @StandardNotificationServiceAnnotation
+    @Inject@StandardNotificationServiceAnnotation
     NotificationService notificationService;
-    @Inject @StandardDispatcherServiceAnnotations
+    @Inject@StandardDispatcherServiceAnnotations
     DispatcherService dispatcherService;
     @Inject@Named("bindScheduler")
     Scheduler scheduler;
-    @Inject @SimpleEventBusAnnotation
+    @Inject@SimpleEventBusAnnotation
     EventBus eventBus;
     @Inject
     VehicleControllerComponentsFactory componentsFactory;

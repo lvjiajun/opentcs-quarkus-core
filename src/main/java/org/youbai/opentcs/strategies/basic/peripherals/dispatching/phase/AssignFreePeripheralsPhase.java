@@ -13,6 +13,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -35,7 +36,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@Singleton
+@Dependent
 public class AssignFreePeripheralsPhase
     implements PeripheralDispatcherPhase {
 

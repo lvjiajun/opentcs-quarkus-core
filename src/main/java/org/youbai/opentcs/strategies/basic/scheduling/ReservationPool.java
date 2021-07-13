@@ -15,6 +15,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.Scheduler;
 import org.youbai.opentcs.data.model.TCSResource;
 import org.slf4j.Logger;
@@ -24,7 +26,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@ApplicationScoped
+@Singleton
 public class ReservationPool {
 
   /**

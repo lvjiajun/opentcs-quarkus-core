@@ -23,7 +23,7 @@ import org.youbai.opentcs.drivers.peripherals.PeripheralCommAdapterFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ApplicationScoped
+
 public class LoopbackPeripheralCommAdapterFactory
     implements PeripheralCommAdapterFactory {
 

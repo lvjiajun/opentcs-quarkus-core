@@ -46,8 +46,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@Singleton
+
 @StandardKernelAnnotations
+@Singleton
 final class StandardKernel
     implements LocalKernel,
                Runnable {
@@ -98,7 +99,7 @@ final class StandardKernel
    * @param kernelExecutor An executor for this kernel's tasks.
    * @param stateProviders The state map to be used.
    */
-  @Inject
+
   StandardKernel(@SimpleEventBusAnnotation EventBus eventBus,
                  ScheduledExecutorService kernelExecutor,
                  @StandardNotificationServiceAnnotation NotificationService notificationService,

@@ -15,6 +15,8 @@ import static java.util.Objects.requireNonNull;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Location;
@@ -27,7 +29,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.selection.TransportOrderS
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ApplicationScoped
+@Singleton
 public class ContainsLockedTargetLocations
     implements TransportOrderSelectionFilter {
 

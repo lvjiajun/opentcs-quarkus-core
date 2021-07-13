@@ -1,14 +1,12 @@
 package org.youbai.opentcs.kernel;
 
 import org.youbai.opentcs.access.Kernel;
-import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.util.logging.UncaughtExceptionLogger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import java.io.File;
-import java.util.Comparator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledExecutorService;

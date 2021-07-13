@@ -14,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.inject.Singleton;
 
 /**
@@ -21,7 +23,7 @@ import javax.inject.Singleton;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@Singleton
+@ApplicationScoped
 @SimpleEventBusAnnotation
 public class SimpleEventBus
     implements EventBus {

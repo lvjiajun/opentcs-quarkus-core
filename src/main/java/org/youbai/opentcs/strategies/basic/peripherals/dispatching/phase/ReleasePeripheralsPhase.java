@@ -9,6 +9,8 @@ package org.youbai.opentcs.strategies.basic.peripherals.dispatching.phase;
 
 import java.util.Collection;
 import static java.util.Objects.requireNonNull;
+
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -24,7 +26,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@Singleton
+@Dependent
 public class ReleasePeripheralsPhase
     implements PeripheralDispatcherPhase {
 

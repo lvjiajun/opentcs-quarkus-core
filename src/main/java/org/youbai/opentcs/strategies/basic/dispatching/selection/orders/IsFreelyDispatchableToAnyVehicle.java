@@ -31,7 +31,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.selection.TransportOrderS
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ApplicationScoped
+@Singleton
 public class IsFreelyDispatchableToAnyVehicle
     implements Predicate<TransportOrder> {
 

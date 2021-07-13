@@ -7,14 +7,13 @@
  */
 package org.youbai.opentcs.kernel;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 import org.youbai.opentcs.access.Kernel;
 import org.youbai.opentcs.kernel.annotations.XMLFileModelAnnotations;
 import org.youbai.opentcs.kernel.persistence.ModelPersister;
 import org.youbai.opentcs.kernel.workingset.Model;
 import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
+
+import javax.inject.Singleton;
 
 /**
  * This class implements the standard openTCS kernel when it's shut down.
@@ -22,7 +21,7 @@ import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
  * @author Stefan Walter (Fraunhofer IML)
  */
 @Singleton
-final class KernelStateShutdown
+public class KernelStateShutdown
     extends KernelState {
 
   /**
@@ -36,7 +35,7 @@ final class KernelStateShutdown
    * @param objectPool The object pool to be used.
    * @param modelPersister The model persister to be used.
    */
-  @Inject
+
   public KernelStateShutdown(GlobalSyncObject globalSyncObject,
                              TCSObjectPool objectPool,
                              Model model,

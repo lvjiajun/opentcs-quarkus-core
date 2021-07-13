@@ -40,7 +40,7 @@ public class PrefixedUlidObjectNameProvider
   /**
    * Creates a new instance.
    */
-  @Inject
+
   public PrefixedUlidObjectNameProvider() {
   }
 

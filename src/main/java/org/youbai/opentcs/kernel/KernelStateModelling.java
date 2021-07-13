@@ -7,21 +7,20 @@
  */
 package org.youbai.opentcs.kernel;
 
-import static java.util.Objects.requireNonNull;
-import java.util.Set;
-import javax.enterprise.inject.Instance;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.access.Kernel;
 import org.youbai.opentcs.components.kernel.KernelExtension;
-import org.youbai.opentcs.customizations.kernel.ActiveInModellingMode;
 import org.youbai.opentcs.kernel.annotations.XMLFileModelAnnotations;
 import org.youbai.opentcs.kernel.persistence.ModelPersister;
 import org.youbai.opentcs.kernel.workingset.Model;
 import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Instance;
+import javax.inject.Singleton;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * This class implements the standard openTCS kernel in modelling mode.
@@ -29,7 +28,7 @@ import org.slf4j.LoggerFactory;
  * @author Stefan Walter (Fraunhofer IML)
  */
 @Singleton
-class KernelStateModelling
+public class KernelStateModelling
     extends KernelStateOnline {
 
   /**
@@ -52,8 +51,8 @@ class KernelStateModelling
    * @param modelPersister The model persister to be used.
    * @param configuration This class's configuration.
    */
-  @Inject
-  KernelStateModelling(Object globalSyncObject,
+
+  KernelStateModelling(GlobalSyncObject globalSyncObject,
                        TCSObjectPool objectPool,
                        Model model,
                        @XMLFileModelAnnotations ModelPersister modelPersister,

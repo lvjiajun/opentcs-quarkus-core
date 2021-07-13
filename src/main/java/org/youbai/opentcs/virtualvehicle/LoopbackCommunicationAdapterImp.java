@@ -5,11 +5,11 @@ import org.youbai.opentcs.data.model.Vehicle;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import java.util.concurrent.ExecutorService;
 @ApplicationScoped
 public class LoopbackCommunicationAdapterImp {
-
 
     @Inject
     LoopbackAdapterComponentsFactory componentsFactory;
@@ -17,7 +17,7 @@ public class LoopbackCommunicationAdapterImp {
     VirtualVehicleConfiguration configuration;
     @Inject
     ExecutorService kernelExecutor;
-    @Dependent
+    @Produces
     public LoopbackAdapterComponentsFactory loopbackAdapterComponentsFactory(){
         return new LoopbackAdapterComponentsFactory() {
             @Override

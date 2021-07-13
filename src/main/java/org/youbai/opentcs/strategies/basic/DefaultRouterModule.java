@@ -20,7 +20,7 @@ import javax.inject.Named;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@ApplicationScoped
+
 public class DefaultRouterModule {
 
     private static final Logger LOG = LoggerFactory.getLogger(DefaultRouterModule.class);

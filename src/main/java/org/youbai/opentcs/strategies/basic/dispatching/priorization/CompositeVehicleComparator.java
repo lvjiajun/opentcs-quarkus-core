@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.strategies.basic.dispatching.DefaultDispatcherConfiguration;
@@ -27,7 +28,7 @@ import static org.youbai.opentcs.util.Assertions.checkArgument;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@ApplicationScoped
+@Singleton
 public class CompositeVehicleComparator
     implements Comparator<Vehicle> {
 

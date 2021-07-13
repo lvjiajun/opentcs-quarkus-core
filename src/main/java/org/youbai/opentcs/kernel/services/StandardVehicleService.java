@@ -25,6 +25,7 @@ import org.youbai.opentcs.drivers.vehicle.LoadHandlingDevice;
 import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapterDescription;
 import org.youbai.opentcs.drivers.vehicle.management.AttachmentInformation;
 import org.youbai.opentcs.drivers.vehicle.management.VehicleProcessModelTO;
+import org.youbai.opentcs.kernel.GlobalSyncObject;
 import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.kernel.extensions.controlcenter.vehicles.AttachmentManager;
 import org.youbai.opentcs.kernel.extensions.controlcenter.vehicles.VehicleEntry;
@@ -96,9 +97,9 @@ public class StandardVehicleService
    * @param commAdapterRegistry The registry for all communication adapters.
    * @param model The model to be used.
    */
-  @Inject
+
   public StandardVehicleService(@StandardTCSObjectAnnotations TCSObjectService objectService,
-                                Object globalSyncObject,
+                                GlobalSyncObject globalSyncObject,
                                 TCSObjectPool globalObjectPool,
                                 LocalVehicleControllerPool vehicleControllerPool,
                                 VehicleEntryPool vehicleEntryPool,

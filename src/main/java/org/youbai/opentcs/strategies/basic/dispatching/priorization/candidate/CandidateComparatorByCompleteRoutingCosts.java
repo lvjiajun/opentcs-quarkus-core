@@ -11,6 +11,7 @@ import java.util.Comparator;
 import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Singleton;
 
 /**
  * Compares {@link AssignmentCandidate}s by routing costs.

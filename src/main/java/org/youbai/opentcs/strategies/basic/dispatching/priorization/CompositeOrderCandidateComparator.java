@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.Map;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Singleton;
 import javax.ws.rs.Consumes;
 
 import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
@@ -27,7 +28,7 @@ import static org.youbai.opentcs.util.Assertions.checkArgument;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@ApplicationScoped
+@Singleton
 public class CompositeOrderCandidateComparator
     implements Comparator<AssignmentCandidate> {
 

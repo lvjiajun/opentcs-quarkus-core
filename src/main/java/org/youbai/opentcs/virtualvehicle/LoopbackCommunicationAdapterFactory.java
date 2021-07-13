@@ -21,7 +21,7 @@ import org.youbai.opentcs.kernel.annotations.LoopbackCommunicationAdapterFactory
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@Singleton
+
 @LoopbackCommunicationAdapterFactoryAnnotations
 public class LoopbackCommunicationAdapterFactory
     implements VehicleCommAdapterFactory {

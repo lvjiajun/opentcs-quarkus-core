@@ -14,7 +14,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import javax.enterprise.inject.Instance;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -45,7 +44,7 @@ import org.slf4j.LoggerFactory;
  * @author Stefan Walter (Fraunhofer IML)
  */
 @Singleton
-class KernelStateOperating
+public class KernelStateOperating
     extends KernelStateOnline {
 
   /**
@@ -128,8 +127,8 @@ class KernelStateOperating
    * @param modelPersister The model persister to be used.
    * @param configuration This class's configuration.
    */
-  @Inject
-  KernelStateOperating(Object globalSyncObject,
+
+  KernelStateOperating(GlobalSyncObject globalSyncObject,
                        TCSObjectPool objectPool,
                        Model model,
                        TransportOrderPool orderPool,

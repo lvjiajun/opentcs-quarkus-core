@@ -6,6 +6,7 @@ import org.youbai.opentcs.customizations.ApplicationEventBus;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
+import org.youbai.opentcs.kernel.annotations.StandardPeripheralDispatcherServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardPeripheralJobServiceAnnotations;
 import org.youbai.opentcs.util.event.EventSource;
 
@@ -19,7 +20,7 @@ public class VehicleControllerComponentsFactoryImp {
 
     @StandardPeripheralJobServiceAnnotations
     PeripheralJobService peripheralJobService;
-    @Inject
+    @Inject@StandardPeripheralDispatcherServiceAnnotations
     PeripheralDispatcherService peripheralDispatcherService;
     @SimpleEventBusAnnotation
     EventSource eventSource;

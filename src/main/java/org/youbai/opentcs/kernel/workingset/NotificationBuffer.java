@@ -74,7 +74,7 @@ public class NotificationBuffer {
    *
    * @param eventListener The event listener to be used.
    */
-  @Inject
+
   public NotificationBuffer(@SimpleEventBusAnnotation EventHandler eventListener) {
     messageEventListener = requireNonNull(eventListener, "eventListener");
     cutBackCount = capacity;

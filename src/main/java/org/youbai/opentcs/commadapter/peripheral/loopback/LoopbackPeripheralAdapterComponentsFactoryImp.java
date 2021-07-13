@@ -9,17 +9,20 @@ import org.youbai.opentcs.util.event.EventHandler;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
 import java.util.concurrent.ScheduledExecutorService;
 
-@ApplicationScoped
+
 public class LoopbackPeripheralAdapterComponentsFactoryImp {
 
     @SimpleEventBusAnnotation
     EventHandler eventHandler;
 
+    @Inject
     ScheduledExecutorService kernelExecutor;
 
-    @Dependent
+    @Produces
     LoopbackPeripheralAdapterComponentsFactory loopbackPeripheralAdapterComponentsFactory(){
         return new LoopbackPeripheralAdapterComponentsFactory() {
             @Override

@@ -27,8 +27,8 @@ import static java.util.Objects.requireNonNull;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@StandardDispatcherServiceAnnotations
 @Singleton
+@StandardDispatcherServiceAnnotations
 public class StandardDispatcherService
     implements DispatcherService {
 

@@ -9,6 +9,8 @@ package org.youbai.opentcs.kernel.services;
 
 import static java.util.Objects.requireNonNull;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.access.Kernel;
 import org.youbai.opentcs.access.LocalKernel;
 import org.youbai.opentcs.components.kernel.Dispatcher;
@@ -19,6 +21,7 @@ import org.youbai.opentcs.data.ObjectUnknownException;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Path;
 import org.youbai.opentcs.kernel.KernelApplicationConfiguration;
+import org.youbai.opentcs.kernel.annotations.StandardKernelAnnotations;
 import org.youbai.opentcs.kernel.workingset.Model;
 
 /**
@@ -26,6 +29,7 @@ import org.youbai.opentcs.kernel.workingset.Model;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class StandardRouterService
     implements RouterService {
 
@@ -66,7 +70,7 @@ public class StandardRouterService
    */
 
   public StandardRouterService(Object globalSyncObject,
-                               LocalKernel kernel,
+                               @StandardKernelAnnotations LocalKernel kernel,
                                Router router,
                                Dispatcher dispatcher,
                                Model model,

@@ -12,11 +12,16 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import static java.util.Objects.requireNonNull;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import org.youbai.opentcs.components.kernel.KernelExtension;
 import org.youbai.opentcs.customizations.ApplicationEventBus;
 import org.youbai.opentcs.customizations.ApplicationHome;
 import static org.youbai.opentcs.util.Assertions.checkArgument;
+
+import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
 import org.youbai.opentcs.util.event.EventSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +32,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class StatisticsCollector
     implements KernelExtension {
 
@@ -58,8 +64,8 @@ public class StatisticsCollector
    * @param homeDir The kernel's home directory.
    */
 
-  public StatisticsCollector(@ApplicationEventBus EventSource eventSource,
-                             @ApplicationHome File homeDir) {
+  public StatisticsCollector(@SimpleEventBusAnnotation EventSource eventSource,
+                             File homeDir) {
     this.eventSource = requireNonNull(eventSource, "eventSource");
     requireNonNull(homeDir, "homeDir");
     this.logDir = new File(homeDir, "log/statistics");

@@ -10,6 +10,7 @@ package org.youbai.opentcs.strategies.basic.routing.edgeevaluator;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 

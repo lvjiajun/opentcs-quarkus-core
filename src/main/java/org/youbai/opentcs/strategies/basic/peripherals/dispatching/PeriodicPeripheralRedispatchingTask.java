@@ -17,6 +17,7 @@ import org.youbai.opentcs.kernel.annotations.StandardPeripheralDispatcherService
 import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 
 import static java.util.Objects.requireNonNull;
 
@@ -25,7 +26,7 @@ import static java.util.Objects.requireNonNull;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ApplicationScoped
+@Dependent
 public class PeriodicPeripheralRedispatchingTask
     implements Runnable {
 

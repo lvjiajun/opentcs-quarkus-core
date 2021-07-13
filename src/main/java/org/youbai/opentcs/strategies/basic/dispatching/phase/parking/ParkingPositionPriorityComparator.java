@@ -21,7 +21,7 @@ import org.youbai.opentcs.data.model.Point;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ApplicationScoped
+@Singleton
 public class ParkingPositionPriorityComparator
     implements Comparator<Point> {
 

@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.Set;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import org.youbai.opentcs.components.kernel.Router;
 import org.youbai.opentcs.components.kernel.services.InternalPlantModelService;
@@ -20,6 +21,8 @@ import org.youbai.opentcs.data.model.Vehicle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.components.kernel.Dispatcher;
+import org.youbai.opentcs.kernel.annotations.DefaultParkingPositionSupplierAnnotation;
+import org.youbai.opentcs.kernel.annotations.DefaultPeripheralControllerPoolAnnotations;
 
 /**
  * A parking position supplier that tries to find parking positions that are unoccupied,
@@ -29,6 +32,8 @@ import org.youbai.opentcs.components.kernel.Dispatcher;
  * @author Youssef Zaki (Fraunhofer IML)
  * @author Stefan Walter (Fraunhofer IML)
  */
+@Singleton
+@DefaultParkingPositionSupplierAnnotation
 public class DefaultParkingPositionSupplier
     extends AbstractParkingPositionSupplier {
 

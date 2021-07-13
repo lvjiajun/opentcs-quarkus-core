@@ -16,6 +16,8 @@ import java.util.Calendar;
 import static java.util.Objects.requireNonNull;
 import java.util.Optional;
 import static java.util.Optional.ofNullable;
+
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -36,7 +38,7 @@ import org.slf4j.LoggerFactory;
  * @author Stefan Walter (Fraunhofer IML)
  * @author Tobias Marquardt (Fraunhofer IML)
  */
-@Singleton
+@ApplicationScoped
 @XMLFileModelAnnotations
 public class XMLFileModelPersister
     implements ModelPersister {
@@ -68,7 +70,7 @@ public class XMLFileModelPersister
    * @param directory The application's home directory.
    * @param modelParser Reads and writes into the xml file.
    */
-  @Inject
+
   public XMLFileModelPersister(File directory,
                                ModelParser modelParser) {
     this.modelParser = requireNonNull(modelParser, "modelParser");

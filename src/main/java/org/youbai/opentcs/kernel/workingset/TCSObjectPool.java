@@ -17,6 +17,7 @@ import org.youbai.opentcs.util.event.EventHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.HashMap;
@@ -64,7 +65,7 @@ public class TCSObjectPool {
    *
    * @param eventHandler
    */
-  @Inject
+
   public TCSObjectPool(@SimpleEventBusAnnotation EventHandler eventHandler) {
     this.eventHandler = eventHandler;
   }

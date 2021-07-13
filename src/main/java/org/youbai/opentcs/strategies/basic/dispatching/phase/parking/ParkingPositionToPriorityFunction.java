@@ -12,6 +12,7 @@ import java.util.function.Function;
 import org.youbai.opentcs.components.kernel.Dispatcher;
 import org.youbai.opentcs.data.model.Point;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Singleton;
 
 /**
@@ -25,7 +26,7 @@ import javax.inject.Singleton;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@Singleton
+@ApplicationScoped
 public class ParkingPositionToPriorityFunction
     implements Function<Point, Integer> {
 
