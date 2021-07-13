@@ -10,6 +10,7 @@ package org.youbai.opentcs.kernel.peripherals;
 import java.util.List;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -37,7 +38,7 @@ import org.slf4j.LoggerFactory;
  * @author Stefan Walter (Fraunhofer IML)
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@Singleton
+@ApplicationScoped
 public class PeripheralAttachmentManager
     implements Lifecycle {
 

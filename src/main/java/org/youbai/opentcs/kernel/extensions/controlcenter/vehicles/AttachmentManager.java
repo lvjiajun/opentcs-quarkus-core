@@ -16,6 +16,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -46,7 +47,7 @@ import org.slf4j.LoggerFactory;
  * @author Stefan Walter (Fraunhofer IML)
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@Singleton
+@ApplicationScoped
 public class AttachmentManager
     implements Lifecycle {
 

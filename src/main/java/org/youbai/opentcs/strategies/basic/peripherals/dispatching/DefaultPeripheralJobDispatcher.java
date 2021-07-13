@@ -34,7 +34,7 @@ import org.youbai.opentcs.kernel.annotations.StandardPeripheralJobServiceAnnotat
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@Singleton
+@ApplicationScoped
 public class DefaultPeripheralJobDispatcher
     implements PeripheralJobDispatcher,
         PeripheralJobCallback {
