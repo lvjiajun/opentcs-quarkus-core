@@ -7,6 +7,7 @@
  */
 package org.youbai.opentcs.kernel.services;
 
+import io.quarkus.runtime.Startup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.access.KernelRuntimeException;

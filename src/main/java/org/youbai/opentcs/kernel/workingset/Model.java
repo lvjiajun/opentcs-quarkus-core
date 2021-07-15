@@ -24,6 +24,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.quarkus.runtime.Startup;
 import org.youbai.opentcs.access.to.model.BlockCreationTO;
 import org.youbai.opentcs.access.to.model.*;
 import org.youbai.opentcs.access.to.model.PathCreationTO;
@@ -72,6 +73,7 @@ import org.slf4j.LoggerFactory;
  * @author Stefan Walter (Fraunhofer IML)
  */
 @Singleton
+@Startup
 public class Model {
 
   /**

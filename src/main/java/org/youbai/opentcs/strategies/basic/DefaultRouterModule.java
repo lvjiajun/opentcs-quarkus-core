@@ -20,7 +20,7 @@ import javax.inject.Named;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-
+@ApplicationScoped
 public class DefaultRouterModule {
 
     private static final Logger LOG = LoggerFactory.getLogger(DefaultRouterModule.class);
@@ -35,6 +35,7 @@ public class DefaultRouterModule {
     EdgeEvaluatorTravelTime edgeEvaluatorTravelTime;
 
     @Produces
+    @ApplicationScoped
     Map<String, EdgeEvaluator> edgeEvaluatorBinder(){
         ConcurrentHashMap<String, EdgeEvaluator> concurrentHashMap = new ConcurrentHashMap<>();
         concurrentHashMap.put(EdgeEvaluatorDistance.CONFIGURATION_KEY,edgeEvaluatorDistance);
@@ -53,7 +54,7 @@ public class DefaultRouterModule {
     @Inject
     ShortestPathConfiguration shortestPathConfiguration;
 
-    @Produces@Named("pointRouterFactory")
+    @Produces@Named("pointRouterFactory")@ApplicationScoped
     public PointRouterFactory pointRouterFactory(){
         switch (shortestPathConfiguration.algorithm()) {
             case DIJKSTRA:

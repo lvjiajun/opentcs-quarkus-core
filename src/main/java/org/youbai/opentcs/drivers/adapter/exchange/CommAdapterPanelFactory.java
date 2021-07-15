@@ -23,13 +23,13 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-public class ExampleCommAdapterPanelFactory
+public class CommAdapterPanelFactory
     implements VehicleCommAdapterPanelFactory {
 
   /**
    * This class's logger.
    */
-  private static final Logger LOG = LoggerFactory.getLogger(ExampleCommAdapterPanelFactory.class);
+  private static final Logger LOG = LoggerFactory.getLogger(CommAdapterPanelFactory.class);
   /**
    * The service portal.
    */
@@ -50,8 +50,8 @@ public class ExampleCommAdapterPanelFactory
    * @param componentsFactory The components factory.
    */
   @Inject
-  public ExampleCommAdapterPanelFactory(KernelServicePortal servicePortal,
-                                        AdapterPanelComponentsFactory componentsFactory) {
+  public CommAdapterPanelFactory(KernelServicePortal servicePortal,
+                                 AdapterPanelComponentsFactory componentsFactory) {
     this.servicePortal = requireNonNull(servicePortal, "servicePortal");
     this.componentsFactory = requireNonNull(componentsFactory, "componentsFactory");
   }
@@ -111,7 +111,7 @@ public class ExampleCommAdapterPanelFactory
    */
   private boolean providesPanelsFor(VehicleCommAdapterDescription description,
                                     VehicleProcessModelTO processModel) {
-    return (description instanceof ExampleCommAdapterDescription)
+    return (description instanceof CommAdapterDescription)
         && (processModel instanceof ProcessModelTO);
   }
 }

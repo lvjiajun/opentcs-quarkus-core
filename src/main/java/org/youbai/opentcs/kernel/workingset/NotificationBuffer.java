@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.quarkus.runtime.Startup;
 import org.youbai.opentcs.access.NotificationPublicationEvent;
 import org.youbai.opentcs.customizations.ApplicationEventBus;
 import org.youbai.opentcs.data.notification.UserNotification;
@@ -45,6 +46,7 @@ import org.slf4j.LoggerFactory;
  * @author Stefan Walter (Fraunhofer IML)
  */
 @Singleton
+@Startup
 public class NotificationBuffer {
 
   /**

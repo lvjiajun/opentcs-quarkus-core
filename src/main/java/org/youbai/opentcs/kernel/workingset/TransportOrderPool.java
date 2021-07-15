@@ -19,6 +19,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.inject.Singleton;
 
+import io.quarkus.runtime.Startup;
 import org.youbai.opentcs.access.to.order.DestinationCreationTO;
 import org.youbai.opentcs.access.to.order.OrderSequenceCreationTO;
 import org.youbai.opentcs.access.to.order.TransportOrderCreationTO;
@@ -50,6 +51,7 @@ import org.youbai.opentcs.kernel.annotations.PrefixedUlidObjectNameAnnotations;
  * @author Stefan Walter (Fraunhofer IML)
  */
 @Singleton
+@Startup
 public class TransportOrderPool {
 
   /**

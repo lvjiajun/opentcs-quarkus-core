@@ -12,6 +12,7 @@ import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.quarkus.runtime.Startup;
 import org.youbai.opentcs.access.to.peripherals.PeripheralJobCreationTO;
 import org.youbai.opentcs.access.to.peripherals.PeripheralOperationCreationTO;
 import org.youbai.opentcs.components.kernel.ObjectNameProvider;
@@ -40,6 +41,7 @@ import org.youbai.opentcs.kernel.annotations.PrefixedUlidObjectNameAnnotations;
  * @author Martin Grzenia (Fraunhofer IML)
  */
 @Singleton
+@Startup
 public class PeripheralJobPool {
 
   /**

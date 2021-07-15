@@ -17,10 +17,13 @@ import java.util.Set;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 
+import io.quarkus.runtime.Startup;
 import org.youbai.opentcs.access.Kernel;
 import org.youbai.opentcs.access.KernelStateTransitionEvent;
 import org.youbai.opentcs.access.LocalKernel;
@@ -48,8 +51,9 @@ import org.slf4j.LoggerFactory;
  */
 
 @StandardKernelAnnotations
-@Singleton
-final class StandardKernel
+@Startup
+@Dependent
+public class StandardKernel
     implements LocalKernel,
                Runnable {
 
@@ -90,24 +94,28 @@ final class StandardKernel
    * The kernel implementing the actual functionality for the current mode.
    */
   private KernelState kernelState;
+
+  @Inject
+  public KernelStateOperating kernelStateOperating;
+  @Inject
+  public KernelStateModelling kernelStateModelling;
+  @Inject
+  public KernelStateShutdown kernelStateShutdown;
   /**
    * A map to state providers used when switching kernel states.
    */
-  private final Map<Kernel.State, KernelState> stateProviders;
   /**
    * Creates a new kernel.
    * @param kernelExecutor An executor for this kernel's tasks.
-   * @param stateProviders The state map to be used.
    */
 
   StandardKernel(@SimpleEventBusAnnotation EventBus eventBus,
                  ScheduledExecutorService kernelExecutor,
-                 @StandardNotificationServiceAnnotation NotificationService notificationService,
-                 Map<Kernel.State, KernelState> stateProviders) {
+                 @StandardNotificationServiceAnnotation NotificationService notificationService) {
     this.eventBus = requireNonNull(eventBus, "eventBus");
     this.kernelExecutor = requireNonNull(kernelExecutor, "kernelExecutor");
     this.notificationService = requireNonNull(notificationService, "notificationService");
-    this.stateProviders = requireNonNull(stateProviders, "stateProviders");
+
   }
 
   @Override
@@ -193,16 +201,16 @@ final class StandardKernel
     LOG.info("Switching kernel to state '{}'", newState.name());
     switch (newState) {
       case SHUTDOWN:
-        kernelState = stateProviders.get(Kernel.State.SHUTDOWN);
+        kernelState = kernelStateShutdown;
         kernelState.initialize();
         terminate();
         break;
       case MODELLING:
-        kernelState = stateProviders.get(Kernel.State.MODELLING);
+        kernelState = kernelStateModelling;
         kernelState.initialize();
         break;
       case OPERATING:
-        kernelState = stateProviders.get(Kernel.State.OPERATING);
+        kernelState = kernelStateOperating;
         kernelState.initialize();
         break;
       default:

@@ -11,6 +11,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.concurrent.ScheduledExecutorService;
 
 
@@ -19,10 +20,11 @@ public class LoopbackPeripheralAdapterComponentsFactoryImp {
     @SimpleEventBusAnnotation
     EventHandler eventHandler;
 
-    @Inject
+    @Inject@Named("ExecutorService")
     ScheduledExecutorService kernelExecutor;
 
     @Produces
+    @ApplicationScoped
     LoopbackPeripheralAdapterComponentsFactory loopbackPeripheralAdapterComponentsFactory(){
         return new LoopbackPeripheralAdapterComponentsFactory() {
             @Override

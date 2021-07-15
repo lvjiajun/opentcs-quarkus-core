@@ -22,6 +22,8 @@ import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
+
 import org.youbai.opentcs.components.kernel.ResourceAllocationException;
 import org.youbai.opentcs.components.kernel.Scheduler;
 import org.youbai.opentcs.components.kernel.services.InternalPlantModelService;
@@ -96,7 +98,7 @@ public class DefaultScheduler
   public DefaultScheduler(InternalPlantModelService plantModelService,
                           AllocationAdvisor allocationAdvisor,
                           ReservationPool reservationPool,
-                          ScheduledExecutorService kernelExecutor,
+                          @Named("ExecutorService")ScheduledExecutorService kernelExecutor,
                           GlobalSyncObject globalSyncObject) {
     this.plantModelService = requireNonNull(plantModelService, "plantModelService");
     this.allocationAdvisor = requireNonNull(allocationAdvisor, "allocationAdvisor");

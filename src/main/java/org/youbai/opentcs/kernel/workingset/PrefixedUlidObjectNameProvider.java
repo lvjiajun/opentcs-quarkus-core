@@ -10,6 +10,8 @@ package org.youbai.opentcs.kernel.workingset;
 import de.huxhorn.sulky.ulid.ULID;
 import static java.util.Objects.requireNonNull;
 import java.util.Optional;
+
+import io.quarkus.runtime.Startup;
 import org.youbai.opentcs.access.to.CreationTO;
 import org.youbai.opentcs.components.kernel.ObjectNameProvider;
 import org.youbai.opentcs.kernel.annotations.PrefixedUlidObjectNameAnnotations;
@@ -25,6 +27,7 @@ import javax.inject.Singleton;
  */
 @Singleton
 @PrefixedUlidObjectNameAnnotations
+@Startup
 public class PrefixedUlidObjectNameProvider
     implements ObjectNameProvider {
 

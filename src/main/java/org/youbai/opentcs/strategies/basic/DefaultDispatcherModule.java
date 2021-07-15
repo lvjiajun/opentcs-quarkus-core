@@ -20,9 +20,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-
+@ApplicationScoped
 public class DefaultDispatcherModule {
-
 
     @Inject
     VehicleComparatorByEnergyLevel vehicleComparatorByEnergyLevel;
@@ -56,7 +55,7 @@ public class DefaultDispatcherModule {
     @Inject
     CandidateComparatorIdleFirst candidateComparatorIdleFirst;
 
-    @Produces
+    @Produces@ApplicationScoped
     Map<String, Comparator<Vehicle>> vehicleComparatorBinder(){
         ConcurrentHashMap<String, Comparator<Vehicle>> comparatorConcurrentHashMap = new ConcurrentHashMap<>();
         comparatorConcurrentHashMap.put(VehicleComparatorByEnergyLevel.CONFIGURATION_KEY,vehicleComparatorByEnergyLevel);
@@ -64,7 +63,7 @@ public class DefaultDispatcherModule {
         comparatorConcurrentHashMap.put(VehicleComparatorIdleFirst.CONFIGURATION_KEY,vehicleComparatorIdleFirst);
         return comparatorConcurrentHashMap;
     }
-    @Produces
+    @Produces@ApplicationScoped
     Map<String,Comparator<TransportOrder>> orderComparatorBinder(){
         ConcurrentHashMap<String, Comparator<TransportOrder>> comparatorConcurrentHashMap = new ConcurrentHashMap<>();
         comparatorConcurrentHashMap.put(TransportOrderComparatorByAge.CONFIGURATION_KEY,transportOrderComparatorByAge);
@@ -72,7 +71,7 @@ public class DefaultDispatcherModule {
         comparatorConcurrentHashMap.put(TransportOrderComparatorByName.CONFIGURATION_KEY,transportOrderComparatorByName);
         return comparatorConcurrentHashMap;
     }
-    @Produces
+    @Produces@ApplicationScoped
     Map<String,Comparator<AssignmentCandidate>> candidateComparatorBinder(){
         ConcurrentHashMap<String, Comparator<AssignmentCandidate>> comparatorConcurrentHashMap = new ConcurrentHashMap<>();
         comparatorConcurrentHashMap.put(CandidateComparatorByCompleteRoutingCosts.CONFIGURATION_KEY,candidateComparatorByCompleteRoutingCosts);

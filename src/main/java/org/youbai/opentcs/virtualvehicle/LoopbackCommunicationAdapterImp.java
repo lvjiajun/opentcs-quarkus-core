@@ -7,6 +7,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.concurrent.ExecutorService;
 @ApplicationScoped
 public class LoopbackCommunicationAdapterImp {
@@ -15,7 +16,7 @@ public class LoopbackCommunicationAdapterImp {
     LoopbackAdapterComponentsFactory componentsFactory;
     @Inject
     VirtualVehicleConfiguration configuration;
-    @Inject
+    @Inject@Named("ExecutorService")
     ExecutorService kernelExecutor;
     @Produces
     public LoopbackAdapterComponentsFactory loopbackAdapterComponentsFactory(){

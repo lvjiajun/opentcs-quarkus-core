@@ -7,9 +7,12 @@
  */
 package org.youbai.opentcs.kernel;
 
+import java.io.File;
 import java.io.IOException;
 import static java.util.Objects.requireNonNull;
 import java.util.Set;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import org.youbai.opentcs.access.Kernel;
 import org.youbai.opentcs.access.LocalKernel;
@@ -18,12 +21,14 @@ import org.youbai.opentcs.components.kernel.services.InternalPlantModelService;
 import org.youbai.opentcs.customizations.kernel.ActiveInAllModes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.StandardKernelAnnotations;
 
 /**
  * Initializes an openTCS kernel instance.
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+@ApplicationScoped
 public class KernelStarter {
 
   /**
@@ -41,7 +46,7 @@ public class KernelStarter {
   /**
    * The kernel extensions to be registered.
    */
-  private final Set<KernelExtension> extensions;
+  private final Instance<KernelExtension> extensions;
 
   /**
    * Creates a new instance.
@@ -51,9 +56,9 @@ public class KernelStarter {
    * @param extensions The kernel extensions to be registered.
    */
 
-  protected KernelStarter(LocalKernel kernel,
+  protected KernelStarter(@StandardKernelAnnotations LocalKernel kernel,
                           InternalPlantModelService plantModelService,
-                          @ActiveInAllModes Set<KernelExtension> extensions) {
+                          Instance<KernelExtension> extensions) {
     this.kernel = requireNonNull(kernel, "kernel");
     this.plantModelService = requireNonNull(plantModelService, "plantModelService");
     this.extensions = requireNonNull(extensions, "extensions");

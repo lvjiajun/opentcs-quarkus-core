@@ -10,6 +10,9 @@ import org.youbai.opentcs.drivers.adapter.telegrams.OrderRequest;
 import org.youbai.opentcs.data.model.Point;
 import org.youbai.opentcs.drivers.vehicle.MovementCommand;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Singleton;
+
 import static org.youbai.opentcs.common.extend.telegrams.BoundedCounter.UINT16_MAX_VALUE;
 
 /**
@@ -17,6 +20,7 @@ import static org.youbai.opentcs.common.extend.telegrams.BoundedCounter.UINT16_M
  *
  * @author Mats Wilhelm (Fraunhofer IML)
  */
+@ApplicationScoped
 public class OrderMapper {
 
   /**

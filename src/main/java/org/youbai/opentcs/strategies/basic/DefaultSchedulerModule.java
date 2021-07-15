@@ -9,7 +9,7 @@ import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-
+@ApplicationScoped
 public class DefaultSchedulerModule {
 
     @Inject
@@ -17,7 +17,7 @@ public class DefaultSchedulerModule {
     @Inject
     DummyScheduler dummyScheduler;
 
-    @Produces@Named("bindScheduler")
+    @Produces@Named("bindScheduler")@ApplicationScoped
     Scheduler bindScheduler(){
         return defaultScheduler;
     }

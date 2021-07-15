@@ -11,13 +11,14 @@ import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapterDescription;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-public class ExampleCommAdapterDescription
+public class CommAdapterDescription
     extends VehicleCommAdapterDescription {
 
   @Override
   public String getDescription() {
-    return ResourceBundle.getBundle("de/fraunhofer/iml/opentcs/example/commadapter/vehicle/Bundle").
-        getString("ExampleAdapterFactoryDescription");
+    return "Example communication adapter";
+/*    return ResourceBundle.getBundle("de/fraunhofer/iml/opentcs/example/commadapter/vehicle/Bundle").
+        getString("ExampleAdapterFactoryDescription");*/
   }
 
   @Override

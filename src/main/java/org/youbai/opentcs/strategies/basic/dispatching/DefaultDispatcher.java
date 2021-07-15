@@ -14,9 +14,11 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Provider;
 import javax.inject.Singleton;
 
+import io.quarkus.runtime.Startup;
 import org.youbai.opentcs.components.kernel.Dispatcher;
 import org.youbai.opentcs.components.kernel.services.InternalTransportOrderService;
 import org.youbai.opentcs.components.kernel.services.InternalVehicleService;
@@ -101,7 +103,7 @@ public class DefaultDispatcher
                            InternalTransportOrderService transportOrderService,
                            InternalVehicleService vehicleService,
                            @SimpleEventBusAnnotation EventSource eventSource,
-                           ScheduledExecutorService kernelExecutor,
+                           @Named("ExecutorService")ScheduledExecutorService kernelExecutor,
                            FullDispatchTask fullDispatchTask,
                            PeriodicVehicleRedispatchingTask periodicDispatchTaskProvider,
                            DefaultDispatcherConfiguration configuration,

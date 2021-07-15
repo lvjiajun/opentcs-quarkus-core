@@ -14,6 +14,7 @@ import java.util.Set;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.quarkus.runtime.Startup;
 import org.youbai.opentcs.access.Kernel;
 import org.youbai.opentcs.access.KernelRuntimeException;
 import org.youbai.opentcs.access.LocalKernel;

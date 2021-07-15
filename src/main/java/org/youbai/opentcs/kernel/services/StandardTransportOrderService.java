@@ -12,12 +12,12 @@ import static java.util.Objects.requireNonNull;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.quarkus.runtime.Startup;
 import org.youbai.opentcs.access.to.order.OrderSequenceCreationTO;
 import org.youbai.opentcs.access.to.order.TransportOrderCreationTO;
 import org.youbai.opentcs.components.kernel.services.InternalTransportOrderService;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.components.kernel.services.TransportOrderService;
-import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
 import org.youbai.opentcs.data.ObjectExistsException;
 import org.youbai.opentcs.data.ObjectUnknownException;
 import org.youbai.opentcs.data.TCSObjectReference;
@@ -25,6 +25,7 @@ import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.DriveOrder;
 import org.youbai.opentcs.data.order.OrderSequence;
 import org.youbai.opentcs.data.order.TransportOrder;
+import org.youbai.opentcs.kernel.GlobalSyncObject;
 import org.youbai.opentcs.kernel.annotations.StandardDispatcherServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.kernel.workingset.Model;
@@ -69,7 +70,7 @@ public class StandardTransportOrderService
    */
 
   public StandardTransportOrderService(@StandardTCSObjectAnnotations TCSObjectService objectService,
-                                       Object globalSyncObject,
+                                       GlobalSyncObject globalSyncObject,
                                        TCSObjectPool globalObjectPool,
                                        TransportOrderPool orderPool,
                                        Model model) {

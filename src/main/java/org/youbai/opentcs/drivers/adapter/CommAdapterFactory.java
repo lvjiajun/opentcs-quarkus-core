@@ -4,10 +4,11 @@
 package org.youbai.opentcs.drivers.adapter;
 
 import org.youbai.opentcs.data.model.Vehicle;
-import org.youbai.opentcs.drivers.adapter.exchange.ExampleCommAdapterDescription;
+import org.youbai.opentcs.drivers.adapter.exchange.CommAdapterDescription;
 import static java.util.Objects.requireNonNull;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import javax.enterprise.context.ApplicationScoped;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapter;
@@ -16,7 +17,7 @@ import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapterFactory;
 import static org.youbai.opentcs.common.extend.dispatching.VehicleProperties.PROPKEY_VEHICLE_HOST;
 import static org.youbai.opentcs.common.extend.dispatching.VehicleProperties.PROPKEY_VEHICLE_PORT;
 import static org.youbai.opentcs.util.Assertions.checkInRange;
-
+@ApplicationScoped
 public class CommAdapterFactory
     implements VehicleCommAdapterFactory {
 
@@ -69,7 +70,7 @@ public class CommAdapterFactory
 
   @Override
   public VehicleCommAdapterDescription getDescription() {
-    return new ExampleCommAdapterDescription();
+    return new CommAdapterDescription();
   }
 
   @Override

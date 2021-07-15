@@ -14,6 +14,7 @@ import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.quarkus.runtime.Startup;
 import org.youbai.opentcs.components.kernel.Query;
 import org.youbai.opentcs.components.kernel.QueryResponder;
 import org.youbai.opentcs.components.kernel.services.InternalQueryService;

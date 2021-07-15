@@ -14,6 +14,7 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Provider;
 import javax.inject.Singleton;
 
@@ -90,7 +91,7 @@ public class DefaultPeripheralJobDispatcher
   public DefaultPeripheralJobDispatcher(
       InternalPeripheralService peripheralService,
       @StandardPeripheralJobServiceAnnotations InternalPeripheralJobService peripheralJobService,
-      ScheduledExecutorService kernelExecutor,
+      @Named("ExecutorService")ScheduledExecutorService kernelExecutor,
       FullDispatchTask fullDispatchTask,
       PeriodicPeripheralRedispatchingTask periodicDispatchTaskProvider,
       DefaultPeripheralJobDispatcherConfiguration configuration) {

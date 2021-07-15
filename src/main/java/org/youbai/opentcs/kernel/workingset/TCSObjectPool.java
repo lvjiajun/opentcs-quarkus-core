@@ -7,6 +7,7 @@
  */
 package org.youbai.opentcs.kernel.workingset;
 
+import io.quarkus.runtime.Startup;
 import io.vertx.core.eventbus.EventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +41,7 @@ import static org.youbai.opentcs.util.Assertions.checkArgument;
  * @author Stefan Walter (Fraunhofer IML)
  */
 @Singleton
+@Startup
 public class TCSObjectPool {
 
   /**

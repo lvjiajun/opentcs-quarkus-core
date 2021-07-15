@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
  * @author Stefan Walter (Fraunhofer IML)
  * @author Tobias Marquardt (Fraunhofer IML)
  */
-@ApplicationScoped
+@Singleton
 @XMLFileModelAnnotations
 public class XMLFileModelPersister
     implements ModelPersister {
@@ -70,7 +70,6 @@ public class XMLFileModelPersister
    * @param directory The application's home directory.
    * @param modelParser Reads and writes into the xml file.
    */
-
   public XMLFileModelPersister(File directory,
                                ModelParser modelParser) {
     this.modelParser = requireNonNull(modelParser, "modelParser");

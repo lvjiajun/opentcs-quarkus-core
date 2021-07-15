@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.quarkus.runtime.Startup;
 import org.youbai.opentcs.components.kernel.services.NotificationService;
 import org.youbai.opentcs.data.notification.UserNotification;
 import org.youbai.opentcs.kernel.GlobalSyncObject;

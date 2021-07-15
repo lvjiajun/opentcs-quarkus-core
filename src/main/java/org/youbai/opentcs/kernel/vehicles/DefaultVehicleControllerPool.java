@@ -31,7 +31,7 @@ import static java.util.Objects.requireNonNull;
  * @author Stefan Walter (Fraunhofer IML)
  */
 @ApplicationScoped
-public final class DefaultVehicleControllerPool
+public class DefaultVehicleControllerPool
     implements LocalVehicleControllerPool {
 
   /**

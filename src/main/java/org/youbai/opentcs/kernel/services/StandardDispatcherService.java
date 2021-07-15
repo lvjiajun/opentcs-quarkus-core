@@ -7,6 +7,7 @@
  */
 package org.youbai.opentcs.kernel.services;
 
+import io.quarkus.runtime.Startup;
 import org.youbai.opentcs.components.kernel.Dispatcher;
 import org.youbai.opentcs.components.kernel.services.DispatcherService;
 import org.youbai.opentcs.data.ObjectUnknownException;

@@ -34,6 +34,7 @@ public class VehicleControllerFactoryImp {
     VehicleControllerComponentsFactory componentsFactory;
 
     @Produces
+    @ApplicationScoped
     public VehicleControllerFactory vehicleControllerFactory(){
 
 

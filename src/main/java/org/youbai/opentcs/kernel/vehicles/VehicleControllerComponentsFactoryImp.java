@@ -26,6 +26,7 @@ public class VehicleControllerComponentsFactoryImp {
     EventSource eventSource;
 
     @Produces
+    @ApplicationScoped
     public VehicleControllerComponentsFactory vehicleControllerComponentsFactory(){
         return new VehicleControllerComponentsFactory() {
             @Override

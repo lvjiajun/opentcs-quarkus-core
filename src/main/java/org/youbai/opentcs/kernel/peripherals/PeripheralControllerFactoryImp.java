@@ -20,6 +20,7 @@ public class PeripheralControllerFactoryImp {
     EventBus eventBus;
 
     @Produces
+    @ApplicationScoped
     PeripheralControllerFactory peripheralControllerFactory(){
         return new PeripheralControllerFactory() {
             @Override

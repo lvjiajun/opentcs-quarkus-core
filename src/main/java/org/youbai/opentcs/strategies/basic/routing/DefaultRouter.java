@@ -22,6 +22,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+import io.quarkus.runtime.Startup;
 import org.youbai.opentcs.components.kernel.Router;
 import org.youbai.opentcs.components.kernel.routing.GroupMapper;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
@@ -45,6 +46,7 @@ import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
  * @author Stefan Walter (Fraunhofer IML)
  */
 @Singleton
+@Startup
 public class DefaultRouter
     implements Router {
 
