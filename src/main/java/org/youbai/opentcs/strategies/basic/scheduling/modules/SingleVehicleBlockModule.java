@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@Singleton
+@ApplicationScoped
 public class SingleVehicleBlockModule
     implements Scheduler.Module {
 

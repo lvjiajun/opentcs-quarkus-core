@@ -5,6 +5,7 @@ import io.vertx.mutiny.core.eventbus.EventBus;
 import io.vertx.mutiny.core.eventbus.Message;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 import org.youbai.opentcs.kernel.KernelStarter;
+import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
 
 
 import javax.inject.Inject;
@@ -23,16 +24,13 @@ public class EventResource {
 
     @Inject
     KernelStarter kernelStarter;
-
+    @Inject
+    TCSObjectPool tcsObjectPool;
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     @Path("{name}")
-    public void greeting(@PathParam String name) {
-        try {
-            kernelStarter.startKernel();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public String greeting(@PathParam String name) {
+        return tcsObjectPool.getObjectOrNull(name).getName();
     }
 }
