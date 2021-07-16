@@ -14,6 +14,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.Nonnull;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -38,7 +39,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@Singleton
+@ApplicationScoped
 public class TransportOrderUtil
     implements Lifecycle {
 
@@ -49,23 +50,28 @@ public class TransportOrderUtil
   /**
    * The transport order service.
    */
-  private final InternalTransportOrderService transportOrderService;
+  @Inject
+  InternalTransportOrderService transportOrderService;
   /**
    * The vehicle service.
    */
-  private final InternalVehicleService vehicleService;
+  @Inject
+  InternalVehicleService vehicleService;
   /**
    * The Router instance calculating route costs.
    */
-  private final Router router;
+  @Inject
+  Router router;
   /**
    * The vehicle controller pool.
    */
-  private final VehicleControllerPool vehicleControllerPool;
+  @Inject
+  VehicleControllerPool vehicleControllerPool;
   /**
    * Stores reservations of transport orders for vehicles.
    */
-  private final OrderReservationPool orderReservationPool;
+  @Inject
+  OrderReservationPool orderReservationPool;
   /**
    * This class's configuration.
    */
@@ -81,17 +87,7 @@ public class TransportOrderUtil
   private boolean initialized;
 
 
-  public TransportOrderUtil(@Nonnull InternalTransportOrderService transportOrderService,
-                            @Nonnull InternalVehicleService vehicleService,
-                            @Nonnull DefaultDispatcherConfiguration configuration,
-                            @Nonnull Router router,
-                            @Nonnull VehicleControllerPool vehicleControllerPool,
-                            @Nonnull OrderReservationPool orderReservationPool) {
-    this.transportOrderService = requireNonNull(transportOrderService, "transportOrderService");
-    this.vehicleService = requireNonNull(vehicleService, "vehicleService");
-    this.router = requireNonNull(router, "router");
-    this.vehicleControllerPool = requireNonNull(vehicleControllerPool, "vehicleControllerPool");
-    this.orderReservationPool = requireNonNull(orderReservationPool, "orderReservationPool");
+  public TransportOrderUtil(@Nonnull DefaultDispatcherConfiguration configuration) {
     this.configuration = requireNonNull(configuration, "configuration");
   }
 

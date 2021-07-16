@@ -216,7 +216,6 @@ public class XMLFileModelPersister
    * Reads a model from a given InputStream.
    *
    * @param modelFile The file containing the model.
-   * @param model The model to be built.
    * @throws IOException If an exception occured while loading
    */
   private PlantModelCreationTO readXMLModel(File modelFile)

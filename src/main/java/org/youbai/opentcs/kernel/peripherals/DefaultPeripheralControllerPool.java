@@ -44,7 +44,8 @@ public class DefaultPeripheralControllerPool
   /**
    * A factory for peripheral controllers.
    */
-  private final PeripheralControllerFactory controllerFactory;
+  @Inject
+  public PeripheralControllerFactory controllerFactory;
   /**
    * The entries of this pool mapped to the corresponding locations.
    */
@@ -55,10 +56,8 @@ public class DefaultPeripheralControllerPool
   private boolean initialized;
 
 
-  public DefaultPeripheralControllerPool(@StandardTCSObjectAnnotations TCSObjectService objectService,
-                                         PeripheralControllerFactory controllerFactory) {
+  public DefaultPeripheralControllerPool(@StandardTCSObjectAnnotations TCSObjectService objectService) {
     this.objectService = requireNonNull(objectService, "objectService");
-    this.controllerFactory = requireNonNull(controllerFactory, "controllerFactory");
   }
 
   @Override

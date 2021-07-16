@@ -53,19 +53,23 @@ public class PeripheralAttachmentManager
   /**
    * The peripheral service.
    */
-  private final InternalPeripheralService peripheralService;
+  @Inject
+  InternalPeripheralService peripheralService;
   /**
    * The peripheral controller pool.
    */
-  private final LocalPeripheralControllerPool controllerPool;
+  @Inject
+  LocalPeripheralControllerPool controllerPool;
   /**
    * The peripheral comm adapter registry.
    */
-  private final PeripheralCommAdapterRegistry commAdapterRegistry;
+  @Inject
+  PeripheralCommAdapterRegistry commAdapterRegistry;
   /**
    * The pool of peripheral entries.
    */
-  private final PeripheralEntryPool peripheralEntryPool;
+  @Inject
+  PeripheralEntryPool peripheralEntryPool;
   /**
    * The handler to send events to.
    */
@@ -78,24 +82,12 @@ public class PeripheralAttachmentManager
   /**
    * Creates a new instance.
    *
-   * @param peripheralService The peripheral service.
-   * @param controllerPool The peripheral controller pool.
-   * @param commAdapterRegistry The peripheral comm adapter registry.
-   * @param peripheralEntryPool The pool of peripheral entries.
    * @param eventHandler The handler to send events to.
    * @param configuration This class's configuration.
    */
 
-  public PeripheralAttachmentManager(@Nonnull InternalPeripheralService peripheralService,
-                                     @Nonnull LocalPeripheralControllerPool controllerPool,
-                                     @Nonnull PeripheralCommAdapterRegistry commAdapterRegistry,
-                                     @Nonnull PeripheralEntryPool peripheralEntryPool,
-                                     @Nonnull @SimpleEventBusAnnotation EventHandler eventHandler,
+  public PeripheralAttachmentManager(@Nonnull @SimpleEventBusAnnotation EventHandler eventHandler,
                                      @Nonnull KernelApplicationConfiguration configuration) {
-    this.peripheralService = requireNonNull(peripheralService, "peripheralService");
-    this.controllerPool = requireNonNull(controllerPool, "controllerPool");
-    this.commAdapterRegistry = requireNonNull(commAdapterRegistry, "commAdapterRegistry");
-    this.peripheralEntryPool = requireNonNull(peripheralEntryPool, "peripheralEntryPool");
     this.eventHandler = requireNonNull(eventHandler, "eventHandler");
     this.configuration = requireNonNull(configuration, "configuration");
   }

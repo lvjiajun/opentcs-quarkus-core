@@ -42,11 +42,10 @@ import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 
 /**
  * A basic {@link Router} implementation.
- *
+ * 基本路由
  * @author Stefan Walter (Fraunhofer IML)
  */
 @Singleton
-@Startup
 public class DefaultRouter
     implements Router {
 
@@ -65,7 +64,9 @@ public class DefaultRouter
   /**
    * A builder for constructing our routing tables.
    */
-  private final PointRouterFactory pointRouterFactory;
+  @Inject
+  @Named("pointRouterFactory")
+  PointRouterFactory pointRouterFactory;
   /**
    * Used to map vehicles to their routing groups.
    */
@@ -87,17 +88,14 @@ public class DefaultRouter
    * Creates a new instance.
    *
    * @param objectService The object service providing the model data.
-   * @param pointRouterFactory A factory for point routers.
    * @param routingGroupMapper Used to map vehicles to their routing groups.
    * @param configuration This class's configuration.
    */
 
   public DefaultRouter(@StandardTCSObjectAnnotations TCSObjectService objectService,
-                       @Named("pointRouterFactory")PointRouterFactory pointRouterFactory,
                        GroupMapper routingGroupMapper,
                        DefaultRouterConfiguration configuration) {
     this.objectService = requireNonNull(objectService, "objectService");
-    this.pointRouterFactory = requireNonNull(pointRouterFactory, "pointRouterFactory");
     this.routingGroupMapper = requireNonNull(routingGroupMapper, "routingGroupMapper");
     this.configuration = requireNonNull(configuration, "configuration");
   }

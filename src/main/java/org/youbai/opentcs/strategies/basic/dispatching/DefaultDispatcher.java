@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Dispatches transport orders and vehicles.
- *
+ * 派遣运送订单给车辆
  * @author Stefan Walter (Fraunhofer IML)
  */
 @ApplicationScoped
@@ -47,35 +47,44 @@ public class DefaultDispatcher
   /**
    * Stores reservations of transport orders for vehicles.
    */
-  private final OrderReservationPool orderReservationPool;
+  @Inject
+  OrderReservationPool orderReservationPool;
   /**
    * Provides services/utility methods for working with transport orders.
    */
-  private final TransportOrderUtil transportOrderUtil;
+  @Inject
+  TransportOrderUtil transportOrderUtil;
   /**
    * The transport order service.
    */
-  private final InternalTransportOrderService transportOrderService;
+  @Inject
+  InternalTransportOrderService transportOrderService;
   /**
    * The vehicle service.
    */
-  private final InternalVehicleService vehicleService;
+  @Inject
+  InternalVehicleService vehicleService;
   /**
    * Where we register for application events.
    */
-  private final EventSource eventSource;
+  @Inject@SimpleEventBusAnnotation
+  EventSource eventSource;
   /**
    * The kernel's executor.
    */
-  private final ScheduledExecutorService kernelExecutor;
+  @Inject@Named("ExecutorService")
+  ScheduledExecutorService kernelExecutor;
 
-  private final FullDispatchTask fullDispatchTask;
+  @Inject
+  FullDispatchTask fullDispatchTask;
 
-  private final PeriodicVehicleRedispatchingTask periodicDispatchTaskProvider;
+  @Inject
+  PeriodicVehicleRedispatchingTask periodicDispatchTaskProvider;
 
   private final DefaultDispatcherConfiguration configuration;
 
-  private final RerouteUtil rerouteUtil;
+  @Inject
+  RerouteUtil rerouteUtil;
   /**
    *
    */
@@ -90,35 +99,10 @@ public class DefaultDispatcher
   /**
    * Creates a new instance.
    *
-   * @param orderReservationPool Stores reservations of transport orders for vehicles.
-   * @param transportOrderUtil Provides services for working with transport orders.
-   * @param transportOrderService The transport order service.
-   * @param vehicleService The vehicle service.
-   * @param eventSource Where this instance registers for application events.
-   * @param kernelExecutor Executes dispatching tasks.
    */
 
-  public DefaultDispatcher(OrderReservationPool orderReservationPool,
-                           TransportOrderUtil transportOrderUtil,
-                           InternalTransportOrderService transportOrderService,
-                           InternalVehicleService vehicleService,
-                           @SimpleEventBusAnnotation EventSource eventSource,
-                           @Named("ExecutorService")ScheduledExecutorService kernelExecutor,
-                           FullDispatchTask fullDispatchTask,
-                           PeriodicVehicleRedispatchingTask periodicDispatchTaskProvider,
-                           DefaultDispatcherConfiguration configuration,
-                           RerouteUtil rerouteUtil) {
-    this.orderReservationPool = requireNonNull(orderReservationPool, "orderReservationPool");
-    this.transportOrderUtil = requireNonNull(transportOrderUtil, "transportOrderUtil");
-    this.transportOrderService = requireNonNull(transportOrderService, "transportOrderService");
-    this.vehicleService = requireNonNull(vehicleService, "vehicleService");
-    this.eventSource = requireNonNull(eventSource, "eventSource");
-    this.kernelExecutor = requireNonNull(kernelExecutor, "kernelExecutor");
-    this.fullDispatchTask = requireNonNull(fullDispatchTask, "fullDispatchTask");
-    this.periodicDispatchTaskProvider = requireNonNull(periodicDispatchTaskProvider,
-                                                       "periodicDispatchTaskProvider");
+  public DefaultDispatcher(DefaultDispatcherConfiguration configuration) {
     this.configuration = requireNonNull(configuration, "configuration");
-    this.rerouteUtil = requireNonNull(rerouteUtil, "rerouteUtil");
   }
 
   @Override

@@ -44,22 +44,21 @@ public class StandardDispatcherService
   /**
    * The dispatcher.
    */
-  private final Dispatcher dispatcher;
+  @Inject
+  public Dispatcher dispatcher;
 
   /**
    * Creates a new instance.
    *
    * @param globalSyncObject The kernel threads' global synchronization object.
    * @param globalObjectPool The object pool to be used.
-   * @param dispatcher The dispatcher.
+
    */
 
   public StandardDispatcherService(GlobalSyncObject globalSyncObject,
-                                   TCSObjectPool globalObjectPool,
-                                   Dispatcher dispatcher) {
+                                   TCSObjectPool globalObjectPool) {
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");
     this.globalObjectPool = requireNonNull(globalObjectPool, "globalObjectPool");
-    this.dispatcher = requireNonNull(dispatcher, "dispatcher");
   }
 
   @Override

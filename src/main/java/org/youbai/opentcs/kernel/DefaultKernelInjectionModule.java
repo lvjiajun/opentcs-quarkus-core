@@ -33,6 +33,6 @@ public class DefaultKernelInjectionModule {
     }
     @Produces
     public File directory(){
-        return new File(System.getProperty("opentcs.home", "."));
+        return new File(System.getProperty("opentcs.home", ""));
     }
 }

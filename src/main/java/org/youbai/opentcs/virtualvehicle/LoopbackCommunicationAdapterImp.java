@@ -13,8 +13,6 @@ import java.util.concurrent.ExecutorService;
 public class LoopbackCommunicationAdapterImp {
 
     @Inject
-    LoopbackAdapterComponentsFactory componentsFactory;
-    @Inject
     VirtualVehicleConfiguration configuration;
     @Inject@Named("ExecutorService")
     ExecutorService kernelExecutor;
@@ -23,7 +21,7 @@ public class LoopbackCommunicationAdapterImp {
         return new LoopbackAdapterComponentsFactory() {
             @Override
             public LoopbackCommunicationAdapter createLoopbackCommAdapter(Vehicle vehicle) {
-                return new LoopbackCommunicationAdapter(componentsFactory,configuration,vehicle,kernelExecutor);
+                return new LoopbackCommunicationAdapter(configuration,vehicle,kernelExecutor);
             }
         };
     }

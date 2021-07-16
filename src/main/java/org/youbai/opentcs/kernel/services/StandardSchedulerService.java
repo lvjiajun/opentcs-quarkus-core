@@ -34,19 +34,18 @@ public class StandardSchedulerService
   /**
    * The scheduler.
    */
-  private final Scheduler scheduler;
+  @Inject
+  @Named("bindScheduler")
+  public Scheduler scheduler;
 
   /**
    * Creates a new instance.
    *
    * @param globalSyncObject The kernel threads' global synchronization object.
-   * @param scheduler The scheduler.
    */
 
-  public StandardSchedulerService(GlobalSyncObject globalSyncObject,
-                                  @Named("bindScheduler")Scheduler scheduler) {
+  public StandardSchedulerService(GlobalSyncObject globalSyncObject) {
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");
-    this.scheduler = requireNonNull(scheduler, "scheduler");
   }
 
   @Override

@@ -32,7 +32,6 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@ApplicationScoped
 public class StatisticsCollector
     implements KernelExtension {
 

@@ -11,6 +11,7 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import java.util.Set;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -57,7 +58,9 @@ public class StandardPlantModelService
   /**
    * The kernel.
    */
-  private final Kernel kernel;
+  @StandardKernelAnnotations
+  @Inject
+  Kernel kernel;
   /**
    * A global object to be used for synchronization within the kernel.
    */
@@ -82,7 +85,6 @@ public class StandardPlantModelService
   /**
    * Creates a new instance.
    *
-   * @param kernel The kernel.
    * @param objectService The tcs object service.
    * @param globalSyncObject The kernel threads' global synchronization object.
    * @param model The model to be used.
@@ -91,15 +93,13 @@ public class StandardPlantModelService
    * @param notificationService The notification service.
    */
 
-  public StandardPlantModelService(@StandardKernelAnnotations LocalKernel kernel,
-                                   @StandardTCSObjectAnnotations TCSObjectService objectService,
+  public StandardPlantModelService(@StandardTCSObjectAnnotations TCSObjectService objectService,
                                    GlobalSyncObject globalSyncObject,
                                    Model model,
                                    @XMLFileModelAnnotations ModelPersister modelPersister,
                                    @SimpleEventBusAnnotation EventHandler eventHandler,
                                    @StandardNotificationServiceAnnotation NotificationService notificationService) {
     super(objectService);
-    this.kernel = requireNonNull(kernel, "kernel");
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");
     this.model = requireNonNull(model, "model");
     this.modelPersister = requireNonNull(modelPersister, "modelPersister");

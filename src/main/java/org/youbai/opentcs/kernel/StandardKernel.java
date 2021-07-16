@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 
@@ -52,7 +53,7 @@ import org.slf4j.LoggerFactory;
 
 @StandardKernelAnnotations
 @Startup
-@Dependent
+@Singleton
 public class StandardKernel
     implements LocalKernel,
                Runnable {
@@ -69,11 +70,14 @@ public class StandardKernel
   /**
    * The application's event bus.
    */
-  private final EventBus eventBus;
+  @SimpleEventBusAnnotation
+  @Inject
+  public EventBus eventBus;
   /**
    * Our executor.
    */
-  private final ScheduledExecutorService kernelExecutor;
+  @Inject@Named("ExecutorService")
+  public ScheduledExecutorService kernelExecutor;
   /**
    * This kernel's order receivers.
    */
@@ -85,7 +89,9 @@ public class StandardKernel
   /**
    * The notification service.
    */
-  private final NotificationService notificationService;
+  @StandardNotificationServiceAnnotation
+  @Inject
+  public NotificationService notificationService;
   /**
    * This kernel's <em>initialized</em> flag.
    */
@@ -106,16 +112,9 @@ public class StandardKernel
    */
   /**
    * Creates a new kernel.
-   * @param kernelExecutor An executor for this kernel's tasks.
    */
 
-  StandardKernel(@SimpleEventBusAnnotation EventBus eventBus,
-                 ScheduledExecutorService kernelExecutor,
-                 @StandardNotificationServiceAnnotation NotificationService notificationService) {
-    this.eventBus = requireNonNull(eventBus, "eventBus");
-    this.kernelExecutor = requireNonNull(kernelExecutor, "kernelExecutor");
-    this.notificationService = requireNonNull(notificationService, "notificationService");
-
+  StandardKernel() {
   }
 
   @Override

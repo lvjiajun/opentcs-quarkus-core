@@ -43,47 +43,33 @@ public class FullDispatchTask
    */
   private static final Logger LOG = LoggerFactory.getLogger(FullDispatchTask.class);
 
-  private final CheckNewOrdersPhase checkNewOrdersPhase;
-  private final FinishWithdrawalsPhase finishWithdrawalsPhase;
-  private final AssignNextDriveOrdersPhase assignNextDriveOrdersPhase;
-  private final AssignReservedOrdersPhase assignReservedOrdersPhase;
-  private final AssignSequenceSuccessorsPhase assignSequenceSuccessorsPhase;
-  private final AssignFreeOrdersPhase assignFreeOrdersPhase;
-  private final RechargeIdleVehiclesPhase rechargeIdleVehiclesPhase;
-  private final PrioritizedReparkPhase prioritizedReparkPhase;
-  private final PrioritizedParkingPhase prioritizedParkingPhase;
-  private final ParkIdleVehiclesPhase parkIdleVehiclesPhase;
+  @Inject
+  CheckNewOrdersPhase checkNewOrdersPhase;
+  @Inject
+  FinishWithdrawalsPhase finishWithdrawalsPhase;
+  @Inject
+  AssignNextDriveOrdersPhase assignNextDriveOrdersPhase;
+  @Inject
+  AssignReservedOrdersPhase assignReservedOrdersPhase;
+  @Inject
+  AssignSequenceSuccessorsPhase assignSequenceSuccessorsPhase;
+  @Inject
+  AssignFreeOrdersPhase assignFreeOrdersPhase;
+  @Inject
+  RechargeIdleVehiclesPhase rechargeIdleVehiclesPhase;
+  @Inject
+  PrioritizedReparkPhase prioritizedReparkPhase;
+  @Inject
+  PrioritizedParkingPhase prioritizedParkingPhase;
+  @Inject
+  ParkIdleVehiclesPhase parkIdleVehiclesPhase;
   /**
    * Indicates whether this component is enabled.
    */
   private boolean initialized;
 
 
-  public FullDispatchTask(CheckNewOrdersPhase checkNewOrdersPhase,
-                          FinishWithdrawalsPhase finishWithdrawalsPhase,
-                          AssignNextDriveOrdersPhase assignNextDriveOrdersPhase,
-                          AssignReservedOrdersPhase assignReservedOrdersPhase,
-                          AssignSequenceSuccessorsPhase assignSequenceSuccessorsPhase,
-                          AssignFreeOrdersPhase assignFreeOrdersPhase,
-                          RechargeIdleVehiclesPhase rechargeIdleVehiclesPhase,
-                          PrioritizedReparkPhase prioritizedReparkPhase,
-                          PrioritizedParkingPhase prioritizedParkingPhase,
-                          ParkIdleVehiclesPhase parkIdleVehiclesPhase) {
-    this.checkNewOrdersPhase = requireNonNull(checkNewOrdersPhase, "checkNewOrdersPhase");
-    this.finishWithdrawalsPhase = requireNonNull(finishWithdrawalsPhase, "finishWithdrawalsPhase");
-    this.assignNextDriveOrdersPhase = requireNonNull(assignNextDriveOrdersPhase,
-                                                     "assignNextDriveOrdersPhase");
-    this.assignReservedOrdersPhase = requireNonNull(assignReservedOrdersPhase,
-                                                    "assignReservedOrdersPhase");
-    this.assignSequenceSuccessorsPhase = requireNonNull(assignSequenceSuccessorsPhase,
-                                                        "assignSequenceSuccessorsPhase");
-    this.assignFreeOrdersPhase = requireNonNull(assignFreeOrdersPhase, "assignFreeOrdersPhase");
-    this.rechargeIdleVehiclesPhase = requireNonNull(rechargeIdleVehiclesPhase,
-                                                    "rechargeIdleVehiclesPhase");
-    this.prioritizedReparkPhase = requireNonNull(prioritizedReparkPhase, "prioritizedReparkPhase");
-    this.prioritizedParkingPhase = requireNonNull(prioritizedParkingPhase,
-                                                  "prioritizedParkingPhase");
-    this.parkIdleVehiclesPhase = requireNonNull(parkIdleVehiclesPhase, "parkIdleVehiclesPhase");
+  public FullDispatchTask() {
   }
 
   @Override

@@ -17,10 +17,10 @@ import org.youbai.opentcs.access.LocalKernel;
 import org.youbai.opentcs.components.kernel.Dispatcher;
 import org.youbai.opentcs.components.kernel.Router;
 import org.youbai.opentcs.components.kernel.services.RouterService;
-import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
 import org.youbai.opentcs.data.ObjectUnknownException;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Path;
+import org.youbai.opentcs.kernel.GlobalSyncObject;
 import org.youbai.opentcs.kernel.KernelApplicationConfiguration;
 import org.youbai.opentcs.kernel.annotations.StandardKernelAnnotations;
 import org.youbai.opentcs.kernel.workingset.Model;
@@ -41,15 +41,19 @@ public class StandardRouterService
   /**
    * The kernel.
    */
-  private final LocalKernel kernel;
+  @StandardKernelAnnotations
+  @Inject
+  public LocalKernel kernel;
   /**
    * The router.
    */
-  private final Router router;
+  @Inject
+  public Router router;
   /**
    * The dispatcher.
    */
-  private final Dispatcher dispatcher;
+  @Inject
+  public Dispatcher dispatcher;
   /**
    * The model facade to the object pool.
    */
@@ -63,23 +67,14 @@ public class StandardRouterService
    * Creates a new instance.
    *
    * @param globalSyncObject The kernel threads' global synchronization object.
-   * @param kernel The kernel.
-   * @param router The scheduler.
-   * @param dispatcher The dispatcher.
    * @param model The model to be used.
    * @param configuration The kernel application's configuration.
    */
 
-  public StandardRouterService(Object globalSyncObject,
-                               @StandardKernelAnnotations LocalKernel kernel,
-                               Router router,
-                               Dispatcher dispatcher,
+  public StandardRouterService(GlobalSyncObject globalSyncObject,
                                Model model,
                                KernelApplicationConfiguration configuration) {
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");
-    this.kernel = requireNonNull(kernel, "kernel");
-    this.router = requireNonNull(router, "router");
-    this.dispatcher = requireNonNull(dispatcher, "dispatcher");
     this.model = requireNonNull(model, "model");
     this.configuration = requireNonNull(configuration, "configuration");
   }

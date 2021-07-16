@@ -23,7 +23,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Periodically checks for idle peripheral devices that could process a peripheral job.
- *
+ * 检查可以使用的的空闲peripheral devices
  * @author Martin Grzenia (Fraunhofer IML)
  */
 @Dependent

@@ -47,23 +47,28 @@ public class DefaultPeripheralJobDispatcher
   /**
    * The peripheral service to use.
    */
-  private final InternalPeripheralService peripheralService;
+  @Inject
+  InternalPeripheralService peripheralService;
   /**
    * The peripheral job service to use.
    */
-  private final InternalPeripheralJobService peripheralJobService;
+  @Inject@StandardPeripheralJobServiceAnnotations
+  InternalPeripheralJobService peripheralJobService;
   /**
    * The kernel's executor.
    */
-  private final ScheduledExecutorService kernelExecutor;
+  @Inject@Named("ExecutorService")
+  ScheduledExecutorService kernelExecutor;
   /**
    * Performs a full dispatch run.
    */
-  private final FullDispatchTask fullDispatchTask;
+  @Inject
+  FullDispatchTask fullDispatchTask;
   /**
    * A task to periodically trigger the job dispatcher.
    */
-  private final PeriodicPeripheralRedispatchingTask periodicDispatchTaskProvider;
+  @Inject
+  PeriodicPeripheralRedispatchingTask periodicDispatchTaskProvider;
   /**
    * The peripheral job dispatcher's configuration.
    */
@@ -80,27 +85,11 @@ public class DefaultPeripheralJobDispatcher
   /**
    * Creates a new instance.
    *
-   * @param peripheralService The peripheral service to use.
-   * @param peripheralJobService The peripheral job service to use.
-   * @param kernelExecutor Executes dispatching tasks.
-   * @param fullDispatchTask Performs a full dispatch run.
-   * @param periodicDispatchTaskProvider A task to periodically trigger the job dispatcher.
    * @param configuration The peripheral job dispatcher's configuration.
    */
   @Inject
   public DefaultPeripheralJobDispatcher(
-      InternalPeripheralService peripheralService,
-      @StandardPeripheralJobServiceAnnotations InternalPeripheralJobService peripheralJobService,
-      @Named("ExecutorService")ScheduledExecutorService kernelExecutor,
-      FullDispatchTask fullDispatchTask,
-      PeriodicPeripheralRedispatchingTask periodicDispatchTaskProvider,
       DefaultPeripheralJobDispatcherConfiguration configuration) {
-    this.peripheralService = requireNonNull(peripheralService, "peripheralService");
-    this.peripheralJobService = requireNonNull(peripheralJobService, "peripheralJobService");
-    this.kernelExecutor = requireNonNull(kernelExecutor, "kernelExecutor");
-    this.fullDispatchTask = requireNonNull(fullDispatchTask, "fullDispatchTask");
-    this.periodicDispatchTaskProvider = requireNonNull(periodicDispatchTaskProvider,
-                                                       "periodicDispatchTaskProvider");
     this.configuration = requireNonNull(configuration, "configuration");
   }
 

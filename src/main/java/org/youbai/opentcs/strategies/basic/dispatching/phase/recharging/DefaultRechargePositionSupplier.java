@@ -19,6 +19,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -37,18 +38,20 @@ import org.youbai.opentcs.components.kernel.Dispatcher;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-@Singleton
+@ApplicationScoped
 public class DefaultRechargePositionSupplier
     implements RechargePositionSupplier {
 
   /**
    * The plant model service.
    */
-  private final InternalPlantModelService plantModelService;
+  @Inject
+  InternalPlantModelService plantModelService;
   /**
    * Our router.
    */
-  private final Router router;
+  @Inject
+  Router router;
   /**
    * Indicates whether this component is enabled.
    */
@@ -57,14 +60,9 @@ public class DefaultRechargePositionSupplier
   /**
    * Creates a new instance.
    *
-   * @param plantModelService The plant model service.
-   * @param router The router to use.
    */
 
-  public DefaultRechargePositionSupplier(InternalPlantModelService plantModelService,
-                                         Router router) {
-    this.plantModelService = requireNonNull(plantModelService, "plantModelService");
-    this.router = requireNonNull(router, "router");
+  public DefaultRechargePositionSupplier() {
   }
 
   @Override

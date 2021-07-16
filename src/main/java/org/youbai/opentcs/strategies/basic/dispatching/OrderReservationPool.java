@@ -16,16 +16,18 @@ import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.quarkus.runtime.Startup;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.TransportOrder;
 
 /**
  * Stores reservations of orders for vehicles.
- *
+ * 存储车辆订单的预订
  * @author Stefan Walter (Fraunhofer IML)
  */
 @Singleton
+@Startup
 public class OrderReservationPool {
 
   /**

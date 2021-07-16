@@ -49,11 +49,13 @@ public class StandardPeripheralService
   /**
    * The attachment manager.
    */
-  private final PeripheralAttachmentManager attachmentManager;
+  @Inject
+  public PeripheralAttachmentManager attachmentManager;
   /**
    * The pool of peripheral entries.
    */
-  private final PeripheralEntryPool peripheralEntryPool;
+  @Inject
+  public PeripheralEntryPool peripheralEntryPool;
   /**
    * The model facade to the object pool.
    */
@@ -64,20 +66,14 @@ public class StandardPeripheralService
    *
    * @param objectService The tcs object service.
    * @param globalSyncObject The kernel threads' global synchronization object.
-   * @param attachmentManager The attachment manager.
-   * @param peripheralEntryPool The pool of peripheral entries.
    * @param model The model to be used.
    */
 
   public StandardPeripheralService(@StandardTCSObjectAnnotations TCSObjectService objectService,
                                    GlobalSyncObject globalSyncObject,
-                                   PeripheralAttachmentManager attachmentManager,
-                                   PeripheralEntryPool peripheralEntryPool,
                                    Model model) {
     super(objectService);
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");
-    this.attachmentManager = requireNonNull(attachmentManager, "attachmentManager");
-    this.peripheralEntryPool = requireNonNull(peripheralEntryPool, "peripheralEntryPool");
     this.model = requireNonNull(model, "model");
   }
 

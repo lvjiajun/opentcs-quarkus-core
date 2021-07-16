@@ -28,7 +28,7 @@ public class ExampleResource {
     public String hello() {
 
 
-        file.exists();
-        return sslConfiguration.keystoreFile();
+        return file.getAbsolutePath();
+   //     return sslConfiguration.keystoreFile();
     }
 }

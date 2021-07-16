@@ -8,6 +8,7 @@ import org.youbai.opentcs.drivers.adapter.exchange.CommAdapterDescription;
 import static java.util.Objects.requireNonNull;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +30,8 @@ public class CommAdapterFactory
   /**
    * The factory to create components specific to the comm adapter.
    */
-  private final AdapterComponentsFactory componentsFactory;
+  @Inject
+  AdapterComponentsFactory componentsFactory;
   /**
    * This component's initialized flag.
    */
@@ -38,11 +40,8 @@ public class CommAdapterFactory
   /**
    * Creates a new instance.
    *
-   * @param componentsFactory The factory to create components specific to the comm adapter.
    */
-
-  public CommAdapterFactory(AdapterComponentsFactory componentsFactory) {
-    this.componentsFactory = requireNonNull(componentsFactory, "componentsFactory");
+  public CommAdapterFactory() {
   }
 
   @Override

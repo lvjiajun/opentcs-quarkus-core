@@ -62,59 +62,43 @@ public class StandardVehicleService
    */
   private final Object globalSyncObject;
   /**
-   * The container of all course model and transport order objects.
-   */
-  private final TCSObjectPool globalObjectPool;
-  /**
    * A pool of vehicle controllers.
    */
-  private final LocalVehicleControllerPool vehicleControllerPool;
+  @Inject
+  public LocalVehicleControllerPool vehicleControllerPool;
   /**
    * A pool of vehicle entries.
    */
-  private final VehicleEntryPool vehicleEntryPool;
+  @Inject
+  public VehicleEntryPool vehicleEntryPool;
   /**
    * The attachment manager.
    */
-  private final AttachmentManager attachmentManager;
+  @Inject
+  public AttachmentManager attachmentManager;
   /**
    * The registry for all communication adapters.
    */
-  private final VehicleCommAdapterRegistry commAdapterRegistry;
+  @Inject
+  public VehicleCommAdapterRegistry commAdapterRegistry;
   /**
    * The model facade to the object pool.
    */
-  private final Model model;
+  @Inject
+  public Model model;
 
   /**
    * Creates a new instance.
    *
    * @param objectService The tcs object service.
    * @param globalSyncObject The kernel threads' global synchronization object.
-   * @param globalObjectPool The object pool to be used.
-   * @param vehicleControllerPool The controller pool to be used.
-   * @param vehicleEntryPool The pool of vehicle entries to be used.
-   * @param attachmentManager The attachment manager.
-   * @param commAdapterRegistry The registry for all communication adapters.
-   * @param model The model to be used.
+
    */
 
   public StandardVehicleService(@StandardTCSObjectAnnotations TCSObjectService objectService,
-                                GlobalSyncObject globalSyncObject,
-                                TCSObjectPool globalObjectPool,
-                                LocalVehicleControllerPool vehicleControllerPool,
-                                VehicleEntryPool vehicleEntryPool,
-                                AttachmentManager attachmentManager,
-                                VehicleCommAdapterRegistry commAdapterRegistry,
-                                Model model) {
+                                GlobalSyncObject globalSyncObject) {
     super(objectService);
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");
-    this.globalObjectPool = requireNonNull(globalObjectPool, "globalObjectPool");
-    this.vehicleControllerPool = requireNonNull(vehicleControllerPool, "vehicleControllerPool");
-    this.vehicleEntryPool = requireNonNull(vehicleEntryPool, "vehicleEntryPool");
-    this.attachmentManager = requireNonNull(attachmentManager, "attachmentManager");
-    this.commAdapterRegistry = requireNonNull(commAdapterRegistry, "commAdapterRegistry");
-    this.model = requireNonNull(model, "model");
   }
 
   @Override

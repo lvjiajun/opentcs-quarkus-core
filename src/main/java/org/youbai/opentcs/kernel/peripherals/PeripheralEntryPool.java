@@ -14,6 +14,7 @@ import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.quarkus.runtime.Startup;
 import org.youbai.opentcs.components.Lifecycle;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.data.model.Location;
@@ -30,6 +31,7 @@ import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
  * @author Martin Grzenia (Fraunhofer IML)
  */
 @Singleton
+@Startup
 public class PeripheralEntryPool
     implements Lifecycle {
 

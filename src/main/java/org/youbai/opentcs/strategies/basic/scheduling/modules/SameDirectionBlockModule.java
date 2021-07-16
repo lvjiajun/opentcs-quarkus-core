@@ -20,13 +20,15 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.Scheduler;
 import static org.youbai.opentcs.components.kernel.Scheduler.PROPKEY_BLOCK_ENTRY_DIRECTION;
 import org.youbai.opentcs.components.kernel.services.InternalPlantModelService;
-import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
 import org.youbai.opentcs.data.model.Block;
 import org.youbai.opentcs.data.model.Path;
 import org.youbai.opentcs.data.model.TCSResource;
+import org.youbai.opentcs.kernel.GlobalSyncObject;
 import org.youbai.opentcs.strategies.basic.scheduling.ReservationPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +40,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-
+@Singleton
 public class SameDirectionBlockModule
     implements Scheduler.Module {
 
@@ -49,11 +51,13 @@ public class SameDirectionBlockModule
   /**
    * The reservation pool.
    */
-  private final ReservationPool reservationPool;
+  @Inject
+  ReservationPool reservationPool;
   /**
    * The plant model service.
    */
-  private final InternalPlantModelService plantModelService;
+  @Inject
+  InternalPlantModelService plantModelService;
   /**
    * The permissions for all {@link Block.Type#SAME_DIRECTION_ONLY} blocks in a plant model.
    */
@@ -67,11 +71,7 @@ public class SameDirectionBlockModule
    */
   private boolean initialized;
 
-  public SameDirectionBlockModule(@Nonnull ReservationPool reservationPool,
-                                  @Nonnull InternalPlantModelService plantModelService,
-                                  Object globalSyncObject) {
-    this.reservationPool = requireNonNull(reservationPool, "reservationPool");
-    this.plantModelService = requireNonNull(plantModelService, "plantModelService");
+  public SameDirectionBlockModule(GlobalSyncObject globalSyncObject) {
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");
   }
 

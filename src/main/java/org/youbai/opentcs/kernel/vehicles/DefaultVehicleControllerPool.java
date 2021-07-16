@@ -14,8 +14,8 @@ import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapter;
 import org.youbai.opentcs.drivers.vehicle.VehicleController;
 
+import javax.annotation.Nonnull;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.HashMap;
@@ -41,11 +41,15 @@ public class DefaultVehicleControllerPool
   /**
    * The vehicle service.
    */
-  private final InternalVehicleService vehicleService;
+  @Inject
+  @Nonnull
+  InternalVehicleService vehicleService;
   /**
    * A factory for vehicle managers.
    */
-  private final VehicleControllerFactory vehicleManagerFactory;
+  @Inject
+  @Nonnull
+  VehicleControllerFactory vehicleManagerFactory;
   /**
    * The currently existing/assigned managers, mapped by the names of the
    * corresponding vehicles.
@@ -59,14 +63,9 @@ public class DefaultVehicleControllerPool
   /**
    * Creates a new StandardVehicleManagerPool.
    *
-   * @param vehicleService The vehicle service.
-   * @param vehicleManagerFactory A factory for vehicle managers.
    */
 
-  public DefaultVehicleControllerPool(InternalVehicleService vehicleService,
-                                      VehicleControllerFactory vehicleManagerFactory) {
-    this.vehicleService = requireNonNull(vehicleService, "vehicleService");
-    this.vehicleManagerFactory = requireNonNull(vehicleManagerFactory, "vehicleManagerFactory");
+  public DefaultVehicleControllerPool() {
   }
 
   @Override

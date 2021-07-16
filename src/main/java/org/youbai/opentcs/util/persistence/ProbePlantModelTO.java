@@ -40,7 +40,6 @@ public class ProbePlantModelTO
   public static ProbePlantModelTO fromXml(@Nonnull Reader reader)
       throws IOException {
     requireNonNull(reader, "reader");
-
     try {
       return (ProbePlantModelTO) createUnmarshaller().unmarshal(reader);
     }

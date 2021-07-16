@@ -27,7 +27,6 @@ import org.slf4j.LoggerFactory;
 @ApplicationScoped
 public class AllocationAdvisor
     implements Scheduler.Module {
-
   /**
    * This class' logger.
    */
@@ -57,8 +56,10 @@ public class AllocationAdvisor
       LOG.debug("Already initialized, doing nothing.");
       return;
     }
-
     for (Scheduler.Module module : modules) {
+      if (module instanceof AllocationAdvisor){
+        break;
+      }
       module.initialize();
     }
 

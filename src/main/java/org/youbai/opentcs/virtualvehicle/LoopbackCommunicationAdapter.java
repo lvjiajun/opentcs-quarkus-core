@@ -73,10 +73,6 @@ public class LoopbackCommunicationAdapter
    */
   private final VirtualVehicleConfiguration configuration;
   /**
-   * The adapter components factory.
-   */
-  private final LoopbackAdapterComponentsFactory componentsFactory;
-  /**
    * The kernel's executor.
    */
   private final ExecutorService kernelExecutor;
@@ -110,8 +106,7 @@ public class LoopbackCommunicationAdapter
    * @param kernelExecutor The kernel's executor.
    */
 
-  public LoopbackCommunicationAdapter(LoopbackAdapterComponentsFactory componentsFactory,
-                                      VirtualVehicleConfiguration configuration,
+  public LoopbackCommunicationAdapter(VirtualVehicleConfiguration configuration,
                                       Vehicle vehicle,
                                       @KernelExecutor ExecutorService kernelExecutor) {
     super(new LoopbackVehicleModel(vehicle),
@@ -121,7 +116,6 @@ public class LoopbackCommunicationAdapter
           kernelExecutor);
     this.vehicle = requireNonNull(vehicle, "vehicle");
     this.configuration = requireNonNull(configuration, "configuration");
-    this.componentsFactory = requireNonNull(componentsFactory, "componentsFactory");
     this.kernelExecutor = requireNonNull(kernelExecutor, "kernelExecutor");
   }
 

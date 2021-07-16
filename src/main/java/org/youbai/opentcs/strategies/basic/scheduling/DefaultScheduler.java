@@ -55,11 +55,13 @@ public class DefaultScheduler
   /**
    * The plant model service.
    */
-  private final InternalPlantModelService plantModelService;
+  @Inject
+  InternalPlantModelService plantModelService;
   /**
    * Takes care of modules.
    */
-  private final Module allocationAdvisor;
+  @Inject
+  AllocationAdvisor allocationAdvisor;
   /**
    * All claims.
    */
@@ -67,7 +69,8 @@ public class DefaultScheduler
   /**
    * The reservation pool.
    */
-  private final ReservationPool reservationPool;
+  @Inject
+  public ReservationPool reservationPool;
   /**
    * Allocations deferred because they couldn't be granted, yet.
    */
@@ -75,7 +78,8 @@ public class DefaultScheduler
   /**
    * Executes scheduling tasks.
    */
-  private final ScheduledExecutorService kernelExecutor;
+  @Named("ExecutorService")
+  ScheduledExecutorService kernelExecutor;
   /**
    * A global object to be used for synchronization within the kernel.
    */
@@ -88,22 +92,10 @@ public class DefaultScheduler
   /**
    * Creates a new BasicScheduler instance.
    *
-   * @param plantModelService The plant model service.
-   * @param allocationAdvisor Takes care of modules.
-   * @param reservationPool The reservation pool to be used.
-   * @param kernelExecutor Executes scheduling tasks.
    * @param globalSyncObject The kernel threads' global synchronization object.
    */
 
-  public DefaultScheduler(InternalPlantModelService plantModelService,
-                          AllocationAdvisor allocationAdvisor,
-                          ReservationPool reservationPool,
-                          @Named("ExecutorService")ScheduledExecutorService kernelExecutor,
-                          GlobalSyncObject globalSyncObject) {
-    this.plantModelService = requireNonNull(plantModelService, "plantModelService");
-    this.allocationAdvisor = requireNonNull(allocationAdvisor, "allocationAdvisor");
-    this.reservationPool = requireNonNull(reservationPool, "reservationPool");
-    this.kernelExecutor = requireNonNull(kernelExecutor, "kernelExecutor");
+  public DefaultScheduler(GlobalSyncObject globalSyncObject) {
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");
   }
 

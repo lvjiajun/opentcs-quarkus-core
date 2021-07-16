@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -47,7 +48,7 @@ import org.slf4j.LoggerFactory;
  * @author Stefan Walter (Fraunhofer IML)
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ApplicationScoped
+@Singleton
 public class AttachmentManager
     implements Lifecycle {
 
@@ -58,27 +59,39 @@ public class AttachmentManager
   /**
    * This class's configuration.
    */
-  private final KernelApplicationConfiguration configuration;
+  public final KernelApplicationConfiguration configuration;
   /**
    * The object service.
    */
-  private final TCSObjectService objectService;
+  @Nonnull
+  @StandardTCSObjectAnnotations
+  @Inject
+  public TCSObjectService objectService;
   /**
    * The vehicle controller pool.
    */
-  private final LocalVehicleControllerPool controllerPool;
+  @Nonnull
+  @Inject
+  public LocalVehicleControllerPool controllerPool;
   /**
    * The comm adapter registry.
    */
-  private final VehicleCommAdapterRegistry commAdapterRegistry;
+  @Nonnull
+  @Inject
+  public VehicleCommAdapterRegistry commAdapterRegistry;
   /**
    * The pool of vehicle entries.
    */
-  private final VehicleEntryPool vehicleEntryPool;
+  @Nonnull
+  @Inject
+  public VehicleEntryPool vehicleEntryPool;
   /**
    * The handler to send events to.
    */
-  private final EventHandler eventHandler;
+  @Nonnull
+  @SimpleEventBusAnnotation
+  @Inject
+  public EventHandler eventHandler;
   /**
    * The pool of comm adapter attachments.
    */
@@ -91,25 +104,10 @@ public class AttachmentManager
   /**
    * Creates a new instance.
    *
-   * @param objectService The object service.
-   * @param controllerPool The vehicle controller pool.
-   * @param commAdapterRegistry The comm adapter registry.
-   * @param vehicleEntryPool The pool of vehicle entries.
-   * @param eventHandler The handler to send events to.
    * @param configuration This class's configuration.
    */
 
-  public AttachmentManager(@Nonnull @StandardTCSObjectAnnotations TCSObjectService objectService,
-                           @Nonnull LocalVehicleControllerPool controllerPool,
-                           @Nonnull VehicleCommAdapterRegistry commAdapterRegistry,
-                           @Nonnull VehicleEntryPool vehicleEntryPool,
-                           @Nonnull @SimpleEventBusAnnotation EventHandler eventHandler,
-                           KernelApplicationConfiguration configuration) {
-    this.objectService = requireNonNull(objectService, "objectService");
-    this.controllerPool = requireNonNull(controllerPool, "controllerPool");
-    this.commAdapterRegistry = requireNonNull(commAdapterRegistry, "commAdapterRegistry");
-    this.vehicleEntryPool = requireNonNull(vehicleEntryPool, "vehicleEntryPool");
-    this.eventHandler = requireNonNull(eventHandler, "eventHandler");
+  public AttachmentManager(KernelApplicationConfiguration configuration) {
     this.configuration = requireNonNull(configuration, "configuration");
   }
 

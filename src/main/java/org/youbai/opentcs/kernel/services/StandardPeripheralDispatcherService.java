@@ -42,22 +42,20 @@ public class StandardPeripheralDispatcherService
   /**
    * The peripheral job dispatcher.
    */
-  private final PeripheralJobDispatcher dispatcher;
+  @Inject
+  public PeripheralJobDispatcher dispatcher;
 
   /**
    * Creates a new instance.
    *
    * @param globalSyncObject The kernel threads' global synchronization object.
    * @param globalObjectPool The object pool to be used.
-   * @param dispatcher The peripheral job dispatcher.
    */
 
   public StandardPeripheralDispatcherService(GlobalSyncObject globalSyncObject,
-                                             TCSObjectPool globalObjectPool,
-                                             PeripheralJobDispatcher dispatcher) {
+                                             TCSObjectPool globalObjectPool) {
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");
     this.globalObjectPool = requireNonNull(globalObjectPool, "globalObjectPool");
-    this.dispatcher = requireNonNull(dispatcher, "dispatcher");
   }
 
   @Override

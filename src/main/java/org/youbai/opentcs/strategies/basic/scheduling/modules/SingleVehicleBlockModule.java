@@ -15,12 +15,14 @@ import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.Scheduler;
 import org.youbai.opentcs.components.kernel.services.InternalPlantModelService;
-import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
 import org.youbai.opentcs.data.model.Block;
 import org.youbai.opentcs.data.model.TCSResource;
 import org.youbai.opentcs.data.model.TCSResourceReference;
+import org.youbai.opentcs.kernel.GlobalSyncObject;
 import org.youbai.opentcs.strategies.basic.scheduling.ReservationPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +34,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-
+@Singleton
 public class SingleVehicleBlockModule
     implements Scheduler.Module {
 
@@ -43,11 +45,13 @@ public class SingleVehicleBlockModule
   /**
    * The reservation pool.
    */
-  private final ReservationPool reservationPool;
+  @Inject
+  ReservationPool reservationPool;
   /**
    * The plant model service.
    */
-  private final InternalPlantModelService plantModelService;
+  @Inject
+  InternalPlantModelService plantModelService;
   /**
    * A global object to be used for synchronization within the kernel.
    */
@@ -58,11 +62,7 @@ public class SingleVehicleBlockModule
   private boolean initialized;
 
 
-  public SingleVehicleBlockModule(@Nonnull ReservationPool reservationPool,
-                                  @Nonnull InternalPlantModelService plantModelService,
-                                  @Nonnull Object globalSyncObject) {
-    this.reservationPool = requireNonNull(reservationPool, "reservationPool");
-    this.plantModelService = requireNonNull(plantModelService, "plantModelService");
+  public SingleVehicleBlockModule(GlobalSyncObject globalSyncObject) {
     this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");
   }
 

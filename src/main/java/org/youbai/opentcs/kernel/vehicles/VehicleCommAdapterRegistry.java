@@ -69,13 +69,11 @@ public class VehicleCommAdapterRegistry
   /**
    * Creates a new registry.
    *
-   * @param kernel A reference to the local kernel.
    * @param factories The comm adapter factories.
    */
 
-  public VehicleCommAdapterRegistry(@StandardKernelAnnotations LocalKernel kernel,
-                                    Instance<VehicleCommAdapterFactory> factories) {
-    requireNonNull(kernel, "kernel");
+  public VehicleCommAdapterRegistry(Instance<VehicleCommAdapterFactory> factories) {
+
 
     for (VehicleCommAdapterFactory factory : factories) {
       LOG.info("Setting up communication adapter factory: {}", factory.getClass().getName());

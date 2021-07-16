@@ -13,7 +13,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+import javax.annotation.Nonnull;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Instance;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -58,59 +61,73 @@ public class KernelStateOperating
   /**
    * The order facade to the object pool.
    */
-  private final TransportOrderPool orderPool;
+  @Inject@Nonnull
+  TransportOrderPool orderPool;
   /**
    * The peripheral job facade to the object pool.
    */
-  private final PeripheralJobPool jobPool;
+  @Inject@Nonnull
+  PeripheralJobPool jobPool;
   /**
    * This kernel's router.
    */
-  private final Router router;
+  @Inject@Nonnull
+  Router router;
   /**
    * This kernel's scheduler.
    */
-  private final Scheduler scheduler;
+  @Inject@Nonnull@Named("bindScheduler")
+  Scheduler scheduler;
   /**
    * This kernel's dispatcher.
    */
-  private final Dispatcher dispatcher;
+  @Inject@Nonnull
+  Dispatcher dispatcher;
   /**
    * This kernel's peripheral job dispatcher.
    */
-  private final PeripheralJobDispatcher peripheralJobDispatcher;
+  @Inject@Nonnull
+  PeripheralJobDispatcher peripheralJobDispatcher;
   /**
    * A pool of vehicle controllers.
    */
-  private final LocalVehicleControllerPool vehicleControllerPool;
+  @Inject@Nonnull
+  LocalVehicleControllerPool vehicleControllerPool;
   /**
    * A pool of peripheral controllers.
    */
-  private final LocalPeripheralControllerPool peripheralControllerPool;
+  @Inject@Nonnull
+  LocalPeripheralControllerPool peripheralControllerPool;
   /**
    * The kernel's executor.
    */
-  private final ScheduledExecutorService kernelExecutor;
+  @Inject@Nonnull@Named("ExecutorService")
+  ScheduledExecutorService kernelExecutor;
   /**
    * A task for periodically getting rid of old orders.
    */
-  private final OrderCleanerTask orderCleanerTask;
+  @Inject@Nonnull
+  OrderCleanerTask orderCleanerTask;
   /**
    * This kernel state's local extensions.
    */
-  private final Instance<KernelExtension> extensions;
+  @Inject@Nonnull
+  Instance<KernelExtension> extensions;
   /**
    * The kernel's attachment manager.
    */
-  private final AttachmentManager attachmentManager;
+  @Inject@Nonnull
+  AttachmentManager attachmentManager;
   /**
    * The kernel's peripheral attachment manager.
    */
-  private final PeripheralAttachmentManager peripheralAttachmentManager;
+  @Inject@Nonnull
+  PeripheralAttachmentManager peripheralAttachmentManager;
   /**
    * The vehicle service.
    */
-  private final InternalVehicleService vehicleService;
+  @Inject@Nonnull
+  InternalVehicleService vehicleService;
   /**
    * A handle for the cleaner task.
    */
@@ -131,45 +148,14 @@ public class KernelStateOperating
   KernelStateOperating(GlobalSyncObject globalSyncObject,
                        TCSObjectPool objectPool,
                        Model model,
-                       TransportOrderPool orderPool,
-                       PeripheralJobPool jobPool,
                        @XMLFileModelAnnotations ModelPersister modelPersister,
-                       KernelApplicationConfiguration configuration,
-                       Router router,
-                       @Named("bindScheduler") Scheduler scheduler,
-                       Dispatcher dispatcher,
-                       PeripheralJobDispatcher peripheralJobDispatcher,
-                       LocalVehicleControllerPool controllerPool,
-                       LocalPeripheralControllerPool peripheralControllerPool,
-                       ScheduledExecutorService kernelExecutor,
-                       OrderCleanerTask orderCleanerTask,
-                       Instance<KernelExtension> extensions,
-                       AttachmentManager attachmentManager,
-                       PeripheralAttachmentManager peripheralAttachmentManager,
-                       InternalVehicleService vehicleService) {
+                       KernelApplicationConfiguration configuration) {
     super(globalSyncObject,
           objectPool,
           model,
           modelPersister,
           configuration.saveModelOnTerminateOperating());
-    this.orderPool = requireNonNull(orderPool, "orderPool");
-    this.jobPool = requireNonNull(jobPool, "jobPool");
     this.configuration = requireNonNull(configuration, "configuration");
-    this.router = requireNonNull(router, "router");
-    this.scheduler = requireNonNull(scheduler, "scheduler");
-    this.dispatcher = requireNonNull(dispatcher, "dispatcher");
-    this.peripheralJobDispatcher = requireNonNull(peripheralJobDispatcher,
-                                                  "peripheralJobDispatcher");
-    this.vehicleControllerPool = requireNonNull(controllerPool, "controllerPool");
-    this.peripheralControllerPool = requireNonNull(peripheralControllerPool,
-                                                   "peripheralControllerPool");
-    this.kernelExecutor = requireNonNull(kernelExecutor, "kernelExecutor");
-    this.orderCleanerTask = requireNonNull(orderCleanerTask, "orderCleanerTask");
-    this.extensions = requireNonNull(extensions, "extensions");
-    this.attachmentManager = requireNonNull(attachmentManager, "attachmentManager");
-    this.peripheralAttachmentManager = requireNonNull(peripheralAttachmentManager,
-                                                      "peripheralAttachmentManager");
-    this.vehicleService = requireNonNull(vehicleService, "vehicleService");
   }
 
   // Implementation of interface Kernel starts here.
