@@ -28,6 +28,7 @@ import org.youbai.opentcs.data.order.TransportOrder;
 import org.youbai.opentcs.kernel.GlobalSyncObject;
 import org.youbai.opentcs.kernel.annotations.StandardDispatcherServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
+import org.youbai.opentcs.kernel.annotations.StandardTransportOrderServiceAnnotations;
 import org.youbai.opentcs.kernel.workingset.Model;
 import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
 import org.youbai.opentcs.kernel.workingset.TransportOrderPool;
@@ -38,6 +39,7 @@ import org.youbai.opentcs.kernel.workingset.TransportOrderPool;
  * @author Martin Grzenia (Fraunhofer IML)
  */
 @Singleton
+@StandardTransportOrderServiceAnnotations
 public class StandardTransportOrderService
     extends AbstractTCSObjectService
     implements InternalTransportOrderService {

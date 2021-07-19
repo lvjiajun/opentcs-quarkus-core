@@ -17,6 +17,7 @@ import org.youbai.opentcs.access.SchedulerAllocationState;
 import org.youbai.opentcs.components.kernel.Scheduler;
 import org.youbai.opentcs.components.kernel.services.SchedulerService;
 import org.youbai.opentcs.kernel.GlobalSyncObject;
+import org.youbai.opentcs.kernel.annotations.StandardSchedulerServiceAnnotations;
 
 /**
  * This class is the standard implementation of the {@link SchedulerService} interface.
@@ -24,6 +25,7 @@ import org.youbai.opentcs.kernel.GlobalSyncObject;
  * @author Martin Grzenia (Fraunhofer IML)
  */
 @Singleton
+@StandardSchedulerServiceAnnotations
 public class StandardSchedulerService
     implements SchedulerService {
 

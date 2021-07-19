@@ -33,6 +33,8 @@ import org.youbai.opentcs.drivers.vehicle.VehicleController;
 import org.youbai.opentcs.drivers.vehicle.VehicleControllerPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.StandardTransportOrderServiceAnnotations;
+import org.youbai.opentcs.kernel.annotations.StandardVehicleServiceAnnotations;
 
 /**
  * Provides service functions for working with transport orders and their states.
@@ -50,12 +52,12 @@ public class TransportOrderUtil
   /**
    * The transport order service.
    */
-  @Inject
+  @Inject@StandardTransportOrderServiceAnnotations
   InternalTransportOrderService transportOrderService;
   /**
    * The vehicle service.
    */
-  @Inject
+  @Inject@StandardVehicleServiceAnnotations
   InternalVehicleService vehicleService;
   /**
    * The Router instance calculating route costs.

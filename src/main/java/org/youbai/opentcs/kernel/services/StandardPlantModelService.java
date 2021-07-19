@@ -47,6 +47,7 @@ import org.slf4j.LoggerFactory;
  * @author Martin Grzenia (Fraunhofer IML)
  */
 @Singleton
+@StandardPlantModelServiceAnnotations
 public class StandardPlantModelService
     extends AbstractTCSObjectService
     implements InternalPlantModelService {

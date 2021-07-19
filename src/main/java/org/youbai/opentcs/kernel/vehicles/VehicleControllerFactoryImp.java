@@ -9,6 +9,7 @@ import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapter;
 import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
 import org.youbai.opentcs.kernel.annotations.StandardDispatcherServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardNotificationServiceAnnotation;
+import org.youbai.opentcs.kernel.annotations.StandardVehicleServiceAnnotations;
 import org.youbai.opentcs.util.event.EventBus;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -20,7 +21,7 @@ import javax.inject.Named;
 public class VehicleControllerFactoryImp {
 
 
-    @Inject
+    @Inject@StandardVehicleServiceAnnotations
     InternalVehicleService vehicleService;
     @Inject@StandardNotificationServiceAnnotation
     NotificationService notificationService;

@@ -34,6 +34,7 @@ import org.youbai.opentcs.drivers.vehicle.VehicleController;
 import org.youbai.opentcs.drivers.vehicle.VehicleControllerPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.StandardTransportOrderServiceAnnotations;
 
 /**
  * Provides some utility methods used for rerouting vehicles.
@@ -58,7 +59,9 @@ public class RerouteUtil {
   /**
    * The object service.
    */
-  private final InternalTransportOrderService transportOrderService;
+  @Inject
+  @StandardTransportOrderServiceAnnotations
+  InternalTransportOrderService transportOrderService;
 
   private final DefaultDispatcherConfiguration configuration;
 
@@ -67,16 +70,13 @@ public class RerouteUtil {
    *
    * @param router The router.
    * @param vehicleControllerPool The vehicle controller pool.
-   * @param transportOrderService The object service.
    * @param configuration The configuration.
    */
   public RerouteUtil(Router router,
                      VehicleControllerPool vehicleControllerPool,
-                     InternalTransportOrderService transportOrderService,
                      DefaultDispatcherConfiguration configuration) {
     this.router = requireNonNull(router, "router");
     this.vehicleControllerPool = requireNonNull(vehicleControllerPool, "vehicleControllerPool");
-    this.transportOrderService = requireNonNull(transportOrderService, "transportOrderService");
     this.configuration = requireNonNull(configuration, "configuration");
   }
 

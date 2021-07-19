@@ -26,6 +26,7 @@ import org.youbai.opentcs.drivers.peripherals.PeripheralCommAdapterDescription;
 import org.youbai.opentcs.drivers.peripherals.PeripheralProcessModel;
 import org.youbai.opentcs.drivers.peripherals.management.PeripheralAttachmentInformation;
 import org.youbai.opentcs.kernel.GlobalSyncObject;
+import org.youbai.opentcs.kernel.annotations.StandardPeripheralServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 import org.youbai.opentcs.kernel.peripherals.PeripheralAttachmentManager;
 import org.youbai.opentcs.kernel.peripherals.PeripheralEntry;
@@ -38,6 +39,7 @@ import org.youbai.opentcs.kernel.workingset.Model;
  * @author Martin Grzenia (Fraunhofer IML)
  */
 @Singleton
+@StandardPeripheralServiceAnnotations
 public class StandardPeripheralService
     extends AbstractTCSObjectService
     implements InternalPeripheralService {

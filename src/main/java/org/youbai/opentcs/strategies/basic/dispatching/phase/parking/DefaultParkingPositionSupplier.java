@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.components.kernel.Dispatcher;
 import org.youbai.opentcs.kernel.annotations.DefaultParkingPositionSupplierAnnotation;
 import org.youbai.opentcs.kernel.annotations.DefaultPeripheralControllerPoolAnnotations;
+import org.youbai.opentcs.kernel.annotations.StandardPlantModelServiceAnnotations;
 
 /**
  * A parking position supplier that tries to find parking positions that are unoccupied,
@@ -49,7 +50,7 @@ public class DefaultParkingPositionSupplier
    * @param router A router for computing travel costs to parking positions.
    */
 
-  public DefaultParkingPositionSupplier(InternalPlantModelService plantModelService,
+  public DefaultParkingPositionSupplier(@StandardPlantModelServiceAnnotations InternalPlantModelService plantModelService,
                                         Router router) {
     super(plantModelService, router);
   }

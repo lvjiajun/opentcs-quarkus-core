@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import org.youbai.opentcs.components.kernel.Router;
 import org.youbai.opentcs.components.kernel.services.InternalTransportOrderService;
 import org.youbai.opentcs.data.model.Vehicle;
+import org.youbai.opentcs.kernel.annotations.StandardTransportOrderServiceAnnotations;
 import org.youbai.opentcs.strategies.basic.dispatching.DefaultDispatcherConfiguration;
 import org.youbai.opentcs.strategies.basic.dispatching.TransportOrderUtil;
 import org.youbai.opentcs.strategies.basic.dispatching.selection.candidates.CompositeAssignmentCandidateSelectionFilter;
@@ -42,7 +43,7 @@ public class PrioritizedParkingPhase
 
 
   public PrioritizedParkingPhase(
-      InternalTransportOrderService orderService,
+      @StandardTransportOrderServiceAnnotations InternalTransportOrderService orderService,
       PrioritizedParkingPositionSupplier parkingPosSupplier,
       Router router,
       CompositeAssignmentCandidateSelectionFilter assignmentCandidateSelectionFilter,

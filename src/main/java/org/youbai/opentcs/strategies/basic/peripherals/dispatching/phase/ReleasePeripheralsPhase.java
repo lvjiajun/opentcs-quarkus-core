@@ -16,6 +16,7 @@ import javax.inject.Singleton;
 
 import org.youbai.opentcs.components.kernel.services.InternalPeripheralService;
 import org.youbai.opentcs.data.model.Location;
+import org.youbai.opentcs.kernel.annotations.StandardPeripheralServiceAnnotations;
 import org.youbai.opentcs.strategies.basic.peripherals.dispatching.PeripheralDispatcherPhase;
 import org.youbai.opentcs.strategies.basic.peripherals.dispatching.PeripheralReleaseStrategy;
 import org.slf4j.Logger;
@@ -37,7 +38,8 @@ public class ReleasePeripheralsPhase
   /**
    * The peripheral service.
    */
-  private final InternalPeripheralService peripheralService;
+  @StandardPeripheralServiceAnnotations
+  InternalPeripheralService peripheralService;
   /**
    * The release strategy to use.
    */
@@ -48,9 +50,7 @@ public class ReleasePeripheralsPhase
   private boolean initialized;
 
 
-  public ReleasePeripheralsPhase(InternalPeripheralService peripheralService,
-                                 PeripheralReleaseStrategy releaseStrategy) {
-    this.peripheralService = requireNonNull(peripheralService, "peripheralService");
+  public ReleasePeripheralsPhase(PeripheralReleaseStrategy releaseStrategy) {
     this.releaseStrategy = requireNonNull(releaseStrategy, "releaseStrategy");
   }
 

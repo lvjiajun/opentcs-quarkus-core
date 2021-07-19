@@ -18,6 +18,8 @@ import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.DriveOrder;
 import org.youbai.opentcs.data.order.TransportOrder;
 import org.youbai.opentcs.drivers.vehicle.VehicleControllerPool;
+import org.youbai.opentcs.kernel.annotations.StandardTransportOrderServiceAnnotations;
+import org.youbai.opentcs.kernel.annotations.StandardVehicleServiceAnnotations;
 import org.youbai.opentcs.strategies.basic.dispatching.DefaultDispatcherConfiguration;
 import org.youbai.opentcs.strategies.basic.dispatching.Phase;
 import org.youbai.opentcs.strategies.basic.dispatching.RerouteUtil;
@@ -39,8 +41,10 @@ public class AssignNextDriveOrdersPhase
    * This class's Logger.
    */
   private static final Logger LOG = LoggerFactory.getLogger(AssignNextDriveOrdersPhase.class);
-  private final InternalTransportOrderService transportOrderService;
-  private final InternalVehicleService vehicleService;
+  @Inject@StandardTransportOrderServiceAnnotations
+  InternalTransportOrderService transportOrderService;
+  @Inject@StandardVehicleServiceAnnotations
+  InternalVehicleService vehicleService;
   /**
    * The Router instance calculating route costs.
    */
@@ -64,15 +68,11 @@ public class AssignNextDriveOrdersPhase
   private boolean initialized;
 
 
-  public AssignNextDriveOrdersPhase(InternalTransportOrderService transportOrderService,
-                                    InternalVehicleService vehicleService,
-                                    Router router,
+  public AssignNextDriveOrdersPhase(Router router,
                                     VehicleControllerPool vehicleControllerPool,
                                     TransportOrderUtil transportOrderUtil,
                                     RerouteUtil rerouteUtil,
                                     DefaultDispatcherConfiguration configuration) {
-    this.transportOrderService = requireNonNull(transportOrderService, "transportOrderService");
-    this.vehicleService = requireNonNull(vehicleService, "vehicleService");
     this.router = requireNonNull(router, "router");
     this.vehicleControllerPool = requireNonNull(vehicleControllerPool, "vehicleControllerPool");
     this.transportOrderUtil = requireNonNull(transportOrderUtil, "transportOrderUtil");

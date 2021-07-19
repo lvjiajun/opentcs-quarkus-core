@@ -26,6 +26,7 @@ import org.youbai.opentcs.data.model.Vehicle;
 import static org.youbai.opentcs.util.Assertions.checkArgument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.StandardPlantModelServiceAnnotations;
 import org.youbai.opentcs.util.Assertions;
 
 /**
@@ -59,7 +60,7 @@ public class PrioritizedParkingPositionSupplier
    * @param priorityFunction A function computing the priority of a parking position.
    */
 
-  public PrioritizedParkingPositionSupplier(InternalPlantModelService plantModelService,
+  public PrioritizedParkingPositionSupplier(@StandardPlantModelServiceAnnotations InternalPlantModelService plantModelService,
                                             Router router,
                                             ParkingPositionToPriorityFunction priorityFunction) {
     super(plantModelService, router);

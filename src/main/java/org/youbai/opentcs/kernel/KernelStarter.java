@@ -22,6 +22,7 @@ import org.youbai.opentcs.customizations.kernel.ActiveInAllModes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.kernel.annotations.StandardKernelAnnotations;
+import org.youbai.opentcs.kernel.annotations.StandardPlantModelServiceAnnotations;
 
 /**
  * Initializes an openTCS kernel instance.
@@ -57,7 +58,7 @@ public class KernelStarter {
    */
 
   protected KernelStarter(@StandardKernelAnnotations LocalKernel kernel,
-                          InternalPlantModelService plantModelService,
+                          @StandardPlantModelServiceAnnotations InternalPlantModelService plantModelService,
                           Instance<KernelExtension> extensions) {
     this.kernel = requireNonNull(kernel, "kernel");
     this.plantModelService = requireNonNull(plantModelService, "plantModelService");

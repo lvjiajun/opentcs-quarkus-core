@@ -22,6 +22,7 @@ import org.youbai.opentcs.data.model.Point;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.DriveOrder;
 import org.youbai.opentcs.data.order.TransportOrder;
+import org.youbai.opentcs.kernel.annotations.StandardTransportOrderServiceAnnotations;
 import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
 import org.youbai.opentcs.strategies.basic.dispatching.DefaultDispatcherConfiguration;
 import org.youbai.opentcs.strategies.basic.dispatching.Phase;
@@ -47,7 +48,7 @@ public class RechargeIdleVehiclesPhase
   /**
    * The transport order service.
    */
-  @Inject
+  @Inject@StandardTransportOrderServiceAnnotations
   InternalTransportOrderService orderService;
   /**
    * The strategy used for finding suitable recharge locations.

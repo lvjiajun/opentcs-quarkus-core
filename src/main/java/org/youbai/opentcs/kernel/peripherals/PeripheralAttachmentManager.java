@@ -28,6 +28,7 @@ import org.youbai.opentcs.drivers.peripherals.management.PeripheralAttachmentInf
 import org.youbai.opentcs.drivers.peripherals.management.PeripheralProcessModelEvent;
 import org.youbai.opentcs.kernel.KernelApplicationConfiguration;
 import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
+import org.youbai.opentcs.kernel.annotations.StandardPeripheralServiceAnnotations;
 import org.youbai.opentcs.util.event.EventHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,7 +54,7 @@ public class PeripheralAttachmentManager
   /**
    * The peripheral service.
    */
-  @Inject
+  @Inject@StandardPeripheralServiceAnnotations
   InternalPeripheralService peripheralService;
   /**
    * The peripheral controller pool.

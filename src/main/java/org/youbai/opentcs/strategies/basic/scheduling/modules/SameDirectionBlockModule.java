@@ -29,6 +29,7 @@ import org.youbai.opentcs.data.model.Block;
 import org.youbai.opentcs.data.model.Path;
 import org.youbai.opentcs.data.model.TCSResource;
 import org.youbai.opentcs.kernel.GlobalSyncObject;
+import org.youbai.opentcs.kernel.annotations.StandardPlantModelServiceAnnotations;
 import org.youbai.opentcs.strategies.basic.scheduling.ReservationPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,7 +57,7 @@ public class SameDirectionBlockModule
   /**
    * The plant model service.
    */
-  @Inject
+  @Inject@StandardPlantModelServiceAnnotations
   InternalPlantModelService plantModelService;
   /**
    * The permissions for all {@link Block.Type#SAME_DIRECTION_ONLY} blocks in a plant model.

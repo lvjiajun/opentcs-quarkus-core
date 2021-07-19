@@ -9,5 +9,5 @@ import java.lang.annotation.Target;
 @Qualifier
 @Target({ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD,ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface StandardSchedulerAnnotations {
+public @interface StandardVehicleServiceAnnotations {
 }

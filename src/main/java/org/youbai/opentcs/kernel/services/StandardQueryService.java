@@ -19,6 +19,8 @@ import org.youbai.opentcs.components.kernel.Query;
 import org.youbai.opentcs.components.kernel.QueryResponder;
 import org.youbai.opentcs.components.kernel.services.InternalQueryService;
 import org.youbai.opentcs.customizations.kernel.GlobalSyncObject;
+import org.youbai.opentcs.kernel.annotations.StandardQueryServiceAnnotations;
+
 import static org.youbai.opentcs.util.Assertions.checkArgument;
 
 /**
@@ -27,6 +29,7 @@ import static org.youbai.opentcs.util.Assertions.checkArgument;
  * @author Stefan Walter (Fraunhofer IML)
  */
 @Singleton
+@StandardQueryServiceAnnotations
 public class StandardQueryService
     implements InternalQueryService {
 

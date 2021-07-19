@@ -5,6 +5,7 @@ import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.TCSResourceReference;
 import org.youbai.opentcs.drivers.peripherals.PeripheralCommAdapter;
 import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
+import org.youbai.opentcs.kernel.annotations.StandardPeripheralServiceAnnotations;
 import org.youbai.opentcs.util.event.EventBus;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -14,7 +15,7 @@ import javax.inject.Inject;
 public class PeripheralControllerFactoryImp {
 
 
-    @Inject
+    @Inject@StandardPeripheralServiceAnnotations
     InternalPeripheralService peripheralService;
     @Inject @SimpleEventBusAnnotation
     EventBus eventBus;

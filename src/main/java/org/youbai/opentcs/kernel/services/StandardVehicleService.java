@@ -28,6 +28,7 @@ import org.youbai.opentcs.drivers.vehicle.management.AttachmentInformation;
 import org.youbai.opentcs.drivers.vehicle.management.VehicleProcessModelTO;
 import org.youbai.opentcs.kernel.GlobalSyncObject;
 import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
+import org.youbai.opentcs.kernel.annotations.StandardVehicleServiceAnnotations;
 import org.youbai.opentcs.kernel.extensions.controlcenter.vehicles.AttachmentManager;
 import org.youbai.opentcs.kernel.extensions.controlcenter.vehicles.VehicleEntry;
 import org.youbai.opentcs.kernel.extensions.controlcenter.vehicles.VehicleEntryPool;
@@ -49,6 +50,7 @@ import static java.util.Objects.requireNonNull;
  * @author Martin Grzenia (Fraunhofer IML)
  */
 @Singleton
+@StandardVehicleServiceAnnotations
 public class StandardVehicleService
     extends AbstractTCSObjectService
     implements InternalVehicleService {

@@ -28,6 +28,7 @@ import org.youbai.opentcs.components.kernel.Router;
 import org.youbai.opentcs.components.kernel.Scheduler;
 import org.youbai.opentcs.components.kernel.services.InternalVehicleService;
 import org.youbai.opentcs.data.model.Vehicle;
+import org.youbai.opentcs.kernel.annotations.StandardVehicleServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.XMLFileModelAnnotations;
 import org.youbai.opentcs.kernel.extensions.controlcenter.vehicles.AttachmentManager;
 import org.youbai.opentcs.kernel.peripherals.LocalPeripheralControllerPool;
@@ -126,7 +127,7 @@ public class KernelStateOperating
   /**
    * The vehicle service.
    */
-  @Inject@Nonnull
+  @Inject@Nonnull@StandardVehicleServiceAnnotations
   InternalVehicleService vehicleService;
   /**
    * A handle for the cleaner task.

@@ -23,6 +23,7 @@ import org.youbai.opentcs.data.model.Block;
 import org.youbai.opentcs.data.model.TCSResource;
 import org.youbai.opentcs.data.model.TCSResourceReference;
 import org.youbai.opentcs.kernel.GlobalSyncObject;
+import org.youbai.opentcs.kernel.annotations.StandardPlantModelServiceAnnotations;
 import org.youbai.opentcs.strategies.basic.scheduling.ReservationPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +51,7 @@ public class SingleVehicleBlockModule
   /**
    * The plant model service.
    */
-  @Inject
+  @Inject@StandardPlantModelServiceAnnotations
   InternalPlantModelService plantModelService;
   /**
    * A global object to be used for synchronization within the kernel.

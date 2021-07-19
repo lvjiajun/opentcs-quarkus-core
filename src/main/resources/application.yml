@@ -54,3 +54,21 @@ virtualperipheral:
   enable: true
 statisticscollector:
   enable: true
+
+
+rmikernelinterface:
+  enable: true
+  useSsl: false
+  clientSweepInterval: 300000
+  registryPort: 1099
+  remoteKernelServicePortalPort: 55000
+  remotePlantModelServicePort: 55001
+  remoteTransportOrderServicePort: 55002
+  remoteVehicleServicePort: 55003
+  remoteNotificationServicePort: 55004
+  remoteSchedulerServicePort: 55005
+  remoteRouterServicePort: 55006
+  remoteDispatcherServicePort: 55007
+  remoteQueryServicePort: 55008
+  remotePeripheralServicePort: 55009
+  remotePeripheralJobServicePort: 55010

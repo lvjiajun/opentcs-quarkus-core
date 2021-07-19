@@ -23,6 +23,7 @@ import org.youbai.opentcs.data.model.Path;
 import org.youbai.opentcs.kernel.GlobalSyncObject;
 import org.youbai.opentcs.kernel.KernelApplicationConfiguration;
 import org.youbai.opentcs.kernel.annotations.StandardKernelAnnotations;
+import org.youbai.opentcs.kernel.annotations.StandardRouterServiceAnnotations;
 import org.youbai.opentcs.kernel.workingset.Model;
 
 /**
@@ -31,6 +32,7 @@ import org.youbai.opentcs.kernel.workingset.Model;
  * @author Martin Grzenia (Fraunhofer IML)
  */
 @Singleton
+@StandardRouterServiceAnnotations
 public class StandardRouterService
     implements RouterService {
 

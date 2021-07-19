@@ -13,6 +13,7 @@ import org.youbai.opentcs.components.kernel.services.InternalVehicleService;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapter;
 import org.youbai.opentcs.drivers.vehicle.VehicleController;
+import org.youbai.opentcs.kernel.annotations.StandardVehicleServiceAnnotations;
 
 import javax.annotation.Nonnull;
 import javax.enterprise.context.ApplicationScoped;
@@ -42,7 +43,7 @@ public class DefaultVehicleControllerPool
    * The vehicle service.
    */
   @Inject
-  @Nonnull
+  @Nonnull@StandardVehicleServiceAnnotations
   InternalVehicleService vehicleService;
   /**
    * A factory for vehicle managers.

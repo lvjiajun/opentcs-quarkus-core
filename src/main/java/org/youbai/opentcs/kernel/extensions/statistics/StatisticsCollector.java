@@ -16,6 +16,8 @@ import static java.util.Objects.requireNonNull;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.components.kernel.KernelExtension;
 import org.youbai.opentcs.customizations.ApplicationEventBus;
 import org.youbai.opentcs.customizations.ApplicationHome;

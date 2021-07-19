@@ -30,6 +30,7 @@ import org.youbai.opentcs.components.kernel.services.InternalPlantModelService;
 import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.model.TCSResource;
 import org.youbai.opentcs.kernel.GlobalSyncObject;
+import org.youbai.opentcs.kernel.annotations.StandardPlantModelServiceAnnotations;
 import org.youbai.opentcs.strategies.basic.scheduling.AllocatorCommand.Allocate;
 import org.youbai.opentcs.strategies.basic.scheduling.AllocatorCommand.AllocationsReleased;
 import org.youbai.opentcs.strategies.basic.scheduling.AllocatorCommand.CheckAllocationsPrepared;
@@ -55,7 +56,7 @@ public class DefaultScheduler
   /**
    * The plant model service.
    */
-  @Inject
+  @Inject@StandardPlantModelServiceAnnotations
   InternalPlantModelService plantModelService;
   /**
    * Takes care of modules.

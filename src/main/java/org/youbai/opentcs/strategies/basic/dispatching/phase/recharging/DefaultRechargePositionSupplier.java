@@ -32,6 +32,7 @@ import org.youbai.opentcs.data.model.Point;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.DriveOrder;
 import org.youbai.opentcs.components.kernel.Dispatcher;
+import org.youbai.opentcs.kernel.annotations.StandardPlantModelServiceAnnotations;
 
 /**
  * Finds assigned, preferred or (routing-wise) cheapest recharge locations for vehicles.
@@ -45,7 +46,7 @@ public class DefaultRechargePositionSupplier
   /**
    * The plant model service.
    */
-  @Inject
+  @Inject@StandardPlantModelServiceAnnotations
   InternalPlantModelService plantModelService;
   /**
    * Our router.

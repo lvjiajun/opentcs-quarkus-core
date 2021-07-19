@@ -27,6 +27,8 @@ import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.TransportOrder;
 import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
+import org.youbai.opentcs.kernel.annotations.StandardTransportOrderServiceAnnotations;
+import org.youbai.opentcs.kernel.annotations.StandardVehicleServiceAnnotations;
 import org.youbai.opentcs.util.event.EventSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,12 +59,12 @@ public class DefaultDispatcher
   /**
    * The transport order service.
    */
-  @Inject
+  @Inject@StandardTransportOrderServiceAnnotations
   InternalTransportOrderService transportOrderService;
   /**
    * The vehicle service.
    */
-  @Inject
+  @Inject@StandardVehicleServiceAnnotations
   InternalVehicleService vehicleService;
   /**
    * Where we register for application events.
