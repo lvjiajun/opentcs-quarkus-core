@@ -14,7 +14,7 @@ import java.rmi.server.UnicastRemoteObject;
 import static java.util.Objects.requireNonNull;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
-import javax.inject.Inject;
+import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 
 import org.youbai.opentcs.access.rmi.ClientID;
@@ -22,7 +22,6 @@ import org.youbai.opentcs.access.rmi.factories.SocketFactoryProvider;
 import org.youbai.opentcs.access.rmi.services.RegistrationName;
 import org.youbai.opentcs.access.rmi.services.RemotePeripheralService;
 import org.youbai.opentcs.components.kernel.services.PeripheralService;
-import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.TCSResourceReference;
 import org.youbai.opentcs.drivers.peripherals.PeripheralAdapterCommand;
@@ -31,7 +30,6 @@ import org.youbai.opentcs.drivers.peripherals.PeripheralProcessModel;
 import org.youbai.opentcs.drivers.peripherals.management.PeripheralAttachmentInformation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.youbai.opentcs.kernel.annotations.SecureSocketFactoryProviderAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardPeripheralServiceAnnotations;
 
 /**
@@ -43,6 +41,7 @@ import org.youbai.opentcs.kernel.annotations.StandardPeripheralServiceAnnotation
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+
 public class StandardRemotePeripheralService
     extends StandardRemoteTCSObjectService
     implements RemotePeripheralService {
@@ -98,7 +97,7 @@ public class StandardRemotePeripheralService
   public StandardRemotePeripheralService(@StandardPeripheralServiceAnnotations PeripheralService peripheralService,
                                          UserManager userManager,
                                          RmiKernelInterfaceConfiguration configuration,
-                                         @SecureSocketFactoryProviderAnnotations SocketFactoryProvider socketFactoryProvider,
+                                         @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                          RegistryProvider registryProvider,
                                          @Named("ExecutorService") ExecutorService kernelExecutor) {
     super(peripheralService, userManager, kernelExecutor);

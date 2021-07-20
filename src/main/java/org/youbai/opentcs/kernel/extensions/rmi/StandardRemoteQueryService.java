@@ -14,7 +14,7 @@ import java.rmi.server.UnicastRemoteObject;
 import static java.util.Objects.requireNonNull;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
-import javax.inject.Inject;
+import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 
 import org.youbai.opentcs.access.rmi.ClientID;
@@ -24,10 +24,8 @@ import org.youbai.opentcs.access.rmi.services.RemoteDispatcherService;
 import org.youbai.opentcs.access.rmi.services.RemoteQueryService;
 import org.youbai.opentcs.components.kernel.Query;
 import org.youbai.opentcs.components.kernel.services.QueryService;
-import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.youbai.opentcs.kernel.annotations.SecureSocketFactoryProviderAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardQueryServiceAnnotations;
 
 /**
@@ -39,6 +37,7 @@ import org.youbai.opentcs.kernel.annotations.StandardQueryServiceAnnotations;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
+
 public class StandardRemoteQueryService
     extends KernelRemoteService
     implements RemoteQueryService {
@@ -94,7 +93,7 @@ public class StandardRemoteQueryService
   public StandardRemoteQueryService(@StandardQueryServiceAnnotations QueryService queryService,
                                     UserManager userManager,
                                     RmiKernelInterfaceConfiguration configuration,
-                                    @SecureSocketFactoryProviderAnnotations SocketFactoryProvider socketFactoryProvider,
+                                    @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                     RegistryProvider registryProvider,
                                     @Named("ExecutorService") ExecutorService kernelExecutor) {
     this.queryService = requireNonNull(queryService, "queryService");

@@ -14,7 +14,7 @@ import java.rmi.server.UnicastRemoteObject;
 import static java.util.Objects.requireNonNull;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
-import javax.inject.Inject;
+import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 
 import org.youbai.opentcs.access.rmi.ClientID;
@@ -24,13 +24,11 @@ import org.youbai.opentcs.access.rmi.services.RemoteTransportOrderService;
 import org.youbai.opentcs.access.to.order.OrderSequenceCreationTO;
 import org.youbai.opentcs.access.to.order.TransportOrderCreationTO;
 import org.youbai.opentcs.components.kernel.services.TransportOrderService;
-import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.order.OrderSequence;
 import org.youbai.opentcs.data.order.TransportOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.youbai.opentcs.kernel.annotations.SecureSocketFactoryProviderAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardTransportOrderServiceAnnotations;
 
 /**
@@ -42,6 +40,7 @@ import org.youbai.opentcs.kernel.annotations.StandardTransportOrderServiceAnnota
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Dependent
 public class StandardRemoteTransportOrderService
     extends StandardRemoteTCSObjectService
     implements RemoteTransportOrderService {
@@ -97,7 +96,7 @@ public class StandardRemoteTransportOrderService
   public StandardRemoteTransportOrderService(@StandardTransportOrderServiceAnnotations TransportOrderService transportOrderService,
                                              UserManager userManager,
                                              RmiKernelInterfaceConfiguration configuration,
-                                             @SecureSocketFactoryProviderAnnotations SocketFactoryProvider socketFactoryProvider,
+                                             @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                              RegistryProvider registryProvider,
                                              @Named("ExecutorService") ExecutorService kernelExecutor) {
     super(transportOrderService, userManager, kernelExecutor);

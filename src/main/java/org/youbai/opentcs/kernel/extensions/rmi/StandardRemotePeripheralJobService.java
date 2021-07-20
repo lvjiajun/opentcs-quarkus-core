@@ -14,7 +14,7 @@ import java.rmi.server.UnicastRemoteObject;
 import static java.util.Objects.requireNonNull;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
-import javax.inject.Inject;
+import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 
 import org.youbai.opentcs.access.rmi.ClientID;
@@ -23,11 +23,9 @@ import org.youbai.opentcs.access.rmi.services.RegistrationName;
 import org.youbai.opentcs.access.rmi.services.RemotePeripheralJobService;
 import org.youbai.opentcs.access.to.peripherals.PeripheralJobCreationTO;
 import org.youbai.opentcs.components.kernel.services.PeripheralJobService;
-import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.peripherals.PeripheralJob;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.youbai.opentcs.kernel.annotations.SecureSocketFactoryProviderAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardPeripheralJobServiceAnnotations;
 
 /**
@@ -39,6 +37,7 @@ import org.youbai.opentcs.kernel.annotations.StandardPeripheralJobServiceAnnotat
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+
 public class StandardRemotePeripheralJobService
     extends StandardRemoteTCSObjectService
     implements RemotePeripheralJobService {
@@ -94,7 +93,7 @@ public class StandardRemotePeripheralJobService
   public StandardRemotePeripheralJobService(@StandardPeripheralJobServiceAnnotations PeripheralJobService peripheralJobService,
                                             UserManager userManager,
                                             RmiKernelInterfaceConfiguration configuration,
-                                            @SecureSocketFactoryProviderAnnotations SocketFactoryProvider socketFactoryProvider,
+                                            @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                             RegistryProvider registryProvider,
                                             @Named("ExecutorService") ExecutorService kernelExecutor) {
     super(peripheralJobService, userManager, kernelExecutor);

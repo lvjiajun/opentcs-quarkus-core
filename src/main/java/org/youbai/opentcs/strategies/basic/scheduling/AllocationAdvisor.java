@@ -34,7 +34,8 @@ public class AllocationAdvisor
   /**
    * The submodules.
    */
-  private final Instance<Scheduler.Module> modules;
+  @Inject
+  Instance<Scheduler.Module> modules;
   /**
    * This instance's initialized flag.
    */
@@ -43,11 +44,9 @@ public class AllocationAdvisor
   /**
    * Creates a new instance.
    *
-   * @param modules The submodules.
    */
 
-  public AllocationAdvisor(Instance<Scheduler.Module> modules) {
-    this.modules = requireNonNull(modules, "modules");
+  public AllocationAdvisor() {
   }
 
   @Override
@@ -57,10 +56,9 @@ public class AllocationAdvisor
       return;
     }
     for (Scheduler.Module module : modules) {
-      if (module instanceof AllocationAdvisor){
-        break;
+      if (!(module instanceof AllocationAdvisor)){
+        module.initialize();
       }
-      module.initialize();
     }
 
     initialized = true;

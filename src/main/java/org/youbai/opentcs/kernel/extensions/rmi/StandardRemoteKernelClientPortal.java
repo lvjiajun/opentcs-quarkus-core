@@ -13,10 +13,12 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 import static java.util.Objects.requireNonNull;
-import java.util.Set;
+
 import java.util.function.Predicate;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Instance;
-import javax.inject.Inject;
+import javax.inject.Named;
+
 import org.youbai.opentcs.access.CredentialsException;
 import org.youbai.opentcs.access.Kernel;
 import org.youbai.opentcs.access.KernelRuntimeException;
@@ -26,8 +28,6 @@ import org.youbai.opentcs.access.rmi.factories.SocketFactoryProvider;
 import org.youbai.opentcs.access.rmi.services.RegistrationName;
 import org.youbai.opentcs.access.rmi.services.RemoteKernelServicePortal;
 import org.youbai.opentcs.components.kernel.KernelExtension;
-import org.youbai.opentcs.customizations.ApplicationEventBus;
-import org.youbai.opentcs.kernel.annotations.SecureSocketFactoryProviderAnnotations;
 import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
 import org.youbai.opentcs.kernel.annotations.StandardKernelAnnotations;
 import org.youbai.opentcs.kernel.extensions.rmi.UserManager.ClientEntry;
@@ -44,6 +44,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@ApplicationScoped
 public class StandardRemoteKernelClientPortal
     implements RemoteKernelServicePortal,
                KernelExtension {
@@ -105,7 +106,7 @@ public class StandardRemoteKernelClientPortal
                                           Instance<KernelRemoteService> remoteServices,
                                           UserManager userManager,
                                           RmiKernelInterfaceConfiguration configuration,
-                                          @SecureSocketFactoryProviderAnnotations SocketFactoryProvider socketFactoryProvider,
+                                          @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                           RegistryProvider registryProvider,
                                           @SimpleEventBusAnnotation EventHandler eventHandler) {
     this.kernel = requireNonNull(kernel, "kernel");

@@ -15,14 +15,12 @@ import java.util.concurrent.ExecutorService;
 @ApplicationScoped
 public class AdapterComponentsFactoryImp {
 
-
     @Inject
     OrderMapper orderMapper;
     @Inject
     AdapterComponentsFactory componentsFactory;
     @Inject@Named("ExecutorService")
     ExecutorService kernelExecutor;
-
 
     @Produces
     @ApplicationScoped

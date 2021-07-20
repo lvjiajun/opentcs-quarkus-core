@@ -12,7 +12,10 @@ import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import static java.util.Objects.requireNonNull;
-import javax.inject.Inject;
+
+import javax.enterprise.context.Dependent;
+import javax.inject.Named;
+
 import org.youbai.opentcs.access.SchedulerAllocationState;
 import org.youbai.opentcs.access.rmi.ClientID;
 import org.youbai.opentcs.access.rmi.factories.SocketFactoryProvider;
@@ -21,7 +24,6 @@ import org.youbai.opentcs.access.rmi.services.RemoteSchedulerService;
 import org.youbai.opentcs.components.kernel.services.SchedulerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.youbai.opentcs.kernel.annotations.SecureSocketFactoryProviderAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardSchedulerServiceAnnotations;
 
 /**
@@ -33,6 +35,7 @@ import org.youbai.opentcs.kernel.annotations.StandardSchedulerServiceAnnotations
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+
 public class StandardRemoteSchedulerService
     extends KernelRemoteService
     implements RemoteSchedulerService {
@@ -83,7 +86,7 @@ public class StandardRemoteSchedulerService
   public StandardRemoteSchedulerService(@StandardSchedulerServiceAnnotations SchedulerService schedulerService,
                                         UserManager userManager,
                                         RmiKernelInterfaceConfiguration configuration,
-                                        @SecureSocketFactoryProviderAnnotations SocketFactoryProvider socketFactoryProvider,
+                                        @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                         RegistryProvider registryProvider) {
     this.schedulerService = requireNonNull(schedulerService, "schedulerService");
     this.userManager = requireNonNull(userManager, "userManager");

@@ -10,13 +10,12 @@ package org.youbai.opentcs.access.rmi.factories;
 import java.rmi.server.RMIClientSocketFactory;
 import java.rmi.server.RMIServerSocketFactory;
 import static java.util.Objects.requireNonNull;
-import javax.inject.Inject;
+
 import javax.inject.Singleton;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLParameters;
 import javax.rmi.ssl.SslRMIServerSocketFactory;
 import org.youbai.opentcs.access.SslParameterSet;
-import org.youbai.opentcs.kernel.annotations.SecureSocketFactoryProviderAnnotations;
 
 /**
  * Provides instances of {@link RMIClientSocketFactory} and {@link RMIServerSocketFactory} that are
@@ -27,7 +26,6 @@ import org.youbai.opentcs.kernel.annotations.SecureSocketFactoryProviderAnnotati
  * @author Martin Grzenia (Fraunhofer IML)
  */
 @Singleton
-@SecureSocketFactoryProviderAnnotations
 public class SecureSocketFactoryProvider
     implements SocketFactoryProvider {
 

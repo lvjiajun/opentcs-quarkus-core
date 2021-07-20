@@ -15,7 +15,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
-import javax.inject.Inject;
+import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 
 import org.youbai.opentcs.access.rmi.ClientID;
@@ -23,7 +23,6 @@ import org.youbai.opentcs.access.rmi.factories.SocketFactoryProvider;
 import org.youbai.opentcs.access.rmi.services.RegistrationName;
 import org.youbai.opentcs.access.rmi.services.RemoteVehicleService;
 import org.youbai.opentcs.components.kernel.services.VehicleService;
-import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.drivers.vehicle.AdapterCommand;
@@ -32,7 +31,6 @@ import org.youbai.opentcs.drivers.vehicle.management.AttachmentInformation;
 import org.youbai.opentcs.drivers.vehicle.management.VehicleProcessModelTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.youbai.opentcs.kernel.annotations.SecureSocketFactoryProviderAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardVehicleServiceAnnotations;
 
 /**
@@ -44,6 +42,7 @@ import org.youbai.opentcs.kernel.annotations.StandardVehicleServiceAnnotations;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Dependent
 public class StandardRemoteVehicleService
     extends StandardRemoteTCSObjectService
     implements RemoteVehicleService {
@@ -98,7 +97,7 @@ public class StandardRemoteVehicleService
   public StandardRemoteVehicleService(@StandardVehicleServiceAnnotations VehicleService vehicleService,
                                       UserManager userManager,
                                       RmiKernelInterfaceConfiguration configuration,
-                                      @SecureSocketFactoryProviderAnnotations SocketFactoryProvider socketFactoryProvider,
+                                      @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                       RegistryProvider registryProvider,
                                       @Named("ExecutorService") ExecutorService kernelExecutor) {
     super(vehicleService, userManager, kernelExecutor);

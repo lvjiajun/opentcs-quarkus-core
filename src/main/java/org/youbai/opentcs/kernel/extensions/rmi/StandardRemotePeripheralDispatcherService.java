@@ -14,6 +14,7 @@ import java.rmi.server.UnicastRemoteObject;
 import static java.util.Objects.requireNonNull;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -22,12 +23,10 @@ import org.youbai.opentcs.access.rmi.factories.SocketFactoryProvider;
 import org.youbai.opentcs.access.rmi.services.RegistrationName;
 import org.youbai.opentcs.access.rmi.services.RemotePeripheralDispatcherService;
 import org.youbai.opentcs.components.kernel.services.PeripheralDispatcherService;
-import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.TCSResourceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.youbai.opentcs.kernel.annotations.SecureSocketFactoryProviderAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardPeripheralDispatcherServiceAnnotations;
 
 /**
@@ -40,6 +39,7 @@ import org.youbai.opentcs.kernel.annotations.StandardPeripheralDispatcherService
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+
 public class StandardRemotePeripheralDispatcherService
     extends KernelRemoteService
     implements RemotePeripheralDispatcherService {
@@ -97,7 +97,7 @@ public class StandardRemotePeripheralDispatcherService
 
   public StandardRemotePeripheralDispatcherService(UserManager userManager,
                                                    RmiKernelInterfaceConfiguration configuration,
-                                                   @SecureSocketFactoryProviderAnnotations SocketFactoryProvider socketFactoryProvider,
+                                                   @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                                    RegistryProvider registryProvider,
                                                    @Named("ExecutorService") ExecutorService kernelExecutor) {
     this.userManager = requireNonNull(userManager, "userManager");

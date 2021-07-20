@@ -19,6 +19,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -33,6 +34,7 @@ import org.youbai.opentcs.components.kernel.KernelExtension;
 import org.youbai.opentcs.components.kernel.services.NotificationService;
 import org.youbai.opentcs.data.notification.UserNotification;
 import org.youbai.opentcs.kernel.annotations.*;
+import org.youbai.opentcs.kernel.extensions.rmi.KernelRemoteService;
 import org.youbai.opentcs.util.event.EventBus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,14 +72,13 @@ public class StandardKernel
   /**
    * The application's event bus.
    */
-  @SimpleEventBusAnnotation
-  @Inject
-  public EventBus eventBus;
+  @Inject@SimpleEventBusAnnotation
+  EventBus eventBus;
   /**
    * Our executor.
    */
   @Inject@Named("ExecutorService")
-  public ScheduledExecutorService kernelExecutor;
+  ScheduledExecutorService kernelExecutor;
   /**
    * This kernel's order receivers.
    */
@@ -89,9 +90,8 @@ public class StandardKernel
   /**
    * The notification service.
    */
-  @StandardNotificationServiceAnnotation
-  @Inject
-  public NotificationService notificationService;
+  @Inject@StandardNotificationServiceAnnotation
+  NotificationService notificationService;
   /**
    * This kernel's <em>initialized</em> flag.
    */
@@ -102,11 +102,12 @@ public class StandardKernel
   private KernelState kernelState;
 
   @Inject
-  public KernelStateOperating kernelStateOperating;
+  KernelStateOperating kernelStateOperating;
   @Inject
-  public KernelStateModelling kernelStateModelling;
+  KernelStateModelling kernelStateModelling;
   @Inject
-  public KernelStateShutdown kernelStateShutdown;
+  KernelStateShutdown kernelStateShutdown;
+
   /**
    * A map to state providers used when switching kernel states.
    */
@@ -169,6 +170,7 @@ public class StandardKernel
     }
     kernelExecutor.shutdown();
     LOG.info("Kernel thread finished.");
+
   }
 
   @Override

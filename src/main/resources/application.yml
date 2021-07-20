@@ -60,7 +60,7 @@ rmikernelinterface:
   enable: true
   useSsl: false
   clientSweepInterval: 300000
-  registryPort: 1099
+  registryPort: 2099
   remoteKernelServicePortalPort: 55000
   remotePlantModelServicePort: 55001
   remoteTransportOrderServicePort: 55002

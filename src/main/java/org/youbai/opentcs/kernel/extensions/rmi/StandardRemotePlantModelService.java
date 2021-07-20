@@ -15,7 +15,7 @@ import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
-import javax.inject.Inject;
+import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 
 import org.youbai.opentcs.access.rmi.ClientID;
@@ -24,12 +24,10 @@ import org.youbai.opentcs.access.rmi.services.RegistrationName;
 import org.youbai.opentcs.access.rmi.services.RemotePlantModelService;
 import org.youbai.opentcs.access.to.model.PlantModelCreationTO;
 import org.youbai.opentcs.components.kernel.services.PlantModelService;
-import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Location;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.youbai.opentcs.kernel.annotations.SecureSocketFactoryProviderAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardPlantModelServiceAnnotations;
 
 /**
@@ -41,6 +39,7 @@ import org.youbai.opentcs.kernel.annotations.StandardPlantModelServiceAnnotation
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+
 public class StandardRemotePlantModelService
     extends StandardRemoteTCSObjectService
     implements RemotePlantModelService {
@@ -96,7 +95,7 @@ public class StandardRemotePlantModelService
   public StandardRemotePlantModelService(@StandardPlantModelServiceAnnotations PlantModelService plantModelService,
                                          UserManager userManager,
                                          RmiKernelInterfaceConfiguration configuration,
-                                         @SecureSocketFactoryProviderAnnotations SocketFactoryProvider socketFactoryProvider,
+                                         @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                          RegistryProvider registryProvider,
                                          @Named("ExecutorService") ExecutorService kernelExecutor) {
     super(plantModelService, userManager, kernelExecutor);

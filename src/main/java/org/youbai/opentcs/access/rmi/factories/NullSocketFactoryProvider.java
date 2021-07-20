@@ -11,6 +11,7 @@ import java.rmi.registry.Registry;
 import java.rmi.server.RMIClientSocketFactory;
 import java.rmi.server.RMIServerSocketFactory;
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * Provides {@code null} for both client and server socket factories.
@@ -19,6 +20,7 @@ import javax.inject.Inject;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class NullSocketFactoryProvider
     implements SocketFactoryProvider {
 

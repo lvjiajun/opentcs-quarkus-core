@@ -14,7 +14,7 @@ import java.rmi.server.UnicastRemoteObject;
 import static java.util.Objects.requireNonNull;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
-import javax.inject.Inject;
+import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 
 import org.youbai.opentcs.access.rmi.ClientID;
@@ -22,15 +22,12 @@ import org.youbai.opentcs.access.rmi.factories.SocketFactoryProvider;
 import org.youbai.opentcs.access.rmi.services.RegistrationName;
 import org.youbai.opentcs.access.rmi.services.RemoteDispatcherService;
 import org.youbai.opentcs.components.kernel.services.DispatcherService;
-import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.TransportOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.youbai.opentcs.kernel.annotations.SecureSocketFactoryProviderAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardDispatcherServiceAnnotations;
-import org.youbai.opentcs.kernel.annotations.StandardPeripheralDispatcherServiceAnnotations;
 
 /**
  * This class is the standard implementation of the {@link RemoteDispatcherService} interface.
@@ -41,6 +38,7 @@ import org.youbai.opentcs.kernel.annotations.StandardPeripheralDispatcherService
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Dependent
 public class StandardRemoteDispatcherService
     extends KernelRemoteService
     implements RemoteDispatcherService {
@@ -96,7 +94,7 @@ public class StandardRemoteDispatcherService
   public StandardRemoteDispatcherService(@StandardDispatcherServiceAnnotations DispatcherService dispatcherService,
                                          UserManager userManager,
                                          RmiKernelInterfaceConfiguration configuration,
-                                         @SecureSocketFactoryProviderAnnotations SocketFactoryProvider socketFactoryProvider,
+                                         @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                          RegistryProvider registryProvider,
                                          @Named("ExecutorService") ExecutorService kernelExecutor) {
     this.dispatcherService = requireNonNull(dispatcherService, "dispatcherService");

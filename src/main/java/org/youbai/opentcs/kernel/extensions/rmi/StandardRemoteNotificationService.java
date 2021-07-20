@@ -16,6 +16,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.function.Predicate;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -24,11 +25,10 @@ import org.youbai.opentcs.access.rmi.factories.SocketFactoryProvider;
 import org.youbai.opentcs.access.rmi.services.RegistrationName;
 import org.youbai.opentcs.access.rmi.services.RemoteNotificationService;
 import org.youbai.opentcs.components.kernel.services.NotificationService;
-import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.notification.UserNotification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.youbai.opentcs.kernel.annotations.SecureSocketFactoryProviderAnnotations;
+import org.youbai.opentcs.kernel.annotations.StandardNotificationServiceAnnotation;
 
 /**
  * This class is the standard implementation of the {@link RemoteNotificationService} interface.
@@ -39,6 +39,7 @@ import org.youbai.opentcs.kernel.annotations.SecureSocketFactoryProviderAnnotati
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+
 public class StandardRemoteNotificationService
     extends KernelRemoteService
     implements RemoteNotificationService {
@@ -50,7 +51,9 @@ public class StandardRemoteNotificationService
   /**
    * The notification service to invoke methods on.
    */
-  private final NotificationService notificationService;
+  @Inject
+  @StandardNotificationServiceAnnotation
+  NotificationService notificationService;
   /**
    * The user manager.
    */
@@ -91,13 +94,12 @@ public class StandardRemoteNotificationService
    * @param kernelExecutor Executes tasks modifying kernel data.
    */
 
-  public StandardRemoteNotificationService(NotificationService notificationService,
-                                           UserManager userManager,
+  public StandardRemoteNotificationService(UserManager userManager,
                                            RmiKernelInterfaceConfiguration configuration,
-                                           @SecureSocketFactoryProviderAnnotations SocketFactoryProvider socketFactoryProvider,
+                                           @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                            RegistryProvider registryProvider,
                                            @Named("ExecutorService") ExecutorService kernelExecutor) {
-    this.notificationService = requireNonNull(notificationService, "plantModelService");
+
     this.userManager = requireNonNull(userManager, "userManager");
     this.configuration = requireNonNull(configuration, "configuration");
     this.socketFactoryProvider = requireNonNull(socketFactoryProvider, "socketFactoryProvider");

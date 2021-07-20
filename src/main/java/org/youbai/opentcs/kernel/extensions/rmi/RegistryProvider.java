@@ -12,18 +12,21 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
-import javax.inject.Inject;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
+import javax.inject.Singleton;
+
 import org.youbai.opentcs.access.rmi.factories.SocketFactoryProvider;
 import org.youbai.opentcs.components.Lifecycle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.youbai.opentcs.kernel.annotations.SecureSocketFactoryProviderAnnotations;
 
 /**
  * Provides the one {@link Registry} instance used for RMI communication.
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+@Singleton
 public class RegistryProvider
     implements Lifecycle {
 
@@ -54,7 +57,7 @@ public class RegistryProvider
    * @param socketFactoryProvider The socket factory provider used for RMI.
    * @param configuration This class' configuration.
    */
-  public RegistryProvider(@Nonnull @SecureSocketFactoryProviderAnnotations SocketFactoryProvider socketFactoryProvider,
+  public RegistryProvider(@Nonnull @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                           @Nonnull RmiKernelInterfaceConfiguration configuration) {
     this.socketFactoryProvider = requireNonNull(socketFactoryProvider, "socketFactoryProvider");
     this.configuration = requireNonNull(configuration, "configuration");

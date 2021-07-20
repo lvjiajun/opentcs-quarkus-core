@@ -7,6 +7,7 @@
  */
 package org.youbai.opentcs.kernel.extensions.rmi;
 
+import javax.enterprise.context.ApplicationScoped;
 import java.io.Serializable;
 import static java.util.Objects.requireNonNull;
 import java.util.Set;
