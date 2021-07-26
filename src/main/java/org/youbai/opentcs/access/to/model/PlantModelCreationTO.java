@@ -15,6 +15,10 @@ import java.util.List;
 import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.youbai.opentcs.access.to.CreationTO;
 import org.youbai.opentcs.data.model.ModelConstants;
 import org.youbai.opentcs.data.model.visualization.Layer;
@@ -33,35 +37,43 @@ public class PlantModelCreationTO
   /**
    * The plant model's points.
    */
+  @JsonProperty("points")
   private List<PointCreationTO> points = new LinkedList<>();
   /**
    * The plant model's paths.
    */
+  @JsonProperty("paths")
   private List<PathCreationTO> paths = new LinkedList<>();
   /**
    * The plant model's location types.
    */
+  @JsonProperty("locationTypes")
   private List<LocationTypeCreationTO> locationTypes = new LinkedList<>();
   /**
    * The plant model's locations.
    */
+  @JsonProperty("locations")
   private List<LocationCreationTO> locations = new LinkedList<>();
   /**
    * The plant model's blocks.
    */
+  @JsonProperty("blocks")
   private List<BlockCreationTO> blocks = new LinkedList<>();
   /**
    * The plant model's groups.
    */
   @Deprecated
+  @JsonIgnore
   private List<GroupCreationTO> groups = new LinkedList<>();
   /**
    * The plant model's vehicles.
    */
+  @JsonProperty("vehicles")
   private List<VehicleCreationTO> vehicles = new LinkedList<>();
   /**
    * The plant model's visual layouts.
    */
+  @JsonProperty("visualLayouts")
   private List<VisualLayoutCreationTO> visualLayouts
       = new LinkedList<>(Arrays.asList(defaultVisualLayout()));
 
@@ -95,7 +107,25 @@ public class PlantModelCreationTO
     this.vehicles = requireNonNull(vehicles, "vehicles");
     this.visualLayouts = requireNonNull(visualLayouts, "visualLayouts");
   }
-
+  @JsonCreator
+  public PlantModelCreationTO(@JsonProperty("name")@Nonnull String name,
+                              @JsonProperty("properties")@Nonnull Map<String, String> properties,
+                              @JsonProperty("points")@Nonnull List<PointCreationTO> points,
+                              @JsonProperty("paths")@Nonnull List<PathCreationTO> paths,
+                              @JsonProperty("locationTypes")@Nonnull List<LocationTypeCreationTO> locationTypes,
+                              @JsonProperty("locations")@Nonnull List<LocationCreationTO> locations,
+                              @JsonProperty("blocks")@Nonnull List<BlockCreationTO> blocks,
+                              @JsonProperty("vehicles")@Nonnull List<VehicleCreationTO> vehicles,
+                              @JsonProperty("visualLayouts")@Nonnull List<VisualLayoutCreationTO> visualLayouts) {
+    super(name, properties);
+    this.points = requireNonNull(points, "points");
+    this.paths = requireNonNull(paths, "paths");
+    this.locationTypes = requireNonNull(locationTypes, "locationTypes");
+    this.locations = requireNonNull(locations, "locations");
+    this.blocks = requireNonNull(blocks, "blocks");
+    this.vehicles = requireNonNull(vehicles, "vehicles");
+    this.visualLayouts = requireNonNull(visualLayouts, "visualLayouts");
+  }
   /**
    * Returns this plant model's points.
    *
@@ -442,6 +472,7 @@ public class PlantModelCreationTO
    *
    * @return This plant model's visual layout.
    */
+  @JsonIgnore
   public VisualLayoutCreationTO getVisualLayout() {
     return visualLayouts.get(visualLayouts.size() - 1);
   }

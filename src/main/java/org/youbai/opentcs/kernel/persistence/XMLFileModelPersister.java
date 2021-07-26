@@ -7,29 +7,25 @@
  */
 package org.youbai.opentcs.kernel.persistence;
 
-import static com.google.common.base.Strings.emptyToNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.access.to.model.PlantModelCreationTO;
+import org.youbai.opentcs.kernel.annotations.XMLFileModelAnnotations;
+import org.youbai.opentcs.util.FileSystems;
+import org.youbai.opentcs.util.persistence.ModelParser;
+
+import javax.inject.Singleton;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import static java.util.Objects.requireNonNull;
 import java.util.Optional;
+
+import static com.google.common.base.Strings.emptyToNull;
+import static java.util.Objects.requireNonNull;
 import static java.util.Optional.ofNullable;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import org.youbai.opentcs.access.to.model.PlantModelCreationTO;
-
 import static org.youbai.opentcs.util.Assertions.checkState;
-
-import org.youbai.opentcs.kernel.annotations.XMLFileModelAnnotations;
-import org.youbai.opentcs.util.FileSystems;
-import org.youbai.opentcs.util.persistence.ModelParser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * A ModelPersister implementation realizing persistence of models with XML

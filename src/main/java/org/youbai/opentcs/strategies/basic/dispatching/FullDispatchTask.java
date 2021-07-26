@@ -7,27 +7,22 @@
  */
 package org.youbai.opentcs.strategies.basic.dispatching;
 
-import static java.util.Objects.requireNonNull;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.components.Lifecycle;
 import org.youbai.opentcs.strategies.basic.dispatching.phase.AssignReservedOrdersPhase;
 import org.youbai.opentcs.strategies.basic.dispatching.phase.AssignSequenceSuccessorsPhase;
 import org.youbai.opentcs.strategies.basic.dispatching.phase.CheckNewOrdersPhase;
 import org.youbai.opentcs.strategies.basic.dispatching.phase.FinishWithdrawalsPhase;
 import org.youbai.opentcs.strategies.basic.dispatching.phase.assignment.AssignFreeOrdersPhase;
-
 import org.youbai.opentcs.strategies.basic.dispatching.phase.assignment.AssignNextDriveOrdersPhase;
 import org.youbai.opentcs.strategies.basic.dispatching.phase.parking.ParkIdleVehiclesPhase;
 import org.youbai.opentcs.strategies.basic.dispatching.phase.parking.PrioritizedParkingPhase;
 import org.youbai.opentcs.strategies.basic.dispatching.phase.parking.PrioritizedReparkPhase;
 import org.youbai.opentcs.strategies.basic.dispatching.phase.recharging.RechargeIdleVehiclesPhase;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * Performs a full dispatch run.

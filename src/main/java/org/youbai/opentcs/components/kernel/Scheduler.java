@@ -207,7 +207,7 @@ public interface Scheduler
     /**
      * Checks if the resulting system state is safe if the given set of resources
      * would be allocated by the given resource user.
-     *
+     * 如果给定的资源集将由给定的资源用户分配，则检查生成的系统状态是否安全。
      * @param client The <code>ResourceUser</code> requesting resources set.
      * @param resources The requested resources.
      * @return <code>true</code> if this module thinks the given resources may be allocated for the
@@ -217,7 +217,7 @@ public interface Scheduler
 
     /**
      * Lets this module prepare the given resources so they can be allocated to a client.
-     *
+     * 允许此模块准备给定的资源，以便将它们分配给客户端
      * @param client The client the resources are being prepared for.
      * @param resources The resources to be prepared.
      */
@@ -225,7 +225,7 @@ public interface Scheduler
 
     /**
      * Checks if this module is done preparing the given resources for a client.
-     *
+     * 检查此模块是否已完成为客户端准备给定资源。
      * @param client The client the resources are being prepared for.
      * @param resources The resources to be checked.
      * @return <code>true</code> if the resoruces are prepared for a client.

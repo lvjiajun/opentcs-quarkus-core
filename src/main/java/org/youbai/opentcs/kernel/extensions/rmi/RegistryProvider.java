@@ -13,6 +13,7 @@ import java.rmi.registry.Registry;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -29,7 +30,6 @@ import org.slf4j.LoggerFactory;
 @Singleton
 public class RegistryProvider
     implements Lifecycle {
-
   /**
    * This class' logger.
    */
@@ -37,7 +37,9 @@ public class RegistryProvider
   /**
    * Provides socket factories used to create RMI registries.
    */
-  private final SocketFactoryProvider socketFactoryProvider;
+  @Nonnull
+  @Named("socketFactoryProvider")
+  SocketFactoryProvider socketFactoryProvider;
   /**
    * This class' configuration.
    */
@@ -50,16 +52,12 @@ public class RegistryProvider
    * Whether this provider is initialized or not.
    */
   private boolean initialized;
-
   /**
    * Creates a new instance.
    *
-   * @param socketFactoryProvider The socket factory provider used for RMI.
    * @param configuration This class' configuration.
    */
-  public RegistryProvider(@Nonnull @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
-                          @Nonnull RmiKernelInterfaceConfiguration configuration) {
-    this.socketFactoryProvider = requireNonNull(socketFactoryProvider, "socketFactoryProvider");
+  public RegistryProvider(@Nonnull RmiKernelInterfaceConfiguration configuration) {
     this.configuration = requireNonNull(configuration, "configuration");
   }
 

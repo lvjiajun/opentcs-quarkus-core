@@ -14,6 +14,10 @@ import java.util.List;
 import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.youbai.opentcs.access.to.CreationTO;
 import org.youbai.opentcs.data.model.visualization.Layer;
 import org.youbai.opentcs.data.model.visualization.LayerGroup;
@@ -39,11 +43,13 @@ public class VisualLayoutCreationTO
   /**
    * This layout's model layout elements.
    */
+  @JsonIgnore
   @Deprecated
   private List<ModelLayoutElementCreationTO> modelElements = new LinkedList<>();
   /**
    * This layout's shape layout elements.
    */
+  @JsonIgnore
   @Deprecated
   private List<ShapeLayoutElementCreationTO> shapeElements = new LinkedList<>();
   /**
@@ -81,7 +87,19 @@ public class VisualLayoutCreationTO
     this.layers = requireNonNull(layers, "layers");
     this.layerGroups = requireNonNull(layerGroups, "layerGroups");
   }
-
+  @JsonCreator
+  public VisualLayoutCreationTO(@JsonProperty("name")@Nonnull String name,
+                                @JsonProperty("properties")@Nonnull Map<String, String> properties,
+                                @JsonProperty("scaleX")double scaleX,
+                                @JsonProperty("scaleY")double scaleY,
+                                @JsonProperty("layers")@Nonnull List<Layer> layers,
+                                @JsonProperty("layerGroups")@Nonnull List<LayerGroup> layerGroups) {
+    super(name, properties);
+    this.scaleX = scaleX;
+    this.scaleY = scaleY;
+    this.layers = requireNonNull(layers, "layers");
+    this.layerGroups = requireNonNull(layerGroups, "layerGroups");
+  }
   /**
    * Creates a copy of this object with the given name.
    *

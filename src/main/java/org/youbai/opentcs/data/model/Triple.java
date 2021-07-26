@@ -7,6 +7,9 @@
  */
 package org.youbai.opentcs.data.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 /**
@@ -37,7 +40,10 @@ public class Triple
    * @param y The Y coordinate.
    * @param z The Z coordindate.
    */
-  public Triple(long x, long y, long z) {
+  @JsonCreator
+  public Triple(@JsonProperty("x") long x,
+                @JsonProperty("y") long y,
+                @JsonProperty("z") long z) {
     this.x = x;
     this.y = y;
     this.z = z;

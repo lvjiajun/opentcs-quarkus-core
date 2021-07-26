@@ -41,7 +41,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Implements a basic simple scheduler strategy for resources used by vehicles, preventing
  * collisions.
- *
+ * 对车辆使用的资源实施基本的简单调度策略
  * @author Iryna Felko (Fraunhofer IML)
  * @author Stefan Walter (Fraunhofer IML)
  */
@@ -71,7 +71,7 @@ public class DefaultScheduler
    * The reservation pool.
    */
   @Inject
-  public ReservationPool reservationPool;
+  ReservationPool reservationPool;
   /**
    * Allocations deferred because they couldn't be granted, yet.
    */

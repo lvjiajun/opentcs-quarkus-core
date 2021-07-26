@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.ws.rs.Consumes;
 
+import io.quarkus.runtime.Startup;
 import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
 import org.youbai.opentcs.strategies.basic.dispatching.DefaultDispatcherConfiguration;
 import org.youbai.opentcs.strategies.basic.dispatching.priorization.candidate.CandidateComparatorByOrderAge;

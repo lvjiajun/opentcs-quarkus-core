@@ -7,6 +7,9 @@
  */
 package org.youbai.opentcs.data.model.visualization;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import static java.util.Objects.requireNonNull;
 
@@ -38,12 +41,14 @@ public class LayerGroup
    * @param name The name of the layer group.
    * @param visible Whether the layer group is visible or not.
    */
-  public LayerGroup(int id, String name, boolean visible) {
+  @JsonCreator
+  public LayerGroup(@JsonProperty("id") int id,
+                    @JsonProperty("name") String name,
+                    @JsonProperty("visible") boolean visible) {
     this.id = id;
     this.name = requireNonNull(name, "name");
     this.visible = visible;
   }
-
   /**
    * Returns the unique ID of this layer group.
    *

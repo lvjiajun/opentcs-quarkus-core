@@ -235,7 +235,7 @@ public class V002PlantModelTO
 
   private static Schema createSchema()
       throws SAXException {
-    URL schemaUrl = V002PlantModelTO.class.getResource("/org/youbai/opentcs/util/persistence/model-0.0.2.xsd");
+    URL schemaUrl = V002PlantModelTO.class.getResource("/youbai/persistence/model-0.0.2.xsd");
     SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
     return schemaFactory.newSchema(schemaUrl);
   }

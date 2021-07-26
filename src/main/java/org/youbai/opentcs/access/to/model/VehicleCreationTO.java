@@ -12,6 +12,10 @@ import java.io.Serializable;
 import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.youbai.opentcs.access.to.CreationTO;
 
 import static org.youbai.opentcs.util.Assertions.checkArgument;
@@ -57,6 +61,7 @@ public class VehicleCreationTO
   /**
    * The information regarding the grahical representation of this vehicle.
    */
+  @JsonIgnore
   private Layout layout = new Layout();
 
   /**
@@ -88,7 +93,25 @@ public class VehicleCreationTO
     this.maxReverseVelocity = maxReverseVelocity;
     this.layout = requireNonNull(layout, "layout");
   }
-
+  @JsonCreator
+  public VehicleCreationTO(@JsonProperty("name")@Nonnull String name,
+                           @JsonProperty("properties")@Nonnull Map<String, String> properties,
+                           @JsonProperty("length")int length,
+                           @JsonProperty("energyLevelCritical")int energyLevelCritical,
+                           @JsonProperty("energyLevelGood")int energyLevelGood,
+                           @JsonProperty("energyLevelFullyRecharged")int energyLevelFullyRecharged,
+                           @JsonProperty("energyLevelSufficientlyRecharged")int energyLevelSufficientlyRecharged,
+                           @JsonProperty("maxVelocity")int maxVelocity,
+                           @JsonProperty("maxReverseVelocity")int maxReverseVelocity) {
+    super(name,properties);
+    this.length = length;
+    this.energyLevelCritical = energyLevelCritical;
+    this.energyLevelGood = energyLevelGood;
+    this.energyLevelFullyRecharged = energyLevelFullyRecharged;
+    this.energyLevelSufficientlyRecharged = energyLevelSufficientlyRecharged;
+    this.maxVelocity = maxVelocity;
+    this.maxReverseVelocity = maxReverseVelocity;
+  }
   /**
    * Creates a copy of this object with the given name.
    *

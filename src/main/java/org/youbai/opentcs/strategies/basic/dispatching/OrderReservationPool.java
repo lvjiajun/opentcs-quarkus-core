@@ -27,7 +27,6 @@ import org.youbai.opentcs.data.order.TransportOrder;
  * @author Stefan Walter (Fraunhofer IML)
  */
 @Singleton
-@Startup
 public class OrderReservationPool {
 
   /**

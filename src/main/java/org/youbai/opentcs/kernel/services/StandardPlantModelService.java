@@ -124,7 +124,6 @@ public class StandardPlantModelService
         createPlantModel(new PlantModelCreationTO(Kernel.DEFAULT_MODEL_NAME));
         return;
       }
-
       final String oldModelName = getModelName();
       // Load the new model
       PlantModelCreationTO modelCreationTO = modelPersister.readModel();

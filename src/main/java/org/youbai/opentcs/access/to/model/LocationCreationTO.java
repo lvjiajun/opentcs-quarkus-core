@@ -14,6 +14,9 @@ import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import javax.annotation.Nonnull;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.youbai.opentcs.access.to.CreationTO;
 import org.youbai.opentcs.data.model.Couple;
 import org.youbai.opentcs.data.model.Triple;
@@ -68,13 +71,14 @@ public class LocationCreationTO
     this.position = position;
   }
 
-  private LocationCreationTO(@Nonnull String name,
-                             @Nonnull Map<String, String> properties,
-                             @Nonnull String typeName,
-                             @Nonnull Triple position,
-                             @Nonnull Map<String, Set<String>> links,
-                             boolean locked,
-                             @Nonnull Layout layout) {
+  @JsonCreator
+  public LocationCreationTO(@JsonProperty("name")@Nonnull String name,
+                            @JsonProperty("properties")@Nonnull Map<String, String> properties,
+                            @JsonProperty("typeName")@Nonnull String typeName,
+                            @JsonProperty("position")@Nonnull Triple position,
+                            @JsonProperty("links")@Nonnull Map<String, Set<String>> links,
+                            @JsonProperty("locked")boolean locked,
+                            @JsonProperty("layout")@Nonnull Layout layout) {
     super(name, properties);
     this.typeName = requireNonNull(typeName, "typeName");
     this.position = requireNonNull(position, "position");
@@ -337,14 +341,15 @@ public class LocationCreationTO
      * @param locationRepresentation The location representation to use.
      * @param layerId The ID of the layer on which the location is to be drawn.
      */
-    public Layout(Couple position,
-                  Couple labelOffset,
-                  LocationRepresentation locationRepresentation,
-                  int layerId) {
+    @JsonCreator
+    public Layout(@JsonProperty("position")Couple position,
+                  @JsonProperty("labelOffset")Couple labelOffset,
+                  @JsonProperty("locationRepresentation")LocationRepresentation locationRepresentation,
+                  @JsonProperty("layerId")int layerId) {
       this.position = requireNonNull(position, "position");
       this.labelOffset = requireNonNull(labelOffset, "labelOffset");
       this.locationRepresentation = requireNonNull(locationRepresentation,
-                                                   "locationRepresentation");
+              "locationRepresentation");
       this.layerId = layerId;
     }
 

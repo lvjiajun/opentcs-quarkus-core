@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * An event listener that triggers dispatching of vehicles and transport orders on certain events.
+ * 事件监听器，在某些事件上触发车辆调度和运输命令
  *
  * @author Stefan Walter (Fraunhofer IML)
  */

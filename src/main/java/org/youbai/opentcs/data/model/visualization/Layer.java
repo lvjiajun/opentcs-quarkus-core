@@ -7,6 +7,9 @@
  */
 package org.youbai.opentcs.data.model.visualization;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import static java.util.Objects.requireNonNull;
 
@@ -49,14 +52,18 @@ public class Layer
    * @param name The name of the layer.
    * @param groupId The ID of the layer group the layer is assigned to.
    */
-  public Layer(int id, int ordinal, boolean visible, String name, int groupId) {
+  @JsonCreator
+  public Layer(@JsonProperty("id") int id,
+               @JsonProperty("ordinal") int ordinal,
+               @JsonProperty("visible") boolean visible,
+               @JsonProperty("name") String name,
+               @JsonProperty("groupId") int groupId) {
     this.id = id;
     this.ordinal = ordinal;
     this.visible = visible;
     this.name = requireNonNull(name, "name");
     this.groupId = groupId;
   }
-
   /**
    * Returns the unique ID of this layer.
    *

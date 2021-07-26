@@ -1,10 +1,9 @@
 quarkus:
   grpc:
     server:
-      port: 9002
+      port: 9007
   http:
     port: 8081
-
 kernelapp:
   autoEnableDriversOnStartup: false
   autoEnablePeripheralDriversOnStartup: false

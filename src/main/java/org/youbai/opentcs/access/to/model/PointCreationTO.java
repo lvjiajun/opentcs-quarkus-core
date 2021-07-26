@@ -11,6 +11,9 @@ import java.io.Serializable;
 import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.youbai.opentcs.access.to.CreationTO;
 import org.youbai.opentcs.data.model.Couple;
 import org.youbai.opentcs.data.model.Point;
@@ -56,12 +59,13 @@ public class PointCreationTO
     super(name);
   }
 
-  private PointCreationTO(@Nonnull String name,
-                          @Nonnull Map<String, String> properties,
-                          @Nonnull Triple position,
-                          double vehicleOrientationAngle,
-                          @Nonnull Point.Type type,
-                          @Nonnull Layout layout) {
+  @JsonCreator
+  public PointCreationTO(@JsonProperty("name")@Nonnull String name,
+                         @JsonProperty("properties")@Nonnull Map<String, String> properties,
+                         @JsonProperty("position")@Nonnull Triple position,
+                         @JsonProperty("vehicleOrientationAngle")double vehicleOrientationAngle,
+                         @JsonProperty("type")@Nonnull Point.Type type,
+                         @JsonProperty("layout")@Nonnull Layout layout) {
     super(name, properties);
     this.position = requireNonNull(position, "position");
     this.vehicleOrientationAngle = vehicleOrientationAngle;
@@ -270,9 +274,10 @@ public class PointCreationTO
      * @param labelOffset The offset of the label's position to the point's position (in lu).
      * @param layerId The ID of the layer on which the point is to be drawn.
      */
-    public Layout(Couple position,
-                  Couple labelOffset,
-                  int layerId) {
+    @JsonCreator
+    public Layout(@JsonProperty("position")Couple position,
+                  @JsonProperty("labelOffset")Couple labelOffset,
+                  @JsonProperty("layerId")int layerId) {
       this.position = requireNonNull(position, "position");
       this.labelOffset = requireNonNull(labelOffset, "labelOffset");
       this.layerId = layerId;

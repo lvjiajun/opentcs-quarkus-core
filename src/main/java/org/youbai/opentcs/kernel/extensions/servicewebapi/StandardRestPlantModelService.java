@@ -58,8 +58,7 @@ public class StandardRestPlantModelService extends StandardRestService{
     @Path("updateLocationLock")
     @Consumes("application/json")
     @Produces("application/json")
-    public void updateLocationLock(TCSObjectReference<Location> ref, boolean locked)
-            throws RemoteException {
+    public void updateLocationLock(TCSObjectReference<Location> ref, boolean locked){
         try {
             kernelExecutor.submit(() -> plantModelService.updateLocationLock(ref, locked)).get();
         }

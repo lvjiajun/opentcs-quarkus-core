@@ -41,7 +41,7 @@ import org.youbai.opentcs.kernel.annotations.StandardTransportOrderServiceAnnota
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@Dependent
+@Singleton
 public class RerouteUtil {
 
   /**

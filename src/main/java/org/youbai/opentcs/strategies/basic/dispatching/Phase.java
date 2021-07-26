@@ -11,6 +11,7 @@ import org.youbai.opentcs.components.Lifecycle;
 
 /**
  * Describes a reusable dispatching (sub-)task with a life cycle.
+ * 描述具有生命周期的可重用分派（子）任务
  *
  * @author Stefan Walter (Fraunhofer IML)
  */

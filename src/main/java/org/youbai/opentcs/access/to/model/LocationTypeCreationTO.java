@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.youbai.opentcs.access.to.CreationTO;
 import org.youbai.opentcs.data.model.visualization.LocationRepresentation;
 
@@ -48,17 +51,19 @@ public class LocationTypeCreationTO
     super(name);
   }
 
-  private LocationTypeCreationTO(@Nonnull String name,
-                                 @Nonnull Map<String, String> properties,
-                                 @Nonnull List<String> allowedOperations,
-                                 @Nonnull List<String> allowedPeripheralOperations,
-                                 @Nonnull Layout layout) {
+  @JsonCreator
+  public LocationTypeCreationTO(@JsonProperty("name")@Nonnull String name,
+                                @JsonProperty("properties")@Nonnull Map<String, String> properties,
+                                @JsonProperty("allowedOperations")@Nonnull List<String> allowedOperations,
+                                @JsonProperty("allowedPeripheralOperations")@Nonnull List<String> allowedPeripheralOperations,
+                                @JsonProperty("layout")@Nonnull Layout layout) {
     super(name, properties);
     this.allowedOperations = requireNonNull(allowedOperations, "allowedOperations");
     this.allowedPeripheralOperations = requireNonNull(allowedPeripheralOperations,
-                                                      "allowedPeripheralOperations");
+            "allowedPeripheralOperations");
     this.layout = requireNonNull(layout, "layout");
   }
+
 
   /**
    * Returns the allowed operations for this location type.
@@ -216,9 +221,10 @@ public class LocationTypeCreationTO
      * @param locationRepresentation The location representation to use for locations with this
      * location type.
      */
-    public Layout(LocationRepresentation locationRepresentation) {
+    @JsonCreator
+    public Layout(@JsonProperty("locationRepresentation") LocationRepresentation locationRepresentation) {
       this.locationRepresentation = requireNonNull(locationRepresentation,
-                                                   "locationRepresentation");
+              "locationRepresentation");
     }
 
     /**

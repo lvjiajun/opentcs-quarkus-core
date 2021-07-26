@@ -14,6 +14,9 @@ import javax.annotation.Nonnull;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
+
+import org.redisson.api.RedissonClient;
+import org.redisson.api.RedissonReactiveClient;
 import org.youbai.opentcs.components.kernel.Scheduler;
 import org.youbai.opentcs.data.model.TCSResource;
 import org.slf4j.Logger;
@@ -45,10 +48,8 @@ public class AllocationAdvisor
    * Creates a new instance.
    *
    */
-
   public AllocationAdvisor() {
   }
-
   @Override
   public void initialize() {
     if (isInitialized()) {

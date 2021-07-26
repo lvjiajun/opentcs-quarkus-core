@@ -7,6 +7,9 @@
  */
 package org.youbai.opentcs.data.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 /**
@@ -32,7 +35,8 @@ public class Couple
    * @param x The X coordinate.
    * @param y The Y coordinate.
    */
-  public Couple(long x, long y) {
+  @JsonCreator
+  public Couple(@JsonProperty("x") long x,@JsonProperty("y") long y) {
     this.x = x;
     this.y = y;
   }

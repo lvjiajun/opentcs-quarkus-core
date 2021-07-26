@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.youbai.opentcs.access.to.CreationTO;
 import org.youbai.opentcs.access.to.peripherals.PeripheralOperationCreationTO;
 import org.youbai.opentcs.data.model.Couple;
@@ -83,28 +86,27 @@ public class PathCreationTO
     this.peripheralOperations = new ArrayList<>();
   }
 
-  private PathCreationTO(String name,
-                         @Nonnull String srcPointName,
-                         @Nonnull String destPointName,
-                         @Nonnull Map<String, String> properties,
-                         long length,
-                         int maxVelocity,
-                         int maxReverseVelocity,
-                         List<PeripheralOperationCreationTO> peripheralOperations,
-                         boolean locked,
-                         @Nonnull Layout layout) {
+  @JsonCreator
+  public PathCreationTO(@JsonProperty("name")String name,
+                        @JsonProperty("srcPointName")@Nonnull String srcPointName,
+                        @JsonProperty("destPointName")@Nonnull String destPointName,
+                        @JsonProperty("properties")@Nonnull Map<String, String> properties,
+                        @JsonProperty("length")long length,
+                        @JsonProperty("maxVelocity")int maxVelocity,
+                        @JsonProperty("maxReverseVelocity")int maxReverseVelocity,
+                        @JsonProperty("peripheralOperations")List<PeripheralOperationCreationTO> peripheralOperations,
+                        @JsonProperty("locked")boolean locked,
+                        @JsonProperty("layout")@Nonnull Layout layout) {
     super(name, properties);
     this.srcPointName = requireNonNull(srcPointName, "srcPointName");
     this.destPointName = requireNonNull(destPointName, "destPointName");
     this.length = length;
     this.maxVelocity = maxVelocity;
     this.maxReverseVelocity = maxReverseVelocity;
-    this.peripheralOperations = new ArrayList<>(requireNonNull(peripheralOperations,
-                                                               "peripheralOperations"));
+    this.peripheralOperations = peripheralOperations;
     this.locked = locked;
     this.layout = requireNonNull(layout, "layout");
   }
-
   /**
    * Creates a copy of this object with the given name.
    *
@@ -457,7 +459,10 @@ public class PathCreationTO
      * @param controlPoints Control points describing the way the path is drawn.
      * @param layerId The ID of the layer on which the path is to be drawn.
      */
-    public Layout(Path.Layout.ConnectionType connectionType, List<Couple> controlPoints, int layerId) {
+    @JsonCreator
+    public Layout(@JsonProperty("connectionType")Path.Layout.ConnectionType connectionType,
+                  @JsonProperty("controlPoints")List<Couple> controlPoints,
+                  @JsonProperty("layerId")int layerId) {
       this.connectionType = connectionType;
       this.controlPoints = requireNonNull(controlPoints, "controlPoints");
       this.layerId = layerId;

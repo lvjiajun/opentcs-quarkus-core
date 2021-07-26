@@ -75,7 +75,7 @@ public interface Dispatcher
 
   /**
    * Notifies the dispatcher that the given transport order is to be withdrawn/aborted.
-   *
+   * 放弃订单任务
    * @param order The transport order to be withdrawn/aborted.
    * @param immediateAbort Whether the order should be aborted immediately instead of withdrawn.
    */
@@ -83,7 +83,7 @@ public interface Dispatcher
 
   /**
    * Notifies the dispatcher that any order a given vehicle might be processing is to be withdrawn.
-   *
+   * 要求车辆放弃订单任务
    * @param vehicle The vehicle whose order is withdrawn.
    * @param immediateAbort Whether the vehicle's order should be aborted immediately instead of
    * withdrawn.
@@ -92,6 +92,7 @@ public interface Dispatcher
 
   /**
    * Notifies the dispatcher of changes in the topology.
+   * 通知调度程序topology中的更改
    */
   void topologyChanged();
 }

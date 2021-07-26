@@ -15,6 +15,10 @@ import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import javax.annotation.Nonnull;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.youbai.opentcs.access.to.CreationTO;
 import org.youbai.opentcs.data.model.Block;
 
@@ -26,7 +30,6 @@ import org.youbai.opentcs.data.model.Block;
 public class BlockCreationTO
     extends CreationTO
     implements Serializable {
-
   /**
    * This block's type.
    */
@@ -40,6 +43,7 @@ public class BlockCreationTO
   /**
    * The information regarding the grahical representation of this block.
    */
+  @JsonIgnore
   private Layout layout = new Layout();
 
   /**
@@ -68,7 +72,15 @@ public class BlockCreationTO
     this.memberNames = requireNonNull(memberNames, "memberNames");
     this.layout = requireNonNull(layout, "layout");
   }
-
+  @JsonCreator
+  public BlockCreationTO(@JsonProperty("name")@Nonnull String name,
+                         @JsonProperty("properties")@Nonnull Map<String, String> properties,
+                         @JsonProperty("type")@Nonnull Block.Type type,
+                         @JsonProperty("memberNames")@Nonnull Set<String> memberNames) {
+    super(name,properties);
+    this.type = type;
+    this.memberNames = memberNames;
+  }
   /**
    * Creates a copy of this object with the given name.
    *

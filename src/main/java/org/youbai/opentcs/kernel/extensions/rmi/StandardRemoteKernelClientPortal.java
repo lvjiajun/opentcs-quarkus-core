@@ -44,7 +44,6 @@ import org.slf4j.LoggerFactory;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@ApplicationScoped
 public class StandardRemoteKernelClientPortal
     implements RemoteKernelServicePortal,
                KernelExtension {
@@ -123,7 +122,6 @@ public class StandardRemoteKernelClientPortal
     if (isInitialized()) {
       return;
     }
-
     registryProvider.initialize();
     userManager.initialize();
 
@@ -161,11 +159,9 @@ public class StandardRemoteKernelClientPortal
     if (!isInitialized()) {
       return;
     }
-
     for (KernelRemoteService remoteService : remoteServices) {
       remoteService.terminate();
     }
-
     try {
       LOG.debug("Unbinding from RMI registry...");
       rmiRegistry.unbind(RegistrationName.REMOTE_KERNEL_CLIENT_PORTAL);
@@ -236,7 +232,6 @@ public class StandardRemoteKernelClientPortal
   public void publishEvent(ClientID clientId, Object event)
       throws KernelRuntimeException {
     userManager.verifyCredentials(clientId, UserPermission.PUBLISH_MESSAGES);
-
     eventHandler.onEvent(event);
   }
 }

@@ -11,6 +11,9 @@ import java.io.Serializable;
 import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.youbai.opentcs.access.to.CreationTO;
 import org.youbai.opentcs.data.peripherals.PeripheralOperation;
 
@@ -57,21 +60,20 @@ public class PeripheralOperationCreationTO
     this.executionTrigger = PeripheralOperation.ExecutionTrigger.BEFORE_MOVEMENT;
     this.completionRequired = false;
   }
-
-  private PeripheralOperationCreationTO(
-      @Nonnull String name,
-      @Nonnull Map<String, String> properties,
-      @Nonnull String operation,
-      @Nonnull String locationName,
-      @Nonnull PeripheralOperation.ExecutionTrigger executionTrigger,
-      boolean completionRequired) {
+  @JsonCreator
+  public PeripheralOperationCreationTO(
+          @JsonProperty("name") @Nonnull String name,
+          @JsonProperty("properties")@Nonnull Map<String, String> properties,
+          @JsonProperty("operation")@Nonnull String operation,
+          @JsonProperty("locationName")@Nonnull String locationName,
+          @JsonProperty("executionTrigger")@Nonnull PeripheralOperation.ExecutionTrigger executionTrigger,
+          @JsonProperty("completionRequired") boolean completionRequired) {
     super(name, properties);
     this.operation = requireNonNull(operation, "operation");
     this.locationName = requireNonNull(locationName, "locationName");
     this.executionTrigger = requireNonNull(executionTrigger, "executionTrigger");
     this.completionRequired = completionRequired;
   }
-
   @Override
   public PeripheralOperationCreationTO withName(@Nonnull String name) {
     return new PeripheralOperationCreationTO(name,

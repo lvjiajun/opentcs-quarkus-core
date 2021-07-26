@@ -20,7 +20,7 @@ import static org.youbai.opentcs.util.Assertions.checkArgument;
 
 /**
  * Contains information for a potential assignment of a transport order to a vehicle.
- *
+ * 可能将运输订单分配给车辆
  * @author Stefan Walter (Fraunhofer IML)
  */
 public class AssignmentCandidate {
@@ -74,7 +74,7 @@ public class AssignmentCandidate {
 
   /**
    * Returns the costs for travelling only the first drive order/reaching the first destination.
-   *
+   * 返回第一个订单的代价成本
    * @return The costs for travelling only the first drive order.
    */
   public long getInitialRoutingCosts() {
@@ -83,7 +83,7 @@ public class AssignmentCandidate {
 
   /**
    * Returns the costs for travelling all drive orders.
-   *
+   * 返回所有订单的代价成本
    * @return The costs for travelling all drive orders.
    */
   public long getCompleteRoutingCosts() {
