@@ -6,14 +6,14 @@
  * this copy of the software.)
  */
 package org.youbai.opentcs.data.model;
-
-import java.awt.Color;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JacksonInject;
 import org.youbai.opentcs.data.ObjectHistory;
 import org.youbai.opentcs.data.TCSObject;
 
@@ -38,6 +38,7 @@ public class Block
   /**
    * The information regarding the grahical representation of this block.
    */
+
   private final Layout layout;
 
   /**
@@ -52,7 +53,7 @@ public class Block
     this.layout = new Layout();
   }
 
-  private Block(String name,
+  public Block(String name,
                 Map<String, String> properties,
                 ObjectHistory history,
                 Type type,

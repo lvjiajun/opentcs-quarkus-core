@@ -7,7 +7,6 @@
  */
 package org.youbai.opentcs.access.to.model;
 
-import java.awt.Color;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
@@ -21,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.youbai.opentcs.access.to.CreationTO;
 import org.youbai.opentcs.data.model.Block;
-
+import org.youbai.opentcs.data.model.Color;
 /**
  * A transfer object describing a block in the plant model.
  *
@@ -43,7 +42,6 @@ public class BlockCreationTO
   /**
    * The information regarding the grahical representation of this block.
    */
-  @JsonIgnore
   private Layout layout = new Layout();
 
   /**
@@ -62,24 +60,16 @@ public class BlockCreationTO
    * @param memberNames the names of the block's members.
    * @param properties the properties.
    */
-  private BlockCreationTO(@Nonnull String name,
-                          @Nonnull Map<String, String> properties,
-                          @Nonnull Block.Type type,
-                          @Nonnull Set<String> memberNames,
-                          @Nonnull Layout layout) {
-    super(name, properties);
-    this.type = requireNonNull(type, "type");
-    this.memberNames = requireNonNull(memberNames, "memberNames");
-    this.layout = requireNonNull(layout, "layout");
-  }
   @JsonCreator
   public BlockCreationTO(@JsonProperty("name")@Nonnull String name,
                          @JsonProperty("properties")@Nonnull Map<String, String> properties,
                          @JsonProperty("type")@Nonnull Block.Type type,
-                         @JsonProperty("memberNames")@Nonnull Set<String> memberNames) {
+                         @JsonProperty("memberNames")@Nonnull Set<String> memberNames,
+                         @JsonProperty("layout")@Nonnull Layout layout) {
     super(name,properties);
     this.type = type;
     this.memberNames = memberNames;
+    this.layout = layout;
   }
   /**
    * Creates a copy of this object with the given name.
@@ -235,7 +225,8 @@ public class BlockCreationTO
      *
      * @param color The color in which block elements are to be emphasized.
      */
-    public Layout(Color color) {
+    @JsonCreator
+    public Layout(@JsonProperty("color") Color color) {
       this.color = requireNonNull(color, "color");
     }
 

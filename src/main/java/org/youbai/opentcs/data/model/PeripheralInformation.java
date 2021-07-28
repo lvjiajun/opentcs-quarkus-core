@@ -47,7 +47,7 @@ public class PeripheralInformation
     this(null, State.NO_PERIPHERAL, ProcState.IDLE, null);
   }
 
-  private PeripheralInformation(
+  public PeripheralInformation(
       @Nullable String reservationToken,
       @Nonnull State state,
       @Nonnull ProcState procState,

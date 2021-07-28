@@ -87,7 +87,7 @@ public class Path
     this.layout = new Layout();
   }
 
-  private Path(String name,
+  public Path(String name,
                Map<String, String> properties,
                ObjectHistory history,
                TCSObjectReference<Point> sourcePoint,

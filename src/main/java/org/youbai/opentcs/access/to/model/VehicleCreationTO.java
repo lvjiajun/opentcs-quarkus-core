@@ -7,7 +7,7 @@
  */
 package org.youbai.opentcs.access.to.model;
 
-import java.awt.Color;
+import org.youbai.opentcs.data.model.Color;
 import java.io.Serializable;
 import java.util.Map;
 import static java.util.Objects.requireNonNull;
@@ -61,7 +61,6 @@ public class VehicleCreationTO
   /**
    * The information regarding the grahical representation of this vehicle.
    */
-  @JsonIgnore
   private Layout layout = new Layout();
 
   /**
@@ -73,26 +72,6 @@ public class VehicleCreationTO
     super(name);
   }
 
-  private VehicleCreationTO(@Nonnull String name,
-                            @Nonnull Map<String, String> properties,
-                            int length,
-                            int energyLevelCritical,
-                            int energyLevelGood,
-                            int energyLevelFullyRecharged,
-                            int energyLevelSufficientlyRecharged,
-                            int maxVelocity,
-                            int maxReverseVelocity,
-                            @Nonnull Layout layout) {
-    super(name, properties);
-    this.length = length;
-    this.energyLevelCritical = energyLevelCritical;
-    this.energyLevelGood = energyLevelGood;
-    this.energyLevelFullyRecharged = energyLevelFullyRecharged;
-    this.energyLevelSufficientlyRecharged = energyLevelSufficientlyRecharged;
-    this.maxVelocity = maxVelocity;
-    this.maxReverseVelocity = maxReverseVelocity;
-    this.layout = requireNonNull(layout, "layout");
-  }
   @JsonCreator
   public VehicleCreationTO(@JsonProperty("name")@Nonnull String name,
                            @JsonProperty("properties")@Nonnull Map<String, String> properties,
@@ -102,7 +81,8 @@ public class VehicleCreationTO
                            @JsonProperty("energyLevelFullyRecharged")int energyLevelFullyRecharged,
                            @JsonProperty("energyLevelSufficientlyRecharged")int energyLevelSufficientlyRecharged,
                            @JsonProperty("maxVelocity")int maxVelocity,
-                           @JsonProperty("maxReverseVelocity")int maxReverseVelocity) {
+                           @JsonProperty("maxReverseVelocity")int maxReverseVelocity,
+                           @JsonProperty("layout")@Nonnull Layout layout) {
     super(name,properties);
     this.length = length;
     this.energyLevelCritical = energyLevelCritical;
@@ -111,6 +91,7 @@ public class VehicleCreationTO
     this.energyLevelSufficientlyRecharged = energyLevelSufficientlyRecharged;
     this.maxVelocity = maxVelocity;
     this.maxReverseVelocity = maxReverseVelocity;
+    this.layout = layout;
   }
   /**
    * Creates a copy of this object with the given name.
@@ -449,7 +430,8 @@ public class VehicleCreationTO
      *
      * @param routeColor The color in which vehicle routes are to be emphasized.
      */
-    public Layout(Color routeColor) {
+    @JsonCreator
+    public Layout(@JsonProperty("routeColor")Color routeColor) {
       this.routeColor = requireNonNull(routeColor, "routeColor");
     }
 

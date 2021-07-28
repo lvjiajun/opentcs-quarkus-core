@@ -7,15 +7,7 @@
  */
 package org.youbai.opentcs.data.model;
 
-import java.awt.Color;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import static java.util.Objects.requireNonNull;
-import java.util.Set;
+import com.fasterxml.jackson.annotation.JacksonInject;
 import org.youbai.opentcs.data.ObjectHistory;
 import org.youbai.opentcs.data.TCSObject;
 import org.youbai.opentcs.data.TCSObjectReference;
@@ -23,9 +15,12 @@ import org.youbai.opentcs.data.order.OrderConstants;
 import org.youbai.opentcs.data.order.OrderSequence;
 import org.youbai.opentcs.data.order.TransportOrder;
 import org.youbai.opentcs.drivers.vehicle.LoadHandlingDevice;
+import org.youbai.opentcs.data.model.Color;
+import java.io.Serializable;
+import java.util.List;
+import java.util.*;
 
-import javax.enterprise.context.ApplicationScoped;
-
+import static java.util.Objects.requireNonNull;
 import static org.youbai.opentcs.util.Assertions.checkArgument;
 import static org.youbai.opentcs.util.Assertions.checkInRange;
 
@@ -172,7 +167,7 @@ public class Vehicle
     this.layout = new Layout();
   }
 
-  private Vehicle(String name,
+  public Vehicle(String name,
                   Map<String, String> properties,
                   ObjectHistory history,
                   int length,

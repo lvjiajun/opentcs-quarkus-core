@@ -7,7 +7,9 @@
  */
 package org.youbai.opentcs.util;
 
-import java.awt.Color;
+
+import org.youbai.opentcs.data.model.Color;
+
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
 
@@ -37,7 +39,7 @@ public class Colors {
   public static String encodeToHexRGB(@Nonnull Color color) {
     requireNonNull(color, "color");
 
-    return String.format("#%06X", color.getRGB() & 0x00FFFFFF);
+    return color.getColor();
   }
 
   /**
@@ -54,7 +56,7 @@ public class Colors {
       throws NumberFormatException {
     requireNonNull(rgbHex, "rgbHex");
 
-    return Color.decode(rgbHex);
+    return new Color(rgbHex);
   }
 
 }

@@ -7,7 +7,7 @@
  */
 package org.youbai.opentcs.kernel.workingset;
 
-import java.awt.Color;
+import org.youbai.opentcs.data.model.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -35,18 +35,7 @@ import org.youbai.opentcs.data.ObjectUnknownException;
 import org.youbai.opentcs.data.TCSObject;
 import org.youbai.opentcs.data.TCSObjectEvent;
 import org.youbai.opentcs.data.TCSObjectReference;
-import org.youbai.opentcs.data.model.Block;
-import org.youbai.opentcs.data.model.Couple;
-import org.youbai.opentcs.data.model.Location;
-import org.youbai.opentcs.data.model.LocationType;
-import org.youbai.opentcs.data.model.Path;
-import org.youbai.opentcs.data.model.PeripheralInformation;
-import org.youbai.opentcs.data.model.Point;
-import org.youbai.opentcs.data.model.TCSResource;
-import org.youbai.opentcs.data.model.TCSResourceReference;
-import org.youbai.opentcs.data.model.Triple;
-import org.youbai.opentcs.data.model.Vehicle;
-import org.youbai.opentcs.data.model.Group;
+import org.youbai.opentcs.data.model.*;
 import org.youbai.opentcs.data.model.visualization.ElementPropKeys;
 import org.youbai.opentcs.data.model.visualization.VisualLayout;
 import org.youbai.opentcs.data.order.OrderSequence;

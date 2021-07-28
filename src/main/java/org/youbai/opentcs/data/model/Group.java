@@ -45,7 +45,7 @@ public class Group
     this.members = new HashSet<>();
   }
 
-  private Group(String name,
+  public Group(String name,
                 Map<String, String> properties,
                 ObjectHistory history,
                 Set<TCSObjectReference<?>> members) {

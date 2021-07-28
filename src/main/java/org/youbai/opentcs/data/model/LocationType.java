@@ -51,7 +51,7 @@ public class LocationType
     this.layout = new Layout();
   }
 
-  private LocationType(String name,
+  public LocationType(String name,
                        Map<String, String> properties,
                        ObjectHistory history,
                        List<String> allowedOperations,

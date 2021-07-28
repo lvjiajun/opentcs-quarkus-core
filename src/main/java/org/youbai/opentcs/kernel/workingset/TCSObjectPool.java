@@ -9,6 +9,9 @@ package org.youbai.opentcs.kernel.workingset;
 
 import io.quarkus.runtime.Startup;
 import io.vertx.core.eventbus.EventBus;
+import org.redisson.api.RMap;
+import org.redisson.api.RedissonClient;
+import org.redisson.api.RedissonReactiveClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.data.*;
@@ -41,7 +44,6 @@ import static org.youbai.opentcs.util.Assertions.checkArgument;
  * @author Stefan Walter (Fraunhofer IML)
  */
 @Singleton
-@Startup
 public class TCSObjectPool {
 
   /**
@@ -51,7 +53,7 @@ public class TCSObjectPool {
   /**
    * The objects contained in this pool, mapped by their names.
    */
-  private final Map<String, TCSObject<?>> objectsByName = new ConcurrentHashMap<>();
+//  private final Map<String, TCSObject<?>> objectsByName = new ConcurrentHashMap<>();
   /**
    * The generator providing unique names for objects in this pool.
    */
@@ -61,6 +63,8 @@ public class TCSObjectPool {
   private final EventHandler eventHandler;
 
 
+  RMap<String, TCSObject<?>> objectsByName;
+
 
   /**
    * Creates a new instance that uses the given event handler.
@@ -68,8 +72,10 @@ public class TCSObjectPool {
    * @param eventHandler
    */
 
-  public TCSObjectPool(@SimpleEventBusAnnotation EventHandler eventHandler) {
+  public TCSObjectPool(@SimpleEventBusAnnotation EventHandler eventHandler,
+                       RedissonClient redisson) {
     this.eventHandler = eventHandler;
+    objectsByName = redisson.getMap("map");
   }
 
   /**

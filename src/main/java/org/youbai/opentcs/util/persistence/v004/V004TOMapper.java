@@ -366,7 +366,7 @@ public class V004TOMapper {
           .setEnergyLevelFullyRecharged((long) vehicle.getEnergyLevelFullyRecharged())
           .setEnergyLevelSufficientlyRecharged((long) vehicle.getEnergyLevelSufficientlyRecharged())
           .setVehicleLayout(new VehicleTO.VehicleLayout()
-              .setColor(Colors.encodeToHexRGB(vehicle.getLayout().getRouteColor())))
+              .setColor(vehicle.getLayout().getRouteColor().toString()))
           .setProperties(convertProperties(vehicle.getProperties()));
 
       result.add(vehicleTO);
@@ -477,7 +477,7 @@ public class V004TOMapper {
       blockTO.setType(block.getType().name())
           .setMembers(toMemberTOs(block.getMemberNames()))
           .setBlockLayout(new BlockTO.BlockLayout()
-              .setColor(Colors.encodeToHexRGB(block.getLayout().getColor())))
+              .setColor(block.getLayout().getColor().toString()))
           .setProperties(convertProperties(block.getProperties()));
 
       result.add(blockTO);

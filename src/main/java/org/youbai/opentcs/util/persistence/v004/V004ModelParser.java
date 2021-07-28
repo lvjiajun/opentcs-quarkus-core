@@ -7,7 +7,7 @@
  */
 package org.youbai.opentcs.util.persistence.v004;
 
-import java.awt.Color;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import org.youbai.opentcs.access.to.model.PlantModelCreationTO;
+import org.youbai.opentcs.data.model.Color;
 import org.youbai.opentcs.data.model.ModelConstants;
 import org.youbai.opentcs.data.model.visualization.ElementPropKeys;
 import org.youbai.opentcs.data.model.visualization.LocationRepresentation;
@@ -226,7 +227,7 @@ public class V004ModelParser {
               = toPropertiesMap(modelLayoutElementMap.get(vehicle.getName()).getProperties());
           String color = layoutProperties.get(ElementPropKeys.VEHICLE_ROUTE_COLOR) != null
               ? layoutProperties.get(ElementPropKeys.VEHICLE_ROUTE_COLOR)
-              : Colors.encodeToHexRGB(Color.RED);
+              : Color.RED.getColor();
 
           VehicleTO result = new VehicleTO();
           result.setName(vehicle.getName())

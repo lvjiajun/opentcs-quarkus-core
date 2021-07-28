@@ -7,10 +7,12 @@
  */
 package org.youbai.opentcs.components.plantoverview;
 
-import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.Image;
 import javax.annotation.Nonnull;
+
+import org.youbai.opentcs.data.model.Color;
 import org.youbai.opentcs.data.model.Vehicle;
 
 /**

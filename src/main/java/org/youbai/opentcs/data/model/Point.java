@@ -81,7 +81,7 @@ public class Point
     this.layout = new Layout();
   }
 
-  private Point(String name,
+  public Point(String name,
                 Map<String, String> properties,
                 ObjectHistory history,
                 Triple position,

@@ -83,7 +83,7 @@ public class Location
     this.layout = new Layout();
   }
 
-  private Location(String name,
+  public Location(String name,
                    Map<String, String> properties,
                    ObjectHistory history,
                    TCSObjectReference<LocationType> locationType,
@@ -332,7 +332,7 @@ public class Location
       this.allowedOperations = new TreeSet<>();
     }
 
-    private Link(TCSResourceReference<Location> location,
+    public Link(TCSResourceReference<Location> location,
                  TCSResourceReference<Point> point,
                  Set<String> allowedOperations) {
       this.location = requireNonNull(location, "location");
