@@ -19,8 +19,7 @@ public abstract class ControlCenterPanel
     extends JPanel
     implements Lifecycle {
 
-  /**
-   * Returns a title for this panel.
+  /**   * Returns a title for this panel.
    *
    * @return A title for this panel.
    */

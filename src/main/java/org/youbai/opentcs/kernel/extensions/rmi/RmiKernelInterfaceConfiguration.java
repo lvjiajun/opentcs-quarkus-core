@@ -9,8 +9,6 @@ package org.youbai.opentcs.kernel.extensions.rmi;
 
 import io.quarkus.arc.config.ConfigProperties;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
-import org.youbai.opentcs.configuration.ConfigurationEntry;
-import org.youbai.opentcs.configuration.ConfigurationPrefix;
 
 /**
  *

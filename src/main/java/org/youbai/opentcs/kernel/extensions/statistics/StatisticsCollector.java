@@ -7,26 +7,19 @@
  */
 package org.youbai.opentcs.kernel.extensions.statistics;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.components.kernel.KernelExtension;
+import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
+import org.youbai.opentcs.util.event.EventSource;
+
 import java.io.File;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import static java.util.Objects.requireNonNull;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import org.youbai.opentcs.components.kernel.KernelExtension;
-import org.youbai.opentcs.customizations.ApplicationEventBus;
-import org.youbai.opentcs.customizations.ApplicationHome;
 import static org.youbai.opentcs.util.Assertions.checkArgument;
-
-import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
-import org.youbai.opentcs.util.event.EventSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Collects data from kernel events and logs interesting events to a file that

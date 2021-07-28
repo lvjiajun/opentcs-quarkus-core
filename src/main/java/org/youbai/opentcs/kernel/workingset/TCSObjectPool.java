@@ -10,6 +10,7 @@ package org.youbai.opentcs.kernel.workingset;
 import io.quarkus.runtime.Startup;
 import io.vertx.core.eventbus.EventBus;
 import org.redisson.api.RMap;
+import org.redisson.api.RSet;
 import org.redisson.api.RedissonClient;
 import org.redisson.api.RedissonReactiveClient;
 import org.slf4j.Logger;
@@ -64,7 +65,6 @@ public class TCSObjectPool {
 
 
   RMap<String, TCSObject<?>> objectsByName;
-
 
   /**
    * Creates a new instance that uses the given event handler.
@@ -316,7 +316,6 @@ public class TCSObjectPool {
     }
     return result;
   }
-
   /**
    * Returns a set of objects of the given class for which the given predicate is true.
    *

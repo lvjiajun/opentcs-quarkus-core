@@ -7,35 +7,26 @@
  */
 package org.youbai.opentcs.kernel.extensions.rmi;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import static java.util.Objects.requireNonNull;
-import java.util.Set;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
-import javax.annotation.Nullable;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.access.CredentialsException;
 import org.youbai.opentcs.access.rmi.ClientID;
 import org.youbai.opentcs.components.Lifecycle;
-import org.youbai.opentcs.customizations.ApplicationEventBus;
-import org.youbai.opentcs.customizations.ApplicationHome;
-import org.youbai.opentcs.customizations.kernel.KernelExecutor;
-import static org.youbai.opentcs.util.Assertions.checkArgument;
-import static org.youbai.opentcs.util.Assertions.checkInRange;
-
 import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
 import org.youbai.opentcs.util.event.EventHandler;
 import org.youbai.opentcs.util.event.EventSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import javax.annotation.Nullable;
+import javax.enterprise.context.ApplicationScoped;
+import java.io.File;
+import java.util.*;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+
+import static java.util.Objects.requireNonNull;
+import static org.youbai.opentcs.util.Assertions.checkArgument;
+import static org.youbai.opentcs.util.Assertions.checkInRange;
 
 /**
  * Manages users allowed to connect/operate with the kernel and authenticated clients.
