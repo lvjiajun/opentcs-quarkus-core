@@ -34,37 +34,37 @@ public class Path
   /**
    * A reference to the point which this point originates in.
    */
-  private final TCSObjectReference<Point> sourcePoint;
+  private TCSObjectReference<Point> sourcePoint;
   /**
    * A reference to the point which this point ends in.
    */
-  private final TCSObjectReference<Point> destinationPoint;
+  private TCSObjectReference<Point> destinationPoint;
   /**
    * The length of this path (in mm).
    */
-  private final long length;
+  private long length;
   /**
    * The absolute maximum allowed forward velocity on this path (in mm/s).
    * A value of 0 (default) means forward movement is not allowed on this path.
    */
-  private final int maxVelocity;
+  private int maxVelocity;
   /**
    * The absolute maximum allowed reverse velocity on this path (in mm/s).
    * A value of 0 (default) means reverse movement is not allowed on this path.
    */
-  private final int maxReverseVelocity;
+  private int maxReverseVelocity;
   /**
    * The peripheral operations to be performed when a vehicle travels along this path.
    */
-  private final List<PeripheralOperation> peripheralOperations;
+  private List<PeripheralOperation> peripheralOperations;
   /**
    * A flag for marking this path as locked (i.e. to prevent vehicles from using it).
    */
-  private final boolean locked;
+  private boolean locked;
   /**
    * The information regarding the grahical representation of this path.
    */
-  private final Layout layout;
+  private Layout layout;
 
   /**
    * Creates a new Path.
@@ -412,6 +412,38 @@ public class Path
     }
   }
 
+  public void setSourcePoint(TCSObjectReference<Point> sourcePoint) {
+    this.sourcePoint = sourcePoint;
+  }
+
+  public void setDestinationPoint(TCSObjectReference<Point> destinationPoint) {
+    this.destinationPoint = destinationPoint;
+  }
+
+  public void setLength(long length) {
+    this.length = length;
+  }
+
+  public void setMaxVelocity(int maxVelocity) {
+    this.maxVelocity = maxVelocity;
+  }
+
+  public void setMaxReverseVelocity(int maxReverseVelocity) {
+    this.maxReverseVelocity = maxReverseVelocity;
+  }
+
+  public void setPeripheralOperations(List<PeripheralOperation> peripheralOperations) {
+    this.peripheralOperations = peripheralOperations;
+  }
+
+  public void setLocked(boolean locked) {
+    this.locked = locked;
+  }
+
+  public void setLayout(Layout layout) {
+    this.layout = layout;
+  }
+
   /**
    * Contains information regarding the grahical representation of a path.
    */
@@ -421,17 +453,17 @@ public class Path
     /**
      * The connection type the path is represented as.
      */
-    private final ConnectionType connectionType;
+    private ConnectionType connectionType;
     /**
      * Control points describing the way the path is drawn (if the connection type
      * is {@link ConnectionType#BEZIER}, {@link ConnectionType#BEZIER_3}
      * or {@link ConnectionType#POLYPATH}).
      */
-    private final List<Couple> controlPoints;
+    private List<Couple> controlPoints;
     /**
      * The ID of the layer on which the path is to be drawn.
      */
-    private final int layerId;
+    private int layerId;
 
     /**
      * Creates a new instance.
@@ -541,6 +573,18 @@ public class Path
        * A bezier curve with 3 control points.
        */
       BEZIER_3;
+    }
+
+    public void setConnectionType(ConnectionType connectionType) {
+      this.connectionType = connectionType;
+    }
+
+    public void setControlPoints(List<Couple> controlPoints) {
+      this.controlPoints = controlPoints;
+    }
+
+    public void setLayerId(int layerId) {
+      this.layerId = layerId;
     }
   }
 }

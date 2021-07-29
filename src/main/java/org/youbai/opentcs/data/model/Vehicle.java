@@ -8,6 +8,8 @@
 package org.youbai.opentcs.data.model;
 
 import com.fasterxml.jackson.annotation.JacksonInject;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.youbai.opentcs.data.ObjectHistory;
 import org.youbai.opentcs.data.TCSObject;
 import org.youbai.opentcs.data.TCSObjectReference;
@@ -45,96 +47,96 @@ public class Vehicle
   /**
    * This vehicle's length (in mm).
    */
-  private final int length;
+  private int length;
   /**
    * The value at/above which the vehicle's energy level is considered "good".
    */
-  private final int energyLevelGood;
+  private int energyLevelGood;
   /**
    * The value at/below which the vehicle's energy level is considered "critical".
    */
-  private final int energyLevelCritical;
+  private int energyLevelCritical;
   /**
    * The value at/above which the vehicle's energy level is considered fully recharged.
    */
-  private final int energyLevelFullyRecharged;
+  private int energyLevelFullyRecharged;
   /**
    * The value at/above which the vehicle's energy level is considered sufficiently recharged.
    */
-  private final int energyLevelSufficientlyRecharged;
+  private int energyLevelSufficientlyRecharged;
   /**
    * This vehicle's remaining energy (in percent of the maximum).
    */
-  private final int energyLevel;
+  private int energyLevel;
   /**
    * This vehicle's maximum velocity (in mm/s).
    */
-  private final int maxVelocity;
+  private int maxVelocity;
   /**
    * This vehicle's maximum reverse velocity (in mm/s).
    */
-  private final int maxReverseVelocity;
+  private int maxReverseVelocity;
   /**
    * The operation the vehicle's current communication adapter accepts as a command to recharge the
    * vehicle.
    */
-  private final String rechargeOperation;
+  private String rechargeOperation;
   /**
    * The current (state of the) load handling devices of this vehicle.
    */
-  private final List<LoadHandlingDevice> loadHandlingDevices;
+  private List<LoadHandlingDevice> loadHandlingDevices;
   /**
    * This vehicle's current state.
    */
-  private final State state;
+  private State state;
   /**
    * This vehicle's current processing state.
    */
-  private final ProcState procState;
+  private ProcState procState;
   /**
    * This vehicle's integration level.
    */
-  private final IntegrationLevel integrationLevel;
+  private IntegrationLevel integrationLevel;
   /**
    * A reference to the transport order this vehicle is currently processing.
    */
-  private final TCSObjectReference<TransportOrder> transportOrder;
+  private TCSObjectReference<TransportOrder> transportOrder;
   /**
    * A reference to the order sequence this vehicle is currently processing.
    */
-  private final TCSObjectReference<OrderSequence> orderSequence;
+  private TCSObjectReference<OrderSequence> orderSequence;
   /**
    * The set of transport order types this vehicle is allowed to process.
    */
-  private final Set<String> allowedOrderTypes;
+  private Set<String> allowedOrderTypes;
   /**
    * The index of the last route step travelled for the current drive order of the current transport
    * order.
    */
-  private final int routeProgressIndex;
+  private int routeProgressIndex;
   /**
    * A reference to the point which this vehicle currently occupies.
    */
-  private final TCSObjectReference<Point> currentPosition;
+  private TCSObjectReference<Point> currentPosition;
   /**
    * A reference to the point which this vehicle is expected to be seen at next.
    */
-  private final TCSObjectReference<Point> nextPosition;
+  private TCSObjectReference<Point> nextPosition;
   /**
    * The vehicle's precise position in world coordinates [mm], independent from logical
    * positions/point names.
    * Set to <code>null</code> if the vehicle hasn't provided a precise position.
    */
-  private final Triple precisePosition;
+  private Triple precisePosition;
   /**
    * The vehicle's current orientation angle (-360..360).
    * Set to <code>Double.NaN</code> if the vehicle hasn't provided an orientation angle.
    */
-  private final double orientationAngle;
+  private double orientationAngle;
   /**
    * The information regarding the grahical representation of this vehicle.
    */
-  private final Layout layout;
+  private Layout layout;
 
   /**
    * Creates a new vehicle.
@@ -1213,6 +1215,94 @@ public class Vehicle
                        layout);
   }
 
+  public void setLength(int length) {
+    this.length = length;
+  }
+
+  public void setEnergyLevelGood(int energyLevelGood) {
+    this.energyLevelGood = energyLevelGood;
+  }
+
+  public void setEnergyLevelCritical(int energyLevelCritical) {
+    this.energyLevelCritical = energyLevelCritical;
+  }
+
+  public void setEnergyLevelFullyRecharged(int energyLevelFullyRecharged) {
+    this.energyLevelFullyRecharged = energyLevelFullyRecharged;
+  }
+
+  public void setEnergyLevelSufficientlyRecharged(int energyLevelSufficientlyRecharged) {
+    this.energyLevelSufficientlyRecharged = energyLevelSufficientlyRecharged;
+  }
+
+  public void setEnergyLevel(int energyLevel) {
+    this.energyLevel = energyLevel;
+  }
+
+  public void setMaxVelocity(int maxVelocity) {
+    this.maxVelocity = maxVelocity;
+  }
+
+  public void setMaxReverseVelocity(int maxReverseVelocity) {
+    this.maxReverseVelocity = maxReverseVelocity;
+  }
+
+  public void setRechargeOperation(String rechargeOperation) {
+    this.rechargeOperation = rechargeOperation;
+  }
+
+  public void setLoadHandlingDevices(List<LoadHandlingDevice> loadHandlingDevices) {
+    this.loadHandlingDevices = loadHandlingDevices;
+  }
+
+  public void setState(State state) {
+    this.state = state;
+  }
+
+  public void setProcState(ProcState procState) {
+    this.procState = procState;
+  }
+
+  public void setIntegrationLevel(IntegrationLevel integrationLevel) {
+    this.integrationLevel = integrationLevel;
+  }
+
+  public void setTransportOrder(TCSObjectReference<TransportOrder> transportOrder) {
+    this.transportOrder = transportOrder;
+  }
+
+  public void setOrderSequence(TCSObjectReference<OrderSequence> orderSequence) {
+    this.orderSequence = orderSequence;
+  }
+
+  public void setAllowedOrderTypes(Set<String> allowedOrderTypes) {
+    this.allowedOrderTypes = allowedOrderTypes;
+  }
+
+  public void setRouteProgressIndex(int routeProgressIndex) {
+    this.routeProgressIndex = routeProgressIndex;
+  }
+
+  public void setCurrentPosition(TCSObjectReference<Point> currentPosition) {
+    this.currentPosition = currentPosition;
+  }
+
+  public void setNextPosition(TCSObjectReference<Point> nextPosition) {
+    this.nextPosition = nextPosition;
+  }
+
+  public void setPrecisePosition(Triple precisePosition) {
+    this.precisePosition = precisePosition;
+  }
+
+  public void setOrientationAngle(double orientationAngle) {
+    this.orientationAngle = orientationAngle;
+  }
+
+  public void setLayout(Layout layout) {
+    this.layout = layout;
+  }
+
   /**
    * Returns a reference to the point this vehicle is expected to be seen at
    * next.
@@ -1552,7 +1642,8 @@ public class Vehicle
      *
      * @param routeColor The color in which vehicle routes are to be emphasized.
      */
-    public Layout(Color routeColor) {
+    @JsonCreator
+    public Layout(@JsonProperty("routeColor") Color routeColor) {
       this.routeColor = requireNonNull(routeColor, "routeColor");
     }
 

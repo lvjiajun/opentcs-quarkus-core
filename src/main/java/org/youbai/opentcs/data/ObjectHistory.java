@@ -7,6 +7,9 @@
  */
 package org.youbai.opentcs.data;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -41,7 +44,8 @@ public class ObjectHistory
    *
    * @param entries
    */
-  private ObjectHistory(List<Entry> entries) {
+  @JsonCreator
+  private ObjectHistory(@JsonProperty("entries") List<Entry> entries) {
     this.entries = Collections.unmodifiableList(requireNonNull(entries, "entries"));
   }
 

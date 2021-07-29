@@ -29,15 +29,15 @@ public class LocationType
   /**
    * The operations allowed at locations of this type.
    */
-  private final List<String> allowedOperations;
+  private List<String> allowedOperations;
   /**
    * The peripheral operations allowed at locations of this type.
    */
-  private final List<String> allowedPeripheralOperations;
+  private List<String> allowedPeripheralOperations;
   /**
    * The information regarding the grahical representation of this location type.
    */
-  private final Layout layout;
+  private Layout layout;
 
   /**
    * Creates a new LocationType.
@@ -190,6 +190,18 @@ public class LocationType
                             layout);
   }
 
+  public void setAllowedOperations(List<String> allowedOperations) {
+    this.allowedOperations = allowedOperations;
+  }
+
+  public void setAllowedPeripheralOperations(List<String> allowedPeripheralOperations) {
+    this.allowedPeripheralOperations = allowedPeripheralOperations;
+  }
+
+  public void setLayout(Layout layout) {
+    this.layout = layout;
+  }
+
   /**
    * Contains information regarding the grahical representation of a location type.
    */
@@ -199,7 +211,7 @@ public class LocationType
     /**
      * The location representation to use for locations with this location type.
      */
-    private final LocationRepresentation locationRepresentation;
+    private LocationRepresentation locationRepresentation;
 
     /**
      * Creates a new instance.
@@ -217,6 +229,10 @@ public class LocationType
     public Layout(LocationRepresentation locationRepresentation) {
       this.locationRepresentation = requireNonNull(locationRepresentation,
                                                    "locationRepresentation");
+    }
+
+    public void setLocationRepresentation(LocationRepresentation locationRepresentation) {
+      this.locationRepresentation = locationRepresentation;
     }
 
     /**

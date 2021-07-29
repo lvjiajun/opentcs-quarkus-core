@@ -30,16 +30,16 @@ public class Block
   /**
    * This block's type.
    */
-  private final Type type;
+  private Type type;
   /**
    * The resources aggregated in this block.
    */
-  private final Set<TCSResourceReference<?>> members;
+  private Set<TCSResourceReference<?>> members;
   /**
    * The information regarding the grahical representation of this block.
    */
 
-  private final Layout layout;
+  private Layout layout;
 
   /**
    * Creates an empty block.
@@ -177,6 +177,18 @@ public class Block
                      layout);
   }
 
+  public void setType(Type type) {
+    this.type = type;
+  }
+
+  public void setMembers(Set<TCSResourceReference<?>> members) {
+    this.members = members;
+  }
+
+  public void setLayout(Layout layout) {
+    this.layout = layout;
+  }
+
   /**
    * Describes the types of blocks in a driving course.
    */
@@ -202,7 +214,7 @@ public class Block
     /**
      * The color in which block elements are to be emphasized.
      */
-    private final Color color;
+    private Color color;
 
     /**
      * Creates a new instance.
@@ -218,6 +230,10 @@ public class Block
      */
     public Layout(Color color) {
       this.color = requireNonNull(color, "color");
+    }
+
+    public void setColor(Color color) {
+      this.color = color;
     }
 
     /**

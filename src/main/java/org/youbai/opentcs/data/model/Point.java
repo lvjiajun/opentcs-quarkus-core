@@ -32,37 +32,37 @@ public class Point
   /**
    * This point's coordinates in mm.
    */
-  private final Triple position;
+  private Triple position;
   /**
    * This point's type.
    */
-  private final Type type;
+  private Type type;
   /**
    * The vehicle's (assumed) orientation angle (-360..360) when it is at this
    * position.
    * May be Double.NaN if an orientation angle is not defined for this point.
    */
-  private final double vehicleOrientationAngle;
+  private double vehicleOrientationAngle;
   /**
    * A set of references to paths ending in this point.
    */
-  private final Set<TCSObjectReference<Path>> incomingPaths;
+  private Set<TCSObjectReference<Path>> incomingPaths;
   /**
    * A set of references to paths originating in this point.
    */
-  private final Set<TCSObjectReference<Path>> outgoingPaths;
+  private Set<TCSObjectReference<Path>> outgoingPaths;
   /**
    * A set of links attached to this point.
    */
-  private final Set<Location.Link> attachedLinks;
+  private Set<Location.Link> attachedLinks;
   /**
    * A reference to the vehicle occupying this point.
    */
-  private final TCSObjectReference<Vehicle> occupyingVehicle;
+  private TCSObjectReference<Vehicle> occupyingVehicle;
   /**
    * The information regarding the grahical representation of this point.
    */
-  private final Layout layout;
+  private Layout layout;
 
   /**
    * Creates a new point with the given name.
@@ -431,6 +431,38 @@ public class Point
                      layout);
   }
 
+  public void setPosition(Triple position) {
+    this.position = position;
+  }
+
+  public void setType(Type type) {
+    this.type = type;
+  }
+
+  public void setVehicleOrientationAngle(double vehicleOrientationAngle) {
+    this.vehicleOrientationAngle = vehicleOrientationAngle;
+  }
+
+  public void setIncomingPaths(Set<TCSObjectReference<Path>> incomingPaths) {
+    this.incomingPaths = incomingPaths;
+  }
+
+  public void setOutgoingPaths(Set<TCSObjectReference<Path>> outgoingPaths) {
+    this.outgoingPaths = outgoingPaths;
+  }
+
+  public void setAttachedLinks(Set<Location.Link> attachedLinks) {
+    this.attachedLinks = attachedLinks;
+  }
+
+  public void setOccupyingVehicle(TCSObjectReference<Vehicle> occupyingVehicle) {
+    this.occupyingVehicle = occupyingVehicle;
+  }
+
+  public void setLayout(Layout layout) {
+    this.layout = layout;
+  }
+
   /**
    * Describes the types of positions in a driving course.
    */
@@ -465,15 +497,15 @@ public class Point
     /**
      * The coordinates at which the point is to be drawn (in mm).
      */
-    private final Couple position;
+    private Couple position;
     /**
      * The offset of the label's position to the point's position (in lu).
      */
-    private final Couple labelOffset;
+    private Couple labelOffset;
     /**
      * The ID of the layer on which the point is to be drawn.
      */
-    private final int layerId;
+    private int layerId;
 
     /**
      * Creates a new instance.
@@ -558,6 +590,18 @@ public class Point
       return new Layout(position,
                         labelOffset,
                         layerId);
+    }
+
+    public void setPosition(Couple position) {
+      this.position = position;
+    }
+
+    public void setLabelOffset(Couple labelOffset) {
+      this.labelOffset = labelOffset;
+    }
+
+    public void setLayerId(int layerId) {
+      this.layerId = layerId;
     }
   }
 }

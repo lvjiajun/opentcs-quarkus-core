@@ -26,17 +26,17 @@ public class PeripheralInformation
    * A token for which a location/peripheral device is currently reserved.
    */
   @Nullable
-  private final String reservationToken;
+  private String reservationToken;
   /**
    * This peripheral device's current state.
    */
   @Nonnull
-  private final State state;
+  private State state;
   /**
    * This peripheral device's current processing state.
    */
   @Nonnull
-  private final ProcState procState;
+  private ProcState procState;
   /**
    * A reference to the peripheral job this peripheral device is currently processing.
    */
@@ -138,6 +138,18 @@ public class PeripheralInformation
   public PeripheralInformation withPeripheralJob(
       @Nullable TCSObjectReference<PeripheralJob> peripheralJob) {
     return new PeripheralInformation(reservationToken, state, procState, peripheralJob);
+  }
+
+  public void setReservationToken(@Nullable String reservationToken) {
+    this.reservationToken = reservationToken;
+  }
+
+  public void setState(@Nonnull State state) {
+    this.state = state;
+  }
+
+  public void setProcState(@Nonnull ProcState procState) {
+    this.procState = procState;
   }
 
   /**

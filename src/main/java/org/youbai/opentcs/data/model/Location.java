@@ -42,28 +42,28 @@ public class Location
   /**
    * This location's position in mm.
    */
-  private final Triple position;
+  private Triple position;
   /**
    * A reference to this location's type.
    */
-  private final TCSObjectReference<LocationType> type;
+  private TCSObjectReference<LocationType> type;
   /**
    * A set of links attached to this location.
    */
-  private final Set<Link> attachedLinks;
+  private Set<Link> attachedLinks;
   /**
    * A flag for marking this location as locked (i.e. to prevent transport orders leading to it
    * from being assigned to vehicles).
    */
-  private final boolean locked;
+  private boolean locked;
   /**
    * Details about the peripheral devices this location may represent.
    */
-  private final PeripheralInformation peripheralInformation;
+  private PeripheralInformation peripheralInformation;
   /**
    * The information regarding the grahical representation of this location.
    */
-  private final Layout layout;
+  private Layout layout;
 
   /**
    * Creates a new Location.
@@ -299,6 +299,30 @@ public class Location
                         layout);
   }
 
+  public void setPosition(Triple position) {
+    this.position = position;
+  }
+
+  public void setType(TCSObjectReference<LocationType> type) {
+    this.type = type;
+  }
+
+  public void setAttachedLinks(Set<Link> attachedLinks) {
+    this.attachedLinks = attachedLinks;
+  }
+
+  public void setLocked(boolean locked) {
+    this.locked = locked;
+  }
+
+  public void setPeripheralInformation(PeripheralInformation peripheralInformation) {
+    this.peripheralInformation = peripheralInformation;
+  }
+
+  public void setLayout(Layout layout) {
+    this.layout = layout;
+  }
+
   /**
    * A link connecting a point and a location, expressing that the location is
    * reachable from the point.
@@ -309,15 +333,15 @@ public class Location
     /**
      * A reference to the location end of this link.
      */
-    private final TCSResourceReference<Location> location;
+    private TCSResourceReference<Location> location;
     /**
      * A reference to the point end of this link.
      */
-    private final TCSResourceReference<Point> point;
+    private TCSResourceReference<Point> point;
     /**
      * The operations allowed at this link.
      */
-    private final Set<String> allowedOperations;
+    private Set<String> allowedOperations;
 
     /**
      * Creates a new Link.
@@ -424,6 +448,19 @@ public class Location
     public int hashCode() {
       return location.hashCode() ^ point.hashCode();
     }
+
+
+    public void setLocation(TCSResourceReference<Location> location) {
+      this.location = location;
+    }
+
+    public void setPoint(TCSResourceReference<Point> point) {
+      this.point = point;
+    }
+
+    public void setAllowedOperations(Set<String> allowedOperations) {
+      this.allowedOperations = allowedOperations;
+    }
   }
 
   /**
@@ -435,19 +472,19 @@ public class Location
     /**
      * The coordinates at which the location is to be drawn (in mm).
      */
-    private final Couple position;
+    private Couple position;
     /**
      * The offset of the label's position to the location's position (in lu).
      */
-    private final Couple labelOffset;
+    private Couple labelOffset;
     /**
      * The location representation to use.
      */
-    private final LocationRepresentation locationRepresentation;
+    private LocationRepresentation locationRepresentation;
     /**
      * The ID of the layer on which the location is to be drawn.
      */
-    private final int layerId;
+    private int layerId;
 
     /**
      * Creates a new instance.
@@ -561,6 +598,22 @@ public class Location
                         labelOffset,
                         locationRepresentation,
                         layerId);
+    }
+
+    public void setPosition(Couple position) {
+      this.position = position;
+    }
+
+    public void setLabelOffset(Couple labelOffset) {
+      this.labelOffset = labelOffset;
+    }
+
+    public void setLocationRepresentation(LocationRepresentation locationRepresentation) {
+      this.locationRepresentation = locationRepresentation;
+    }
+
+    public void setLayerId(int layerId) {
+      this.layerId = layerId;
     }
   }
 }
