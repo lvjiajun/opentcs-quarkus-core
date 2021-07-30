@@ -27,6 +27,7 @@ import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.TransportOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.ExecutorServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardDispatcherServiceAnnotations;
 
 /**
@@ -96,7 +97,7 @@ public class StandardRemoteDispatcherService
                                          RmiKernelInterfaceConfiguration configuration,
                                          @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                          RegistryProvider registryProvider,
-                                         @Named("ExecutorService") ExecutorService kernelExecutor) {
+                                         @ExecutorServiceAnnotations ExecutorService kernelExecutor) {
     this.dispatcherService = requireNonNull(dispatcherService, "dispatcherService");
     this.userManager = requireNonNull(userManager, "userManager");
     this.configuration = requireNonNull(configuration, "configuration");

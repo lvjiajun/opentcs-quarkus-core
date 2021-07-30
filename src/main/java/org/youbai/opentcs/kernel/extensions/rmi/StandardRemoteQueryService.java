@@ -26,6 +26,7 @@ import org.youbai.opentcs.components.kernel.Query;
 import org.youbai.opentcs.components.kernel.services.QueryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.ExecutorServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardQueryServiceAnnotations;
 
 /**
@@ -95,7 +96,7 @@ public class StandardRemoteQueryService
                                     RmiKernelInterfaceConfiguration configuration,
                                     @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                     RegistryProvider registryProvider,
-                                    @Named("ExecutorService") ExecutorService kernelExecutor) {
+                                    @ExecutorServiceAnnotations ExecutorService kernelExecutor) {
     this.queryService = requireNonNull(queryService, "queryService");
     this.userManager = requireNonNull(userManager, "userManager");
     this.configuration = requireNonNull(configuration, "configuration");

@@ -27,6 +27,7 @@ import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.TCSResourceReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.ExecutorServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardPeripheralDispatcherServiceAnnotations;
 
 /**
@@ -99,7 +100,7 @@ public class StandardRemotePeripheralDispatcherService
                                                    RmiKernelInterfaceConfiguration configuration,
                                                    @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                                    RegistryProvider registryProvider,
-                                                   @Named("ExecutorService") ExecutorService kernelExecutor) {
+                                                   @ExecutorServiceAnnotations ExecutorService kernelExecutor) {
     this.userManager = requireNonNull(userManager, "userManager");
     this.configuration = requireNonNull(configuration, "configuration");
     this.socketFactoryProvider = requireNonNull(socketFactoryProvider, "socketFactoryProvider");

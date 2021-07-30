@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.access.CredentialsException;
 import org.youbai.opentcs.access.rmi.ClientID;
 import org.youbai.opentcs.components.Lifecycle;
+import org.youbai.opentcs.kernel.annotations.ScheduledExecutorServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
 import org.youbai.opentcs.util.event.EventHandler;
 import org.youbai.opentcs.util.event.EventSource;
@@ -87,7 +88,7 @@ public class UserManager
    */
   public UserManager(File homeDirectory,
                      @SimpleEventBusAnnotation EventSource eventSource,
-                     ScheduledExecutorService kernelExecutor,
+                     @ScheduledExecutorServiceAnnotations ScheduledExecutorService kernelExecutor,
                      RmiKernelInterfaceConfiguration configuration,
                      UserAccountProvider userAccountProvider) {
     requireNonNull(homeDirectory, "homeDirectory");

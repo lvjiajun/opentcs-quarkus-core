@@ -28,6 +28,7 @@ import org.youbai.opentcs.components.kernel.services.NotificationService;
 import org.youbai.opentcs.data.notification.UserNotification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.ExecutorServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardNotificationServiceAnnotation;
 
 /**
@@ -98,7 +99,7 @@ public class StandardRemoteNotificationService
                                            RmiKernelInterfaceConfiguration configuration,
                                            @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                            RegistryProvider registryProvider,
-                                           @Named("ExecutorService") ExecutorService kernelExecutor) {
+                                           @ExecutorServiceAnnotations ExecutorService kernelExecutor) {
 
     this.userManager = requireNonNull(userManager, "userManager");
     this.configuration = requireNonNull(configuration, "configuration");

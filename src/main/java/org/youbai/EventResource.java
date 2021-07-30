@@ -24,15 +24,6 @@ import java.util.Set;
 @Path("/async")
 public class EventResource {
 
-    @Inject
-    EventBus bus;
-
-
-    @Inject
-    KernelStarter kernelStarter;
-    @Inject
-    TCSObjectPool tcsObjectPool;
-
     @Inject@StandardTCSObjectAnnotations
     TCSObjectService tcsObjectService;
     @GET

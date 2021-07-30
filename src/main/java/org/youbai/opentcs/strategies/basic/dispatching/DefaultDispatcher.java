@@ -26,6 +26,7 @@ import org.youbai.opentcs.customizations.ApplicationEventBus;
 import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.TransportOrder;
+import org.youbai.opentcs.kernel.annotations.ScheduledExecutorServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
 import org.youbai.opentcs.kernel.annotations.StandardTransportOrderServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardVehicleServiceAnnotations;
@@ -74,7 +75,7 @@ public class DefaultDispatcher
   /**
    * The kernel's executor.
    */
-  @Inject@Named("ExecutorService")
+  @Inject@ScheduledExecutorServiceAnnotations
   ScheduledExecutorService kernelExecutor;
 
   @Inject

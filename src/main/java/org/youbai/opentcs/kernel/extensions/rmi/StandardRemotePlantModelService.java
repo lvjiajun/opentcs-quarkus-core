@@ -28,6 +28,7 @@ import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Location;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.ExecutorServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardPlantModelServiceAnnotations;
 
 /**
@@ -97,7 +98,7 @@ public class StandardRemotePlantModelService
                                          RmiKernelInterfaceConfiguration configuration,
                                          @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                          RegistryProvider registryProvider,
-                                         @Named("ExecutorService") ExecutorService kernelExecutor) {
+                                         @ExecutorServiceAnnotations ExecutorService kernelExecutor) {
     super(plantModelService, userManager, kernelExecutor);
     this.plantModelService = requireNonNull(plantModelService, "plantModelService");
     this.userManager = requireNonNull(userManager, "userManager");

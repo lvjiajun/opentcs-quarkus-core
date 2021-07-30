@@ -26,6 +26,7 @@ import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Path;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.ExecutorServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardRouterServiceAnnotations;
 
 /**
@@ -95,7 +96,7 @@ public class StandardRemoteRouterService
                                      RmiKernelInterfaceConfiguration configuration,
                                      @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                      RegistryProvider registryProvider,
-                                     @Named("ExecutorService") ExecutorService kernelExecutor) {
+                                     @ExecutorServiceAnnotations ExecutorService kernelExecutor) {
     this.routerService = requireNonNull(routerService, "routerService");
     this.userManager = requireNonNull(userManager, "userManager");
     this.configuration = requireNonNull(configuration, "configuration");

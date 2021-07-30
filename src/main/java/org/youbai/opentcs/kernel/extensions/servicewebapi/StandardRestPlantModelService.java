@@ -6,6 +6,7 @@ import org.youbai.opentcs.access.to.model.PlantModelCreationTO;
 import org.youbai.opentcs.components.kernel.services.PlantModelService;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Location;
+import org.youbai.opentcs.kernel.annotations.ExecutorServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardPlantModelServiceAnnotations;
 import org.youbai.opentcs.kernel.extensions.rmi.UserPermission;
 
@@ -26,7 +27,7 @@ public class StandardRestPlantModelService extends StandardRestService{
     PlantModelService plantModelService;
 
     @Inject
-    @Named("ExecutorService")
+    @ExecutorServiceAnnotations
     ExecutorService kernelExecutor;
 
     @POST

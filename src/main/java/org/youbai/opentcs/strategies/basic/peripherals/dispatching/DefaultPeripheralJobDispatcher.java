@@ -28,6 +28,7 @@ import org.youbai.opentcs.data.peripherals.PeripheralJob;
 import org.youbai.opentcs.drivers.peripherals.PeripheralJobCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.ScheduledExecutorServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardPeripheralJobServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardPeripheralServiceAnnotations;
 
@@ -59,7 +60,7 @@ public class DefaultPeripheralJobDispatcher
   /**
    * The kernel's executor.
    */
-  @Inject@Named("ExecutorService")
+  @Inject@ScheduledExecutorServiceAnnotations
   ScheduledExecutorService kernelExecutor;
   /**
    * Performs a full dispatch run.

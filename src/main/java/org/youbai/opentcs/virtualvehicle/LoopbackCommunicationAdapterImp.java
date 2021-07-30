@@ -2,6 +2,7 @@ package org.youbai.opentcs.virtualvehicle;
 
 import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.model.Vehicle;
+import org.youbai.opentcs.kernel.annotations.ExecutorServiceAnnotations;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
@@ -14,7 +15,7 @@ public class LoopbackCommunicationAdapterImp {
 
     @Inject
     VirtualVehicleConfiguration configuration;
-    @Inject@Named("ExecutorService")
+    @Inject@ExecutorServiceAnnotations
     ExecutorService kernelExecutor;
     @Produces
     public LoopbackAdapterComponentsFactory loopbackAdapterComponentsFactory(){

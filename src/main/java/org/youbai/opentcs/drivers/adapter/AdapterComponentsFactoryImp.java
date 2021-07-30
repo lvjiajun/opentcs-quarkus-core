@@ -4,6 +4,7 @@ import org.youbai.opentcs.common.extend.telegrams.RequestResponseMatcher;
 import org.youbai.opentcs.common.extend.telegrams.StateRequesterTask;
 import org.youbai.opentcs.common.extend.telegrams.TelegramSender;
 import org.youbai.opentcs.data.model.Vehicle;
+import org.youbai.opentcs.kernel.annotations.ExecutorServiceAnnotations;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
@@ -19,7 +20,7 @@ public class AdapterComponentsFactoryImp {
     OrderMapper orderMapper;
     @Inject
     AdapterComponentsFactory componentsFactory;
-    @Inject@Named("ExecutorService")
+    @Inject@ExecutorServiceAnnotations
     ExecutorService kernelExecutor;
 
     @Produces

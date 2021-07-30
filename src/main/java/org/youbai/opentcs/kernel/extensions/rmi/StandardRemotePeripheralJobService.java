@@ -26,6 +26,7 @@ import org.youbai.opentcs.components.kernel.services.PeripheralJobService;
 import org.youbai.opentcs.data.peripherals.PeripheralJob;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.ExecutorServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardPeripheralJobServiceAnnotations;
 
 /**
@@ -95,7 +96,7 @@ public class StandardRemotePeripheralJobService
                                             RmiKernelInterfaceConfiguration configuration,
                                             @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                             RegistryProvider registryProvider,
-                                            @Named("ExecutorService") ExecutorService kernelExecutor) {
+                                            @ExecutorServiceAnnotations ExecutorService kernelExecutor) {
     super(peripheralJobService, userManager, kernelExecutor);
     this.peripheralJobService = requireNonNull(peripheralJobService, "transportOrderService");
     this.userManager = requireNonNull(userManager, "userManager");

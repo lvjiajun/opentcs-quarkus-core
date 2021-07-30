@@ -77,7 +77,7 @@ public class StandardKernel
   /**
    * Our executor.
    */
-  @Inject@Named("ExecutorService")
+  @Inject@ScheduledExecutorServiceAnnotations
   ScheduledExecutorService kernelExecutor;
   /**
    * This kernel's order receivers.

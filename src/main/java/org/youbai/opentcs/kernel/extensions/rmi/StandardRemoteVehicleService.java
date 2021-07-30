@@ -31,6 +31,7 @@ import org.youbai.opentcs.drivers.vehicle.management.AttachmentInformation;
 import org.youbai.opentcs.drivers.vehicle.management.VehicleProcessModelTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.ExecutorServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardVehicleServiceAnnotations;
 
 /**
@@ -99,7 +100,7 @@ public class StandardRemoteVehicleService
                                       RmiKernelInterfaceConfiguration configuration,
                                       @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                       RegistryProvider registryProvider,
-                                      @Named("ExecutorService") ExecutorService kernelExecutor) {
+                                      @ExecutorServiceAnnotations ExecutorService kernelExecutor) {
     super(vehicleService, userManager, kernelExecutor);
     this.vehicleService = requireNonNull(vehicleService, "vehicleService");
     this.userManager = requireNonNull(userManager, "userManager");

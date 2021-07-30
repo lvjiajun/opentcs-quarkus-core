@@ -18,6 +18,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -48,7 +49,6 @@ import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 @Singleton
 public class DefaultRouter
     implements Router {
-
   /**
    * This class's Logger.
    */

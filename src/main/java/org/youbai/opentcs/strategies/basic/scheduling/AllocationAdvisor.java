@@ -7,6 +7,7 @@
  */
 package org.youbai.opentcs.strategies.basic.scheduling;
 
+import java.util.HashSet;
 import java.util.List;
 import static java.util.Objects.requireNonNull;
 import java.util.Set;
@@ -38,7 +39,9 @@ public class AllocationAdvisor
    * The submodules.
    */
   @Inject
-  Instance<Scheduler.Module> modules;
+  Instance<Scheduler.Module> moduleInstance;
+
+  Set<Scheduler.Module> modules = new HashSet<>();
   /**
    * This instance's initialized flag.
    */
@@ -56,12 +59,12 @@ public class AllocationAdvisor
       LOG.debug("Already initialized, doing nothing.");
       return;
     }
-    for (Scheduler.Module module : modules) {
-      if (!(module instanceof AllocationAdvisor)){
-        module.initialize();
-      }
+    for (Scheduler.Module module : moduleInstance){
+      modules.add(module);
     }
-
+    for (Scheduler.Module module : modules) {
+      module.initialize();
+    }
     initialized = true;
   }
 
@@ -71,9 +74,8 @@ public class AllocationAdvisor
       LOG.debug("Not initialized, doing nothing.");
       return;
     }
-
     for (Scheduler.Module module : modules) {
-      module.terminate();
+        module.terminate();
     }
 
     initialized = false;
@@ -88,7 +90,6 @@ public class AllocationAdvisor
   public void claim(Scheduler.Client client, List<Set<TCSResource<?>>> resources) {
     requireNonNull(client, "client");
     requireNonNull(resources, "resources");
-
     for (Scheduler.Module module : modules) {
       LOG.debug("Module {}: Claiming resources {} for client{}.", module, resources, client);
       module.claim(client, resources);

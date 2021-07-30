@@ -29,6 +29,7 @@ import org.youbai.opentcs.data.order.OrderSequence;
 import org.youbai.opentcs.data.order.TransportOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.ExecutorServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardTransportOrderServiceAnnotations;
 
 /**
@@ -98,7 +99,7 @@ public class StandardRemoteTransportOrderService
                                              RmiKernelInterfaceConfiguration configuration,
                                              @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                              RegistryProvider registryProvider,
-                                             @Named("ExecutorService") ExecutorService kernelExecutor) {
+                                             @ExecutorServiceAnnotations ExecutorService kernelExecutor) {
     super(transportOrderService, userManager, kernelExecutor);
     this.transportOrderService = requireNonNull(transportOrderService, "transportOrderService");
     this.userManager = requireNonNull(userManager, "userManager");

@@ -28,6 +28,7 @@ import org.youbai.opentcs.components.kernel.Router;
 import org.youbai.opentcs.components.kernel.Scheduler;
 import org.youbai.opentcs.components.kernel.services.InternalVehicleService;
 import org.youbai.opentcs.data.model.Vehicle;
+import org.youbai.opentcs.kernel.annotations.ScheduledExecutorServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardVehicleServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.XMLFileModelAnnotations;
 import org.youbai.opentcs.kernel.extensions.controlcenter.vehicles.AttachmentManager;
@@ -102,7 +103,7 @@ public class KernelStateOperating
   /**
    * The kernel's executor.
    */
-  @Inject@Nonnull@Named("ExecutorService")
+  @Inject@Nonnull@ScheduledExecutorServiceAnnotations
   ScheduledExecutorService kernelExecutor;
   /**
    * A task for periodically getting rid of old orders.

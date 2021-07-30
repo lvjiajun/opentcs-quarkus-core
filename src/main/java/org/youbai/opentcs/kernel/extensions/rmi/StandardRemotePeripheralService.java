@@ -30,6 +30,7 @@ import org.youbai.opentcs.drivers.peripherals.PeripheralProcessModel;
 import org.youbai.opentcs.drivers.peripherals.management.PeripheralAttachmentInformation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.kernel.annotations.ExecutorServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardPeripheralServiceAnnotations;
 
 /**
@@ -99,7 +100,7 @@ public class StandardRemotePeripheralService
                                          RmiKernelInterfaceConfiguration configuration,
                                          @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
                                          RegistryProvider registryProvider,
-                                         @Named("ExecutorService") ExecutorService kernelExecutor) {
+                                         @ExecutorServiceAnnotations ExecutorService kernelExecutor) {
     super(peripheralService, userManager, kernelExecutor);
     this.peripheralService = requireNonNull(peripheralService, "peripheralService");
     this.userManager = requireNonNull(userManager, "userManager");

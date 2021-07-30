@@ -19,6 +19,11 @@ kernelapp:
   saveModelOnTerminateModelling: false
   saveModelOnTerminateOperating: false
   updateRoutingTopologyOnPathLockChange: false
+  thread:
+    corePoolSize: 5
+    maximumPoolSize: 128
+    keepAliveTime: 1
+
 orderpool:
   sweepInterval: 60000
   sweepAge: 86400000
@@ -80,3 +85,5 @@ rmikernelinterface:
   remoteQueryServicePort: 55008
   remotePeripheralServicePort: 55009
   remotePeripheralJobServicePort: 55010
+
+

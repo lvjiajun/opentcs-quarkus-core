@@ -4,6 +4,7 @@ import org.youbai.opentcs.customizations.ApplicationEventBus;
 import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.TCSResourceReference;
+import org.youbai.opentcs.kernel.annotations.ScheduledExecutorServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
 import org.youbai.opentcs.util.event.EventHandler;
 
@@ -20,7 +21,7 @@ public class LoopbackPeripheralAdapterComponentsFactoryImp {
     @SimpleEventBusAnnotation
     EventHandler eventHandler;
 
-    @Inject@Named("ExecutorService")
+    @Inject@ScheduledExecutorServiceAnnotations
     ScheduledExecutorService kernelExecutor;
 
     @Produces

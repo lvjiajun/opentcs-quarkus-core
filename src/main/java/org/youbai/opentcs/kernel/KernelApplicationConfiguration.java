@@ -17,29 +17,32 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
  */
 @ConfigProperties(prefix = KernelApplicationConfiguration.PREFIX)
 public interface KernelApplicationConfiguration {
-
   /**
    * This configuration's prefix.
    */
   String PREFIX = "kernelapp";
 
-
   @ConfigProperty(name = "autoEnableDriversOnStartup")
   boolean autoEnableDriversOnStartup();
-
 
   @ConfigProperty(name = "autoEnablePeripheralDriversOnStartup")
   boolean autoEnablePeripheralDriversOnStartup();
 
-
   @ConfigProperty(name = "saveModelOnTerminateModelling")
   boolean saveModelOnTerminateModelling();
-
 
   @ConfigProperty(name = "saveModelOnTerminateOperating")
   boolean saveModelOnTerminateOperating();
 
-
   @ConfigProperty(name = "updateRoutingTopologyOnPathLockChange")
   boolean updateRoutingTopologyOnPathLockChange();
+
+  @ConfigProperty(name = "thread.corePoolSize")
+  int corePoolSize();
+
+  @ConfigProperty(name = "thread.maximumPoolSize")
+  int maximumPoolSize();
+
+  @ConfigProperty(name = "thread.keepAliveTime")
+  int keepAliveTime();
 }
