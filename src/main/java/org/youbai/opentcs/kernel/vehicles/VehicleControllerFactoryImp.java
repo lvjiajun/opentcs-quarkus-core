@@ -10,6 +10,7 @@ import org.youbai.opentcs.kernel.annotations.SimpleEventBusAnnotation;
 import org.youbai.opentcs.kernel.annotations.StandardDispatcherServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardNotificationServiceAnnotation;
 import org.youbai.opentcs.kernel.annotations.StandardVehicleServiceAnnotations;
+import org.youbai.opentcs.strategies.basic.scheduling.SchedulerAnnotation;
 import org.youbai.opentcs.util.event.EventBus;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -27,7 +28,7 @@ public class VehicleControllerFactoryImp {
     NotificationService notificationService;
     @Inject@StandardDispatcherServiceAnnotations
     DispatcherService dispatcherService;
-    @Inject@Named("bindScheduler")
+    @Inject@SchedulerAnnotation
     Scheduler scheduler;
     @Inject@SimpleEventBusAnnotation
     EventBus eventBus;

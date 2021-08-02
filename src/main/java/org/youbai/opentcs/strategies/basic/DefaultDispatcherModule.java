@@ -14,6 +14,7 @@ import org.youbai.opentcs.strategies.basic.dispatching.priorization.vehicle.Vehi
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.Comparator;
 import java.util.Currency;
 import java.util.Map;
@@ -55,7 +56,7 @@ public class DefaultDispatcherModule {
     @Inject
     CandidateComparatorIdleFirst candidateComparatorIdleFirst;
 
-    @Produces@ApplicationScoped
+    @Produces@ApplicationScoped@Named("Vehicle")
     Map<String, Comparator<Vehicle>> vehicleComparatorBinder(){
         ConcurrentHashMap<String, Comparator<Vehicle>> comparatorConcurrentHashMap = new ConcurrentHashMap<>();
         comparatorConcurrentHashMap.put(VehicleComparatorByEnergyLevel.CONFIGURATION_KEY,vehicleComparatorByEnergyLevel);
@@ -63,7 +64,7 @@ public class DefaultDispatcherModule {
         comparatorConcurrentHashMap.put(VehicleComparatorIdleFirst.CONFIGURATION_KEY,vehicleComparatorIdleFirst);
         return comparatorConcurrentHashMap;
     }
-    @Produces@ApplicationScoped
+    @Produces@ApplicationScoped@Named("Order")
     Map<String,Comparator<TransportOrder>> orderComparatorBinder(){
         ConcurrentHashMap<String, Comparator<TransportOrder>> comparatorConcurrentHashMap = new ConcurrentHashMap<>();
         comparatorConcurrentHashMap.put(TransportOrderComparatorByAge.CONFIGURATION_KEY,transportOrderComparatorByAge);
@@ -71,7 +72,7 @@ public class DefaultDispatcherModule {
         comparatorConcurrentHashMap.put(TransportOrderComparatorByName.CONFIGURATION_KEY,transportOrderComparatorByName);
         return comparatorConcurrentHashMap;
     }
-    @Produces@ApplicationScoped
+    @Produces@ApplicationScoped@Named("Candidate")
     Map<String,Comparator<AssignmentCandidate>> candidateComparatorBinder(){
         ConcurrentHashMap<String, Comparator<AssignmentCandidate>> comparatorConcurrentHashMap = new ConcurrentHashMap<>();
         comparatorConcurrentHashMap.put(CandidateComparatorByCompleteRoutingCosts.CONFIGURATION_KEY,candidateComparatorByCompleteRoutingCosts);

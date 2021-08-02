@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.Map;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.youbai.opentcs.data.order.TransportOrder;
@@ -38,7 +39,7 @@ public class CompositeOrderComparator
 
 
   public CompositeOrderComparator(DefaultDispatcherConfiguration configuration,
-                                  Map<String, Comparator<TransportOrder>> availableComparators) {
+                                  @Named("Order")Map<String, Comparator<TransportOrder>> availableComparators) {
     // At the end, if all other comparators failed to see a difference, compare by age.
     // As the age of two distinct transport orders may still be the same, finally compare by name.
     // Add configured comparators before these two.

@@ -39,7 +39,7 @@ public class CompositeVehicleComparator
 
 
   public CompositeVehicleComparator(DefaultDispatcherConfiguration configuration,
-                                    Map<String, Comparator<Vehicle>> availableComparators) {
+                                    @Named("Vehicle")Map<String, Comparator<Vehicle>> availableComparators) {
     // At the end, if all other comparators failed to see a difference, compare by energy level.
     // As the energy level of two distinct vehicles may still be the same, finally compare by name.
     // Add configured comparators before these two.

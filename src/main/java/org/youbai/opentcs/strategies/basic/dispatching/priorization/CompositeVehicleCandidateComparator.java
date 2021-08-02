@@ -13,6 +13,7 @@ import java.util.Map;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.youbai.opentcs.strategies.basic.dispatching.AssignmentCandidate;
@@ -40,7 +41,7 @@ public class CompositeVehicleCandidateComparator
 
   public CompositeVehicleCandidateComparator(
       DefaultDispatcherConfiguration configuration,
-      Map<String, Comparator<AssignmentCandidate>> availableComparators) {
+      @Named("Candidate")Map<String, Comparator<AssignmentCandidate>> availableComparators) {
     // At the end, if all other comparators failed to see a difference, compare by energy level.
     // As the energy level of two distinct vehicles may still be the same, finally compare by name.
     // Add configured comparators before these two.

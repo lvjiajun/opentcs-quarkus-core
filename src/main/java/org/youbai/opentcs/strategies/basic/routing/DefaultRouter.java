@@ -46,7 +46,7 @@ import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
  * 基本路由
  * @author Stefan Walter (Fraunhofer IML)
  */
-@Singleton
+@Singleton@Default
 public class DefaultRouter
     implements Router {
   /**
@@ -64,8 +64,7 @@ public class DefaultRouter
   /**
    * A builder for constructing our routing tables.
    */
-  @Inject
-  @Named("pointRouterFactory")
+  @Inject@PointRouterFactoryAnnotation
   PointRouterFactory pointRouterFactory;
   /**
    * Used to map vehicles to their routing groups.
@@ -301,7 +300,7 @@ public class DefaultRouter
   /**
    * Checks if a route exists for a vehicle of a given type which allows the
    * vehicle to process a given list of drive orders.
-   *
+   * 检查给定类型的车辆是否存在允许
    * @param startPoint The point at which the route is supposed to start.
    * @param driveOrders The list of drive orders, in the order they are to be
    * processed.

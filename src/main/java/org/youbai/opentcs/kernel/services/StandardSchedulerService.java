@@ -18,6 +18,7 @@ import org.youbai.opentcs.components.kernel.Scheduler;
 import org.youbai.opentcs.components.kernel.services.SchedulerService;
 import org.youbai.opentcs.kernel.GlobalSyncObject;
 import org.youbai.opentcs.kernel.annotations.StandardSchedulerServiceAnnotations;
+import org.youbai.opentcs.strategies.basic.scheduling.SchedulerAnnotation;
 
 /**
  * This class is the standard implementation of the {@link SchedulerService} interface.
@@ -37,8 +38,8 @@ public class StandardSchedulerService
    * The scheduler.
    */
   @Inject
-  @Named("bindScheduler")
-  public Scheduler scheduler;
+  @SchedulerAnnotation
+  Scheduler scheduler;
 
   /**
    * Creates a new instance.

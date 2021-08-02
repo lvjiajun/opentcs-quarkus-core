@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.components.kernel.routing.EdgeEvaluator;
 import org.youbai.opentcs.strategies.basic.routing.PointRouterFactory;
+import org.youbai.opentcs.strategies.basic.routing.PointRouterFactoryAnnotation;
 import org.youbai.opentcs.strategies.basic.routing.edgeevaluator.EdgeEvaluatorDistance;
 import org.youbai.opentcs.strategies.basic.routing.edgeevaluator.EdgeEvaluatorExplicitProperties;
 import org.youbai.opentcs.strategies.basic.routing.edgeevaluator.EdgeEvaluatorHops;
@@ -54,7 +55,7 @@ public class DefaultRouterModule {
     @Inject
     ShortestPathConfiguration shortestPathConfiguration;
 
-    @Produces@Named("pointRouterFactory")@ApplicationScoped
+    @Produces@PointRouterFactoryAnnotation
     public PointRouterFactory pointRouterFactory(){
         switch (shortestPathConfiguration.algorithm()) {
             case DIJKSTRA:

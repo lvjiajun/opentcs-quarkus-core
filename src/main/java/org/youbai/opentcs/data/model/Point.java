@@ -272,6 +272,7 @@ public class Point
 
   /**
    * Checks whether halting on this point is allowed.
+   * 检查是否允许在此点停止
    * <p>
    * This method is a convenience method; its return value is equal to
    * <code>getType().equals(Point.Type.PARK_POSITION) ||

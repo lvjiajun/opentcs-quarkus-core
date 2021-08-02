@@ -42,6 +42,7 @@ import org.youbai.opentcs.kernel.workingset.TCSObjectPool;
 import org.youbai.opentcs.kernel.workingset.TransportOrderPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.youbai.opentcs.strategies.basic.scheduling.SchedulerAnnotation;
 
 /**
  * This class implements the standard openTCS kernel in normal operation.
@@ -78,7 +79,7 @@ public class KernelStateOperating
   /**
    * This kernel's scheduler.
    */
-  @Inject@Nonnull@Named("bindScheduler")
+  @Inject@Nonnull@SchedulerAnnotation
   Scheduler scheduler;
   /**
    * This kernel's dispatcher.
