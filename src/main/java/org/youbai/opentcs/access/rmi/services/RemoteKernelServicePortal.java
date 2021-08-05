@@ -7,45 +7,29 @@
  */
 package org.youbai.opentcs.access.rmi.services;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
-import java.util.List;
-import java.util.function.Predicate;
 import org.youbai.opentcs.access.CredentialsException;
 import org.youbai.opentcs.access.Kernel;
 import org.youbai.opentcs.access.KernelServicePortal;
-import org.youbai.opentcs.access.rmi.ClientID;
+
+import java.rmi.RemoteException;
 
 /**
  * Declares the methods provided by the {@link KernelServicePortal} via RMI.
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-public interface RemoteKernelServicePortal
-    extends Remote {
+
+public interface RemoteKernelServicePortal{
 
   /**
    * Introduce the calling client to the server and authenticate for operations.
    *
-   * @param userName The user's name.
-   * @param password The user's password.
-   * @param eventFilter The event filter to be applied to events on the server side.
    * @return An identification object that is required for subsequent method calls.
    * @throws CredentialsException If authentication with the given username and password failed.
    * @throws RemoteException If there was an RMI-related problem.
    */
-  ClientID login(String userName, String password, Predicate<Object> eventFilter)
-      throws CredentialsException, RemoteException;
 
-  void logout(ClientID clientId)
-      throws RemoteException;
+  Kernel.State getState();
 
-  Kernel.State getState(ClientID clientId)
-      throws RemoteException;
-
-  List<Object> fetchEvents(ClientID clientId, long timeout)
-      throws RemoteException;
-
-  void publishEvent(ClientID clientId, Object event)
-      throws RemoteException;
+  void publishEvent(Object event);
 }

@@ -9,7 +9,7 @@ package org.youbai.opentcs.access.rmi.services;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import org.youbai.opentcs.access.rmi.ClientID;
+
 import org.youbai.opentcs.components.kernel.Query;
 import org.youbai.opentcs.components.kernel.services.QueryService;
 
@@ -29,9 +29,7 @@ import org.youbai.opentcs.components.kernel.services.QueryService;
  *
  * @author Stefan Walter (Fraunhofer IML)
  */
-public interface RemoteQueryService
-    extends Remote {
+public interface RemoteQueryService{
 
-  <T> T query(ClientID clientId, Query<T> query)
-      throws RemoteException;
+  <T> T query(Query<T> query);
 }

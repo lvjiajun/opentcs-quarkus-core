@@ -30,7 +30,8 @@ public class ObjectHistory
   /**
    * The actual history entries.
    */
-  private final List<Entry> entries;
+  @JsonProperty("entries")
+  private List<Entry> entries;
 
   /**
    * Creates a new instance.
@@ -44,8 +45,7 @@ public class ObjectHistory
    *
    * @param entries
    */
-  @JsonCreator
-  private ObjectHistory(@JsonProperty("entries") List<Entry> entries) {
+  private ObjectHistory(List<Entry> entries) {
     this.entries = Collections.unmodifiableList(requireNonNull(entries, "entries"));
   }
 
@@ -56,6 +56,9 @@ public class ObjectHistory
    */
   public List<Entry> getEntries() {
     return entries;
+  }
+  public void setEntries(List<Entry> entries) {
+    this.entries = entries;
   }
 
   /**
@@ -97,16 +100,19 @@ public class ObjectHistory
     /**
      * The point of time at which the event occured.
      */
-    private final Instant timestamp;
+    @JsonProperty("timestamp")
+    private Instant timestamp;
     /**
      * A code identifying the event that occured.
      */
-    private final String eventCode;
+    @JsonProperty("eventCode")
+    private String eventCode;
     /**
      * Supplementary information about the event.
      * How this information is to be interpreted (if at all) depends on the respective event code.
      */
-    private final Object supplement;
+    @JsonProperty("supplement")
+    private Object supplement;
 
     /**
      * Creates a new instance.
@@ -174,6 +180,18 @@ public class ObjectHistory
     @Nonnull
     public String getEventCode() {
       return eventCode;
+    }
+
+    public void setTimestamp(Instant timestamp) {
+      this.timestamp = timestamp;
+    }
+
+    public void setEventCode(String eventCode) {
+      this.eventCode = eventCode;
+    }
+
+    public void setSupplement(Object supplement) {
+      this.supplement = supplement;
     }
 
     /**

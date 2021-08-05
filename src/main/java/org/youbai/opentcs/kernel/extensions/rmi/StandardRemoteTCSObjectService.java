@@ -13,13 +13,16 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.function.Predicate;
 import javax.annotation.Nullable;
-import org.youbai.opentcs.access.rmi.ClientID;
+import javax.enterprise.context.ApplicationScoped;
+
 import org.youbai.opentcs.access.rmi.services.RemoteTCSObjectService;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.customizations.kernel.KernelExecutor;
 import org.youbai.opentcs.data.ObjectHistory;
 import org.youbai.opentcs.data.TCSObject;
 import org.youbai.opentcs.data.TCSObjectReference;
+import org.youbai.opentcs.kernel.annotations.ExecutorServiceAnnotations;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
 
 /**
  * This class is the standard implementation of the {@link RemoteTCSObjectService} interface.
@@ -35,10 +38,6 @@ public abstract class StandardRemoteTCSObjectService
    */
   private final TCSObjectService objectService;
   /**
-   * The user manager.
-   */
-  private final UserManager userManager;
-  /**
    * Executes tasks modifying kernel data.
    */
   private final ExecutorService kernelExecutor;
@@ -47,55 +46,42 @@ public abstract class StandardRemoteTCSObjectService
    * Creates a new instance.
    *
    * @param objectService The object service.
-   * @param userManager The user manager.
    * @param kernelExecutor Executes tasks modifying kernel data.
    */
   public StandardRemoteTCSObjectService(TCSObjectService objectService,
-                                        UserManager userManager,
-                                        @KernelExecutor ExecutorService kernelExecutor) {
+                                        ExecutorService kernelExecutor) {
     this.objectService = requireNonNull(objectService, "objectService");
-    this.userManager = requireNonNull(userManager, "userManager");
     this.kernelExecutor = requireNonNull(kernelExecutor, "kernelExecutor");
   }
 
   @Override
-  public <T extends TCSObject<T>> T fetchObject(ClientID clientId, Class<T> clazz,
+  public <T extends TCSObject<T>> T fetchObject(Class<T> clazz,
                                                 TCSObjectReference<T> ref) {
-    userManager.verifyCredentials(clientId, UserPermission.READ_DATA);
+
 
     return objectService.fetchObject(clazz, ref);
   }
 
   @Override
-  public <T extends TCSObject<T>> T fetchObject(ClientID clientId, Class<T> clazz, String name) {
-    userManager.verifyCredentials(clientId, UserPermission.READ_DATA);
-
+  public <T extends TCSObject<T>> T fetchObject(Class<T> clazz, String name) {
     return objectService.fetchObject(clazz, name);
   }
 
   @Override
-  public <T extends TCSObject<T>> Set<T> fetchObjects(ClientID clientId, Class<T> clazz) {
-    userManager.verifyCredentials(clientId, UserPermission.READ_DATA);
-
+  public <T extends TCSObject<T>> Set<T> fetchObjects( Class<T> clazz) {
     return objectService.fetchObjects(clazz);
   }
 
   @Override
-  public <T extends TCSObject<T>> Set<T> fetchObjects(ClientID clientId,
-                                                      Class<T> clazz,
+  public <T extends TCSObject<T>> Set<T> fetchObjects(Class<T> clazz,
                                                       Predicate<? super T> predicate) {
-    userManager.verifyCredentials(clientId, UserPermission.READ_DATA);
-
     return objectService.fetchObjects(clazz, predicate);
   }
 
   @Override
-  public void updateObjectProperty(ClientID clientId,
-                                   TCSObjectReference<?> ref,
+  public void updateObjectProperty(TCSObjectReference<?> ref,
                                    String key,
                                    @Nullable String value) {
-    userManager.verifyCredentials(clientId, UserPermission.MODIFY_MODEL);
-
     try {
       kernelExecutor.submit(() -> objectService.updateObjectProperty(ref, key, value)).get();
     }
@@ -105,11 +91,8 @@ public abstract class StandardRemoteTCSObjectService
   }
 
   @Override
-  public void appendObjectHistoryEntry(ClientID clientId,
-                                       TCSObjectReference<?> ref,
+  public void appendObjectHistoryEntry(TCSObjectReference<?> ref,
                                        ObjectHistory.Entry entry) {
-    userManager.verifyCredentials(clientId, UserPermission.MODIFY_MODEL);
-
     try {
       kernelExecutor.submit(() -> objectService.appendObjectHistoryEntry(ref, entry)).get();
     }

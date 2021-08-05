@@ -26,7 +26,7 @@ public class SchedulerAllocationState
   /**
    * The current state of allocations.
    */
-  private final Map<String, Set<TCSResource<?>>> allocationStates;
+  private Map<String, Set<TCSResource<?>>> allocationStates;
 
   /**
    * Creates a new instance.
@@ -45,5 +45,9 @@ public class SchedulerAllocationState
    */
   public Map<String, Set<TCSResource<?>>> getAllocationStates() {
     return allocationStates;
+  }
+
+  public void setAllocationStates(Map<String, Set<TCSResource<?>>> allocationStates) {
+    this.allocationStates = allocationStates;
   }
 }

@@ -11,11 +11,14 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Set;
 import java.util.function.Predicate;
-import org.youbai.opentcs.access.rmi.ClientID;
+
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
 import org.youbai.opentcs.data.ObjectHistory;
 import org.youbai.opentcs.data.TCSObject;
 import org.youbai.opentcs.data.TCSObjectReference;
+
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 
 /**
  * Declares the methods provided by the {@link TCSObjectService} via RMI.
@@ -33,33 +36,24 @@ import org.youbai.opentcs.data.TCSObjectReference;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-public interface RemoteTCSObjectService
-    extends Remote {
 
-  <T extends TCSObject<T>> T fetchObject(ClientID clientId,
-                                         Class<T> clazz,
-                                         TCSObjectReference<T> ref)
-      throws RemoteException;
+public interface RemoteTCSObjectService{
 
-  <T extends TCSObject<T>> T fetchObject(ClientID clientId, Class<T> clazz, String name)
-      throws RemoteException;
+  <T extends TCSObject<T>> T fetchObject(Class<T> clazz,
+                                         TCSObjectReference<T> ref);
 
-  <T extends TCSObject<T>> Set<T> fetchObjects(ClientID clientId, Class<T> clazz)
-      throws RemoteException;
+  <T extends TCSObject<T>> T fetchObject(Class<T> clazz, String name);
 
-  <T extends TCSObject<T>> Set<T> fetchObjects(ClientID clientId,
+  <T extends TCSObject<T>> Set<T> fetchObjects(Class<T> clazz);
+
+  <T extends TCSObject<T>> Set<T> fetchObjects(
                                                Class<T> clazz,
-                                               Predicate<? super T> predicate)
-      throws RemoteException;
+                                               Predicate<? super T> predicate);
 
-  void updateObjectProperty(ClientID clientId,
-                            TCSObjectReference<?> ref,
+  void updateObjectProperty(TCSObjectReference<?> ref,
                             String key,
-                            String value)
-      throws RemoteException;
+                            String value);
 
-  void appendObjectHistoryEntry(ClientID clientId,
-                                TCSObjectReference<?> ref,
-                                ObjectHistory.Entry entry)
-      throws RemoteException;
+  void appendObjectHistoryEntry(TCSObjectReference<?> ref,
+                                ObjectHistory.Entry entry);
 }

@@ -9,7 +9,7 @@ package org.youbai.opentcs.access.rmi.services;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import org.youbai.opentcs.access.rmi.ClientID;
+
 import org.youbai.opentcs.components.kernel.services.PeripheralService;
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.TCSResourceReference;
@@ -17,6 +17,12 @@ import org.youbai.opentcs.drivers.peripherals.PeripheralAdapterCommand;
 import org.youbai.opentcs.drivers.peripherals.PeripheralCommAdapterDescription;
 import org.youbai.opentcs.drivers.peripherals.PeripheralProcessModel;
 import org.youbai.opentcs.drivers.peripherals.management.PeripheralAttachmentInformation;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Declares the methods provided by the {@link PeripheralService} via RMI.
@@ -34,30 +40,21 @@ import org.youbai.opentcs.drivers.peripherals.management.PeripheralAttachmentInf
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+
 public interface RemotePeripheralService
-    extends RemoteTCSObjectService,
-            Remote {
+    extends RemoteTCSObjectService{
 
-  void attachCommAdapter(ClientID clientId,
-                         TCSResourceReference<Location> ref,
-                         PeripheralCommAdapterDescription description)
-      throws RemoteException;
+  void attachCommAdapter(TCSResourceReference<Location> ref,
+                         PeripheralCommAdapterDescription description);
 
-  void disableCommAdapter(ClientID clientId, TCSResourceReference<Location> ref)
-      throws RemoteException;
+  void disableCommAdapter(TCSResourceReference<Location> ref);
 
-  void enableCommAdapter(ClientID clientId, TCSResourceReference<Location> ref)
-      throws RemoteException;
+  void enableCommAdapter(TCSResourceReference<Location> ref);
 
-  PeripheralAttachmentInformation fetchAttachmentInformation(ClientID clientId,
-                                                             TCSResourceReference<Location> ref)
-      throws RemoteException;
+  PeripheralAttachmentInformation fetchAttachmentInformation(TCSResourceReference<Location> ref);
 
-  PeripheralProcessModel fetchProcessModel(ClientID clientId, TCSResourceReference<Location> ref)
-      throws RemoteException;
+  PeripheralProcessModel fetchProcessModel(TCSResourceReference<Location> ref);
 
-  void sendCommAdapterCommand(ClientID clientId,
-                              TCSResourceReference<Location> ref,
-                              PeripheralAdapterCommand command)
-      throws RemoteException;
+  void sendCommAdapterCommand(TCSResourceReference<Location> ref,
+                              PeripheralAdapterCommand command);
 }

@@ -9,10 +9,15 @@ package org.youbai.opentcs.access.rmi.services;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import org.youbai.opentcs.access.rmi.ClientID;
+
 import org.youbai.opentcs.components.kernel.services.RouterService;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Path;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Declares the methods provided by the {@link RouterService} via RMI.
@@ -30,12 +35,10 @@ import org.youbai.opentcs.data.model.Path;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-public interface RemoteRouterService
-    extends Remote {
 
-  public void updatePathLock(ClientID clientId, TCSObjectReference<Path> ref, boolean locked)
-      throws RemoteException;
+public interface RemoteRouterService{
 
-  public void updateRoutingTopology(ClientID clientId)
-      throws RemoteException;
+  public void updatePathLock(TCSObjectReference<Path> ref, boolean locked);
+
+  public void updateRoutingTopology();
 }

@@ -60,7 +60,9 @@ public class AllocationAdvisor
       return;
     }
     for (Scheduler.Module module : moduleInstance){
-      modules.add(module);
+      if (!(module instanceof AllocationAdvisor)){
+        modules.add(module);
+      }
     }
     for (Scheduler.Module module : modules) {
       module.initialize();

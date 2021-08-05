@@ -7,6 +7,8 @@
  */
 package org.youbai.opentcs.data;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
@@ -23,11 +25,11 @@ public class TCSObjectReference<E extends TCSObject<E>>
   /**
    * The referenced object's class.
    */
-  private final Class<?> referentClass;
+  private Class<?> referentClass;
   /**
    * The referenced object's name.
    */
-  private final String name;
+  private String name;
 
   /**
    * Creates a new TCSObjectReference.
@@ -41,7 +43,7 @@ public class TCSObjectReference<E extends TCSObject<E>>
     name = referent.getName();
   }
 
-  private TCSObjectReference(@Nonnull Class<?> clazz, @Nonnull String newName) {
+  public TCSObjectReference(@Nonnull Class<?> clazz, @Nonnull String newName) {
     name = requireNonNull(newName, "newName");
     referentClass = requireNonNull(clazz, "clazz");
   }
@@ -62,6 +64,14 @@ public class TCSObjectReference<E extends TCSObject<E>>
    */
   public final String getName() {
     return name;
+  }
+
+  public void setReferentClass(Class<?> referentClass) {
+    this.referentClass = referentClass;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   @Override

@@ -12,8 +12,11 @@ import java.io.IOException;
 import static java.util.Objects.requireNonNull;
 import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
+
+import io.quarkus.runtime.StartupEvent;
 import org.youbai.opentcs.access.Kernel;
 import org.youbai.opentcs.access.LocalKernel;
 import org.youbai.opentcs.components.kernel.KernelExtension;
@@ -73,17 +76,15 @@ public class KernelStarter {
   public void startKernel()
       throws IOException {
     // Register kernel extensions.
+    LOG.info("The application is starting...");
     for (KernelExtension extension : extensions) {
       kernel.addKernelExtension(extension);
     }
-
     // Start local kernel.
     kernel.initialize();
     LOG.debug("Kernel initialized.");
-
     plantModelService.loadPlantModel();
     LOG.info("Loaded model named '{}'.", plantModelService.getModelName());
-
     kernel.setState(Kernel.State.OPERATING);
   }
 }

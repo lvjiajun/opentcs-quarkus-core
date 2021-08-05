@@ -80,7 +80,15 @@ public abstract class AbstractTCSObjectService
       throws ObjectUnknownException, KernelRuntimeException {
     getObjectService().appendObjectHistoryEntry(ref, entry);
   }
+  @Override
+  public boolean contains(String objectName) {
+    return getObjectService().contains(objectName);
+  }
 
+  @Override
+  public <T extends TCSObject<T>> T fetchObjectNotNull(Class<T> clazz, String name)throws ObjectUnknownException{
+    return getObjectService().fetchObject(clazz,name);
+  }
   /**
    * Retruns the {@link TCSObjectService} implementation being used.
    *
@@ -89,4 +97,5 @@ public abstract class AbstractTCSObjectService
   public TCSObjectService getObjectService() {
     return objectService;
   }
+
 }

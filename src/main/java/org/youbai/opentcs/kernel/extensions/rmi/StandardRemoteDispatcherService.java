@@ -7,19 +7,15 @@
  */
 package org.youbai.opentcs.kernel.extensions.rmi;
 
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
+
 import static java.util.Objects.requireNonNull;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
-import javax.enterprise.context.Dependent;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
-import org.youbai.opentcs.access.rmi.ClientID;
 import org.youbai.opentcs.access.rmi.factories.SocketFactoryProvider;
-import org.youbai.opentcs.access.rmi.services.RegistrationName;
 import org.youbai.opentcs.access.rmi.services.RemoteDispatcherService;
 import org.youbai.opentcs.components.kernel.services.DispatcherService;
 import org.youbai.opentcs.data.TCSObjectReference;
@@ -34,12 +30,11 @@ import org.youbai.opentcs.kernel.annotations.StandardDispatcherServiceAnnotation
  * This class is the standard implementation of the {@link RemoteDispatcherService} interface.
  * <p>
  * Upon creation, an instance of this class registers itself with the RMI registry by the name
- * declared as {@link RemoteDispatcherService#getRegistrationName()}.
  * </p>
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-@Dependent
+@ApplicationScoped
 public class StandardRemoteDispatcherService
     extends KernelRemoteService
     implements RemoteDispatcherService {
@@ -53,113 +48,23 @@ public class StandardRemoteDispatcherService
    */
   private final DispatcherService dispatcherService;
   /**
-   * The user manager.
-   */
-  private final UserManager userManager;
-  /**
-   * Provides configuration data.
-   */
-  private final RmiKernelInterfaceConfiguration configuration;
-  /**
-   * Provides socket factories used for RMI.
-   */
-  private final SocketFactoryProvider socketFactoryProvider;
-  /**
-   * Provides the registry with which this remote service registers.
-   */
-  private final RegistryProvider registryProvider;
-  /**
    * Executes tasks modifying kernel data.
    */
   private final ExecutorService kernelExecutor;
-  /**
-   * The registry with which this remote service registers.
-   */
-  private Registry rmiRegistry;
-  /**
-   * Whether this remote service is initialized or not.
-   */
-  private boolean initialized;
 
   /**
    * Creates a new instance.
    *
    * @param dispatcherService The dispatcher service.
-   * @param userManager The user manager.
-   * @param configuration This class' configuration.
-   * @param socketFactoryProvider The socket factory provider used for RMI.
-   * @param registryProvider The provider for the registry with which this remote service registers.
    * @param kernelExecutor Executes tasks modifying kernel data.
    */
-
   public StandardRemoteDispatcherService(@StandardDispatcherServiceAnnotations DispatcherService dispatcherService,
-                                         UserManager userManager,
-                                         RmiKernelInterfaceConfiguration configuration,
-                                         @Named("socketFactoryProvider")SocketFactoryProvider socketFactoryProvider,
-                                         RegistryProvider registryProvider,
                                          @ExecutorServiceAnnotations ExecutorService kernelExecutor) {
     this.dispatcherService = requireNonNull(dispatcherService, "dispatcherService");
-    this.userManager = requireNonNull(userManager, "userManager");
-    this.configuration = requireNonNull(configuration, "configuration");
-    this.socketFactoryProvider = requireNonNull(socketFactoryProvider, "socketFactoryProvider");
-    this.registryProvider = requireNonNull(registryProvider, "registryProvider");
     this.kernelExecutor = requireNonNull(kernelExecutor, "kernelExecutor");
   }
-
   @Override
-  public void initialize() {
-    if (isInitialized()) {
-      return;
-    }
-
-    rmiRegistry = registryProvider.get();
-
-    // Export this instance via RMI.
-    try {
-      LOG.debug("Exporting proxy...");
-      UnicastRemoteObject.exportObject(this,
-                                       configuration.remoteDispatcherServicePort(),
-                                       socketFactoryProvider.getClientSocketFactory(),
-                                       socketFactoryProvider.getServerSocketFactory());
-      LOG.debug("Binding instance with RMI registry...");
-      rmiRegistry.rebind(RegistrationName.REMOTE_DISPATCHER_SERVICE, this);
-    }
-    catch (RemoteException exc) {
-      LOG.error("Could not export or bind with RMI registry", exc);
-      return;
-    }
-
-    initialized = true;
-  }
-
-  @Override
-  public boolean isInitialized() {
-    return initialized;
-  }
-
-  @Override
-  public void terminate() {
-    if (!isInitialized()) {
-      return;
-    }
-
-    try {
-      LOG.debug("Unbinding from RMI registry...");
-      rmiRegistry.unbind(RegistrationName.REMOTE_DISPATCHER_SERVICE);
-      LOG.debug("Unexporting RMI interface...");
-      UnicastRemoteObject.unexportObject(this, true);
-    }
-    catch (RemoteException | NotBoundException exc) {
-      LOG.warn("Exception shutting down RMI interface", exc);
-    }
-
-    initialized = false;
-  }
-
-  @Override
-  public void dispatch(ClientID clientId) {
-    userManager.verifyCredentials(clientId, UserPermission.MODIFY_ORDER);
-
+  public void dispatch() {
     try {
       kernelExecutor.submit(() -> dispatcherService.dispatch()).get();
     }
@@ -169,10 +74,8 @@ public class StandardRemoteDispatcherService
   }
 
   @Override
-  public void withdrawByVehicle(ClientID clientId,
-                                TCSObjectReference<Vehicle> ref,
+  public void withdrawByVehicle(TCSObjectReference<Vehicle> ref,
                                 boolean immediateAbort) {
-    userManager.verifyCredentials(clientId, UserPermission.MODIFY_ORDER);
 
     try {
       kernelExecutor.submit(() -> dispatcherService.withdrawByVehicle(ref, immediateAbort))
@@ -184,10 +87,8 @@ public class StandardRemoteDispatcherService
   }
 
   @Override
-  public void withdrawByTransportOrder(ClientID clientId,
-                                       TCSObjectReference<TransportOrder> ref,
+  public void withdrawByTransportOrder(TCSObjectReference<TransportOrder> ref,
                                        boolean immediateAbort) {
-    userManager.verifyCredentials(clientId, UserPermission.MODIFY_ORDER);
 
     try {
       kernelExecutor.submit(() -> dispatcherService.withdrawByTransportOrder(ref, immediateAbort))

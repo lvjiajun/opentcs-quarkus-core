@@ -9,10 +9,17 @@ package org.youbai.opentcs.access.rmi.services;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import org.youbai.opentcs.access.rmi.ClientID;
+
 import org.youbai.opentcs.access.to.peripherals.PeripheralJobCreationTO;
 import org.youbai.opentcs.components.kernel.services.PeripheralJobService;
 import org.youbai.opentcs.data.peripherals.PeripheralJob;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Declares the methods provided by the {@link PeripheralJobService} via RMI.
@@ -30,10 +37,9 @@ import org.youbai.opentcs.data.peripherals.PeripheralJob;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-public interface RemotePeripheralJobService
-    extends RemoteTCSObjectService,
-            Remote {
 
-  PeripheralJob createPeripheralJob(ClientID clientId, PeripheralJobCreationTO to)
-      throws RemoteException;
+public interface RemotePeripheralJobService
+    extends RemoteTCSObjectService{
+
+  PeripheralJob createPeripheralJob(PeripheralJobCreationTO to);
 }

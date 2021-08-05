@@ -25,13 +25,10 @@ public class ExampleResource {
 
     @Inject
     File file;
-    @Inject
-    KernelStarter kernelStarter;
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() throws IOException {
 
-        kernelStarter.startKernel();
         return file.getAbsolutePath();
    //     return sslConfiguration.keystoreFile();
     }

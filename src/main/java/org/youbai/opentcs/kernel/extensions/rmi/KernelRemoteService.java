@@ -16,8 +16,7 @@ import org.youbai.opentcs.components.Lifecycle;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-public abstract class KernelRemoteService
-    implements Lifecycle {
+public abstract class KernelRemoteService{
 
   /**
    * The message to log when a service method execution failed.

@@ -350,7 +350,6 @@ public class TCSObjectPool {
 
     return objectsByName.containsKey(objectName);
   }
-
   /**
    * Removes a referenced object from this pool.
    *

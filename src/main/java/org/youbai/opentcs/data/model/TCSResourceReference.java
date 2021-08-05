@@ -25,7 +25,7 @@ public class TCSResourceReference<E extends TCSResource<E>>
    *
    * @param newReferent The resource this reference references.
    */
-  protected TCSResourceReference(TCSResource<E> newReferent) {
+  public TCSResourceReference(TCSResource<E> newReferent) {
     super(newReferent);
   }
 }

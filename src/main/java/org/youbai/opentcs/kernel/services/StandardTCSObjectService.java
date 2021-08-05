@@ -109,6 +109,16 @@ public class StandardTCSObjectService
     }
   }
 
+  @Override
+  public boolean contains(String objectName) {
+    return getGlobalObjectPool().contains(objectName);
+  }
+
+  @Override
+  public <T extends TCSObject<T>> T fetchObjectNotNull(Class<T> clazz, String name)throws ObjectUnknownException {
+    return getGlobalObjectPool().getObject(clazz,name);
+  }
+
   protected Object getGlobalSyncObject() {
     return globalSyncObject;
   }

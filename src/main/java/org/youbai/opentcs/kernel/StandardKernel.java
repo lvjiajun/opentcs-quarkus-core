@@ -170,7 +170,6 @@ public class StandardKernel
     }
     kernelExecutor.shutdown();
     LOG.info("Kernel thread finished.");
-
   }
 
   @Override

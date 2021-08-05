@@ -11,9 +11,15 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.function.Predicate;
-import org.youbai.opentcs.access.rmi.ClientID;
+
 import org.youbai.opentcs.components.kernel.services.NotificationService;
 import org.youbai.opentcs.data.notification.UserNotification;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Declares the methods provided by the {@link NotificationService} via RMI.
@@ -31,13 +37,10 @@ import org.youbai.opentcs.data.notification.UserNotification;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-public interface RemoteNotificationService
-    extends Remote {
 
-  List<UserNotification> fetchUserNotifications(ClientID clientId,
-                                                Predicate<UserNotification> predicate)
-      throws RemoteException;
+public interface RemoteNotificationService {
 
-  void publishUserNotification(ClientID clientId, UserNotification notification)
-      throws RemoteException;
+  List<UserNotification> fetchUserNotifications(Predicate<UserNotification> predicate);
+
+  void publishUserNotification(UserNotification notification);
 }

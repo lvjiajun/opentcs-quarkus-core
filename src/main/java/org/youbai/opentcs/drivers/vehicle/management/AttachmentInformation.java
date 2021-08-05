@@ -27,15 +27,15 @@ public class AttachmentInformation
   /**
    * The vehicle this attachment information belongs to.
    */
-  private final TCSObjectReference<Vehicle> vehicleReference;
+  private TCSObjectReference<Vehicle> vehicleReference;
   /**
    * The list of comm adapters available to be attached to the referenced vehicle.
    */
-  private final List<VehicleCommAdapterDescription> availableCommAdapters;
+  private List<VehicleCommAdapterDescription> availableCommAdapters;
   /**
    * The comm adapter attached to the referenced vehicle.
    */
-  private final VehicleCommAdapterDescription attachedCommAdapter;
+  private  VehicleCommAdapterDescription attachedCommAdapter;
 
   /**
    * Creates a new instance.
@@ -114,4 +114,17 @@ public class AttachmentInformation
       @Nonnull VehicleCommAdapterDescription attachedCommAdapter) {
     return new AttachmentInformation(vehicleReference, availableCommAdapters, attachedCommAdapter);
   }
+
+  public void setVehicleReference(TCSObjectReference<Vehicle> vehicleReference) {
+    this.vehicleReference = vehicleReference;
+  }
+
+  public void setAvailableCommAdapters(List<VehicleCommAdapterDescription> availableCommAdapters) {
+    this.availableCommAdapters = availableCommAdapters;
+  }
+
+  public void setAttachedCommAdapter(VehicleCommAdapterDescription attachedCommAdapter) {
+    this.attachedCommAdapter = attachedCommAdapter;
+  }
+
 }

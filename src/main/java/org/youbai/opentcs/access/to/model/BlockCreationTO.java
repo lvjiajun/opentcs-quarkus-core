@@ -32,16 +32,17 @@ public class BlockCreationTO
   /**
    * This block's type.
    */
-  @Nonnull
+  @Nonnull@JsonProperty("name")
   private Block.Type type = Block.Type.SINGLE_VEHICLE_ONLY;
   /**
    * This block's member names.
    */
-  @Nonnull
+  @JsonProperty("memberNames")
   private Set<String> memberNames = new HashSet<>();
   /**
    * The information regarding the grahical representation of this block.
    */
+  @JsonProperty("layout")
   private Layout layout = new Layout();
 
   /**
@@ -61,7 +62,7 @@ public class BlockCreationTO
    * @param properties the properties.
    */
   @JsonCreator
-  public BlockCreationTO(@JsonProperty("name")@Nonnull String name,
+  public BlockCreationTO(@Nonnull String name,
                          @JsonProperty("properties")@Nonnull Map<String, String> properties,
                          @JsonProperty("type")@Nonnull Block.Type type,
                          @JsonProperty("memberNames")@Nonnull Set<String> memberNames,
@@ -189,6 +190,18 @@ public class BlockCreationTO
                                type,
                                memberNames,
                                layout);
+  }
+
+  public void setType(@Nonnull Block.Type type) {
+    this.type = type;
+  }
+
+  public void setMemberNames(@Nonnull Set<String> memberNames) {
+    this.memberNames = memberNames;
+  }
+
+  public void setLayout(Layout layout) {
+    this.layout = layout;
   }
 
   @Override

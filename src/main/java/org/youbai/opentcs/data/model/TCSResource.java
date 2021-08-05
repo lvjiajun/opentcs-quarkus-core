@@ -9,6 +9,9 @@ package org.youbai.opentcs.data.model;
 
 import java.io.Serializable;
 import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.youbai.opentcs.components.kernel.Scheduler;
 import org.youbai.opentcs.data.ObjectHistory;
 import org.youbai.opentcs.data.TCSObject;
@@ -41,11 +44,13 @@ public abstract class TCSResource<E extends TCSResource<E>>
    * @param properties A set of properties (key-value pairs) associated with this object.
    * @param history A history of events related to this object.
    */
-  protected TCSResource(String name, Map<String, String> properties, ObjectHistory history) {
+  @JsonCreator
+  public TCSResource(@JsonProperty("name") String name,
+                     @JsonProperty("properties")Map<String, String> properties,
+                     @JsonProperty("history")ObjectHistory history) {
     super(name, properties, history);
     reference = new TCSResourceReference<>(this);
   }
-
   // Methods inherited from TCSObject<E> start here.
   @Override
   public TCSResourceReference<E> getReference() {

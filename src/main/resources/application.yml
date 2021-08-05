@@ -6,12 +6,12 @@ quarkus:
     port: 8089
   redisson:
     single-server-config:
-      address: redis://192.168.48.130:6379
+      address: redis://192.168.21.136:6379
     threads: 16
     netty-threads: 32
     codec: org.redisson.codec.MarshallingCodec
   redis:
-    hosts: 192.168.48.130
+    hosts: 192.168.21.136
 
 kernelapp:
   autoEnableDriversOnStartup: false

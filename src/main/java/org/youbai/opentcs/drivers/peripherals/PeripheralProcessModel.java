@@ -10,6 +10,8 @@ package org.youbai.opentcs.drivers.peripherals;
 import java.io.Serializable;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.PeripheralInformation;
 import org.youbai.opentcs.data.model.TCSResourceReference;
@@ -25,19 +27,23 @@ public class PeripheralProcessModel
   /**
    * The reference to the location that is attached to this model.
    */
-  private final TCSResourceReference<Location> location;
+  @JsonProperty("location")
+  private TCSResourceReference<Location> location;
   /**
    * Whether the communication adapter is currently enabled.
    */
-  private final boolean commAdapterEnabled;
+  @JsonProperty("commAdapterEnabled")
+  private boolean commAdapterEnabled;
   /**
    * Whether the communication adapter is currently connected to the peripheral device.
    */
-  private final boolean commAdapterConnected;
+  @JsonProperty("commAdapterConnected")
+  private boolean commAdapterConnected;
   /**
    * The peripheral device's current state.
    */
-  private final PeripheralInformation.State state;
+  @JsonProperty("state")
+  private PeripheralInformation.State state;
 
   /**
    * Creates a new instance.
@@ -47,7 +53,6 @@ public class PeripheralProcessModel
   public PeripheralProcessModel(TCSResourceReference<Location> location) {
     this(location, false, false, PeripheralInformation.State.NO_PERIPHERAL);
   }
-
   protected PeripheralProcessModel(@Nonnull TCSResourceReference<Location> location,
                                    boolean commAdapterEnabled,
                                    boolean commAdapterConnected,
@@ -57,7 +62,21 @@ public class PeripheralProcessModel
     this.commAdapterConnected = commAdapterConnected;
     this.state = requireNonNull(state, "state");
   }
+  public void setLocation(TCSResourceReference<Location> location) {
+    this.location = location;
+  }
 
+  public void setCommAdapterEnabled(boolean commAdapterEnabled) {
+    this.commAdapterEnabled = commAdapterEnabled;
+  }
+
+  public void setCommAdapterConnected(boolean commAdapterConnected) {
+    this.commAdapterConnected = commAdapterConnected;
+  }
+
+  public void setState(PeripheralInformation.State state) {
+    this.state = state;
+  }
   /**
    * Returns the reference to the location that is attached to this model.
    *

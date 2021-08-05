@@ -10,7 +10,7 @@ package org.youbai.opentcs.access.rmi.services;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Set;
-import org.youbai.opentcs.access.rmi.ClientID;
+
 import org.youbai.opentcs.components.kernel.services.VehicleService;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Vehicle;
@@ -18,6 +18,12 @@ import org.youbai.opentcs.drivers.vehicle.AdapterCommand;
 import org.youbai.opentcs.drivers.vehicle.VehicleCommAdapterDescription;
 import org.youbai.opentcs.drivers.vehicle.management.AttachmentInformation;
 import org.youbai.opentcs.drivers.vehicle.management.VehicleProcessModelTO;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Declares the methods provided by the {@link VehicleService} via RMI.
@@ -36,43 +42,28 @@ import org.youbai.opentcs.drivers.vehicle.management.VehicleProcessModelTO;
  * @author Martin Grzenia (Fraunhofer IML)
  */
 public interface RemoteVehicleService
-    extends RemoteTCSObjectService,
-            Remote {
+    extends RemoteTCSObjectService{
 
-  void attachCommAdapter(ClientID clientId, TCSObjectReference<Vehicle> ref,
-                         VehicleCommAdapterDescription description)
-      throws RemoteException;
+  void attachCommAdapter(TCSObjectReference<Vehicle> ref,
+                         VehicleCommAdapterDescription description);
 
-  void disableCommAdapter(ClientID clientId, TCSObjectReference<Vehicle> ref)
-      throws RemoteException;
+  void disableCommAdapter(TCSObjectReference<Vehicle> ref);
 
-  void enableCommAdapter(ClientID clientId, TCSObjectReference<Vehicle> ref)
-      throws RemoteException;
+  void enableCommAdapter(TCSObjectReference<Vehicle> ref);
 
-  AttachmentInformation fetchAttachmentInformation(ClientID clientId,
-                                                   TCSObjectReference<Vehicle> ref)
-      throws RemoteException;
+  AttachmentInformation fetchAttachmentInformation(TCSObjectReference<Vehicle> ref);
 
-  VehicleProcessModelTO fetchProcessModel(ClientID clientId, TCSObjectReference<Vehicle> ref)
-      throws RemoteException;
+  VehicleProcessModelTO fetchProcessModel(TCSObjectReference<Vehicle> ref);
 
-  void sendCommAdapterCommand(ClientID clientId,
-                              TCSObjectReference<Vehicle> ref,
-                              AdapterCommand command)
-      throws RemoteException;
+  void sendCommAdapterCommand(TCSObjectReference<Vehicle> ref,
+                              AdapterCommand command);
 
-  void sendCommAdapterMessage(ClientID clientId,
-                              TCSObjectReference<Vehicle> vehicleRef,
-                              Object message)
-      throws RemoteException;
+  void sendCommAdapterMessage(TCSObjectReference<Vehicle> vehicleRef,
+                              Object message);
 
-  void updateVehicleIntegrationLevel(ClientID clientId,
-                                     TCSObjectReference<Vehicle> ref,
-                                     Vehicle.IntegrationLevel integrationLevel)
-      throws RemoteException;
+  void updateVehicleIntegrationLevel(TCSObjectReference<Vehicle> ref,
+                                     Vehicle.IntegrationLevel integrationLevel);
 
-  void updateVehicleAllowedOrderTypes(ClientID clientId,
-                                      TCSObjectReference<Vehicle> ref,
-                                      Set<String> allowedOrderTypes)
-      throws RemoteException;
+  void updateVehicleAllowedOrderTypes(TCSObjectReference<Vehicle> ref,
+                                      Set<String> allowedOrderTypes);
 }

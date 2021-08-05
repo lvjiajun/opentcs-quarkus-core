@@ -9,10 +9,17 @@ package org.youbai.opentcs.access.rmi.services;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import org.youbai.opentcs.access.rmi.ClientID;
+
 import org.youbai.opentcs.components.kernel.services.PeripheralDispatcherService;
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.TCSResourceReference;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Declares the methods provided by the {@link PeripheralDispatcherService} via RMI.
@@ -30,12 +37,10 @@ import org.youbai.opentcs.data.model.TCSResourceReference;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-public interface RemotePeripheralDispatcherService
-    extends Remote {
 
-  void dispatch(ClientID clientId)
-      throws RemoteException;
+public interface RemotePeripheralDispatcherService{
 
-  void withdrawByLocation(ClientID clientId, TCSResourceReference<Location> ref)
-      throws RemoteException;
+  void dispatch();
+
+  void withdrawByLocation(TCSResourceReference<Location> ref);
 }

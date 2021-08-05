@@ -118,13 +118,6 @@ public class DefaultPortalManager
 
     eventHandler.onEvent(ConnectionState.DISCONNECTING);
 
-    try {
-      servicePortal.logout();
-    }
-    catch (KernelRuntimeException e) {
-      LOG.warn("Exception trying to disconnect from remote portal", e);
-    }
-
     lastConnection = currentConnection;
     currentConnection = new NullConnectionParamSet();
     eventHandler.onEvent(ConnectionState.DISCONNECTED);
@@ -165,7 +158,6 @@ public class DefaultPortalManager
   private boolean connect(String description, String host, int port) {
     try {
       eventHandler.onEvent(ConnectionState.CONNECTING);
-      servicePortal.login(host, port);
     }
     catch (KernelRuntimeException e) {
       LOG.warn("Failed to connect to remote portal", e);

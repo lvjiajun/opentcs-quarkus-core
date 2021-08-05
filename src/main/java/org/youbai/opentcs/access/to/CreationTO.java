@@ -7,6 +7,8 @@
  */
 package org.youbai.opentcs.access.to;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,13 +29,13 @@ public class CreationTO
   /**
    * The name of this transfer object.
    */
-  @Nonnull
+  @Nonnull@JsonProperty("name")
   private String name;
 
   /**
    * The properties of this transfer object.
    */
-  @Nonnull
+  @Nonnull@JsonProperty("properties")
   private Map<String, String> properties = new HashMap<>();
 
   /**
@@ -59,7 +61,12 @@ public class CreationTO
   public String getName() {
     return name;
   }
-
+  public void setName(@Nonnull String name) {
+    this.name = name;
+  }
+  public void setProperties(@Nonnull Map<String, String> properties) {
+    this.properties = properties;
+  }
   /**
    * Creates a copy of this object with the given name.
    *

@@ -12,6 +12,9 @@ import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.youbai.opentcs.access.to.CreationTO;
 
 /**
@@ -28,7 +31,7 @@ public class PeripheralJobCreationTO
    * peripheral job.
    * (How exactly this is done is decided by the kernel.)
    */
-  private final boolean incompleteName;
+  private boolean incompleteName;
   /**
    * A token that may be used to reserve a peripheral device.
    * A peripheral device that is reserved for a specific token can only process jobs which match
@@ -36,22 +39,22 @@ public class PeripheralJobCreationTO
    * This string may not be empty.
    */
   @Nonnull
-  private final String reservationToken;
+  private String reservationToken;
   /**
    * The name of the vehicle for which this peripheral job is to be created.
    */
   @Nullable
-  private final String relatedVehicleName;
+  private String relatedVehicleName;
   /**
    * The name of the transport order for which this peripheral job is to be created.
    */
   @Nullable
-  private final String relatedTransportOrderName;
+  private String relatedTransportOrderName;
   /**
    * The operation that is to be perfromed by the pripheral device.
    */
   @Nonnull
-  private final PeripheralOperationCreationTO peripheralOperation;
+  private PeripheralOperationCreationTO peripheralOperation;
 
   /**
    * Creates a new instance.
@@ -70,14 +73,14 @@ public class PeripheralJobCreationTO
     this.relatedTransportOrderName = null;
     this.peripheralOperation = requireNonNull(peripheralOperation, "peripheralOperation");
   }
-
-  private PeripheralJobCreationTO(@Nonnull String name,
-                                  @Nonnull Map<String, String> properties,
-                                  boolean incompleteName,
-                                  @Nonnull String reservationToken,
-                                  @Nullable String relatedVehicleName,
-                                  @Nullable String relatedTransportOrderName,
-                                  @Nonnull PeripheralOperationCreationTO peripheralOperation) {
+  @JsonCreator
+  private PeripheralJobCreationTO(@JsonProperty("name") @Nonnull String name,
+                                  @JsonProperty("properties")@Nonnull Map<String, String> properties,
+                                  @JsonProperty("incompleteName")boolean incompleteName,
+                                  @JsonProperty("reservationToken")@Nonnull String reservationToken,
+                                  @JsonProperty("relatedVehicleName")@Nullable String relatedVehicleName,
+                                  @JsonProperty("relatedTransportOrderName")@Nullable String relatedTransportOrderName,
+                                  @JsonProperty("peripheralOperation")@Nonnull PeripheralOperationCreationTO peripheralOperation) {
     super(name, properties);
     this.incompleteName = incompleteName;
     this.reservationToken = requireNonNull(reservationToken, "reservationToken");
@@ -249,5 +252,29 @@ public class PeripheralJobCreationTO
                                        relatedVehicleName,
                                        relatedTransportOrderName,
                                        peripheralOperation);
+  }
+
+  public boolean isIncompleteName() {
+    return incompleteName;
+  }
+
+  public void setIncompleteName(boolean incompleteName) {
+    this.incompleteName = incompleteName;
+  }
+
+  public void setReservationToken(@Nonnull String reservationToken) {
+    this.reservationToken = reservationToken;
+  }
+
+  public void setRelatedVehicleName(@Nullable String relatedVehicleName) {
+    this.relatedVehicleName = relatedVehicleName;
+  }
+
+  public void setRelatedTransportOrderName(@Nullable String relatedTransportOrderName) {
+    this.relatedTransportOrderName = relatedTransportOrderName;
+  }
+
+  public void setPeripheralOperation(@Nonnull PeripheralOperationCreationTO peripheralOperation) {
+    this.peripheralOperation = peripheralOperation;
   }
 }

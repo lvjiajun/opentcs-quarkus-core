@@ -51,6 +51,17 @@ public interface TCSObjectService {
       throws KernelRuntimeException;
 
   /**
+   * Returns a single {@link TCSObject} of the given class.
+   *
+   * @param <T> The TCSObject's actual type.
+   * @param clazz The class of the object to be returned.
+   * @param name The name of the object to be returned.
+   * @return A copy of the named object, or {@code null} if no such object exists or if an object
+   * exists but is not an instance of the given class.
+   * @throws KernelRuntimeException In case there is an exception executing this method.
+   */
+
+  /**
    * Returns all existing {@link TCSObject}s of the given class.
    *
    * @param <T> The TCSObjects' actual type.
@@ -98,4 +109,8 @@ public interface TCSObjectService {
    */
   void appendObjectHistoryEntry(TCSObjectReference<?> ref, ObjectHistory.Entry entry)
       throws ObjectUnknownException, KernelRuntimeException;
+
+  public boolean contains(String objectName);
+
+  public <T extends TCSObject<T>> T fetchObjectNotNull(Class<T> clazz, String name)throws ObjectUnknownException;
 }

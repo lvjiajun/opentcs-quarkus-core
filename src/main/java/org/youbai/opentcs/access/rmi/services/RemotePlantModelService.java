@@ -10,11 +10,17 @@ package org.youbai.opentcs.access.rmi.services;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Map;
-import org.youbai.opentcs.access.rmi.ClientID;
+
 import org.youbai.opentcs.access.to.model.PlantModelCreationTO;
 import org.youbai.opentcs.components.kernel.services.PlantModelService;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Location;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Declares the methods provided by the {@link PlantModelService} via RMI.
@@ -32,19 +38,15 @@ import org.youbai.opentcs.data.model.Location;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+
 public interface RemotePlantModelService
-    extends RemoteTCSObjectService,
-            Remote {
+    extends RemoteTCSObjectService {
 
-  void createPlantModel(ClientID clientId, PlantModelCreationTO to)
-      throws RemoteException;
+  void createPlantModel(PlantModelCreationTO to);
 
-  String getModelName(ClientID clientId)
-      throws RemoteException;
+  String getModelName();
 
-  Map<String, String> getModelProperties(ClientID clientId)
-      throws RemoteException;
+  Map<String, String> getModelProperties();
 
-  void updateLocationLock(ClientID clientId, TCSObjectReference<Location> ref, boolean locked)
-      throws RemoteException;
+  void updateLocationLock(TCSObjectReference<Location> ref, boolean locked);
 }

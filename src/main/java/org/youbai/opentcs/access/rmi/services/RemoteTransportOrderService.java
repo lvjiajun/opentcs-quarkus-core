@@ -9,13 +9,16 @@ package org.youbai.opentcs.access.rmi.services;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import org.youbai.opentcs.access.rmi.ClientID;
+
 import org.youbai.opentcs.access.to.order.OrderSequenceCreationTO;
 import org.youbai.opentcs.access.to.order.TransportOrderCreationTO;
 import org.youbai.opentcs.components.kernel.services.TransportOrderService;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.order.OrderSequence;
 import org.youbai.opentcs.data.order.TransportOrder;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Declares the methods provided by the {@link TransportOrderService} via RMI.
@@ -33,16 +36,13 @@ import org.youbai.opentcs.data.order.TransportOrder;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
+
 public interface RemoteTransportOrderService
-    extends RemoteTCSObjectService,
-            Remote {
+    extends RemoteTCSObjectService{
 
-  OrderSequence createOrderSequence(ClientID clientId, OrderSequenceCreationTO to)
-      throws RemoteException;
+  OrderSequence createOrderSequence(OrderSequenceCreationTO to);
 
-  TransportOrder createTransportOrder(ClientID clientId, TransportOrderCreationTO to)
-      throws RemoteException;
+  TransportOrder createTransportOrder(TransportOrderCreationTO to);
 
-  void markOrderSequenceComplete(ClientID clientId, TCSObjectReference<OrderSequence> ref)
-      throws RemoteException;
+  void markOrderSequenceComplete(TCSObjectReference<OrderSequence> ref);
 }

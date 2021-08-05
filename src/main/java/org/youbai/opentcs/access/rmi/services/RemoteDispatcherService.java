@@ -7,20 +7,23 @@
  */
 package org.youbai.opentcs.access.rmi.services;
 
-import java.rmi.Remote;
-import java.rmi.RemoteException;
-import org.youbai.opentcs.access.rmi.ClientID;
 import org.youbai.opentcs.components.kernel.services.DispatcherService;
 import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.order.TransportOrder;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import java.rmi.RemoteException;
 
 /**
  * Declares the methods provided by the {@link DispatcherService} via RMI.
  *
  * <p>
  * The majority of the methods declared here have signatures analogous to their counterparts in
- * {@link DispatcherService}, with an additional {@link ClientID} parameter which serves the purpose
  * of identifying the calling client and determining its permissions.
  * </p>
  * <p>
@@ -31,19 +34,14 @@ import org.youbai.opentcs.data.order.TransportOrder;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-public interface RemoteDispatcherService
-    extends Remote {
 
-  void dispatch(ClientID clientId)
-      throws RemoteException;
+public interface RemoteDispatcherService {
 
-  void withdrawByVehicle(ClientID clientId,
-                         TCSObjectReference<Vehicle> ref,
-                         boolean immediateAbort)
-      throws RemoteException;
+  void dispatch();
 
-  void withdrawByTransportOrder(ClientID clientId,
-                                TCSObjectReference<TransportOrder> ref,
-                                boolean immediateAbort)
-      throws RemoteException;
+  void withdrawByVehicle(TCSObjectReference<Vehicle> ref,
+                         boolean immediateAbort);
+
+  void withdrawByTransportOrder(TCSObjectReference<TransportOrder> ref,
+                                boolean immediateAbort);
 }

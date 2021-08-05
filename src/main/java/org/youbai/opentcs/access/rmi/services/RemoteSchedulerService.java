@@ -10,8 +10,13 @@ package org.youbai.opentcs.access.rmi.services;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import org.youbai.opentcs.access.SchedulerAllocationState;
-import org.youbai.opentcs.access.rmi.ClientID;
 import org.youbai.opentcs.components.kernel.services.SchedulerService;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Declares the methods provided by the {@link SchedulerService} via RMI.
@@ -29,9 +34,7 @@ import org.youbai.opentcs.components.kernel.services.SchedulerService;
  *
  * @author Martin Grzenia (Fraunhofer IML)
  */
-public interface RemoteSchedulerService
-    extends Remote {
+public interface RemoteSchedulerService{
 
-  public SchedulerAllocationState fetchSchedulerAllocations(ClientID clientId)
-      throws RemoteException;
+  public SchedulerAllocationState fetchSchedulerAllocations();
 }
