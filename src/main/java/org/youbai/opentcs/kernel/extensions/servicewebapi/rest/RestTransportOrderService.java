@@ -6,11 +6,12 @@ import org.youbai.opentcs.data.order.OrderSequence;
 import org.youbai.opentcs.data.order.TransportOrder;
 import org.youbai.opentcs.kernel.extensions.servicewebapi.data.AppResult;
 
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 
 @Path("TransportOrderService")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public interface RestTransportOrderService {
     @POST
     @Path("createOrderSequence")

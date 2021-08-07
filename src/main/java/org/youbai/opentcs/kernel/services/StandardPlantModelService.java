@@ -204,6 +204,15 @@ public class StandardPlantModelService
   }
 
   @Override
+  public void updateLocationLock(String ref, boolean locked)
+          throws ObjectUnknownException, KernelRuntimeException {
+    synchronized (globalSyncObject) {
+      model.setLocationLocked(ref, locked);
+    }
+
+  }
+
+  @Override
   public void updateLocationReservationToken(TCSObjectReference<Location> ref, String token)
       throws ObjectUnknownException, KernelRuntimeException {
     synchronized (globalSyncObject) {

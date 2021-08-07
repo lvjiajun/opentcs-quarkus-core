@@ -58,38 +58,38 @@ public class OrderSequence
    * An order sequence and all transport orders it contains share the same type.
    */
   @Nonnull
-  private final String type;
+  private String type;
   /**
    * Transport orders belonging to this sequence that still need to be processed.
    */
-  private final List<TCSObjectReference<TransportOrder>> orders;
+  private List<TCSObjectReference<TransportOrder>> orders;
   /**
    * The index of the order that was last finished in the sequence.
    * -1 if none was finished, yet.
    */
-  private final int finishedIndex;
+  private int finishedIndex;
   /**
    * Indicates whether this order sequence is complete and will not be extended by more orders.
    */
-  private final boolean complete;
+  private boolean complete;
   /**
    * Indicates whether this order sequence has been processed completely.
    */
-  private final boolean finished;
+  private boolean finished;
   /**
    * Indicates whether the failure of one order in this sequence is fatal to all subsequent orders.
    */
-  private final boolean failureFatal;
+  private boolean failureFatal;
   /**
    * The vehicle that is intended to process this order sequence.
    * If this sequence is free to be processed by any vehicle, this is <code>null</code>.
    */
-  private final TCSObjectReference<Vehicle> intendedVehicle;
+  private TCSObjectReference<Vehicle> intendedVehicle;
   /**
    * The vehicle processing this order sequence, or <code>null</code>, if no vehicle has been
    * assigned to it, yet.
    */
-  private final TCSObjectReference<Vehicle> processingVehicle;
+  private TCSObjectReference<Vehicle> processingVehicle;
 
   /**
    * Creates a new OrderSequence.
@@ -472,5 +472,37 @@ public class OrderSequence
     result.addAll(orders);
     result.add(order);
     return result;
+  }
+
+  public void setType(@Nonnull String type) {
+    this.type = type;
+  }
+
+  public void setOrders(List<TCSObjectReference<TransportOrder>> orders) {
+    this.orders = orders;
+  }
+
+  public void setFinishedIndex(int finishedIndex) {
+    this.finishedIndex = finishedIndex;
+  }
+
+  public void setComplete(boolean complete) {
+    this.complete = complete;
+  }
+
+  public void setFinished(boolean finished) {
+    this.finished = finished;
+  }
+
+  public void setFailureFatal(boolean failureFatal) {
+    this.failureFatal = failureFatal;
+  }
+
+  public void setIntendedVehicle(TCSObjectReference<Vehicle> intendedVehicle) {
+    this.intendedVehicle = intendedVehicle;
+  }
+
+  public void setProcessingVehicle(TCSObjectReference<Vehicle> processingVehicle) {
+    this.processingVehicle = processingVehicle;
   }
 }

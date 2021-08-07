@@ -62,8 +62,6 @@ public class StandardRemoteNotificationService
 
   @Override
   public List<UserNotification> fetchUserNotifications(Predicate<UserNotification> predicate) {
-
-
     return notificationService.fetchUserNotifications(predicate);
   }
 

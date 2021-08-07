@@ -24,8 +24,6 @@ public class DispatcherService implements RestDispatcherService {
     @Inject
     RemoteDispatcherService remoteDispatcherService;
 
-
-
     @Override
     public AppResult<String> withdrawByVehicle(String ref, boolean immediateAbort) {
         try {

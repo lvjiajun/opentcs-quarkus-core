@@ -43,7 +43,8 @@ public interface DispatcherService {
    */
   void withdrawByVehicle(TCSObjectReference<Vehicle> ref, boolean immediateAbort)
       throws ObjectUnknownException, KernelRuntimeException;
-
+  void withdrawByVehicle(String ref, boolean immediateAbort)
+          throws ObjectUnknownException, KernelRuntimeException;
   /**
    * Withdraw the referenced order.
    *
@@ -58,4 +59,6 @@ public interface DispatcherService {
    */
   void withdrawByTransportOrder(TCSObjectReference<TransportOrder> ref, boolean immediateAbort)
       throws ObjectUnknownException, KernelRuntimeException;
+  void withdrawByTransportOrder(String ref, boolean immediateAbort)
+          throws ObjectUnknownException, KernelRuntimeException;
 }

@@ -643,6 +643,16 @@ public class Model {
                                TCSObjectEvent.Type.OBJECT_MODIFIED);
     return location;
   }
+  public Location setLocationLocked(String ref, boolean newLocked)
+          throws ObjectUnknownException {
+    Location location = objectPool.getObject(Location.class, ref);
+    Location previousState = location;
+    location = objectPool.replaceObject(location.withLocked(newLocked));
+    objectPool.emitObjectEvent(location,
+            previousState,
+            TCSObjectEvent.Type.OBJECT_MODIFIED);
+    return location;
+  }
 
   /**
    * Sets a location's reservation token.

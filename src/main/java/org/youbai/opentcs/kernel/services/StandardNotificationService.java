@@ -29,11 +29,6 @@ import org.youbai.opentcs.kernel.workingset.NotificationBuffer;
 @StandardNotificationServiceAnnotation
 public class StandardNotificationService
     implements NotificationService {
-
-  /**
-   * A global object to be used for synchronization within the kernel.
-   */
-  private final Object globalSyncObject;
   /**
    * The buffer for all messages published.
    */
@@ -42,27 +37,21 @@ public class StandardNotificationService
   /**
    * Creates a new instance.
    *
-   * @param globalSyncObject The kernel threads' global synchronization object.
    * @param notificationBuffer The notification buffer to be used.
    */
 
-  public StandardNotificationService(GlobalSyncObject globalSyncObject,
-                                     NotificationBuffer notificationBuffer) {
-    this.globalSyncObject = requireNonNull(globalSyncObject, "globalSyncObject");
+  public StandardNotificationService(NotificationBuffer notificationBuffer) {
     this.notificationBuffer = requireNonNull(notificationBuffer, "notificationBuffer");
   }
 
   @Override
   public List<UserNotification> fetchUserNotifications(Predicate<UserNotification> predicate) {
-    synchronized (globalSyncObject) {
-      return notificationBuffer.getNotifications(predicate);
-    }
+    return notificationBuffer.getNotifications(predicate);
   }
 
   @Override
   public void publishUserNotification(UserNotification notification) {
-    synchronized (globalSyncObject) {
-      notificationBuffer.addNotification(notification);
-    }
+
+    notificationBuffer.addNotification(notification);
   }
 }

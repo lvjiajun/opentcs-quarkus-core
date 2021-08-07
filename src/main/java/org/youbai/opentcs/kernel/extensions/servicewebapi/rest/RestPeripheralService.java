@@ -10,8 +10,9 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Path("PeripheralService")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public interface RestPeripheralService {
-
 
     AppResult<String> attachCommAdapter(String ref,
                                         PeripheralCommAdapterDescription description);
@@ -23,14 +24,11 @@ public interface RestPeripheralService {
     AppResult<String> enableCommAdapter(@PathParam("ref") String ref);
     @GET
     @Path("fetchAttachmentInformation/{ref}")
-    @Produces(MediaType.APPLICATION_JSON)
     AppResult<PeripheralAttachmentInformation> fetchAttachmentInformation(@PathParam("ref") String ref);
     @GET
     @Path("fetchProcessModel/{ref}")
-    @Produces(MediaType.APPLICATION_JSON)
     AppResult<PeripheralProcessModel> fetchProcessModel(@PathParam("ref") String ref);
 
-    @Path("sendCommAdapterCommand")
     AppResult<String> sendCommAdapterCommand(String ref,
                                 PeripheralAdapterCommand command);
 }

@@ -46,15 +46,18 @@ public interface RemotePeripheralService
 
   void attachCommAdapter(TCSResourceReference<Location> ref,
                          PeripheralCommAdapterDescription description);
-
+  void attachCommAdapter(String ref,
+                         PeripheralCommAdapterDescription description);
   void disableCommAdapter(TCSResourceReference<Location> ref);
-
+  void disableCommAdapter(String ref);
   void enableCommAdapter(TCSResourceReference<Location> ref);
-
+  void enableCommAdapter(String ref);
   PeripheralAttachmentInformation fetchAttachmentInformation(TCSResourceReference<Location> ref);
-
+  PeripheralAttachmentInformation fetchAttachmentInformation(String ref);
   PeripheralProcessModel fetchProcessModel(TCSResourceReference<Location> ref);
-
+  PeripheralProcessModel fetchProcessModel(String ref);
   void sendCommAdapterCommand(TCSResourceReference<Location> ref,
+                              PeripheralAdapterCommand command);
+  void sendCommAdapterCommand(String ref,
                               PeripheralAdapterCommand command);
 }

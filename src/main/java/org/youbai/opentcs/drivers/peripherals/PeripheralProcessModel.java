@@ -62,21 +62,6 @@ public class PeripheralProcessModel
     this.commAdapterConnected = commAdapterConnected;
     this.state = requireNonNull(state, "state");
   }
-  public void setLocation(TCSResourceReference<Location> location) {
-    this.location = location;
-  }
-
-  public void setCommAdapterEnabled(boolean commAdapterEnabled) {
-    this.commAdapterEnabled = commAdapterEnabled;
-  }
-
-  public void setCommAdapterConnected(boolean commAdapterConnected) {
-    this.commAdapterConnected = commAdapterConnected;
-  }
-
-  public void setState(PeripheralInformation.State state) {
-    this.state = state;
-  }
   /**
    * Returns the reference to the location that is attached to this model.
    *
@@ -86,7 +71,9 @@ public class PeripheralProcessModel
   public TCSResourceReference<Location> getLocation() {
     return location;
   }
-
+  public void setLocation(TCSResourceReference<Location> location) {
+    this.location = location;
+  }
   /**
    * Creates a copy of the object, with the given location reference.
    *
@@ -106,7 +93,9 @@ public class PeripheralProcessModel
   public boolean isCommAdapterEnabled() {
     return commAdapterEnabled;
   }
-
+  public void setCommAdapterEnabled(boolean commAdapterEnabled) {
+    this.commAdapterEnabled = commAdapterEnabled;
+  }
   /**
    * Creates a copy of the object, with the given enabled state.
    *
@@ -125,7 +114,9 @@ public class PeripheralProcessModel
   public boolean isCommAdapterConnected() {
     return commAdapterConnected;
   }
-
+  public void setCommAdapterConnected(boolean commAdapterConnected) {
+    this.commAdapterConnected = commAdapterConnected;
+  }
   /**
    * Creates a copy of the object, with the given connected state.
    *
@@ -144,7 +135,9 @@ public class PeripheralProcessModel
   public PeripheralInformation.State getState() {
     return state;
   }
-
+  public void setState(PeripheralInformation.State state) {
+    this.state = state;
+  }
   /**
    * Creates a copy of the object, with the given state.
    *

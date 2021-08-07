@@ -13,6 +13,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.youbai.opentcs.access.rmi.factories.SocketFactoryProvider;
@@ -24,6 +25,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.youbai.opentcs.kernel.annotations.ExecutorServiceAnnotations;
 import org.youbai.opentcs.kernel.annotations.StandardRouterServiceAnnotations;
+import org.youbai.opentcs.kernel.annotations.StandardTCSObjectAnnotations;
+import org.youbai.opentcs.kernel.services.StandardTCSObjectService;
 
 /**
  * This class is the standard implementation of the {@link RemoteRouterService} interface.
@@ -56,6 +59,8 @@ public class StandardRemoteRouterService
    * Creates a new instance.
    *
    */
+  @StandardTCSObjectAnnotations
+  StandardTCSObjectService standardTCSObjectService;
 
   public StandardRemoteRouterService() {
   }
@@ -65,6 +70,17 @@ public class StandardRemoteRouterService
   public void updatePathLock(TCSObjectReference<Path> ref, boolean locked) {
     try {
       kernelExecutor.submit(() -> routerService.updatePathLock(ref, locked)).get();
+    }
+    catch (InterruptedException | ExecutionException exc) {
+      throw findSuitableExceptionFor(exc);
+    }
+  }
+
+  @Override
+  public void updatePathLock(String ref,boolean locked) {
+    try {
+      Path path = standardTCSObjectService.fetchObject(Path.class,ref);
+      kernelExecutor.submit(() -> routerService.updatePathLock(path.getReference(), locked)).get();
     }
     catch (InterruptedException | ExecutionException exc) {
       throw findSuitableExceptionFor(exc);

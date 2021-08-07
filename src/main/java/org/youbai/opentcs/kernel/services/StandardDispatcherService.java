@@ -8,6 +8,7 @@
 package org.youbai.opentcs.kernel.services;
 
 import io.quarkus.runtime.Startup;
+import org.youbai.opentcs.access.KernelRuntimeException;
 import org.youbai.opentcs.components.kernel.Dispatcher;
 import org.youbai.opentcs.components.kernel.services.DispatcherService;
 import org.youbai.opentcs.data.ObjectUnknownException;
@@ -77,6 +78,11 @@ public class StandardDispatcherService
   }
 
   @Override
+  public void withdrawByVehicle(String ref, boolean immediateAbort) throws ObjectUnknownException{
+    dispatcher.withdrawOrder(globalObjectPool.getObject(Vehicle.class, ref), immediateAbort);
+  }
+
+  @Override
   public void withdrawByTransportOrder(TCSObjectReference<TransportOrder> ref,
                                        boolean immediateAbort)
       throws ObjectUnknownException {
@@ -84,5 +90,11 @@ public class StandardDispatcherService
       dispatcher.withdrawOrder(globalObjectPool.getObject(TransportOrder.class, ref),
                                immediateAbort);
     }
+  }
+
+  @Override
+  public void withdrawByTransportOrder(String ref, boolean immediateAbort) throws ObjectUnknownException {
+    dispatcher.withdrawOrder(globalObjectPool.getObject(TransportOrder.class, ref),
+            immediateAbort);
   }
 }

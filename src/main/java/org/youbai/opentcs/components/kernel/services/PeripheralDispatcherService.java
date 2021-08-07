@@ -38,4 +38,6 @@ public interface PeripheralDispatcherService {
    */
   void withdrawByLocation(TCSResourceReference<Location> ref)
       throws ObjectUnknownException, KernelRuntimeException;
+  void withdrawByLocation(String ref)
+          throws ObjectUnknownException, KernelRuntimeException;
 }

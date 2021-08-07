@@ -25,11 +25,11 @@ public class PeripheralAttachmentInformation
   /**
    * The location this attachment information belongs to.
    */
-  private final TCSResourceReference<Location> locationReference;
+  private TCSResourceReference<Location> locationReference;
   /**
    * The comm adapter attached to the referenced location.
    */
-  private final PeripheralCommAdapterDescription attachedCommAdapter;
+  private PeripheralCommAdapterDescription attachedCommAdapter;
 
   /**
    * Creates a new instance.
@@ -53,7 +53,9 @@ public class PeripheralAttachmentInformation
   public TCSResourceReference<Location> getLocationReference() {
     return locationReference;
   }
-
+  public void setLocationReference(TCSResourceReference<Location> locationReference) {
+    this.locationReference = locationReference;
+  }
   /**
    * Creates a copy of this object with the given location reference.
    *
@@ -74,7 +76,9 @@ public class PeripheralAttachmentInformation
   public PeripheralCommAdapterDescription getAttachedCommAdapter() {
     return attachedCommAdapter;
   }
-
+  public void setAttachedCommAdapter(PeripheralCommAdapterDescription attachedCommAdapter) {
+    this.attachedCommAdapter = attachedCommAdapter;
+  }
   /**
    * Creates a copy of this object with the given attached comm adapter.
    *

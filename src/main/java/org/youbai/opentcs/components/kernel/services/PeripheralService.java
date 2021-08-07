@@ -7,6 +7,7 @@
  */
 package org.youbai.opentcs.components.kernel.services;
 
+import org.apache.kafka.common.protocol.types.Field;
 import org.youbai.opentcs.access.KernelRuntimeException;
 import org.youbai.opentcs.data.ObjectUnknownException;
 import org.youbai.opentcs.data.model.Location;
@@ -36,7 +37,9 @@ public interface PeripheralService
   void attachCommAdapter(TCSResourceReference<Location> ref,
                          PeripheralCommAdapterDescription description)
       throws ObjectUnknownException, KernelRuntimeException;
-
+  void attachCommAdapter(String ref,
+                         PeripheralCommAdapterDescription description)
+          throws ObjectUnknownException, KernelRuntimeException;
   /**
    * Disables the comm adapter attached to the referenced location.
    *
@@ -46,7 +49,8 @@ public interface PeripheralService
    */
   void disableCommAdapter(TCSResourceReference<Location> ref)
       throws ObjectUnknownException, KernelRuntimeException;
-
+  void disableCommAdapter(String ref)
+          throws ObjectUnknownException, KernelRuntimeException;
   /**
    * Enables the comm adapter attached to the referenced location.
    *
@@ -56,7 +60,8 @@ public interface PeripheralService
    */
   void enableCommAdapter(TCSResourceReference<Location> ref)
       throws ObjectUnknownException, KernelRuntimeException;
-
+  void enableCommAdapter(String ref)
+          throws ObjectUnknownException, KernelRuntimeException;
   /**
    * Returns attachment information for the referenced location.
    *
@@ -67,7 +72,8 @@ public interface PeripheralService
    */
   PeripheralAttachmentInformation fetchAttachmentInformation(TCSResourceReference<Location> ref)
       throws ObjectUnknownException, KernelRuntimeException;
-
+  PeripheralAttachmentInformation fetchAttachmentInformation(String ref)
+          throws ObjectUnknownException, KernelRuntimeException;
   /**
    * Returns the process model for the referenced location.
    *
@@ -78,7 +84,8 @@ public interface PeripheralService
    */
   PeripheralProcessModel fetchProcessModel(TCSResourceReference<Location> ref)
       throws ObjectUnknownException, KernelRuntimeException;
-
+  PeripheralProcessModel fetchProcessModel(String ref)
+          throws ObjectUnknownException, KernelRuntimeException;
   /**
    * Sends a {@link PeripheralAdapterCommand} to the comm adapter attached to the referenced
    * location.
@@ -91,4 +98,6 @@ public interface PeripheralService
    */
   void sendCommAdapterCommand(TCSResourceReference<Location> ref, PeripheralAdapterCommand command)
       throws ObjectUnknownException, KernelRuntimeException;
+  void sendCommAdapterCommand(String ref, PeripheralAdapterCommand command)
+          throws ObjectUnknownException, KernelRuntimeException;
 }

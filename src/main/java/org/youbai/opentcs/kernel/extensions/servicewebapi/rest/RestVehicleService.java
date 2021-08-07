@@ -7,13 +7,13 @@ import org.youbai.opentcs.drivers.vehicle.management.AttachmentInformation;
 import org.youbai.opentcs.drivers.vehicle.management.VehicleProcessModelTO;
 import org.youbai.opentcs.kernel.extensions.servicewebapi.data.AppResult;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.Set;
 
 @Path("VehicleService")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public interface RestVehicleService {
     @PUT
     @Path("attachCommAdapter")

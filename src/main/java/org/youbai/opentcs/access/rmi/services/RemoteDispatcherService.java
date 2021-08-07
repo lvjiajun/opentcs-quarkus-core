@@ -44,4 +44,10 @@ public interface RemoteDispatcherService {
 
   void withdrawByTransportOrder(TCSObjectReference<TransportOrder> ref,
                                 boolean immediateAbort);
+
+  void withdrawByVehicle(String ref,
+                         boolean immediateAbort);
+
+  void withdrawByTransportOrder(String ref,
+                                boolean immediateAbort);
 }

@@ -4,9 +4,12 @@ import org.youbai.opentcs.access.to.model.PlantModelCreationTO;
 import org.youbai.opentcs.kernel.extensions.servicewebapi.data.AppResult;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.Map;
 
 @Path("PlantModelService")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public interface RestPlantModelService {
     @POST
     @Path("createPlantModel")
@@ -20,5 +23,5 @@ public interface RestPlantModelService {
     @PUT
     @Path("updateLocationLock")
     AppResult<String> updateLocationLock(@QueryParam("ref") String ref,
-                            @QueryParam("ref") boolean locked);
+                            @QueryParam("locked") boolean locked);
 }

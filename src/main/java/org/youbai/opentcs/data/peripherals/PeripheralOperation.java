@@ -10,6 +10,8 @@ package org.youbai.opentcs.data.peripherals;
 import java.io.Serializable;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.TCSResourceReference;
 
@@ -24,22 +26,23 @@ public class PeripheralOperation
   /**
    * The location the peripheral device is associated with.
    */
-  @Nonnull
-  private final TCSResourceReference<Location> location;
+  @Nonnull@JsonProperty("location")
+  private TCSResourceReference<Location> location;
   /**
    * The actual operation to be executed by the peripheral device.
    */
-  @Nonnull
-  private final String operation;
+  @Nonnull@JsonProperty("operation")
+  private String operation;
   /**
    * The moment at which this operation is to be executed.
    */
-  @Nonnull
-  private final ExecutionTrigger executionTrigger;
+  @Nonnull@JsonProperty("executionTrigger")
+  private ExecutionTrigger executionTrigger;
   /**
    * Whether the completion of this operation is required to allow a vehicle to continue driving.
    */
-  private final boolean completionRequired;
+  @JsonProperty("completionRequired")
+  private boolean completionRequired;
 
   /**
    * Creates a new instance.
@@ -99,6 +102,22 @@ public class PeripheralOperation
    */
   public boolean isCompletionRequired() {
     return completionRequired;
+  }
+
+  public void setLocation(@Nonnull TCSResourceReference<Location> location) {
+    this.location = location;
+  }
+
+  public void setOperation(@Nonnull String operation) {
+    this.operation = operation;
+  }
+
+  public void setExecutionTrigger(@Nonnull ExecutionTrigger executionTrigger) {
+    this.executionTrigger = executionTrigger;
+  }
+
+  public void setCompletionRequired(boolean completionRequired) {
+    this.completionRequired = completionRequired;
   }
 
   /**

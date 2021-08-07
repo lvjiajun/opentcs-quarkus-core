@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.quarkus.runtime.Startup;
+import org.youbai.opentcs.access.KernelRuntimeException;
 import org.youbai.opentcs.components.kernel.services.InternalPeripheralService;
 import org.youbai.opentcs.components.kernel.services.PeripheralService;
 import org.youbai.opentcs.components.kernel.services.TCSObjectService;
@@ -20,6 +21,7 @@ import org.youbai.opentcs.data.TCSObjectReference;
 import org.youbai.opentcs.data.model.Location;
 import org.youbai.opentcs.data.model.PeripheralInformation;
 import org.youbai.opentcs.data.model.TCSResourceReference;
+import org.youbai.opentcs.data.model.Vehicle;
 import org.youbai.opentcs.data.peripherals.PeripheralJob;
 import org.youbai.opentcs.drivers.peripherals.PeripheralAdapterCommand;
 import org.youbai.opentcs.drivers.peripherals.PeripheralCommAdapterDescription;
@@ -89,6 +91,12 @@ public class StandardPeripheralService
   }
 
   @Override
+  public void attachCommAdapter(String ref, PeripheralCommAdapterDescription description) throws ObjectUnknownException, KernelRuntimeException {
+    Location location = fetchObject(Location.class,ref);
+    attachmentManager.attachAdapterToLocation(location.getReference(), description);
+  }
+
+  @Override
   public void disableCommAdapter(TCSResourceReference<Location> ref)
       throws ObjectUnknownException {
     synchronized (globalSyncObject) {
@@ -97,11 +105,23 @@ public class StandardPeripheralService
   }
 
   @Override
+  public void disableCommAdapter(String ref) throws ObjectUnknownException, KernelRuntimeException {
+    Location location = fetchObject(Location.class,ref);
+    peripheralEntryPool.getEntryFor(location.getReference()).getCommAdapter().disable();
+  }
+
+  @Override
   public void enableCommAdapter(TCSResourceReference<Location> ref)
       throws ObjectUnknownException {
     synchronized (globalSyncObject) {
       peripheralEntryPool.getEntryFor(ref).getCommAdapter().enable();
     }
+  }
+
+  @Override
+  public void enableCommAdapter(String ref) throws ObjectUnknownException, KernelRuntimeException {
+    Location location = fetchObject(Location.class,ref);
+    peripheralEntryPool.getEntryFor(location.getReference()).getCommAdapter().enable();
   }
 
   @Override
@@ -114,6 +134,12 @@ public class StandardPeripheralService
   }
 
   @Override
+  public PeripheralAttachmentInformation fetchAttachmentInformation(String ref) throws ObjectUnknownException, KernelRuntimeException {
+    Location location = fetchObject(Location.class,ref);
+    return attachmentManager.getAttachmentInformation(location.getReference());
+  }
+
+  @Override
   public PeripheralProcessModel fetchProcessModel(TCSResourceReference<Location> ref)
       throws ObjectUnknownException {
     synchronized (globalSyncObject) {
@@ -122,11 +148,28 @@ public class StandardPeripheralService
   }
 
   @Override
+  public PeripheralProcessModel fetchProcessModel(String ref) throws ObjectUnknownException, KernelRuntimeException {
+    Location location = fetchObject(Location.class,ref);
+    return peripheralEntryPool.getEntryFor(location.getReference()).getCommAdapter().getProcessModel();
+  }
+
+  @Override
   public void sendCommAdapterCommand(TCSResourceReference<Location> ref,
                                      PeripheralAdapterCommand command)
       throws ObjectUnknownException {
     synchronized (globalSyncObject) {
       PeripheralEntry entry = peripheralEntryPool.getEntryFor(ref);
+      synchronized (entry.getCommAdapter()) {
+        entry.getCommAdapter().execute(command);
+      }
+    }
+  }
+
+  @Override
+  public void sendCommAdapterCommand(String ref, PeripheralAdapterCommand command) throws ObjectUnknownException, KernelRuntimeException {
+    synchronized (globalSyncObject) {
+      Location location = fetchObject(Location.class,ref);
+      PeripheralEntry entry = peripheralEntryPool.getEntryFor(location.getReference());
       synchronized (entry.getCommAdapter()) {
         entry.getCommAdapter().execute(command);
       }

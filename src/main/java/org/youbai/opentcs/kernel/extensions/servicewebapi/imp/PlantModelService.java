@@ -43,8 +43,7 @@ public class PlantModelService implements RestPlantModelService {
     @Override
     public AppResult<String> updateLocationLock(String ref, boolean locked) {
         try {
-            Location location = standardTCSObjectService.fetchObjectNotNull(Location.class,ref);
-            remotePlantModelService.updateLocationLock(location.getReference(),locked);
+            remotePlantModelService.updateLocationLock(ref,locked);
             return AppResultBuilder.success(ResultCode.SUCCESS);
         }catch (ObjectUnknownException exception){
             return AppResultBuilder.faile(ResultCode.DATA_IS_WRONG);

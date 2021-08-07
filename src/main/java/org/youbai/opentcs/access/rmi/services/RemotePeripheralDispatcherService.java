@@ -43,4 +43,6 @@ public interface RemotePeripheralDispatcherService{
   void dispatch();
 
   void withdrawByLocation(TCSResourceReference<Location> ref);
+
+  void withdrawByLocation(String ref);
 }

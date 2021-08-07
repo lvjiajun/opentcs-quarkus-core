@@ -86,7 +86,27 @@ public class StandardRemotePeripheralService
   }
 
   @Override
+  public void attachCommAdapter(String ref, PeripheralCommAdapterDescription description) {
+    try {
+      kernelExecutor.submit(() -> peripheralService.attachCommAdapter(ref, description)).get();
+    }
+    catch (InterruptedException | ExecutionException exc) {
+      throw findSuitableExceptionFor(exc);
+    }
+  }
+
+  @Override
   public void disableCommAdapter(TCSResourceReference<Location> ref) {
+    try {
+      kernelExecutor.submit(() -> peripheralService.disableCommAdapter(ref)).get();
+    }
+    catch (InterruptedException | ExecutionException exc) {
+      throw findSuitableExceptionFor(exc);
+    }
+  }
+
+  @Override
+  public void disableCommAdapter(String ref) {
     try {
       kernelExecutor.submit(() -> peripheralService.disableCommAdapter(ref)).get();
     }
@@ -106,9 +126,24 @@ public class StandardRemotePeripheralService
   }
 
   @Override
+  public void enableCommAdapter(String ref) {
+    try {
+      kernelExecutor.submit(() -> peripheralService.enableCommAdapter(ref)).get();
+    }
+    catch (InterruptedException | ExecutionException exc) {
+      throw findSuitableExceptionFor(exc);
+    }
+  }
+
+  @Override
   public PeripheralAttachmentInformation fetchAttachmentInformation(
       TCSResourceReference<Location> ref) {
 
+    return peripheralService.fetchAttachmentInformation(ref);
+  }
+
+  @Override
+  public PeripheralAttachmentInformation fetchAttachmentInformation(String ref) {
     return peripheralService.fetchAttachmentInformation(ref);
   }
 
@@ -118,8 +153,23 @@ public class StandardRemotePeripheralService
   }
 
   @Override
+  public PeripheralProcessModel fetchProcessModel(String ref) {
+    return peripheralService.fetchProcessModel(ref);
+  }
+
+  @Override
   public void sendCommAdapterCommand(TCSResourceReference<Location> ref,
                                      PeripheralAdapterCommand command) {
+    try {
+      kernelExecutor.submit(() -> peripheralService.sendCommAdapterCommand(ref, command)).get();
+    }
+    catch (InterruptedException | ExecutionException exc) {
+      throw findSuitableExceptionFor(exc);
+    }
+  }
+
+  @Override
+  public void sendCommAdapterCommand(String ref, PeripheralAdapterCommand command) {
     try {
       kernelExecutor.submit(() -> peripheralService.sendCommAdapterCommand(ref, command)).get();
     }

@@ -98,4 +98,27 @@ public class StandardRemoteDispatcherService
       throw findSuitableExceptionFor(exc);
     }
   }
+
+  @Override
+  public void withdrawByVehicle(String ref, boolean immediateAbort) {
+    try {
+      kernelExecutor.submit(() -> dispatcherService.withdrawByVehicle(ref, immediateAbort))
+              .get();
+    }
+    catch (InterruptedException | ExecutionException exc) {
+      throw findSuitableExceptionFor(exc);
+    }
+  }
+
+  @Override
+  public void withdrawByTransportOrder(String ref, boolean immediateAbort) {
+
+    try {
+      kernelExecutor.submit(() -> dispatcherService.withdrawByTransportOrder(ref, immediateAbort))
+              .get();
+    }
+    catch (InterruptedException | ExecutionException exc) {
+      throw findSuitableExceptionFor(exc);
+    }
+  }
 }

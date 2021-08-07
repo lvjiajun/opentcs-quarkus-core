@@ -40,5 +40,7 @@ public interface RemoteRouterService{
 
   public void updatePathLock(TCSObjectReference<Path> ref, boolean locked);
 
+  public void updatePathLock(String ref, boolean locked);
+
   public void updateRoutingTopology();
 }

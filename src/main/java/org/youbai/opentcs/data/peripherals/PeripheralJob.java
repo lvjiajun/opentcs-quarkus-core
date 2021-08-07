@@ -14,6 +14,8 @@ import java.util.Map;
 import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.youbai.opentcs.data.ObjectHistory;
 import org.youbai.opentcs.data.TCSObject;
 import org.youbai.opentcs.data.TCSObjectReference;
@@ -38,42 +40,42 @@ public class PeripheralJob
    * that reservation token.
    * This string may not be empty.
    */
-  @Nonnull
-  private final String reservationToken;
+  @Nonnull@JsonProperty("reservationToken")
+  private String reservationToken;
   /**
    * The vehicle for which this peripheral job was created.
    * May be {@code null}, if this job wasn't created in the context of a transport order being
    * processed by a vehicle.
    */
-  @Nullable
-  private final TCSObjectReference<Vehicle> relatedVehicle;
+  @Nullable@JsonProperty("relatedVehicle")
+  private TCSObjectReference<Vehicle> relatedVehicle;
   /**
    * The transport order for which this peripheral job was created.
    * May be {@code null}, if this job wasn't created in the context of a transport order being
    * processed by a vehicle.
    */
-  @Nullable
-  private final TCSObjectReference<TransportOrder> relatedTransportOrder;
+  @Nullable@JsonProperty("relatedTransportOrder")
+  private TCSObjectReference<TransportOrder> relatedTransportOrder;
   /**
    * The operation that is to be performed by the pripheral device.
    */
-  @Nonnull
-  private final PeripheralOperation peripheralOperation;
+  @Nonnull@JsonProperty("peripheralOperation")
+  private PeripheralOperation peripheralOperation;
   /**
    * This peripheral job's current state.
    */
-  @Nonnull
-  private final State state;
+  @Nonnull@JsonProperty("state")
+  private State state;
   /**
    * The point of time at which this peripheral job was created.
    */
-  @Nonnull
-  private final Instant creationTime;
+  @Nonnull@JsonProperty("creationTime")
+  private Instant creationTime;
   /**
    * The point of time at which processing of this peripheral job was finished.
    */
-  @Nonnull
-  private final Instant finishedTime;
+  @Nonnull@JsonProperty("finishedTime")
+  private Instant finishedTime;
 
   /**
    * Creates a new instance.
@@ -369,6 +371,34 @@ public class PeripheralJob
                              state,
                              creationTime,
                              finishedTime);
+  }
+
+  public void setReservationToken(@Nonnull String reservationToken) {
+    this.reservationToken = reservationToken;
+  }
+
+  public void setRelatedVehicle(@Nullable TCSObjectReference<Vehicle> relatedVehicle) {
+    this.relatedVehicle = relatedVehicle;
+  }
+
+  public void setRelatedTransportOrder(@Nullable TCSObjectReference<TransportOrder> relatedTransportOrder) {
+    this.relatedTransportOrder = relatedTransportOrder;
+  }
+
+  public void setPeripheralOperation(@Nonnull PeripheralOperation peripheralOperation) {
+    this.peripheralOperation = peripheralOperation;
+  }
+
+  public void setState(@Nonnull State state) {
+    this.state = state;
+  }
+
+  public void setCreationTime(@Nonnull Instant creationTime) {
+    this.creationTime = creationTime;
+  }
+
+  public void setFinishedTime(@Nonnull Instant finishedTime) {
+    this.finishedTime = finishedTime;
   }
 
   /**

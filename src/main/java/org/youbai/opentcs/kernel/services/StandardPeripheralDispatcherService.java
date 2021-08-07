@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.quarkus.runtime.Startup;
+import org.youbai.opentcs.access.KernelRuntimeException;
 import org.youbai.opentcs.components.kernel.PeripheralJobDispatcher;
 import org.youbai.opentcs.components.kernel.services.PeripheralDispatcherService;
 import org.youbai.opentcs.data.ObjectUnknownException;
@@ -71,5 +72,11 @@ public class StandardPeripheralDispatcherService
     synchronized (globalSyncObject) {
       dispatcher.withdrawJob(globalObjectPool.getObject(Location.class, ref));
     }
+  }
+
+  @Override
+  public void withdrawByLocation(String ref)
+          throws ObjectUnknownException{
+    dispatcher.withdrawJob(globalObjectPool.getObject(Location.class, ref));
   }
 }

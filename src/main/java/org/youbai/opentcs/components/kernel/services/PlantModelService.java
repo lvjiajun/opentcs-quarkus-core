@@ -66,4 +66,6 @@ public interface PlantModelService
    */
   void updateLocationLock(TCSObjectReference<Location> ref, boolean locked)
       throws ObjectUnknownException, KernelRuntimeException;
+  void updateLocationLock(String ref, boolean locked)
+          throws ObjectUnknownException, KernelRuntimeException;
 }

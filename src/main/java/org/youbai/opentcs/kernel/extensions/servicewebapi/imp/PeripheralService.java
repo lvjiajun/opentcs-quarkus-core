@@ -26,8 +26,7 @@ public class PeripheralService implements RestPeripheralService {
     @Override
     public AppResult<String> attachCommAdapter(String ref, PeripheralCommAdapterDescription description) {
         try {
-            Location location = standardTCSObjectService.fetchObjectNotNull(Location.class,ref);
-            remotePeripheralService.attachCommAdapter(location.getReference(),description);
+            remotePeripheralService.attachCommAdapter(ref,description);
             return AppResultBuilder.success(ResultCode.SUCCESS);
         }catch (ObjectUnknownException exception){
             return AppResultBuilder.faile(ResultCode.DATA_IS_WRONG);
@@ -37,8 +36,7 @@ public class PeripheralService implements RestPeripheralService {
     @Override
     public AppResult<String> disableCommAdapter(String ref) {
         try {
-            Location location = standardTCSObjectService.fetchObjectNotNull(Location.class,ref);
-            remotePeripheralService.disableCommAdapter(location.getReference());
+            remotePeripheralService.disableCommAdapter(ref);
             return AppResultBuilder.success(ResultCode.SUCCESS);
         }catch (ObjectUnknownException exception){
             return AppResultBuilder.faile(ResultCode.DATA_IS_WRONG);
@@ -48,8 +46,7 @@ public class PeripheralService implements RestPeripheralService {
     @Override
     public AppResult<String> enableCommAdapter(String ref) {
         try {
-            Location location = standardTCSObjectService.fetchObjectNotNull(Location.class,ref);
-            remotePeripheralService.enableCommAdapter(location.getReference());
+            remotePeripheralService.enableCommAdapter(ref);
             return AppResultBuilder.success(ResultCode.SUCCESS);
         }catch (ObjectUnknownException exception){
             return AppResultBuilder.faile(ResultCode.DATA_IS_WRONG);
@@ -59,9 +56,9 @@ public class PeripheralService implements RestPeripheralService {
     @Override
     public AppResult<PeripheralAttachmentInformation> fetchAttachmentInformation(String ref) {
         try {
-            Location location = standardTCSObjectService.fetchObjectNotNull(Location.class,ref);
-            remotePeripheralService.fetchAttachmentInformation(location.getReference());
-            return AppResultBuilder.success(ResultCode.SUCCESS);
+            PeripheralAttachmentInformation peripheralAttachmentInformation
+                    = remotePeripheralService.fetchAttachmentInformation(ref);
+            return AppResultBuilder.success(peripheralAttachmentInformation,ResultCode.SUCCESS);
         }catch (ObjectUnknownException exception){
             return AppResultBuilder.faile(ResultCode.DATA_IS_WRONG);
         }
@@ -70,9 +67,9 @@ public class PeripheralService implements RestPeripheralService {
     @Override
     public AppResult<PeripheralProcessModel> fetchProcessModel(String ref) {
         try {
-            Location location = standardTCSObjectService.fetchObjectNotNull(Location.class,ref);
-            remotePeripheralService.fetchProcessModel(location.getReference());
-            return AppResultBuilder.success(ResultCode.SUCCESS);
+            PeripheralProcessModel peripheralProcessModel
+                    = remotePeripheralService.fetchProcessModel(ref);
+            return AppResultBuilder.success(peripheralProcessModel,ResultCode.SUCCESS);
         }catch (ObjectUnknownException exception){
             return AppResultBuilder.faile(ResultCode.DATA_IS_WRONG);
         }
@@ -81,8 +78,7 @@ public class PeripheralService implements RestPeripheralService {
     @Override
     public AppResult<String> sendCommAdapterCommand(String ref, PeripheralAdapterCommand command) {
         try {
-            Location location = standardTCSObjectService.fetchObjectNotNull(Location.class,ref);
-            remotePeripheralService.sendCommAdapterCommand(location.getReference(),command);
+            remotePeripheralService.sendCommAdapterCommand(ref,command);
             return AppResultBuilder.success(ResultCode.SUCCESS);
         }catch (ObjectUnknownException exception){
             return AppResultBuilder.faile(ResultCode.DATA_IS_WRONG);

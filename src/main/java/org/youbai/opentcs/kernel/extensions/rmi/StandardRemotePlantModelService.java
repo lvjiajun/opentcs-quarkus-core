@@ -101,4 +101,14 @@ public class StandardRemotePlantModelService
       throw findSuitableExceptionFor(exc);
     }
   }
+
+  @Override
+  public void updateLocationLock(String ref, boolean locked) {
+    try {
+      kernelExecutor.submit(() -> plantModelService.updateLocationLock(ref, locked)).get();
+    }
+    catch (InterruptedException | ExecutionException exc) {
+      throw findSuitableExceptionFor(exc);
+    }
+  }
 }

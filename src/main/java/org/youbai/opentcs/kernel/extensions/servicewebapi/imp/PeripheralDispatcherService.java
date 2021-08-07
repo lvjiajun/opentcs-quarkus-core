@@ -23,8 +23,7 @@ public class PeripheralDispatcherService implements RestPeripheralDispatcherServ
 
     @Override
     public AppResult<String> withdrawByLocation(String ref) {
-        Location location = standardTCSObjectService.fetchObjectNotNull(Location.class,ref);
-        remotePeripheralDispatcherService.withdrawByLocation(location.getReference());
+        remotePeripheralDispatcherService.withdrawByLocation(ref);
         return AppResultBuilder.success(ResultCode.SUCCESS);
     }
 }

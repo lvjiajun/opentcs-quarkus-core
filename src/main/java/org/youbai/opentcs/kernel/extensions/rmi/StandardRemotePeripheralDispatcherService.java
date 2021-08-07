@@ -76,7 +76,16 @@ public class StandardRemotePeripheralDispatcherService
 
   @Override
   public void withdrawByLocation(TCSResourceReference<Location> ref) {
+    try {
+      kernelExecutor.submit(() -> dispatcherService.withdrawByLocation(ref)).get();
+    }
+    catch (InterruptedException | ExecutionException exc) {
+      throw findSuitableExceptionFor(exc);
+    }
+  }
 
+  @Override
+  public void withdrawByLocation(String ref) {
     try {
       kernelExecutor.submit(() -> dispatcherService.withdrawByLocation(ref)).get();
     }

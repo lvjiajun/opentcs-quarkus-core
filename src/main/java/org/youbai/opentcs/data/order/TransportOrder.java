@@ -44,44 +44,44 @@ public class TransportOrder
    * The type of this transport order.
    */
   @Nonnull
-  private final String type;
+  private String type;
   /**
    * A set of TransportOrders that must have been finished before this one may
    * be processed.
    */
   @Nonnull
-  private final Set<TCSObjectReference<TransportOrder>> dependencies;
+  private Set<TCSObjectReference<TransportOrder>> dependencies;
   /**
    * The drive orders this transport order consists of.
    */
   @Nonnull
-  private final List<DriveOrder> driveOrders;
+  private List<DriveOrder> driveOrders;
   /**
    * An optional token for reserving peripheral devices while processing this transport order.
    */
   @Nullable
-  private final String peripheralReservationToken;
+  private String peripheralReservationToken;
   /**
    * The index of the currently processed drive order.
    */
-  private final int currentDriveOrderIndex;
+  private int currentDriveOrderIndex;
   /**
    * This transport order's current state.
    */
   @Nonnull
-  private final State state;
+  private State state;
   /**
    * The point of time at which this transport order was created.
    */
-  private final Instant creationTime;
+  private Instant creationTime;
   /**
    * The point of time at which processing of this transport order must be finished.
    */
-  private final Instant deadline;
+  private Instant deadline;
   /**
    * The point of time at which processing of this transport order was finished.
    */
-  private final Instant finishedTime;
+  private Instant finishedTime;
   /**
    * A reference to the vehicle that is intended to process this transport
    * order. If this order is free to be processed by any vehicle, this is
@@ -850,6 +850,47 @@ public class TransportOrder
         new ObjectHistory.Entry(TransportOrderHistoryCodes.ORDER_PROCESSING_VEHICLE_CHANGED,
                                 ref == null ? "" : ref.getName())
     );
+  }
+
+  public void setType(@Nonnull String type) {
+    this.type = type;
+  }
+
+  public void setDependencies(@Nonnull Set<TCSObjectReference<TransportOrder>> dependencies) {
+    this.dependencies = dependencies;
+  }
+
+  @Nonnull
+  public List<DriveOrder> getDriveOrders() {
+    return driveOrders;
+  }
+
+  public void setDriveOrders(@Nonnull List<DriveOrder> driveOrders) {
+    this.driveOrders = driveOrders;
+  }
+
+  public void setPeripheralReservationToken(@Nullable String peripheralReservationToken) {
+    this.peripheralReservationToken = peripheralReservationToken;
+  }
+
+  public void setCurrentDriveOrderIndex(int currentDriveOrderIndex) {
+    this.currentDriveOrderIndex = currentDriveOrderIndex;
+  }
+
+  public void setState(@Nonnull State state) {
+    this.state = state;
+  }
+
+  public void setCreationTime(Instant creationTime) {
+    this.creationTime = creationTime;
+  }
+
+  public void setDeadline(Instant deadline) {
+    this.deadline = deadline;
+  }
+
+  public void setFinishedTime(Instant finishedTime) {
+    this.finishedTime = finishedTime;
   }
 
   /**

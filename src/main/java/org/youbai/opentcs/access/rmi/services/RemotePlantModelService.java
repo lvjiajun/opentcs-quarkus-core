@@ -49,4 +49,6 @@ public interface RemotePlantModelService
   Map<String, String> getModelProperties();
 
   void updateLocationLock(TCSObjectReference<Location> ref, boolean locked);
+
+  void updateLocationLock(String ref, boolean locked);
 }
