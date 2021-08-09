@@ -4,7 +4,7 @@ public class Color {
 
     private String Color;
 
-    public final static Color RED = new Color("ADSCCC");
+    public final static Color RED = new Color("#FFB6C1");
 
 
     public Color(String color) {
