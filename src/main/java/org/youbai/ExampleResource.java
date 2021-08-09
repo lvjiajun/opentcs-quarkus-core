@@ -21,14 +21,14 @@ public class ExampleResource {
 
     @Inject
     SslConfiguration sslConfiguration;
-
+    @Inject
+    KernelStarter kernelStarter;
 
     @Inject
     File file;
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() throws IOException {
-
         return file.getAbsolutePath();
    //     return sslConfiguration.keystoreFile();
     }

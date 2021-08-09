@@ -27,7 +27,6 @@ import static java.util.Objects.requireNonNull;
 public class Block
     extends TCSResource<Block>
     implements Serializable {
-
   /**
    * This block's type.
    */
