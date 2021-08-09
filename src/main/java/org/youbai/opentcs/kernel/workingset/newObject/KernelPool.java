@@ -8,7 +8,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
-public interface KernelObjectPool {
+public interface KernelPool {
     /**
      * Adds a new object to the pool.
      *

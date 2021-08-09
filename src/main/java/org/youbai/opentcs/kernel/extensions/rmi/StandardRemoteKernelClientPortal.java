@@ -56,8 +56,6 @@ public class StandardRemoteKernelClientPortal
    */
   private final EventHandler eventHandler;
 
-
-
   /**
    * Creates a new instance.
    *

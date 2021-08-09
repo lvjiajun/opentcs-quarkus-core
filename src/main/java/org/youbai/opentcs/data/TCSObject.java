@@ -26,7 +26,6 @@ import javax.annotation.Nullable;
  */
 public abstract class TCSObject<E extends TCSObject<E>>
     implements Serializable {
-
   /**
    * A transient reference to this business object.
    */
