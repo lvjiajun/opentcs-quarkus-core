@@ -6,16 +6,17 @@
  * this copy of the software.)
  */
 package org.youbai.opentcs.data.model;
+
+import org.youbai.opentcs.data.ObjectHistory;
+import org.youbai.opentcs.data.TCSObject;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
-import static java.util.Objects.requireNonNull;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JacksonInject;
-import org.youbai.opentcs.data.ObjectHistory;
-import org.youbai.opentcs.data.TCSObject;
+import static java.util.Objects.requireNonNull;
 
 /**
  * An aggregation of resources with distinct usage rules depending on the block's type.
